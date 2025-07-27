@@ -1,0 +1,20 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * Development environment configuration
+ * 
+ * This file sets up development-specific settings including DebugBar activation.
+ * Copy this file to your local environment for development debugging.
+ */
+
+// Set development environment variables for DebugBar
+putenv('APP_ENV=development');
+putenv('DEBUG=true');
+
+return [
+    'debugbar' => [
+        'enabled' => true,
+    ],
+];

@@ -1,0 +1,4 @@
+onlyBuiltDependencies:
+  - cwebp-bin
+  - mozjpeg
+  - pngquant-bin
