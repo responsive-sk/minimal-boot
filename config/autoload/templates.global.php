@@ -10,7 +10,7 @@ return [
             'app' => ['src/App/templates'],
 
             // Contact Templates
-            'contact' => ['src/Contact/templates'],
+            'contact' => [getcwd() . '/src/Contact/templates'],
 
             // Auth Templates
             'auth' => ['src/Auth/templates'],
@@ -19,7 +19,7 @@ return [
             'session' => ['src/Session/templates'],
 
             // Layout Templates (Shared)
-            'layout' => ['src/Shared/templates/layout'],
+            'layout' => [getcwd() . '/src/Shared/templates/layout'],
 
             // Error Templates (Shared)
             'error' => ['src/Shared/templates/error'],

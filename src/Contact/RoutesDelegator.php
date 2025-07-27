@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Light\Contact;
 
 use Light\Contact\Handler\ContactHandler;
+use Light\Contact\Handler\TestHandler;
 use Mezzio\Application;
 use Psr\Container\ContainerInterface;
 use ResponsiveSk\Slim4Session\Middleware\SessionMiddleware;
@@ -40,6 +41,9 @@ class RoutesDelegator
             SessionMiddleware::class,
             ContactHandler::class,
         ], 'contact.post');
+
+        // Test route
+        $app->get('/test-layout', TestHandler::class, 'test.layout');
 
         return $app;
     }

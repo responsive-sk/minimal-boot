@@ -6,6 +6,7 @@ namespace Light\Contact;
 
 use Light\Contact\Factory\ContactHandlerFactory;
 use Light\Contact\Handler\ContactHandler;
+use Light\Contact\Handler\TestHandler;
 use Mezzio\Application;
 
 /**
@@ -44,6 +45,7 @@ class ConfigProvider
             'factories' => [
                 // Contact handlers and services
                 ContactHandler::class => ContactHandlerFactory::class,
+                TestHandler::class => ContactHandlerFactory::class,
             ],
         ];
     }
