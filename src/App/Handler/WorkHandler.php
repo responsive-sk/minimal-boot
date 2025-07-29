@@ -24,28 +24,28 @@ class WorkHandler implements RequestHandlerInterface
             [
                 'title' => 'E-commerce Platform',
                 'description' => 'A modern e-commerce platform built with PHP 8.2, featuring advanced inventory management, payment processing, and real-time analytics.',
-                'image' => '/themes/main/assets/php82.jpg',
+                'image' => '/themes/main/assets/images/php82.jpg',
                 'technologies' => ['PHP 8.2', 'Mezzio', 'MySQL', 'Redis', 'Docker'],
                 'category' => 'Web Application'
             ],
             [
                 'title' => 'JavaScript Framework',
                 'description' => 'Custom JavaScript framework for building reactive user interfaces with minimal overhead and maximum performance.',
-                'image' => '/themes/main/assets/javascript.jpg',
+                'image' => '/themes/main/assets/images/javascript.jpg',
                 'technologies' => ['JavaScript', 'TypeScript', 'Webpack', 'Jest', 'Cypress'],
                 'category' => 'Open Source'
             ],
             [
                 'title' => 'Digital Marketing Suite',
                 'description' => 'Comprehensive digital marketing platform with campaign management, analytics, and automated reporting capabilities.',
-                'image' => '/themes/main/assets/digital-marketing.jpg',
+                'image' => '/themes/main/assets/images/digital-marketing.jpg',
                 'technologies' => ['PHP', 'Vue.js', 'PostgreSQL', 'Elasticsearch', 'AWS'],
                 'category' => 'SaaS Platform'
             ],
             [
                 'title' => 'Mezzio Boot Framework',
                 'description' => 'Enhanced Mezzio framework with modern build system, theme support, and developer-friendly tooling.',
-                'image' => '/themes/main/assets/logo.svg',
+                'image' => '/themes/main/assets/images/logo.svg',
                 'technologies' => ['PHP 8.2', 'Mezzio', 'Vite', 'TailwindCSS', 'Alpine.js'],
                 'category' => 'Framework'
             ]

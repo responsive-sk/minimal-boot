@@ -36,6 +36,12 @@
         "responsive-sk/slim4-paths": "^6.0",
         "responsive-sk/slim4-session": "^2.2"
     },
+    "require-dev": {
+        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "squizlabs/php_codesniffer": "^3.13",
+        "vincentlanglet/twig-cs-fixer": "^3.8"
+    },
     "autoload": {
         "psr-4": {
             "Light\\Core\\": "src/Core/",
@@ -70,11 +76,5 @@
         "static-analysis": "phpstan analyse --memory-limit 1G",
         "twig-cs-check": "vendor/bin/twig-cs-fixer lint --config=config/twig-cs-fixer.php",
         "twig-cs-fix": "vendor/bin/twig-cs-fixer lint --config=config/twig-cs-fixer.php --fix"
-    },
-    "require-dev": {
-        "phpstan/phpstan": "^2.1",
-        "phpstan/phpstan-phpunit": "^2.0",
-        "squizlabs/php_codesniffer": "^3.13",
-        "vincentlanglet/twig-cs-fixer": "^3.8"
     }
 }
