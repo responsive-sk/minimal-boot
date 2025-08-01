@@ -1,0 +1,96 @@
+# GitHub Pages Configuration for Minimal Boot Documentation
+
+# Site settings
+title: "Minimal Boot Documentation"
+description: "A lightweight, PSR-15 compliant web application framework with Domain-Driven Design principles"
+baseurl: "/minimal-boot"
+url: "https://responsive-sk.github.io"
+
+# Repository information
+repository: "responsive-sk/minimal-boot"
+github_username: "responsive-sk"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# Kramdown settings
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+    span:
+      line_numbers: false
+    block:
+      line_numbers: false
+
+# Collections
+collections:
+  book:
+    output: true
+    permalink: /:collection/:name/
+
+# Navigation
+navigation:
+  - title: "Home"
+    url: "/"
+  - title: "Installation"
+    url: "/book/installation/"
+  - title: "Getting Started"
+    url: "/book/getting-started/"
+  - title: "Architecture"
+    url: "/book/architecture/"
+  - title: "Modules"
+    url: "/book/modules/"
+  - title: "Templates"
+    url: "/book/templates/"
+  - title: "Domain Layer"
+    url: "/book/domain/"
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+# Include
+include:
+  - _pages
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "book"
+    values:
+      layout: "page"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+
+# SEO settings
+author: "Responsive SK"
+twitter:
+  username: "responsive_sk"
+  card: "summary"
+
+# Social links
+social:
+  - platform: "github"
+    url: "https://github.com/responsive-sk/minimal-boot"
+  - platform: "website"
+    url: "https://responsive.sk"

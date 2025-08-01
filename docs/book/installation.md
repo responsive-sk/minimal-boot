@@ -1,3 +1,10 @@
+---
+layout: page
+title: "Installation"
+description: "Complete installation guide for Minimal Boot framework"
+nav_order: 1
+---
+
 # Installation
 
 This guide will walk you through installing Minimal Boot and setting up your development environment.

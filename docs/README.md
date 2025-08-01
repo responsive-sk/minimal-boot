@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Minimal Boot Documentation"
+description: "A lightweight, PSR-15 compliant web application framework with Domain-Driven Design principles"
+---
+
 # Minimal Boot Documentation
 
 Welcome to the Minimal Boot documentation. This guide will help you understand, install, and use the Minimal Boot framework.

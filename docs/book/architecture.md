@@ -1,3 +1,10 @@
+---
+layout: page
+title: "Architecture"
+description: "Framework architecture and Domain-Driven Design principles"
+nav_order: 3
+---
+
 # Architecture
 
 Minimal Boot follows Domain-Driven Design (DDD) principles and implements a clean, layered architecture that promotes separation of concerns and maintainability.

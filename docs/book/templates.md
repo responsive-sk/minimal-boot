@@ -1,3 +1,10 @@
+---
+layout: page
+title: "Templates"
+description: "Native PHP template system with layouts and components"
+nav_order: 5
+---
+
 # Templates
 
 Minimal Boot uses a native PHP template system that provides excellent performance, debugging capabilities, and full access to PHP features without the overhead of template compilation.

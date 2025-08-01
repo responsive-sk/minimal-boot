@@ -1,3 +1,10 @@
+---
+layout: page
+title: "Domain Layer"
+description: "Domain-Driven Design implementation with entities, services, and repositories"
+nav_order: 6
+---
+
 # Domain Layer
 
 The Domain Layer is the heart of your application, containing the core business logic, entities, and rules. Minimal Boot implements Domain-Driven Design (DDD) principles to create maintainable and testable applications.

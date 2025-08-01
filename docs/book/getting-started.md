@@ -1,3 +1,10 @@
+---
+layout: page
+title: "Getting Started"
+description: "Learn the basics of Minimal Boot and create your first components"
+nav_order: 2
+---
+
 # Getting Started
 
 This guide will help you understand the basics of Minimal Boot and create your first application components.

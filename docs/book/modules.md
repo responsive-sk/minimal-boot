@@ -1,3 +1,10 @@
+---
+layout: page
+title: "Modules"
+description: "Creating and managing modular components in Minimal Boot"
+nav_order: 4
+---
+
 # Modules
 
 Minimal Boot uses a modular architecture where each module is a self-contained unit with its own handlers, templates, services, and configuration.

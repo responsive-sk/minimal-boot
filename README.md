@@ -41,7 +41,9 @@ php -S localhost:8080 -t public/
 
 ## Documentation
 
-Complete documentation is available in the [docs](docs/) directory:
+📚 **[View Documentation Online](https://responsive-sk.github.io/minimal-boot/)**
+
+Complete documentation is also available in the [docs](docs/) directory:
 
 - [Installation Guide](docs/book/installation.md) - Detailed installation instructions
 - [Getting Started](docs/book/getting-started.md) - Your first steps with Minimal Boot
@@ -49,7 +51,11 @@ Complete documentation is available in the [docs](docs/) directory:
 - [Modules](docs/book/modules.md) - Creating and managing modular components
 - [Templates](docs/book/templates.md) - Native PHP template system guide
 
-For a complete overview, see the [Documentation Index](docs/README.md).
+The documentation is automatically deployed to GitHub Pages and includes:
+- Interactive navigation
+- Syntax highlighting
+- Mobile-responsive design
+- Search functionality
 
 ## Project Structure
 
