@@ -26,7 +26,8 @@ minimal-boot/
 │   ├── Contact/           # Contact form module
 │   ├── Auth/              # Authentication module
 │   ├── Session/           # Session management
-│   └── Shared/            # Shared templates and components
+│   ├── Shared/            # Shared templates and components
+│   └── Assets/            # Frontend asset build systems
 ├── var/                   # Variable data (cache, logs)
 └── vendor/                # Composer dependencies
 ```

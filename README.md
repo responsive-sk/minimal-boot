@@ -79,10 +79,14 @@ src/
 │   └── templates/         # Contact templates
 ├── Auth/                  # Authentication module
 ├── Session/               # Session management module
-└── Shared/                # Shared templates and components
-    └── templates/
-        ├── layout/        # Layout templates
-        └── error/         # Error page templates
+├── Shared/                # Shared templates and components
+│   └── templates/
+│       ├── layout/        # Layout templates
+│       ├── error/         # Error page templates
+│       └── partial/       # Reusable components
+└── Assets/                # Frontend asset build systems
+    ├── bootstrap/         # Bootstrap + Vite build system
+    └── main/              # TailwindCSS + Vite build system
 ```
 
 ## Architecture
