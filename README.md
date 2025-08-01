@@ -7,11 +7,11 @@ A PSR-15 compliant application skeleton with modular template architecture and D
 - **Domain-Driven Design Architecture** - Clean separation of concerns with Domain, Application, and Infrastructure layers
 - **Modular Structure** - Each module is self-contained with its own handlers, templates, and services
 - **PSR-15 Middleware** - Full PSR-15 compliance for HTTP message handling
-- **Template System** - Native PHP template renderer with layout support
+- **Native PHP Templates** - Clean PHP template system with layout support (no Twig dependency)
 - **Repository Pattern** - Abstracted data access with interface-based design
 - **CSRF Protection** - Built-in CSRF token validation for forms
 - **Session Management** - Integrated session handling with flash messages
-- **Code Quality Tools** - PHPStan, PHP_CodeSniffer, and Twig CS Fixer integration
+- **Code Quality Tools** - PHPStan and PHP_CodeSniffer integration for high code quality
 
 ## Requirements
 
@@ -27,17 +27,17 @@ git clone https://github.com/responsive-sk/minimal-boot.git
 cd minimal-boot
 ```
 
-2. Install dependencies:
+1. Install dependencies:
 ```bash
 composer install
 ```
 
-3. Start the development server:
+1. Start the development server:
 ```bash
 php -S localhost:8080 -t public/
 ```
 
-4. Open your browser and navigate to `http://localhost:8080`
+1. Open your browser and navigate to `http://localhost:8080`
 
 ## Project Structure
 
@@ -149,9 +149,6 @@ composer cs-check
 
 # Code style fix
 composer cs-fix
-
-# Twig template check
-composer twig-cs-check
 ```
 
 ### Creating New Modules
@@ -214,9 +211,16 @@ $layout('layout::default', [
 
 ### Available Layouts
 
-- `layout::default` - Bootstrap-based layout with navigation
-- `layout::tailwind` - TailwindCSS-based layout
-- `layout::bootstrap` - Pure Bootstrap layout
+- `layout::default` - Bootstrap-based layout with navigation and dark mode toggle
+- `layout::tailwind` - TailwindCSS-based layout with Alpine.js components
+- `layout::bootstrap` - Pure Bootstrap layout for simple pages
+
+### Template Features
+
+- **Native PHP Templates** - No external template engine dependencies
+- **Layout System** - Hierarchical template inheritance
+- **Helper Functions** - URL generation, escaping, and utility functions
+- **Component Support** - Reusable template components and partials
 
 ## Testing
 
@@ -239,6 +243,42 @@ $this->assertEquals('About Us', $page->getTitle());
 3. Make your changes
 4. Run code quality checks
 5. Submit a pull request
+
+## Template System Details
+
+The project uses a **Native PHP Template System** with the following advantages:
+
+### Why Native PHP Templates?
+
+- **No External Dependencies** - Eliminates Twig/Smarty dependencies
+- **Better Performance** - Direct PHP execution without compilation overhead
+- **Full PHP Power** - Access to all PHP functions and features
+- **Easier Debugging** - Standard PHP debugging tools work seamlessly
+- **Smaller Footprint** - Reduced vendor directory size and complexity
+
+### Template Architecture
+
+```php
+// Layout usage in templates
+<?php
+$layout('layout::default', [
+    'title' => 'Page Title',
+    'description' => 'SEO description',
+    'author' => 'Author Name'
+]);
+?>
+
+<div class="content">
+    <h1><?= $this->escapeHtml($title) ?></h1>
+    <p><?= $content ?></p>
+</div>
+```
+
+### Security Features
+
+- **Automatic Escaping** - Built-in XSS protection
+- **CSRF Protection** - Token validation for forms
+- **Safe Includes** - Controlled template inclusion
 
 ## License
 

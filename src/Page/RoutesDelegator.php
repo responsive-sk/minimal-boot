@@ -13,9 +13,6 @@ use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
 use function assert;
-use function is_array;
-use function is_string;
-use function sprintf;
 
 class RoutesDelegator
 {
