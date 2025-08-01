@@ -63,8 +63,10 @@ class ContactHandler implements RequestHandlerInterface
     /**
      * Handle form submission.
      */
-    private function handleFormSubmission(ServerRequestInterface $request, ?SessionInterface $session): ResponseInterface
-    {
+    private function handleFormSubmission(
+        ServerRequestInterface $request,
+        ?SessionInterface $session
+    ): ResponseInterface {
         $parsedBody = $request->getParsedBody();
 
         // Ensure parsed body is array

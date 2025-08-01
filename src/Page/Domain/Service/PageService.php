@@ -10,7 +10,7 @@ use Light\Page\Domain\Repository\PageRepositoryInterface;
 
 /**
  * Page domain service implementation.
- * 
+ *
  * Contains business logic for page operations following DDD principles.
  */
 class PageService implements PageServiceInterface
@@ -30,6 +30,9 @@ class PageService implements PageServiceInterface
         return $this->pageRepository->findAllPublished();
     }
 
+    /**
+     * @param array<string> $metaKeywords
+     */
     public function createPage(
         string $slug,
         string $title,
@@ -44,11 +47,13 @@ class PageService implements PageServiceInterface
 
         // Business rule: slug must be valid (alphanumeric and dashes only)
         if (!preg_match('/^[a-z0-9-]+$/', $slug)) {
-            throw new \InvalidArgumentException("Invalid slug format. Use only lowercase letters, numbers, and dashes.");
+            throw new \InvalidArgumentException(
+                "Invalid slug format. Use only lowercase letters, numbers, and dashes."
+            );
         }
 
         $now = new DateTimeImmutable();
-        
+
         $page = new Page(
             slug: $slug,
             title: $title,
@@ -69,7 +74,7 @@ class PageService implements PageServiceInterface
     public function updatePageContent(string $slug, string $content): ?Page
     {
         $page = $this->pageRepository->findBySlug($slug);
-        
+
         if ($page === null) {
             return null;
         }
@@ -83,7 +88,7 @@ class PageService implements PageServiceInterface
     public function publishPage(string $slug): ?Page
     {
         $page = $this->pageRepository->findBySlug($slug);
-        
+
         if ($page === null) {
             return null;
         }
@@ -97,7 +102,7 @@ class PageService implements PageServiceInterface
     public function unpublishPage(string $slug): ?Page
     {
         $page = $this->pageRepository->findBySlug($slug);
-        
+
         if ($page === null) {
             return null;
         }

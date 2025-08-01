@@ -9,7 +9,7 @@ use Light\Page\Domain\Entity\Page;
 
 /**
  * In-memory page repository implementation.
- * 
+ *
  * Simple implementation for demonstration and testing.
  * In production, this would be replaced with database implementation.
  */
@@ -75,7 +75,8 @@ class InMemoryPageRepository implements PageRepositoryInterface
         $this->pages['privacy'] = new Page(
             slug: 'privacy',
             title: 'Privacy Policy',
-            content: '<h1>Privacy Policy</h1><p>Your privacy is important to us. This policy explains how we handle your data.</p>',
+            content: '<h1>Privacy Policy</h1><p>Your privacy is important to us. ' .
+                'This policy explains how we handle your data.</p>',
             metaDescription: 'Our privacy policy and data handling practices.',
             metaKeywords: ['privacy', 'policy', 'data'],
             isPublished: true,

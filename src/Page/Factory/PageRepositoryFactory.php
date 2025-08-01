@@ -10,7 +10,7 @@ use Psr\Container\ContainerInterface;
 
 /**
  * Factory for PageRepository.
- * 
+ *
  * Creates repository implementation for dependency injection.
  */
 class PageRepositoryFactory

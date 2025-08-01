@@ -8,7 +8,7 @@ use Light\Page\Domain\Entity\Page;
 
 /**
  * Page domain service interface.
- * 
+ *
  * Defines business logic operations for pages following DDD principles.
  */
 interface PageServiceInterface
@@ -20,13 +20,15 @@ interface PageServiceInterface
 
     /**
      * Get all published pages.
-     * 
+     *
      * @return array<Page>
      */
     public function getPublishedPages(): array;
 
     /**
      * Create a new page.
+     *
+     * @param array<string> $metaKeywords
      */
     public function createPage(
         string $slug,

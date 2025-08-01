@@ -8,7 +8,7 @@ use Light\Page\Domain\Entity\Page;
 
 /**
  * Page repository interface.
- * 
+ *
  * Defines contract for page data access following DDD principles.
  */
 interface PageRepositoryInterface
@@ -20,14 +20,14 @@ interface PageRepositoryInterface
 
     /**
      * Find all published pages.
-     * 
+     *
      * @return array<Page>
      */
     public function findAllPublished(): array;
 
     /**
      * Find all pages.
-     * 
+     *
      * @return array<Page>
      */
     public function findAll(): array;

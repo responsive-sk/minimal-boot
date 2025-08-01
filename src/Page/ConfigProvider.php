@@ -11,7 +11,6 @@ use Light\Page\Factory\GetPageViewHandlerFactory;
 use Light\Page\Factory\IndexHandlerFactory;
 use Light\Page\Factory\PageRepositoryFactory;
 use Light\Page\Factory\PageServiceFactory;
-use Light\Page\Handler\DebugPagesHandler;
 use Light\Page\Handler\DemoHandler;
 use Light\Page\Handler\GetPageViewHandler;
 use Light\Page\Handler\IndexHandler;
@@ -50,9 +49,6 @@ class ConfigProvider
                 IndexHandler::class       => IndexHandlerFactory::class,
                 DemoHandler::class        => DemoHandlerFactory::class,
                 GetPageViewHandler::class => GetPageViewHandlerFactory::class,
-                DebugPagesHandler::class  => function($container) {
-                    return new DebugPagesHandler($container->get(PageServiceInterface::class));
-                },
 
                 // Domain services
                 PageServiceInterface::class => PageServiceFactory::class,

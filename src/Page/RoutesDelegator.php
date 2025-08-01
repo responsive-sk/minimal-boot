@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Light\Page;
 
-use Light\Page\Handler\DebugPagesHandler;
 use Light\Page\Handler\DemoHandler;
 use Light\Page\Handler\GetPageViewHandler;
 use Light\Page\Handler\IndexHandler;
@@ -32,7 +31,6 @@ class RoutesDelegator
         // Main routes
         $app->get('/', [IndexHandler::class], 'page::index');
         $app->get('/demo', [DemoHandler::class], 'page::demo');
-        $app->get('/debug-pages', [DebugPagesHandler::class], 'page::debug');
 
         // Dynamic page route with slug parameter
         $app->get('/page/{slug}', [GetPageViewHandler::class], 'page::view');

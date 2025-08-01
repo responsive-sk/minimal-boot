@@ -8,7 +8,7 @@ use DateTimeImmutable;
 
 /**
  * Page entity representing a static page in the system.
- * 
+ *
  * Domain entity following DDD principles.
  */
 class Page
@@ -18,6 +18,7 @@ class Page
         private readonly string $title,
         private readonly string $content,
         private readonly string $metaDescription = '',
+        /** @var array<string> */
         private readonly array $metaKeywords = [],
         private readonly bool $isPublished = true,
         private readonly ?DateTimeImmutable $publishedAt = null,
