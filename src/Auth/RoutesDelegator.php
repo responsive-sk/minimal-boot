@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Light\Auth;
+namespace Minimal\Auth;
 
-use Light\Auth\Handler\AuthHandler;
+use Minimal\Auth\Handler\AuthHandler;
 use Mezzio\Application;
 use Psr\Container\ContainerInterface;
 use ResponsiveSk\Slim4Session\Middleware\SessionMiddleware;

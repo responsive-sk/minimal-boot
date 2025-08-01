@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Light\Page\Domain\Service;
+namespace Minimal\Page\Domain\Service;
 
 use DateTimeImmutable;
-use Light\Page\Domain\Entity\Page;
-use Light\Page\Domain\Repository\PageRepositoryInterface;
+use Minimal\Page\Domain\Entity\Page;
+use Minimal\Page\Domain\Repository\PageRepositoryInterface;
 
 /**
  * Page domain service implementation.

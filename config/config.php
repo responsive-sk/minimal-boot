@@ -26,15 +26,15 @@ $aggregator = new ConfigAggregator([
     \Mezzio\Router\ConfigProvider::class,
     \Mezzio\Router\FastRouteRouter\ConfigProvider::class,
     // Core infrastructure module (must be loaded BEFORE Mezzio\Twig to override factories)
-    \Light\Core\ConfigProvider::class,// Dotkernel packages
+    \Minimal\Core\ConfigProvider::class,// Dotkernel packages
     \Dot\ErrorHandler\ConfigProvider::class,
     \Dot\Log\ConfigProvider::class,
     // Page module (includes index and demo)
-    \Light\Page\ConfigProvider::class,
+    \Minimal\Page\ConfigProvider::class,
     // New modular components
-    \Light\Contact\ConfigProvider::class,
-    \Light\Session\ConfigProvider::class,
-    \Light\Shared\ConfigProvider::class,
+    \Minimal\Contact\ConfigProvider::class,
+    \Minimal\Session\ConfigProvider::class,
+    \Minimal\Shared\ConfigProvider::class,
     // Load application config in a pre-defined order in such a way that local settings
     // overwrite global settings. (Loaded as first to last):
     //   - `global.php`

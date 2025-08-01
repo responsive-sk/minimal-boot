@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Light\Page\Factory;
+namespace Minimal\Page\Factory;
 
-use Light\Page\Domain\Repository\InMemoryPageRepository;
-use Light\Page\Domain\Repository\PageRepositoryInterface;
+use Minimal\Page\Domain\Repository\InMemoryPageRepository;
+use Minimal\Page\Domain\Repository\PageRepositoryInterface;
 use Psr\Container\ContainerInterface;
 
 /**

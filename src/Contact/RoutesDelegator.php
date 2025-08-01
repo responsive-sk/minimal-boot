@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Light\Contact;
+namespace Minimal\Contact;
 
-use Light\Contact\Handler\ContactHandler;
-use Light\Contact\Handler\TestHandler;
+use Minimal\Contact\Handler\ContactHandler;
+use Minimal\Contact\Handler\TestHandler;
 use Mezzio\Application;
 use Psr\Container\ContainerInterface;
 use ResponsiveSk\Slim4Session\Middleware\SessionMiddleware;

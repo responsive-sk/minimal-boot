@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Light\Page\Domain\Repository;
+namespace Minimal\Page\Domain\Repository;
 
-use Light\Page\Domain\Entity\Page;
+use Minimal\Page\Domain\Entity\Page;
 
 /**
  * Page repository interface.

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Light\Core\Factory;
+namespace Minimal\Core\Factory;
 
-use Light\Core\Template\NativePhpRenderer;
+use Minimal\Core\Template\NativePhpRenderer;
 use Mezzio\Helper\UrlHelper;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Container\ContainerInterface;

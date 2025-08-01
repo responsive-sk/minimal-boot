@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Light\Core\Template;
+namespace Minimal\Core\Template;
 
 use Mezzio\Helper\UrlHelper;
 use Mezzio\Template\TemplatePath;

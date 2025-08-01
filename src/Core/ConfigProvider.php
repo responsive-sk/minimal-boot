@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Light\Core;
+namespace Minimal\Core;
 
-use Light\Core\Factory\NativePhpRendererFactory;
-use Light\Core\Factory\PathsFactory;
-use Light\Core\Factory\TemplatePathProviderFactory;
-use Light\Core\Service\TemplatePathProviderInterface;
+use Minimal\Core\Factory\NativePhpRendererFactory;
+use Minimal\Core\Factory\PathsFactory;
+use Minimal\Core\Factory\TemplatePathProviderFactory;
+use Minimal\Core\Service\TemplatePathProviderInterface;
 use Mezzio\Template\TemplateRendererInterface;
 use ResponsiveSk\Slim4Paths\Paths;
 

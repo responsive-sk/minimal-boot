@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Light\Page\Domain\Repository;
+namespace Minimal\Page\Domain\Repository;
 
 use DateTimeImmutable;
-use Light\Page\Domain\Entity\Page;
+use Minimal\Page\Domain\Entity\Page;
 
 /**
  * In-memory page repository implementation.

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Light\Core\Service;
+namespace Minimal\Core\Service;
 
 use InvalidArgumentException;
 

@@ -10,13 +10,13 @@ declare(strict_types=1);
 return [
     'dependencies' => [
         'factories' => [
-            Light\Core\Middleware\DebugBarMiddleware::class => Light\Core\Factory\DebugBarMiddlewareFactory::class,
+            Minimal\Core\Middleware\DebugBarMiddleware::class => Minimal\Core\Factory\DebugBarMiddlewareFactory::class,
         ],
     ],
     
     'middleware_pipeline' => [
         [
-            'middleware' => Light\Core\Middleware\DebugBarMiddleware::class,
+            'middleware' => Minimal\Core\Middleware\DebugBarMiddleware::class,
             'priority' => 10000, // High priority to wrap everything
         ],
     ],

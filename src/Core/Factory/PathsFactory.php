@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Light\Core\Factory;
+namespace Minimal\Core\Factory;
 
 use Psr\Container\ContainerInterface;
 use ResponsiveSk\Slim4Paths\Paths;

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Light\Page\Factory;
+namespace Minimal\Page\Factory;
 
-use Light\Page\Handler\IndexHandler;
+use Minimal\Page\Handler\IndexHandler;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Container\ContainerInterface;
 use ResponsiveSk\Slim4Paths\Paths;

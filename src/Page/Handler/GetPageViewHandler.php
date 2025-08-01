@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Light\Page\Handler;
+namespace Minimal\Page\Handler;
 
 use Laminas\Diactoros\Response\HtmlResponse;
-use Light\Page\Domain\Service\PageServiceInterface;
+use Minimal\Page\Domain\Service\PageServiceInterface;
 use Mezzio\Router\RouteResult;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Http\Message\ResponseInterface;

@@ -43,7 +43,7 @@ php -S localhost:8080 -t public/
 
 ```
 src/
-├── Core/                   # Core infrastructure services
+├── Core/                  # Core infrastructure services
 │   ├── Factory/           # Dependency injection factories
 │   ├── Service/           # Core services (template paths, etc.)
 │   └── Template/          # Native PHP template renderer
@@ -125,11 +125,11 @@ Modules are registered in `config/config.php`:
 
 ```php
 $aggregator = new ConfigAggregator([
-    \Light\Core\ConfigProvider::class,
-    \Light\Page\ConfigProvider::class,
-    \Light\Contact\ConfigProvider::class,
-    \Light\Auth\ConfigProvider::class,
-    \Light\Session\ConfigProvider::class,
+    \Minimal\Core\ConfigProvider::class,
+    \Minimal\Page\ConfigProvider::class,
+    \Minimal\Contact\ConfigProvider::class,
+    \Minimal\Auth\ConfigProvider::class,
+    \Minimal\Session\ConfigProvider::class,
     // ...
 ]);
 ```
@@ -228,8 +228,8 @@ The Domain layer is designed for easy testing:
 
 ```php
 // Example: Testing PageService
-$repository = new InMemoryPageRepository();
-$pageService = new PageService($repository);
+$repository = new \Minimal\Page\Domain\Repository\InMemoryPageRepository();
+$pageService = new \Minimal\Page\Domain\Service\PageService($repository);
 
 $page = $pageService->getPageBySlug('about');
 $this->assertNotNull($page);

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Light\Contact\Factory;
+namespace Minimal\Contact\Factory;
 
-use Light\Contact\Handler\ContactHandler;
+use Minimal\Contact\Handler\ContactHandler;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Container\ContainerInterface;
 

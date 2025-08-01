@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Light\Shared;
+namespace Minimal\Shared;
 
 /**
  * Shared module configuration provider.

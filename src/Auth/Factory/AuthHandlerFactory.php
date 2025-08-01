@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Light\Auth\Factory;
+namespace Minimal\Auth\Factory;
 
-use Light\Auth\Handler\AuthHandler;
+use Minimal\Auth\Handler\AuthHandler;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Container\ContainerInterface;
 

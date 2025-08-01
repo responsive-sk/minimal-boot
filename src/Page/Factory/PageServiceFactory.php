@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Light\Page\Factory;
+namespace Minimal\Page\Factory;
 
-use Light\Page\Domain\Repository\PageRepositoryInterface;
-use Light\Page\Domain\Service\PageService;
-use Light\Page\Domain\Service\PageServiceInterface;
+use Minimal\Page\Domain\Repository\PageRepositoryInterface;
+use Minimal\Page\Domain\Service\PageService;
+use Minimal\Page\Domain\Service\PageServiceInterface;
 use Psr\Container\ContainerInterface;
 
 use function assert;

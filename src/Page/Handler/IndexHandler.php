@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Light\Page\Handler;
+namespace Minimal\Page\Handler;
 
 use Laminas\Diactoros\Response\HtmlResponse;
 use Mezzio\Template\TemplateRendererInterface;

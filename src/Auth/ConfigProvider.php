@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Light\Auth;
+namespace Minimal\Auth;
 
 /**
  * Auth module configuration provider.

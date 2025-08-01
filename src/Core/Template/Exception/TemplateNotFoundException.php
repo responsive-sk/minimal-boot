@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Light\Core\Template\Exception;
+namespace Minimal\Core\Template\Exception;
 
 /**
  * Template not found exception.

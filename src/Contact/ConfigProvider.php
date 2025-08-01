@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Light\Contact;
+namespace Minimal\Contact;
 
-use Light\Contact\Factory\ContactHandlerFactory;
-use Light\Contact\Handler\ContactHandler;
-use Light\Contact\Handler\TestHandler;
+use Minimal\Contact\Factory\ContactHandlerFactory;
+use Minimal\Contact\Handler\ContactHandler;
+use Minimal\Contact\Handler\TestHandler;
 use Mezzio\Application;
 
 /**

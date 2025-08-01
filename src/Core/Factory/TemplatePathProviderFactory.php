@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Light\Core\Factory;
+namespace Minimal\Core\Factory;
 
-use Light\Core\Service\ConfigBasedTemplatePathProvider;
-use Light\Core\Service\TemplatePathProviderInterface;
+use Minimal\Core\Service\ConfigBasedTemplatePathProvider;
+use Minimal\Core\Service\TemplatePathProviderInterface;
 use Psr\Container\ContainerInterface;
 use ResponsiveSk\Slim4Paths\Paths;
 

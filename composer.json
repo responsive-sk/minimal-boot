@@ -43,13 +43,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Light\\Core\\": "src/Core/",
-            "Light\\App\\": "src/App/",
-            "Light\\Page\\": "src/Page/",
-            "Light\\Contact\\": "src/Contact/",
-            "Light\\Auth\\": "src/Auth/",
-            "Light\\Session\\": "src/Session/",
-            "Light\\Shared\\": "src/Shared/"
+            "Minimal\\Core\\": "src/Core/",
+            "Minimal\\Page\\": "src/Page/",
+            "Minimal\\Contact\\": "src/Contact/",
+            "Minimal\\Auth\\": "src/Auth/",
+            "Minimal\\Session\\": "src/Session/",
+            "Minimal\\Shared\\": "src/Shared/"
         }
     },
     "scripts": {

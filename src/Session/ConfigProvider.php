@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Light\Session;
+namespace Minimal\Session;
 
 use Psr\Container\ContainerInterface;
 use ResponsiveSk\Slim4Session\Middleware\SessionMiddleware;

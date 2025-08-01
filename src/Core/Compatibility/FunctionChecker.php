@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Light\Core\Compatibility;
+namespace Minimal\Core\Compatibility;
 
 use function exec;
 use function explode;

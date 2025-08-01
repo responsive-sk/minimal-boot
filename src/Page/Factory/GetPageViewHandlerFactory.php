@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Light\Page\Factory;
+namespace Minimal\Page\Factory;
 
-use Light\Page\Domain\Service\PageServiceInterface;
-use Light\Page\Handler\GetPageViewHandler;
+use Minimal\Page\Domain\Service\PageServiceInterface;
+use Minimal\Page\Handler\GetPageViewHandler;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;

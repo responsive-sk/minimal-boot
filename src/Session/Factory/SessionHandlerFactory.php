@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Light\Session\Factory;
+namespace Minimal\Session\Factory;
 
-use Light\Session\Handler\SessionHandler;
+use Minimal\Session\Handler\SessionHandler;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Container\ContainerInterface;
 

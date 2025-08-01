@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Light\Page\Factory;
+namespace Minimal\Page\Factory;
 
-use Light\Page\Handler\DemoHandler;
+use Minimal\Page\Handler\DemoHandler;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Container\ContainerInterface;
 

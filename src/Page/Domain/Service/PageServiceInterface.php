@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Light\Page\Domain\Service;
+namespace Minimal\Page\Domain\Service;
 
-use Light\Page\Domain\Entity\Page;
+use Minimal\Page\Domain\Entity\Page;
 
 /**
  * Page domain service interface.

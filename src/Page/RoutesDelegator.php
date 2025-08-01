@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Light\Page;
+namespace Minimal\Page;
 
-use Light\Page\Handler\DemoHandler;
-use Light\Page\Handler\GetPageViewHandler;
-use Light\Page\Handler\IndexHandler;
+use Minimal\Page\Handler\DemoHandler;
+use Minimal\Page\Handler\GetPageViewHandler;
+use Minimal\Page\Handler\IndexHandler;
 use Mezzio\Application;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;

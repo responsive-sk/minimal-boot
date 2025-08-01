@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Light\Page;
+namespace Minimal\Page;
 
-use Light\Page\Domain\Repository\PageRepositoryInterface;
-use Light\Page\Domain\Service\PageServiceInterface;
-use Light\Page\Factory\DemoHandlerFactory;
-use Light\Page\Factory\GetPageViewHandlerFactory;
-use Light\Page\Factory\IndexHandlerFactory;
-use Light\Page\Factory\PageRepositoryFactory;
-use Light\Page\Factory\PageServiceFactory;
-use Light\Page\Handler\DemoHandler;
-use Light\Page\Handler\GetPageViewHandler;
-use Light\Page\Handler\IndexHandler;
+use Minimal\Page\Domain\Repository\PageRepositoryInterface;
+use Minimal\Page\Domain\Service\PageServiceInterface;
+use Minimal\Page\Factory\DemoHandlerFactory;
+use Minimal\Page\Factory\GetPageViewHandlerFactory;
+use Minimal\Page\Factory\IndexHandlerFactory;
+use Minimal\Page\Factory\PageRepositoryFactory;
+use Minimal\Page\Factory\PageServiceFactory;
+use Minimal\Page\Handler\DemoHandler;
+use Minimal\Page\Handler\GetPageViewHandler;
+use Minimal\Page\Handler\IndexHandler;
 use Mezzio\Application;
 
 class ConfigProvider

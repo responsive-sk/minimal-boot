@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Light\Page\Domain\Entity;
+namespace Minimal\Page\Domain\Entity;
 
 use DateTimeImmutable;
 
