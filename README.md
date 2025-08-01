@@ -39,6 +39,18 @@ php -S localhost:8080 -t public/
 
 1. Open your browser and navigate to `http://localhost:8080`
 
+## Documentation
+
+Complete documentation is available in the [docs](docs/) directory:
+
+- [Installation Guide](docs/book/installation.md) - Detailed installation instructions
+- [Getting Started](docs/book/getting-started.md) - Your first steps with Minimal Boot
+- [Architecture](docs/book/architecture.md) - Framework architecture and design patterns
+- [Modules](docs/book/modules.md) - Creating and managing modular components
+- [Templates](docs/book/templates.md) - Native PHP template system guide
+
+For a complete overview, see the [Documentation Index](docs/README.md).
+
 ## Project Structure
 
 ```
