@@ -32,6 +32,16 @@ cd minimal-boot
 composer install
 ```
 
+1. Build frontend assets:
+```bash
+# Build all themes (Bootstrap + TailwindCSS)
+./build-assets.sh
+
+# Or build individually:
+cd src/Assets/bootstrap && pnpm install && pnpm build
+cd ../main && pnpm install && pnpm build
+```
+
 1. Start the development server:
 ```bash
 php -S localhost:8080 -t public/

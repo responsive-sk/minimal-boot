@@ -27,8 +27,8 @@ class BootstrapDemoHandler implements RequestHandlerInterface
         ];
 
         // Vite compiled assets for Bootstrap
-        $cssUrl = '/themes/bootstrap/assets/bootstrap.css';
-        $jsUrl  = '/themes/bootstrap/assets/bootstrap.js';
+        $cssUrl = '/themes/bootstrap/assets/main.css';
+        $jsUrl  = '/themes/bootstrap/assets/main.js';
 
         $html = $this->template->render('page::bootstrap-demo', [
             'themeInfo' => $themeInfo,

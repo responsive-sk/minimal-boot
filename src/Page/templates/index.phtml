@@ -12,11 +12,64 @@ $layout('layout::tailwind', [
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="display-4">Welcome to Mezzio Light</h1>
-                <p class="lead">A PSR-15 compliant application skeleton with modular template architecture</p>
+                <h1 class="display-4">Welcome to Minimal Boot</h1>
+                <p class="lead">A PSR-15 compliant application framework with Domain-Driven Design and modular architecture</p>
                 <hr class="my-4">
-                <p>This application demonstrates the power of modular design with Plates as the core template engine.</p>
-                <a class="btn btn-primary btn-lg" href="/page/about" role="button" aria-label="Learn more about Mezzio Boot application and its architecture">Learn more</a>
+                <p>This application demonstrates modern web development with native PHP templates, DDD principles, and multiple frontend frameworks.</p>
+
+                <div class="d-flex flex-wrap gap-3 mb-4">
+                    <a class="btn btn-primary btn-lg" href="/page/about" role="button">
+                        <i class="bi bi-info-circle me-2"></i>Learn More
+                    </a>
+                    <a class="btn btn-success btn-lg" href="/demo" role="button">
+                        <i class="bi bi-palette me-2"></i>TailwindCSS Demo
+                    </a>
+                    <a class="btn btn-info btn-lg" href="/demo/bootstrap" role="button">
+                        <i class="bi bi-bootstrap me-2"></i>Bootstrap Demo
+                    </a>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <i class="bi bi-book text-primary me-2"></i>Documentation
+                                </h5>
+                                <p class="card-text">Complete documentation with examples and best practices.</p>
+                                <a href="https://responsive-sk.github.io/minimal-boot/" target="_blank" class="btn btn-outline-primary">
+                                    View Docs
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <i class="bi bi-github text-dark me-2"></i>Source Code
+                                </h5>
+                                <p class="card-text">Open source framework available on GitHub.</p>
+                                <a href="https://github.com/responsive-sk/minimal-boot" target="_blank" class="btn btn-outline-dark">
+                                    View GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <i class="bi bi-envelope text-success me-2"></i>Contact
+                                </h5>
+                                <p class="card-text">Get in touch with questions or feedback.</p>
+                                <a href="/contact" class="btn btn-outline-success">
+                                    Contact Form
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
