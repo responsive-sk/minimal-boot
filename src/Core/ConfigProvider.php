@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Light\Core;
 
 use Light\Core\Factory\NativePhpRendererFactory;
+use Light\Core\Factory\PathsFactory;
 use Light\Core\Factory\TemplatePathProviderFactory;
 use Light\Core\Service\TemplatePathProviderInterface;
 use Mezzio\Template\TemplateRendererInterface;
+use ResponsiveSk\Slim4Paths\Paths;
 
 /**
  * Core module configuration provider.
@@ -39,6 +41,9 @@ class ConfigProvider
     {
         return [
             'factories' => [
+                // Core services
+                Paths::class => PathsFactory::class,
+
                 // Template path provider
                 TemplatePathProviderInterface::class => TemplatePathProviderFactory::class,
 

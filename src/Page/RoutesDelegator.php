@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Light\Page;
 
+use Light\Page\Handler\DebugPagesHandler;
+use Light\Page\Handler\DemoHandler;
 use Light\Page\Handler\GetPageViewHandler;
+use Light\Page\Handler\IndexHandler;
 use Mezzio\Application;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
@@ -26,31 +29,16 @@ class RoutesDelegator
         $app = $callback();
         assert($app instanceof Application);
 
-        /** @var array<string, mixed> $config */
-        $config = $container->get('config');
-        assert(is_array($config));
+        // Main routes
+        $app->get('/', [IndexHandler::class], 'page::index');
+        $app->get('/demo', [DemoHandler::class], 'page::demo');
+        $app->get('/debug-pages', [DebugPagesHandler::class], 'page::debug');
 
-        /** @var array<string, array<string, string>> $routes */
-        $routes = $config['routes'] ?? [];
-        assert(is_array($routes));
+        // Dynamic page route with slug parameter
+        $app->get('/page/{slug}', [GetPageViewHandler::class], 'page::view');
 
-        foreach ($routes as $prefix => $moduleRoutes) {
-            // Skip non-string prefixes (e.g., numeric keys from other route configurations)
-            if (!is_string($prefix) || !is_array($moduleRoutes)) {
-                continue;
-            }
-
-            foreach ($moduleRoutes as $routeUri => $templateName) {
-                assert(is_string($routeUri));
-                assert(is_string($templateName));
-
-                $app->get(
-                    sprintf('/%s/%s', $prefix, $routeUri),
-                    GetPageViewHandler::class,
-                    sprintf('%s::%s', $prefix, $templateName)
-                );
-            }
-        }
+        // Note: Static routes from config are no longer used
+        // All pages are now handled by the dynamic /page/{slug} route
 
         return $app;
     }

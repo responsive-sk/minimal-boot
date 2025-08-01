@@ -4,11 +4,17 @@ declare(strict_types=1);
 
 namespace Light\Page;
 
+use Light\Page\Domain\Repository\PageRepositoryInterface;
+use Light\Page\Domain\Service\PageServiceInterface;
+use Light\Page\Factory\DemoHandlerFactory;
 use Light\Page\Factory\GetPageViewHandlerFactory;
+use Light\Page\Factory\IndexHandlerFactory;
+use Light\Page\Factory\PageRepositoryFactory;
 use Light\Page\Factory\PageServiceFactory;
+use Light\Page\Handler\DebugPagesHandler;
+use Light\Page\Handler\DemoHandler;
 use Light\Page\Handler\GetPageViewHandler;
-use Light\Page\Service\PageService;
-use Light\Page\Service\PageServiceInterface;
+use Light\Page\Handler\IndexHandler;
 use Mezzio\Application;
 
 class ConfigProvider
@@ -40,11 +46,17 @@ class ConfigProvider
                 ],
             ],
             'factories'  => [
+                // Page handlers
+                IndexHandler::class       => IndexHandlerFactory::class,
+                DemoHandler::class        => DemoHandlerFactory::class,
                 GetPageViewHandler::class => GetPageViewHandlerFactory::class,
-                PageService::class        => PageServiceFactory::class,
-            ],
-            'aliases'    => [
-                PageServiceInterface::class => PageService::class,
+                DebugPagesHandler::class  => function($container) {
+                    return new DebugPagesHandler($container->get(PageServiceInterface::class));
+                },
+
+                // Domain services
+                PageServiceInterface::class => PageServiceFactory::class,
+                PageRepositoryInterface::class => PageRepositoryFactory::class,
             ],
         ];
     }

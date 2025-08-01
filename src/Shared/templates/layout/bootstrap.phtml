@@ -90,7 +90,7 @@
         <!-- Bootstrap Navigation -->
         <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="<?= $url('app::index') ?>">
+                <a class="navbar-brand" href="<?= $url('page::index') ?>">
                     <img src="/images/app/logo.svg" width="150" height="30" alt="responsive.sk"/>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader"
@@ -101,19 +101,16 @@
                 <div class="collapse navbar-collapse" id="navbarHeader">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= $url('app::index') ?>">Home</a>
+                            <a class="nav-link" href="<?= $url('page::index') ?>">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="<?= $url('app::bootstrap-demo') ?>">Bootstrap Demo</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= $url('app::main-demo') ?>">TailwindCSS Demo</a>
+                            <a class="nav-link active" href="<?= $url('page::demo') ?>">Demo</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="pageDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
                             <div class="dropdown-menu" aria-labelledby="pageDropdown">
-                                <a class="dropdown-item" href="<?= $url('page::about') ?>">About Us</a>
-                                <a class="dropdown-item" href="<?= $url('page::who-we-are') ?>">Who We Are</a>
+                                <a class="dropdown-item" href="/page/about">About Us</a>
+                                <a class="dropdown-item" href="/page/privacy">Privacy Policy</a>
                             </div>
                         </li>
                         <li class="nav-item">

@@ -45,7 +45,6 @@ return [
             'blog_module' => 'modules/Blog',
 
             // Template subdirectories
-            'app_templates'     => 'src/App/templates',
             'contact_templates' => 'src/Contact/templates',
             'auth_templates'    => 'src/Auth/templates',
             'session_templates' => 'src/Session/templates',

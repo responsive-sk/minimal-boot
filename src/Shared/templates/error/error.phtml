@@ -32,7 +32,7 @@ $layout('layout::default', [
             <?php endif; ?>
 
             <div class="mt-4">
-                <a href="<?= $url('app::index') ?>" class="btn btn-primary me-2">Go Home</a>
+                <a href="<?= $url('page::index') ?>" class="btn btn-primary me-2">Go Home</a>
                 <button onclick="location.reload()" class="btn btn-outline-secondary">Try Again</button>
             </div>
 
@@ -40,8 +40,9 @@ $layout('layout::default', [
                 <h4>Need Help?</h4>
                 <p>If this problem persists, please contact our support team.</p>
                 <ul class="list-unstyled">
-                    <li><a href="<?= $url('app::index') ?>">Home Page</a></li>
-                    <li><a href="<?= $url('page::about') ?>">About Us</a></li>
+                    <li><a href="<?= $url('page::index') ?>">Home Page</a></li>
+                    <li><a href="/page/about">About Us</a></li>
+                    <li><a href="/page/privacy">Privacy Policy</a></li>
                 </ul>
             </div>
         </div>

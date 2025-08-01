@@ -29,8 +29,7 @@ $aggregator = new ConfigAggregator([
     \Light\Core\ConfigProvider::class,// Dotkernel packages
     \Dot\ErrorHandler\ConfigProvider::class,
     \Dot\Log\ConfigProvider::class,
-    // Default App module config
-    \Light\App\ConfigProvider::class,
+    // Page module (includes index and demo)
     \Light\Page\ConfigProvider::class,
     // New modular components
     \Light\Contact\ConfigProvider::class,

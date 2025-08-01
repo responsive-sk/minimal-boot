@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Light\Page\Handler;
 
 use Laminas\Diactoros\Response\HtmlResponse;
+use Light\Page\Domain\Service\PageServiceInterface;
 use Mezzio\Router\RouteResult;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -18,6 +19,7 @@ class GetPageViewHandler implements RequestHandlerInterface
 {
     public function __construct(
         protected TemplateRendererInterface $template,
+        protected PageServiceInterface $pageService
     ) {
     }
 
@@ -26,11 +28,30 @@ class GetPageViewHandler implements RequestHandlerInterface
         $routeResult = $request->getAttribute(RouteResult::class);
         assert($routeResult instanceof RouteResult);
 
-        $template = $routeResult->getMatchedRouteName();
-        assert(is_string($template));
+        // Get slug from route parameters
+        $slug = $routeResult->getMatchedParams()['slug'] ?? '';
+        assert(is_string($slug));
 
+        // Get page from domain service
+        $page = $this->pageService->getPageBySlug($slug);
+
+        if ($page === null || !$page->isPublished()) {
+            // Return 404 response
+            return new HtmlResponse(
+                $this->template->render('error::404', ['slug' => $slug]),
+                404
+            );
+        }
+
+        // Render page with data from domain entity
         return new HtmlResponse(
-            $this->template->render($template)
+            $this->template->render('page::view', [
+                'page' => $page,
+                'title' => $page->getTitle(),
+                'content' => $page->getContent(),
+                'metaDescription' => $page->getMetaDescription(),
+                'metaKeywords' => $page->getMetaKeywords(),
+            ])
         );
     }
 }

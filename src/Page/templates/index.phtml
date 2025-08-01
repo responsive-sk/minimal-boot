@@ -1,8 +1,10 @@
 <?php
-$layout('layout::default', [
+$layout('layout::tailwind', [
     'title' => 'Mezzio Light Application',
     'description' => 'A PSR-15 compliant application skeleton with modular template architecture',
-    'author' => 'Dotkernel Team'
+    'author' => 'Dotkernel Team',
+    'cssUrl' => '/themes/main/assets/main.css',
+    'jsUrl' => '/themes/main/assets/main.js',
 ]);
 ?>
 
@@ -14,7 +16,7 @@ $layout('layout::default', [
                 <p class="lead">A PSR-15 compliant application skeleton with modular template architecture</p>
                 <hr class="my-4">
                 <p>This application demonstrates the power of modular design with Plates as the core template engine.</p>
-                <a class="btn btn-primary btn-lg" href="<?= $url('page::about') ?>" role="button" aria-label="Learn more about Mezzio Boot application and its architecture">Learn more</a>
+                <a class="btn btn-primary btn-lg" href="/page/about" role="button" aria-label="Learn more about Mezzio Boot application and its architecture">Learn more</a>
             </div>
         </div>
     </div>
@@ -36,7 +38,7 @@ $layout('layout::default', [
                 <div class="card-body">
                     <h3 class="card-title">Modular Templates</h3>
                     <p class="card-text">Core uses Plates for speed and reliability. Optional Twig and Blade modules available.</p>
-                    <a href="<?= $url('page::who-we-are') ?>" class="btn btn-outline-primary">Template Info</a>
+                    <a href="/page/privacy" class="btn btn-outline-primary">Privacy Policy</a>
                 </div>
             </div>
         </div>

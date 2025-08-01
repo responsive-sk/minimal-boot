@@ -6,9 +6,6 @@ return [
     'templates' => [
         'extension' => 'phtml',
         'paths'     => [
-            // App Templates
-            'app' => ['src/App/templates'],
-
             // Contact Templates
             'contact' => [getcwd() . '/src/Contact/templates'],
 
@@ -27,8 +24,8 @@ return [
             // Partial Templates (Shared)
             'partial' => ['src/Shared/templates/partial'],
 
-            // Page Templates
-            'page' => ['src/Page/templates/page'],
+            // Page Templates (includes index and demo)
+            'page' => [getcwd() . '/src/Page/templates'],
         ],
     ],
 ];

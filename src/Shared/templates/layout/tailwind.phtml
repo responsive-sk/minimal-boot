@@ -36,7 +36,7 @@
                 <div class="flex justify-between items-center h-16">
                     <!-- Logo -->
                     <div class="flex items-center">
-                        <a href="<?= $url('app::index') ?>" class="text-xl font-bold text-gray-900 hover:text-gray-700 transition-colors duration-200">
+                        <a href="<?= $url('page::index') ?>" class="text-xl font-bold text-gray-900 hover:text-gray-700 transition-colors duration-200">
                             responsive.sk
                         </a>
                     </div>
@@ -79,7 +79,7 @@
                 <div class="flex flex-col h-full">
                     <!-- Mobile menu header -->
                     <div class="flex justify-between items-center px-6 py-4 border-b border-gray-100">
-                        <a href="<?= $url('app::index') ?>" class="text-xl font-bold text-gray-900">
+                        <a href="<?= $url('page::index') ?>" class="text-xl font-bold text-gray-900">
                             responsive.sk
                         </a>
                         <button @click="mobileMenuOpen = false" class="p-2 text-gray-900">
@@ -92,23 +92,23 @@
                     <!-- Mobile menu items -->
                     <div class="flex-1 px-6 py-8">
                         <nav class="space-y-2">
-                            <a href="<?= $url('app::index') ?>"
+                            <a href="<?= $url('page::index') ?>"
                                class="block py-3 text-lg font-medium text-gray-900 hover:text-gray-600 transition-colors duration-200">
                                 Home
                             </a>
-                            <a href="<?= $url('app::what-we-offer') ?>"
+                            <a href="<?= $url('page::demo') ?>"
                                class="block py-3 text-lg font-medium text-gray-900 hover:text-gray-600 transition-colors duration-200">
                                 What we offer
                             </a>
-                            <a href="<?= $url('app::community') ?>"
+                            <a href="<?= $url('page::demo') ?>"
                                class="block py-3 text-lg font-medium text-gray-900 hover:text-gray-600 transition-colors duration-200">
                                 Community
                             </a>
-                            <a href="<?= $url('app::work') ?>"
+                            <a href="<?= $url('page::demo') ?>"
                                class="block py-3 text-lg font-medium text-gray-900 hover:text-gray-600 transition-colors duration-200">
                                 Work
                             </a>
-                            <a href="<?= $url('app::contact') ?>"
+                            <a href="<?= $url('contact::form') ?>"
                                class="block py-3 text-lg font-medium text-gray-900 hover:text-gray-600 transition-colors duration-200">
                                 Contact us
                             </a>

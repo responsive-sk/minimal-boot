@@ -4,17 +4,22 @@ declare(strict_types=1);
 
 namespace Light\Page\Factory;
 
-use Light\Page\Service\PageService;
-use Light\Page\Service\PageServiceInterface;
+use Light\Page\Domain\Repository\PageRepositoryInterface;
+use Light\Page\Domain\Service\PageService;
+use Light\Page\Domain\Service\PageServiceInterface;
 use Psr\Container\ContainerInterface;
 
+/**
+ * Factory for PageService.
+ *
+ * Creates domain service with proper dependencies.
+ */
 class PageServiceFactory
 {
-    /**
-     * @param class-string $requestedName
-     */
-    public function __invoke(ContainerInterface $container, string $requestedName): PageServiceInterface
+    public function __invoke(ContainerInterface $container): PageServiceInterface
     {
-        return new PageService();
+        $pageRepository = $container->get(PageRepositoryInterface::class);
+
+        return new PageService($pageRepository);
     }
 }

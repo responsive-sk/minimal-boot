@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Light\App\Handler;
+namespace Light\Page\Handler;
 
 use Laminas\Diactoros\Response\HtmlResponse;
 use Mezzio\Template\TemplateRendererInterface;
@@ -10,7 +10,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class BootstrapDemoHandler implements RequestHandlerInterface
+class DemoHandler implements RequestHandlerInterface
 {
     public function __construct(
         private readonly TemplateRendererInterface $template
@@ -21,16 +21,16 @@ class BootstrapDemoHandler implements RequestHandlerInterface
     {
         // Jednoduché theme info bez zložitého AssetHelper
         $themeInfo = [
-            'name'        => 'Bootstrap 5.3',
-            'version'     => '5.3.0',
-            'description' => 'Bootstrap CSS framework demo',
+            'name'        => 'TailwindCSS + Alpine.js',
+            'version'     => '3.3.0',
+            'description' => 'Modern utility-first CSS framework with reactive components',
         ];
 
         // Vite compiled assets (no hashes for easier maintenance)
-        $cssUrl = '/themes/bootstrap/assets/main.css';
-        $jsUrl  = '/themes/bootstrap/assets/main.js';
+        $cssUrl = '/themes/main/assets/main.css';
+        $jsUrl  = '/themes/main/assets/main.js';
 
-        $html = $this->template->render('app::bootstrap-demo', [
+        $html = $this->template->render('page::demo', [
             'themeInfo' => $themeInfo,
             'cssUrl'    => $cssUrl,
             'jsUrl'     => $jsUrl,
