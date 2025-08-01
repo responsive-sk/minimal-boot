@@ -46,6 +46,8 @@ navigation:
     url: "/book/modules/"
   - title: "Templates"
     url: "/book/templates/"
+  - title: "Assets & Frontend"
+    url: "/book/assets/"
   - title: "Domain Layer"
     url: "/book/domain/"
 

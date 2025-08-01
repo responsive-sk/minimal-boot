@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Minimal\Page;
 
+use Minimal\Page\Handler\BootstrapDemoHandler;
 use Minimal\Page\Handler\DemoHandler;
 use Minimal\Page\Handler\GetPageViewHandler;
 use Minimal\Page\Handler\IndexHandler;
@@ -28,6 +29,7 @@ class RoutesDelegator
         // Main routes
         $app->get('/', [IndexHandler::class], 'page::index');
         $app->get('/demo', [DemoHandler::class], 'page::demo');
+        $app->get('/demo/bootstrap', [BootstrapDemoHandler::class], 'page::bootstrap-demo');
 
         // Dynamic page route with slug parameter
         $app->get('/page/{slug}', [GetPageViewHandler::class], 'page::view');

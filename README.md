@@ -50,6 +50,7 @@ Complete documentation is also available in the [docs](docs/) directory:
 - [Architecture](docs/book/architecture.md) - Framework architecture and design patterns
 - [Modules](docs/book/modules.md) - Creating and managing modular components
 - [Templates](docs/book/templates.md) - Native PHP template system guide
+- [Assets & Frontend](docs/book/assets.md) - Frontend build systems with Bootstrap and TailwindCSS
 
 The documentation is automatically deployed to GitHub Pages and includes:
 - Interactive navigation
@@ -120,6 +121,7 @@ ModuleName/
 
 - `GET /` - Homepage
 - `GET /demo` - TailwindCSS + Alpine.js demo
+- `GET /demo/bootstrap` - Bootstrap 5 demo
 - `GET /page/{slug}` - Dynamic pages (about, privacy, terms)
 - `GET /contact` - Contact form
 - `POST /contact` - Contact form submission

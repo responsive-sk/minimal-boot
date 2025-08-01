@@ -42,6 +42,7 @@ php -S localhost:8080 -t public/
 - [Architecture](book/architecture/) - Understanding the framework architecture
 - [Modules](book/modules/) - Working with modular components
 - [Templates](book/templates/) - Template system and layouts
+- [Assets & Frontend](book/assets/) - Frontend build systems and styling
 - [Domain Layer](book/domain/) - Domain-Driven Design implementation
 
 ## Requirements

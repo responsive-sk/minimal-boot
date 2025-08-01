@@ -6,11 +6,13 @@ namespace Minimal\Page;
 
 use Minimal\Page\Domain\Repository\PageRepositoryInterface;
 use Minimal\Page\Domain\Service\PageServiceInterface;
+use Minimal\Page\Factory\BootstrapDemoHandlerFactory;
 use Minimal\Page\Factory\DemoHandlerFactory;
 use Minimal\Page\Factory\GetPageViewHandlerFactory;
 use Minimal\Page\Factory\IndexHandlerFactory;
 use Minimal\Page\Factory\PageRepositoryFactory;
 use Minimal\Page\Factory\PageServiceFactory;
+use Minimal\Page\Handler\BootstrapDemoHandler;
 use Minimal\Page\Handler\DemoHandler;
 use Minimal\Page\Handler\GetPageViewHandler;
 use Minimal\Page\Handler\IndexHandler;
@@ -46,9 +48,10 @@ class ConfigProvider
             ],
             'factories'  => [
                 // Page handlers
-                IndexHandler::class       => IndexHandlerFactory::class,
-                DemoHandler::class        => DemoHandlerFactory::class,
-                GetPageViewHandler::class => GetPageViewHandlerFactory::class,
+                IndexHandler::class           => IndexHandlerFactory::class,
+                DemoHandler::class            => DemoHandlerFactory::class,
+                BootstrapDemoHandler::class   => BootstrapDemoHandlerFactory::class,
+                GetPageViewHandler::class     => GetPageViewHandlerFactory::class,
 
                 // Domain services
                 PageServiceInterface::class => PageServiceFactory::class,
