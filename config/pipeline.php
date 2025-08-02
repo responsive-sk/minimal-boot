@@ -23,6 +23,9 @@ return function (Application $app): void {
     // Session middleware - must be early in the pipeline
     $app->pipe(SessionMiddleware::class);
 
+    // Theme middleware - adds ThemeService to templates
+    $app->pipe(\Minimal\Shared\Middleware\ThemeMiddleware::class);
+
     // Pipe more middleware here that you want to execute on every request:
     // - bootstrapping
     // - pre-conditions

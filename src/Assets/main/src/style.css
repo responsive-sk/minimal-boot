@@ -2,6 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Fix for fixed navbar overlapping content */
+.app-content {
+  padding-top: 60px; /* Height of fixed navbar (56px) + small margin (4px) */
+}
+
+/* Page intro specific styling for Tailwind */
+.page-intro {
+  margin-top: -60px !important; /* Negative margin to compensate for app-content padding */
+  padding-top: calc(4rem + 60px) !important; /* Add navbar height to top padding */
+}
+
+/* Error pages with bg-danger need higher specificity */
+.page-intro.bg-red-500,
+.page-intro.bg-red-600 {
+  margin-top: -60px !important;
+  padding-top: calc(4rem + 60px) !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .app-content {
+    padding-top: 56px; /* Smaller navbar on mobile */
+  }
+
+  .page-intro,
+  .page-intro.bg-red-500,
+  .page-intro.bg-red-600 {
+    margin-top: -56px !important;
+    padding-top: calc(3rem + 56px) !important;
+    padding-bottom: 3rem;
+  }
+}
+
 /* Custom components */
 @layer components {
   .btn {

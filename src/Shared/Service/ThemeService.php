@@ -1,0 +1,157 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Minimal\Shared\Service;
+
+use ResponsiveSk\Slim4Session\SessionInterface;
+
+/**
+ * Theme management service.
+ */
+class ThemeService
+{
+    private const SESSION_THEME_KEY = 'selected_theme';
+    private const DEFAULT_THEME = 'bootstrap';
+    
+    private const AVAILABLE_THEMES = [
+        'bootstrap' => [
+            'name' => 'Bootstrap 5',
+            'description' => 'Modern Bootstrap 5 with custom styling',
+            'css' => 'themes/bootstrap/assets/main.css',
+            'js' => 'themes/bootstrap/assets/main.js',
+            'build_dir' => 'src/Assets/bootstrap',
+            'output_dir' => 'public/themes/bootstrap/assets',
+        ],
+        'tailwind' => [
+            'name' => 'Tailwind CSS',
+            'description' => 'Utility-first CSS framework with Alpine.js',
+            'css' => 'themes/main/assets/main.css',
+            'js' => 'themes/main/assets/main.js',
+            'build_dir' => 'src/Assets/main',
+            'output_dir' => 'public/themes/main/assets',
+        ],
+    ];
+
+    public function __construct(
+        private SessionInterface $session
+    ) {
+    }
+
+    /**
+     * Get current active theme.
+     */
+    public function getCurrentTheme(): string
+    {
+        return $this->session->get(self::SESSION_THEME_KEY, self::DEFAULT_THEME);
+    }
+
+    /**
+     * Set active theme.
+     */
+    public function setTheme(string $theme): void
+    {
+        if (!$this->isValidTheme($theme)) {
+            throw new \InvalidArgumentException("Invalid theme: {$theme}");
+        }
+
+        $this->session->set(self::SESSION_THEME_KEY, $theme);
+    }
+
+    /**
+     * Get theme configuration.
+     *
+     * @return array<string, mixed>
+     */
+    public function getThemeConfig(string $theme): array
+    {
+        if (!$this->isValidTheme($theme)) {
+            throw new \InvalidArgumentException("Invalid theme: {$theme}");
+        }
+
+        return self::AVAILABLE_THEMES[$theme];
+    }
+
+    /**
+     * Get current theme configuration.
+     *
+     * @return array<string, mixed>
+     */
+    public function getCurrentThemeConfig(): array
+    {
+        return $this->getThemeConfig($this->getCurrentTheme());
+    }
+
+    /**
+     * Get all available themes.
+     *
+     * @return array<string, array<string, mixed>>
+     */
+    public function getAvailableThemes(): array
+    {
+        return self::AVAILABLE_THEMES;
+    }
+
+    /**
+     * Check if theme is valid.
+     */
+    public function isValidTheme(string $theme): bool
+    {
+        return array_key_exists($theme, self::AVAILABLE_THEMES);
+    }
+
+    /**
+     * Switch to next theme.
+     */
+    public function switchToNextTheme(): string
+    {
+        $currentTheme = $this->getCurrentTheme();
+        $themes = array_keys(self::AVAILABLE_THEMES);
+        $currentIndex = array_search($currentTheme, $themes);
+        
+        $nextIndex = ($currentIndex + 1) % count($themes);
+        $nextTheme = $themes[$nextIndex];
+        
+        $this->setTheme($nextTheme);
+        
+        return $nextTheme;
+    }
+
+    /**
+     * Get theme CSS URL.
+     */
+    public function getThemeCssUrl(string $theme = null): string
+    {
+        $theme = $theme ?? $this->getCurrentTheme();
+        $config = $this->getThemeConfig($theme);
+        
+        return $config['css'];
+    }
+
+    /**
+     * Get theme JS URL.
+     */
+    public function getThemeJsUrl(string $theme = null): string
+    {
+        $theme = $theme ?? $this->getCurrentTheme();
+        $config = $this->getThemeConfig($theme);
+        
+        return $config['js'];
+    }
+
+    /**
+     * Check if current theme is Bootstrap.
+     */
+    public function isBootstrap(): bool
+    {
+        return $this->getCurrentTheme() === 'bootstrap';
+    }
+
+    /**
+     * Check if current theme is Tailwind.
+     */
+    public function isTailwind(): bool
+    {
+        return $this->getCurrentTheme() === 'tailwind';
+    }
+}

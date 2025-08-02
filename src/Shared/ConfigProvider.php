@@ -33,8 +33,16 @@ class ConfigProvider
     public function getDependencies(): array
     {
         return [
+            'delegators' => [
+                \Mezzio\Application::class => [
+                    RoutesDelegator::class,
+                ],
+            ],
             'factories' => [
-                // Shared services and utilities will be added here
+                // Theme services
+                Service\ThemeService::class => Factory\ThemeServiceFactory::class,
+                Handler\ThemeSwitchHandler::class => Factory\ThemeSwitchHandlerFactory::class,
+                Middleware\ThemeMiddleware::class => Factory\ThemeMiddlewareFactory::class,
             ],
         ];
     }
