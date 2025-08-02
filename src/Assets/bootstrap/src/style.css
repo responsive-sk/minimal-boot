@@ -29,7 +29,7 @@ body {
 
 /* Fix for fixed navbar overlapping content */
 .app-content {
-  padding-top: 76px; /* Height of fixed navbar + some margin */
+  padding-top: 60px; /* Height of fixed navbar (56px) + small margin (4px) */
 }
 
 /* Page intro specific styling */
@@ -37,14 +37,14 @@ body {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   padding: 4rem 0;
-  margin-top: -76px !important; /* Negative margin to compensate for app-content padding */
-  padding-top: calc(4rem + 76px) !important; /* Add navbar height to top padding */
+  margin-top: -60px !important; /* Negative margin to compensate for app-content padding */
+  padding-top: calc(4rem + 60px) !important; /* Add navbar height to top padding */
 }
 
 /* Error pages with bg-danger need higher specificity */
 .page-intro.bg-danger {
-  margin-top: -76px !important;
-  padding-top: calc(4rem + 76px) !important;
+  margin-top: -60px !important;
+  padding-top: calc(4rem + 60px) !important;
 }
 
 .page-intro h1 {
