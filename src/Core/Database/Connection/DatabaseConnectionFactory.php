@@ -10,11 +10,12 @@ use RuntimeException;
 
 /**
  * Database Connection Factory for modular SQLite databases.
- * 
+ *
  * Each module/domain has its own SQLite database file for better separation of concerns.
  */
 class DatabaseConnectionFactory
 {
+    /** @var array<string, PDO> */
     private array $connections = [];
     private string $databasePath;
 
@@ -54,7 +55,7 @@ class DatabaseConnectionFactory
 
             // Enable foreign key constraints
             $pdo->exec('PRAGMA foreign_keys = ON');
-            
+
             return $pdo;
         } catch (PDOException $e) {
             throw new RuntimeException(
@@ -87,16 +88,22 @@ class DatabaseConnectionFactory
 
     /**
      * Get all available module databases.
+     *
+     * @return array<string>
      */
     public function getAvailableModules(): array
     {
         $modules = [];
         $files = glob($this->databasePath . '/*.sqlite');
-        
+
+        if ($files === false) {
+            return [];
+        }
+
         foreach ($files as $file) {
             $modules[] = basename($file, '.sqlite');
         }
-        
+
         return $modules;
     }
 
@@ -114,11 +121,11 @@ class DatabaseConnectionFactory
     public function createModuleDatabase(string $module): void
     {
         $databaseFile = $this->getDatabaseFile($module);
-        
+
         if (!file_exists($databaseFile)) {
             // Create empty database file
             touch($databaseFile);
-            
+
             // Initialize with basic structure
             $pdo = $this->getConnection($module);
             $this->initializeModuleDatabase($pdo, $module);

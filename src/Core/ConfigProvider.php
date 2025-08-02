@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Minimal\Core;
 
+use Minimal\Core\Database\Connection\DatabaseConnectionFactory;
+use Minimal\Core\Factory\DatabaseConnectionFactoryFactory;
 use Minimal\Core\Factory\NativePhpRendererFactory;
 use Minimal\Core\Factory\PathsFactory;
 use Minimal\Core\Factory\TemplatePathProviderFactory;
@@ -43,6 +45,7 @@ class ConfigProvider
             'factories' => [
                 // Core services
                 Paths::class => PathsFactory::class,
+                DatabaseConnectionFactory::class => DatabaseConnectionFactoryFactory::class,
 
                 // Template path provider
                 TemplatePathProviderInterface::class => TemplatePathProviderFactory::class,

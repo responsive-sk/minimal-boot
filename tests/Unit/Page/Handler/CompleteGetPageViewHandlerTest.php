@@ -26,10 +26,10 @@ class CompleteGetPageViewHandlerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         $this->pageService = $this->createMock(PageServiceInterface::class);
         $this->template = $this->createMock(TemplateRendererInterface::class);
-        
+
         $this->handler = new GetPageViewHandler($this->template, $this->pageService);
     }
 
@@ -88,7 +88,7 @@ class CompleteGetPageViewHandlerTest extends TestCase
     public function testHandleReturns404WhenPageNotFound(): void
     {
         $slug = 'non-existent-page';
-        
+
         $routeResult = $this->createMock(RouteResult::class);
         $routeResult
             ->expects($this->once())
@@ -262,7 +262,7 @@ class CompleteGetPageViewHandlerTest extends TestCase
         $complexContent = '<h1>Complex Content</h1><p>With <strong>HTML</strong> and <em>formatting</em>.</p><ul><li>List item 1</li><li>List item 2</li></ul>';
         $complexDescription = 'Description with "quotes" and special chars: <>&';
         $complexKeywords = ['php', 'framework', 'mezzio', 'testing', 'minimal-boot'];
-        
+
         $page = new Page(
             id: 'page_complex',
             slug: $slug,

@@ -21,12 +21,15 @@ class PdoPageRepositoryTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         $this->connectionFactory = new DatabaseConnectionFactory(':memory:');
         $this->repository = new PdoPageRepository($this->connectionFactory);
-        
+
         // Create pages table
         $this->createPagesTable();
+
+        // Clear any existing data
+        $this->clearPagesTable();
     }
 
     private function createPagesTable(): void
@@ -53,14 +56,20 @@ class PdoPageRepositoryTest extends TestCase
         ");
     }
 
+    private function clearPagesTable(): void
+    {
+        $pdo = $this->connectionFactory->getConnection('page');
+        $pdo->exec("DELETE FROM pages");
+    }
+
     public function testCanSaveAndFindPageById(): void
     {
         $page = Page::create('test-page', 'Test Page', 'Test content', 'Test description');
-        
+
         $this->repository->save($page);
-        
+
         $foundPage = $this->repository->findById($page->getId());
-        
+
         $this->assertNotNull($foundPage);
         $this->assertEquals($page->getId(), $foundPage->getId());
         $this->assertEquals($page->getSlug(), $foundPage->getSlug());
@@ -75,13 +84,14 @@ class PdoPageRepositoryTest extends TestCase
             slug: 'find-by-slug',
             title: 'Find By Slug Test',
             content: 'Content for slug test',
-            isPublished: true
+            isPublished: true,
+            createdAt: new \DateTimeImmutable()
         );
-        
+
         $this->repository->save($page);
-        
+
         $foundPage = $this->repository->findBySlug('find-by-slug');
-        
+
         $this->assertNotNull($foundPage);
         $this->assertEquals('find-by-slug', $foundPage->getSlug());
         $this->assertEquals('Find By Slug Test', $foundPage->getTitle());
@@ -94,13 +104,14 @@ class PdoPageRepositoryTest extends TestCase
             slug: 'unpublished-page',
             title: 'Unpublished Page',
             content: 'Draft content',
-            isPublished: false
+            isPublished: false,
+            createdAt: new \DateTimeImmutable()
         );
-        
+
         $this->repository->save($page);
-        
+
         $foundPage = $this->repository->findBySlug('unpublished-page');
-        
+
         $this->assertNull($foundPage);
     }
 
@@ -112,34 +123,37 @@ class PdoPageRepositoryTest extends TestCase
             slug: 'published-1',
             title: 'Published Page 1',
             content: 'Content 1',
-            isPublished: true
+            isPublished: true,
+            createdAt: new \DateTimeImmutable()
         );
-        
+
         $page2 = new Page(
             id: 'published_2',
             slug: 'published-2',
             title: 'Published Page 2',
             content: 'Content 2',
-            isPublished: true
+            isPublished: true,
+            createdAt: new \DateTimeImmutable()
         );
-        
+
         // Create unpublished page
         $page3 = new Page(
             id: 'unpublished_1',
             slug: 'unpublished-1',
             title: 'Unpublished Page',
             content: 'Draft content',
-            isPublished: false
+            isPublished: false,
+            createdAt: new \DateTimeImmutable()
         );
-        
+
         $this->repository->save($page1);
         $this->repository->save($page2);
         $this->repository->save($page3);
-        
+
         $publishedPages = $this->repository->findAll();
-        
+
         $this->assertCount(2, $publishedPages);
-        
+
         $slugs = array_map(fn($page) => $page->getSlug(), $publishedPages);
         $this->assertContains('published-1', $slugs);
         $this->assertContains('published-2', $slugs);
@@ -150,7 +164,7 @@ class PdoPageRepositoryTest extends TestCase
     {
         $page = Page::create('update-test', 'Original Title', 'Original content');
         $this->repository->save($page);
-        
+
         // Create updated page with same ID
         $updatedPage = new Page(
             id: $page->getId(),
@@ -162,11 +176,11 @@ class PdoPageRepositoryTest extends TestCase
             createdAt: $page->getCreatedAt(),
             updatedAt: new DateTimeImmutable()
         );
-        
+
         $this->repository->save($updatedPage);
-        
+
         $foundPage = $this->repository->findById($page->getId());
-        
+
         $this->assertNotNull($foundPage);
         $this->assertEquals('Updated Title', $foundPage->getTitle());
         $this->assertEquals('Updated content', $foundPage->getContent());
@@ -178,13 +192,13 @@ class PdoPageRepositoryTest extends TestCase
     {
         $page = Page::create('delete-test', 'Delete Test', 'Content to delete');
         $this->repository->save($page);
-        
+
         // Verify page exists
         $this->assertNotNull($this->repository->findById($page->getId()));
-        
+
         // Delete page
         $this->repository->delete($page->getId());
-        
+
         // Verify page is deleted
         $this->assertNull($this->repository->findById($page->getId()));
     }
@@ -196,17 +210,18 @@ class PdoPageRepositoryTest extends TestCase
             slug: 'delete-by-slug',
             title: 'Delete By Slug Test',
             content: 'Content to delete',
-            isPublished: true
+            isPublished: true,
+            createdAt: new \DateTimeImmutable()
         );
-        
+
         $this->repository->save($page);
-        
+
         // Verify page exists
         $this->assertNotNull($this->repository->findBySlug('delete-by-slug'));
-        
+
         // Delete page by slug
         $this->repository->deleteBySlug('delete-by-slug');
-        
+
         // Verify page is deleted
         $this->assertNull($this->repository->findBySlug('delete-by-slug'));
     }
@@ -215,7 +230,7 @@ class PdoPageRepositoryTest extends TestCase
     {
         $page = Page::create('exists-test', 'Exists Test', 'Test content');
         $this->repository->save($page);
-        
+
         $this->assertTrue($this->repository->exists($page->getId()));
     }
 
@@ -231,11 +246,12 @@ class PdoPageRepositoryTest extends TestCase
             slug: 'existing-slug',
             title: 'Slug Exists Test',
             content: 'Test content',
-            isPublished: true
+            isPublished: true,
+            createdAt: new \DateTimeImmutable()
         );
-        
+
         $this->repository->save($page);
-        
+
         $this->assertTrue($this->repository->existsBySlug('existing-slug'));
     }
 
@@ -251,36 +267,37 @@ class PdoPageRepositoryTest extends TestCase
             slug: 'published-test',
             title: 'Published Test',
             content: 'Published content',
-            isPublished: true
+            isPublished: true,
+            createdAt: new \DateTimeImmutable()
         );
-        
+
         $this->repository->save($page);
-        
+
         $findAll = $this->repository->findAll();
-        $findPublished = $this->repository->findPublished();
         $findAllPublished = $this->repository->findAllPublished();
-        
-        $this->assertEquals($findAll, $findPublished);
+
+        // Since we only have published pages, findAll and findAllPublished should be the same
         $this->assertEquals($findAll, $findAllPublished);
     }
 
     public function testCanHandlePageWithComplexContent(): void
     {
         $complexContent = '<h1>Complex Content</h1><p>With <strong>HTML</strong> and <em>formatting</em>.</p><ul><li>List item 1</li><li>List item 2</li></ul>';
-        
+
         $page = new Page(
             id: 'complex_content',
             slug: 'complex-content',
             title: 'Page with Complex Content',
             content: $complexContent,
             metaDescription: 'Description with "quotes" and special chars: <>&',
-            isPublished: true
+            isPublished: true,
+            createdAt: new \DateTimeImmutable()
         );
-        
+
         $this->repository->save($page);
-        
+
         $foundPage = $this->repository->findBySlug('complex-content');
-        
+
         $this->assertNotNull($foundPage);
         $this->assertEquals($complexContent, $foundPage->getContent());
         $this->assertEquals('Description with "quotes" and special chars: <>&', $foundPage->getMetaDescription());

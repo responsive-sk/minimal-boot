@@ -140,15 +140,29 @@ ModuleName/
 
 ### Template Paths
 
-Templates are configured in `config/autoload/templates.global.php`:
+Templates are configured using the Paths service in `config/autoload/paths.global.php`:
 
 ```php
-'templates' => [
-    'paths' => [
-        'contact' => [getcwd() . '/src/Contact/templates'],
-        'page' => [getcwd() . '/src/Page/templates'],
-        'layout' => [getcwd() . '/src/Shared/templates/layout'],
-        'error' => [getcwd() . '/src/Shared/templates/error'],
+'paths' => [
+    'custom_paths' => [
+        'contact_templates' => 'src/Contact/templates',
+        'page_templates' => 'src/Page/templates',
+        'layout_templates' => 'src/Shared/templates/layout',
+        'error_templates' => 'src/Shared/templates/error',
+        // ... other template paths
+    ],
+],
+```
+
+Template namespaces are mapped in `config/autoload/templates.global.php`:
+
+```php
+'paths' => [
+    'templates' => [
+        'contact' => 'contact_templates',
+        'page' => 'page_templates',
+        'layout' => 'layout_templates',
+        'error' => 'error_templates',
     ],
 ],
 ```

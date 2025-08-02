@@ -1,18 +1,18 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Database configuration for Minimal Boot.
- * 
+ *
  * Uses modular SQLite databases for better separation of concerns.
  */
+
+declare(strict_types=1);
 
 return [
     'database' => [
         // Database path for SQLite files
         'path' => 'var/db',
-        
+
         // Module database mapping
         'modules' => [
             'page' => 'page.sqlite',
@@ -20,13 +20,13 @@ return [
             'auth' => 'auth.sqlite',
             'session' => 'session.sqlite',
         ],
-        
+
         // Migration settings
         'migrations' => [
-            'path' => 'migrations',
+            'path' => 'var/migrations',
             'auto_run' => false, // Set to true for automatic migrations in development
         ],
-        
+
         // Connection settings
         'connection' => [
             'options' => [

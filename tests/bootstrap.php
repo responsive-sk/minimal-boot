@@ -1,10 +1,14 @@
 <?php
 
+/**
+ * PHPUnit bootstrap file for test initialization.
+ */
+
 declare(strict_types=1);
 
 /**
  * Test Bootstrap for Minimal Boot Framework
- * 
+ *
  * Sets up testing environment with proper autoloading and configuration.
  */
 

@@ -23,7 +23,7 @@ class PageServiceTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         $this->repository = $this->createMock(PageRepositoryInterface::class);
         $this->pageService = new PageService($this->repository);
     }
@@ -263,7 +263,7 @@ class PageServiceTest extends TestCase
             ->expects($this->once())
             ->method('save')
             ->with($this->callback(function (Page $page) {
-                return $page->isPublished() 
+                return $page->isPublished()
                     && $page->getPublishedAt() instanceof DateTimeImmutable
                     && $page->getUpdatedAt() instanceof DateTimeImmutable;
             }));

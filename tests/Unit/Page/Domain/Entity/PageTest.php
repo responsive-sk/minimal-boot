@@ -124,7 +124,7 @@ class PageTest extends TestCase
     public function testPageWithMultipleMetaKeywords(): void
     {
         $keywords = ['php', 'framework', 'mezzio', 'testing', 'minimal-boot'];
-        
+
         $page = new Page(
             id: 'page_many_keywords',
             slug: 'many-keywords',

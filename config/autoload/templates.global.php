@@ -7,7 +7,7 @@ return [
         'extension' => 'phtml',
         'paths'     => [
             // Contact Templates
-            'contact' => [getcwd() . '/src/Contact/templates'],
+            'contact' => ['src/Contact/templates'],
 
             // Auth Templates
             'auth' => ['src/Auth/templates'],
@@ -16,7 +16,7 @@ return [
             'session' => ['src/Session/templates'],
 
             // Layout Templates (Shared)
-            'layout' => [getcwd() . '/src/Shared/templates/layout'],
+            'layout' => ['src/Shared/templates/layout'],
 
             // Error Templates (Shared)
             'error' => ['src/Shared/templates/error'],
@@ -25,7 +25,10 @@ return [
             'partial' => ['src/Shared/templates/partial'],
 
             // Page Templates (includes index and demo)
-            'page' => [getcwd() . '/src/Page/templates'],
+            'page' => ['src/Page/templates'],
+
+            // User Templates
+            'user' => ['src/User/templates'],
         ],
     ],
 ];

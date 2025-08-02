@@ -189,7 +189,7 @@ return [
             'session' => 'session.sqlite',
         ],
         'migrations' => [
-            'path' => 'migrations',
+            'path' => 'var/migrations',
             'auto_run' => false,
         ],
         'connection' => [

@@ -20,9 +20,11 @@ return [
             'templates' => 'src/Shared/templates',
             'content'   => 'content',
             'data'      => 'var/data',
+            'db'        => 'var/db',
             'logs'      => 'var/logs',
             'cache'     => 'var/cache',
             'storage'   => 'var/storage',
+            'migrations' => 'var/migrations',
             'uploads'   => 'public/uploads',
             'downloads' => 'public/downloads',
 

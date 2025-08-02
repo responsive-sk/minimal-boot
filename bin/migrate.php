@@ -13,8 +13,10 @@ declare(strict_types=1);
  *   php bin/migrate.php --create module name # Create new migration
  */
 
+use Laminas\ConfigAggregator\ConfigAggregator;
 use Minimal\Core\Database\Connection\DatabaseConnectionFactory;
 use Minimal\Core\Database\Migration\MigrationRunner;
+use ResponsiveSk\Slim4Paths\Paths;
 
 // Bootstrap
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -73,9 +75,24 @@ if (empty($args)) {
 }
 
 try {
+    // Load configuration
+    $aggregator = new ConfigAggregator([
+        new \Laminas\ConfigAggregator\PhpFileProvider(realpath(__DIR__ . '/../config/autoload/') . '/{,*.}{global,local}.php'),
+    ]);
+    $config = $aggregator->getMergedConfig();
+
+    // Initialize Paths service
+    $basePath = $config['paths']['base_path'] ?? __DIR__ . '/..';
+    $customPaths = $config['paths']['custom_paths'] ?? [];
+    $paths = new Paths($basePath, $customPaths);
+
+    // Get database and migrations paths from configuration
+    $databasePath = $paths->getPath('db', 'var/db'); // fallback to var/db
+    $migrationsPath = $paths->getPath('migrations', 'var/migrations'); // fallback to var/migrations
+
     // Initialize database components
-    $connectionFactory = new DatabaseConnectionFactory('var/db');
-    $migrationRunner = new MigrationRunner($connectionFactory, 'migrations');
+    $connectionFactory = new DatabaseConnectionFactory($databasePath);
+    $migrationRunner = new MigrationRunner($connectionFactory, $migrationsPath);
 
     $command = $args[0];
 

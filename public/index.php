@@ -13,7 +13,9 @@ if (PHP_SAPI === 'cli-server' && $_SERVER['SCRIPT_FILENAME'] !== __FILE__) {
 chdir(dirname(__DIR__));
 
 // Auto-create var/ structure for shared hosting compatibility
-$varDirs = ['var', 'var/data', 'var/cache', 'var/logs', 'var/tmp', 'var/sessions'];
+// Note: These paths should ideally use the Paths service, but since this runs
+// before the container is initialized, we use hardcoded paths as fallback
+$varDirs = ['var', 'var/data', 'var/db', 'var/cache', 'var/logs', 'var/tmp', 'var/sessions', 'var/storage', 'var/migrations'];
 foreach ($varDirs as $dir) {
     if (! is_dir($dir)) {
         @mkdir($dir, 0755, true);

@@ -49,6 +49,7 @@
             "Minimal\\Contact\\": "src/Contact/",
             "Minimal\\Auth\\": "src/Auth/",
             "Minimal\\Session\\": "src/Session/",
+            "Minimal\\User\\": "src/User/",
             "Minimal\\Shared\\": "src/Shared/"
         }
     },

@@ -25,6 +25,20 @@ return [
         'factories' => [
             // Override default Twig Environment factory with our Paths-aware version
             // Environment::class => PathsAwareTwigEnvironmentFactory::class,
+
+            // User module
+            \Minimal\User\Domain\Repository\UserRepositoryInterface::class => \Minimal\User\Factory\PdoUserRepositoryFactory::class,
+            \Minimal\User\Domain\Service\UserService::class => \Minimal\User\Factory\UserServiceFactory::class,
+            \Minimal\User\Domain\Service\AuthenticationService::class => \Minimal\User\Factory\AuthenticationServiceFactory::class,
+
+            // User handlers
+            \Minimal\User\Handler\LoginHandler::class => \Minimal\User\Factory\LoginHandlerFactory::class,
+            \Minimal\User\Handler\RegisterHandler::class => \Minimal\User\Factory\RegisterHandlerFactory::class,
+            \Minimal\User\Handler\LogoutHandler::class => \Minimal\User\Factory\LogoutHandlerFactory::class,
+            \Minimal\User\Handler\DashboardHandler::class => \Minimal\User\Factory\DashboardHandlerFactory::class,
+
+            // User middleware
+            \Minimal\User\Middleware\AuthenticationMiddleware::class => \Minimal\User\Factory\AuthenticationMiddlewareFactory::class,
         ],
     ],
 ];

@@ -21,9 +21,11 @@ return [
             'templates' => 'src/Shared/templates',
             'content'   => 'content',
             'data'      => 'var/data', // PRODUCTION: moved to var
+            'db'        => 'var/db', // PRODUCTION: moved to var
             'logs'      => 'var/logs', // PRODUCTION: moved to var
             'cache'     => 'var/cache', // PRODUCTION: moved to var
             'storage'   => 'var/storage', // PRODUCTION: moved to var
+            'migrations' => 'var/migrations', // PRODUCTION: moved to var
             'uploads'   => 'public/uploads',
             'downloads' => 'public/downloads',
 

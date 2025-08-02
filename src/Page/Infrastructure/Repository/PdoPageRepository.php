@@ -10,25 +10,30 @@ use Minimal\Page\Domain\Entity\Page;
 use Minimal\Page\Domain\Repository\PageRepositoryInterface;
 use PDO;
 
+use function assert;
+
 /**
  * PDO implementation of Page Repository.
- * 
+ *
  * Uses SQLite database for page storage with query builder.
  */
 class PdoPageRepository implements PageRepositoryInterface
 {
     private PDO $pdo;
-    private QueryBuilder $queryBuilder;
 
     public function __construct(DatabaseConnectionFactory $connectionFactory)
     {
         $this->pdo = $connectionFactory->getConnection('page');
-        $this->queryBuilder = new QueryBuilder($this->pdo);
+    }
+
+    private function createQueryBuilder(): QueryBuilder
+    {
+        return new QueryBuilder($this->pdo);
     }
 
     public function findBySlug(string $slug): ?Page
     {
-        $data = $this->queryBuilder
+        $data = $this->createQueryBuilder()
             ->table('pages')
             ->where('slug', '=', $slug)
             ->where('is_published', '=', 1)
@@ -39,7 +44,7 @@ class PdoPageRepository implements PageRepositoryInterface
 
     public function findById(string $id): ?Page
     {
-        $data = $this->queryBuilder
+        $data = $this->createQueryBuilder()
             ->table('pages')
             ->where('id', '=', $id)
             ->first();
@@ -49,7 +54,7 @@ class PdoPageRepository implements PageRepositoryInterface
 
     public function findAll(): array
     {
-        $results = $this->queryBuilder
+        $results = $this->createQueryBuilder()
             ->table('pages')
             ->where('is_published', '=', 1)
             ->orderBy('created_at', 'DESC')
@@ -66,14 +71,14 @@ class PdoPageRepository implements PageRepositoryInterface
     public function save(Page $page): void
     {
         $data = $this->mapToArray($page);
-        
+
         if ($this->exists($page->getId())) {
-            $this->queryBuilder
+            $this->createQueryBuilder()
                 ->table('pages')
                 ->where('id', '=', $page->getId())
                 ->update($data);
         } else {
-            $this->queryBuilder
+            $this->createQueryBuilder()
                 ->table('pages')
                 ->insert($data);
         }
@@ -81,7 +86,7 @@ class PdoPageRepository implements PageRepositoryInterface
 
     public function delete(string $id): void
     {
-        $this->queryBuilder
+        $this->createQueryBuilder()
             ->table('pages')
             ->where('id', '=', $id)
             ->delete();
@@ -89,7 +94,7 @@ class PdoPageRepository implements PageRepositoryInterface
 
     public function deleteBySlug(string $slug): void
     {
-        $this->queryBuilder
+        $this->createQueryBuilder()
             ->table('pages')
             ->where('slug', '=', $slug)
             ->delete();
@@ -97,7 +102,7 @@ class PdoPageRepository implements PageRepositoryInterface
 
     public function exists(string $id): bool
     {
-        $count = $this->queryBuilder
+        $count = $this->createQueryBuilder()
             ->table('pages')
             ->where('id', '=', $id)
             ->count();
@@ -107,7 +112,7 @@ class PdoPageRepository implements PageRepositoryInterface
 
     public function existsBySlug(string $slug): bool
     {
-        $count = $this->queryBuilder
+        $count = $this->createQueryBuilder()
             ->table('pages')
             ->where('slug', '=', $slug)
             ->count();
@@ -118,8 +123,29 @@ class PdoPageRepository implements PageRepositoryInterface
     /**
      * Map database row to Page entity.
      */
+    /**
+     * @param array<string, mixed> $data
+     */
     private function mapToEntity(array $data): Page
     {
+        assert(is_string($data['id']));
+        assert(is_string($data['slug']));
+        assert(is_string($data['title']));
+        assert(is_string($data['content']));
+        assert(is_string($data['meta_description'] ?? ''));
+
+        $createdAt = null;
+        if ($data['created_at']) {
+            assert(is_string($data['created_at']));
+            $createdAt = new \DateTimeImmutable($data['created_at']);
+        }
+
+        $updatedAt = null;
+        if ($data['updated_at']) {
+            assert(is_string($data['updated_at']));
+            $updatedAt = new \DateTimeImmutable($data['updated_at']);
+        }
+
         return new Page(
             id: $data['id'],
             slug: $data['slug'],
@@ -127,13 +153,16 @@ class PdoPageRepository implements PageRepositoryInterface
             content: $data['content'],
             metaDescription: $data['meta_description'] ?? '',
             isPublished: (bool) $data['is_published'],
-            createdAt: new \DateTimeImmutable($data['created_at']),
-            updatedAt: $data['updated_at'] ? new \DateTimeImmutable($data['updated_at']) : null
+            createdAt: $createdAt,
+            updatedAt: $updatedAt
         );
     }
 
     /**
      * Map Page entity to database array.
+     */
+    /**
+     * @return array<string, mixed>
      */
     private function mapToArray(Page $page): array
     {
@@ -144,7 +173,7 @@ class PdoPageRepository implements PageRepositoryInterface
             'content' => $page->getContent(),
             'meta_description' => $page->getMetaDescription(),
             'is_published' => $page->isPublished() ? 1 : 0,
-            'created_at' => $page->getCreatedAt()->format('Y-m-d H:i:s'),
+            'created_at' => $page->getCreatedAt()?->format('Y-m-d H:i:s'),
             'updated_at' => $page->getUpdatedAt()?->format('Y-m-d H:i:s'),
         ];
     }

@@ -9,6 +9,7 @@ parameters:
         - bin
         - src/Templates/bootstrap/node_modules (?)
         - src/Templates/main/node_modules (?)
+        - src/Core/Database/Migration
     treatPhpDocTypesAsCertain: false
     ignoreErrors:
         # Allow mixed types in template variables

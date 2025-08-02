@@ -21,12 +21,12 @@ class SimpleQueryBuilderTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         $connectionFactory = new DatabaseConnectionFactory(':memory:');
         $this->pdo = $connectionFactory->getConnection('test_simple_qb_' . uniqid());
         $this->queryBuilder = new QueryBuilder($this->pdo);
         $this->tableName = 'test_table_' . uniqid();
-        
+
         // Create test table
         $this->pdo->exec("
             CREATE TABLE {$this->tableName} (
@@ -36,7 +36,7 @@ class SimpleQueryBuilderTest extends TestCase
                 active BOOLEAN DEFAULT 1
             )
         ");
-        
+
         // Insert test data
         $this->pdo->exec("
             INSERT INTO {$this->tableName} (name, email, active) VALUES 
@@ -51,7 +51,7 @@ class SimpleQueryBuilderTest extends TestCase
         $results = $this->queryBuilder
             ->table($this->tableName)
             ->get();
-        
+
         $this->assertCount(3, $results);
         $this->assertEquals('John Doe', $results[0]['name']);
     }
@@ -62,7 +62,7 @@ class SimpleQueryBuilderTest extends TestCase
             ->table($this->tableName)
             ->where('active', '=', 1)
             ->get();
-        
+
         $this->assertCount(2, $results);
     }
 
@@ -72,7 +72,7 @@ class SimpleQueryBuilderTest extends TestCase
             ->table($this->tableName)
             ->where('name', '=', 'John Doe')
             ->first();
-        
+
         $this->assertNotNull($result);
         $this->assertEquals('John Doe', $result['name']);
     }
@@ -86,15 +86,15 @@ class SimpleQueryBuilderTest extends TestCase
                 'email' => 'new@example.com',
                 'active' => 1
             ]);
-        
+
         $this->assertTrue($result);
-        
+
         // Verify insertion
         $inserted = $this->queryBuilder
             ->table($this->tableName)
             ->where('email', '=', 'new@example.com')
             ->first();
-        
+
         $this->assertNotNull($inserted);
         $this->assertEquals('New User', $inserted['name']);
     }
@@ -105,15 +105,15 @@ class SimpleQueryBuilderTest extends TestCase
             ->table($this->tableName)
             ->where('name', '=', 'John Doe')
             ->update(['email' => 'john.updated@example.com']);
-        
+
         $this->assertTrue($result);
-        
+
         // Verify update
         $updated = $this->queryBuilder
             ->table($this->tableName)
             ->where('name', '=', 'John Doe')
             ->first();
-        
+
         $this->assertEquals('john.updated@example.com', $updated['email']);
     }
 
@@ -123,15 +123,15 @@ class SimpleQueryBuilderTest extends TestCase
             ->table($this->tableName)
             ->where('name', '=', 'Bob Wilson')
             ->delete();
-        
+
         $this->assertTrue($result);
-        
+
         // Verify deletion
         $deleted = $this->queryBuilder
             ->table($this->tableName)
             ->where('name', '=', 'Bob Wilson')
             ->first();
-        
+
         $this->assertNull($deleted);
     }
 
@@ -141,7 +141,7 @@ class SimpleQueryBuilderTest extends TestCase
             ->table($this->tableName)
             ->where('active', '=', 1)
             ->count();
-        
+
         $this->assertEquals(2, $count);
     }
 
@@ -151,7 +151,7 @@ class SimpleQueryBuilderTest extends TestCase
             ->table($this->tableName)
             ->orderBy('name', 'DESC')
             ->get();
-        
+
         $this->assertEquals('John Doe', $results[0]['name']);
         $this->assertEquals('Jane Smith', $results[1]['name']);
         $this->assertEquals('Bob Wilson', $results[2]['name']);
@@ -163,7 +163,7 @@ class SimpleQueryBuilderTest extends TestCase
             ->table($this->tableName)
             ->limit(2)
             ->get();
-        
+
         $this->assertCount(2, $results);
     }
 
@@ -175,7 +175,7 @@ class SimpleQueryBuilderTest extends TestCase
             ->limit(1)
             ->offset(1)
             ->get();
-        
+
         $this->assertCount(1, $results);
         $this->assertEquals('Jane Smith', $results[0]['name']);
     }
@@ -186,7 +186,7 @@ class SimpleQueryBuilderTest extends TestCase
             ->table($this->tableName)
             ->select(['name', 'email'])
             ->get();
-        
+
         $this->assertCount(3, $results);
         $this->assertArrayHasKey('name', $results[0]);
         $this->assertArrayHasKey('email', $results[0]);

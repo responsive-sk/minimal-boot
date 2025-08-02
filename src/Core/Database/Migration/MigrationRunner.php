@@ -10,7 +10,7 @@ use RuntimeException;
 
 /**
  * Simple Migration Runner for database schema changes.
- * 
+ *
  * Manages database migrations per module with tracking.
  */
 class MigrationRunner
@@ -34,18 +34,18 @@ class MigrationRunner
         $pdo = $this->connectionFactory->getConnection($module);
         $migrationFiles = $this->getMigrationFiles($module);
         $executedMigrations = $this->getExecutedMigrations($pdo);
-        
+
         $newMigrations = [];
-        
+
         foreach ($migrationFiles as $migrationFile) {
             $migrationName = basename($migrationFile, '.sql');
-            
+
             if (!in_array($migrationName, $executedMigrations)) {
                 $this->executeMigration($pdo, $migrationFile, $migrationName);
                 $newMigrations[] = $migrationName;
             }
         }
-        
+
         return $newMigrations;
     }
 
@@ -56,11 +56,11 @@ class MigrationRunner
     {
         $results = [];
         $modules = $this->getAvailableModules();
-        
+
         foreach ($modules as $module) {
             $results[$module] = $this->runMigrations($module);
         }
-        
+
         return $results;
     }
 
@@ -70,14 +70,14 @@ class MigrationRunner
     private function getMigrationFiles(string $module): array
     {
         $moduleMigrationsPath = $this->migrationsPath . '/' . $module;
-        
+
         if (!is_dir($moduleMigrationsPath)) {
             return [];
         }
-        
+
         $files = glob($moduleMigrationsPath . '/*.sql');
         sort($files); // Execute in alphabetical order
-        
+
         return $files;
     }
 
@@ -101,21 +101,21 @@ class MigrationRunner
     private function executeMigration(PDO $pdo, string $migrationFile, string $migrationName): void
     {
         $sql = file_get_contents($migrationFile);
-        
+
         if ($sql === false) {
             throw new RuntimeException("Failed to read migration file: {$migrationFile}");
         }
-        
+
         try {
             $pdo->beginTransaction();
-            
+
             // Execute migration SQL
             $pdo->exec($sql);
-            
+
             // Record migration as executed
             $stmt = $pdo->prepare("INSERT INTO migrations (migration) VALUES (?)");
             $stmt->execute([$migrationName]);
-            
+
             $pdo->commit();
         } catch (\PDOException $e) {
             $pdo->rollBack();
@@ -135,14 +135,14 @@ class MigrationRunner
         if (!is_dir($this->migrationsPath)) {
             return [];
         }
-        
+
         $modules = [];
         $directories = glob($this->migrationsPath . '/*', GLOB_ONLYDIR);
-        
+
         foreach ($directories as $directory) {
             $modules[] = basename($directory);
         }
-        
+
         return $modules;
     }
 
@@ -152,18 +152,18 @@ class MigrationRunner
     public function createMigration(string $module, string $name): string
     {
         $moduleMigrationsPath = $this->migrationsPath . '/' . $module;
-        
+
         if (!is_dir($moduleMigrationsPath)) {
             mkdir($moduleMigrationsPath, 0755, true);
         }
-        
+
         $timestamp = date('Y_m_d_His');
         $filename = "{$timestamp}_{$name}.sql";
         $filepath = $moduleMigrationsPath . '/' . $filename;
-        
+
         $template = $this->getMigrationTemplate($name);
         file_put_contents($filepath, $template);
-        
+
         return $filepath;
     }
 
@@ -183,9 +183,9 @@ class MigrationRunner
         $pdo = $this->connectionFactory->getConnection($module);
         $migrationFiles = $this->getMigrationFiles($module);
         $executedMigrations = $this->getExecutedMigrations($pdo);
-        
+
         $status = [];
-        
+
         foreach ($migrationFiles as $migrationFile) {
             $migrationName = basename($migrationFile, '.sql');
             $status[] = [
@@ -194,7 +194,7 @@ class MigrationRunner
                 'executed' => in_array($migrationName, $executedMigrations),
             ];
         }
-        
+
         return $status;
     }
 }

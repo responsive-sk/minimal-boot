@@ -13,7 +13,7 @@ class PdoPageRepositoryFactory
     public function __invoke(ContainerInterface $container): PdoPageRepository
     {
         $connectionFactory = new DatabaseConnectionFactory('var/db');
-        
+
         return new PdoPageRepository($connectionFactory);
     }
 }

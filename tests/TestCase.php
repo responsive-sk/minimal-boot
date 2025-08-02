@@ -14,7 +14,7 @@ use Psr\Container\ContainerInterface;
 
 /**
  * Base Test Case for Minimal Boot Framework
- * 
+ *
  * Provides common testing utilities and setup for all test classes.
  */
 abstract class TestCase extends PHPUnitTestCase
@@ -26,13 +26,13 @@ abstract class TestCase extends PHPUnitTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         // Load test configuration
         $this->config = $this->loadTestConfig();
-        
+
         // Create container with test configuration
         $this->container = new ServiceManager($this->config['dependencies'] ?? []);
-        
+
         // Setup test database
         $this->setupTestDatabase();
     }
@@ -41,7 +41,7 @@ abstract class TestCase extends PHPUnitTestCase
     {
         // Clean up test databases
         $this->cleanupTestDatabase();
-        
+
         parent::tearDown();
     }
 
@@ -76,10 +76,10 @@ abstract class TestCase extends PHPUnitTestCase
     protected function setupTestDatabase(): void
     {
         $this->databaseFactory = new DatabaseConnectionFactory(':memory:');
-        
+
         // Run migrations for test modules
         $migrationRunner = new MigrationRunner($this->databaseFactory, 'migrations');
-        
+
         // Create test database structure
         $this->createTestTables();
     }
@@ -176,11 +176,11 @@ abstract class TestCase extends PHPUnitTestCase
     protected function createRequest(string $method = 'GET', string $uri = '/', array $headers = []): \Psr\Http\Message\ServerRequestInterface
     {
         $request = new \Laminas\Diactoros\ServerRequest([], [], $uri, $method);
-        
+
         foreach ($headers as $name => $value) {
             $request = $request->withHeader($name, $value);
         }
-        
+
         return $request;
     }
 
@@ -223,7 +223,7 @@ abstract class TestCase extends PHPUnitTestCase
             $response->hasHeader($headerName),
             sprintf('Response does not have header: %s', $headerName)
         );
-        
+
         $this->assertEquals(
             $expectedValue,
             $response->getHeaderLine($headerName),

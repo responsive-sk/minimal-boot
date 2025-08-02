@@ -15,8 +15,8 @@
     <file>config</file>
     <file>public</file>
     <file>src</file>
-    <file>test</file>
+    <file>tests</file>
 
-    <!-- Include all rules from the Laminas Coding Standard -->
-    <rule ref="LaminasCodingStandard" />
+    <!-- Include all rules from PSR12 Coding Standard -->
+    <rule ref="PSR12" />
 </ruleset>

@@ -6,9 +6,10 @@ namespace MinimalTest\Unit\Page\Handler;
 
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\ServerRequest;
+use Mezzio\Router\RouteResult;
 use Mezzio\Template\TemplateRendererInterface;
 use Minimal\Page\Domain\Entity\Page;
-use Minimal\Page\Domain\Repository\PageRepositoryInterface;
+use Minimal\Page\Domain\Service\PageServiceInterface;
 use Minimal\Page\Handler\GetPageViewHandler;
 use MinimalTest\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -19,17 +20,17 @@ use PHPUnit\Framework\MockObject\MockObject;
 class GetPageViewHandlerTest extends TestCase
 {
     private GetPageViewHandler $handler;
-    private PageRepositoryInterface|MockObject $repository;
+    private PageServiceInterface|MockObject $pageService;
     private TemplateRendererInterface|MockObject $template;
 
     protected function setUp(): void
     {
         parent::setUp();
-        
-        $this->repository = $this->createMock(PageRepositoryInterface::class);
+
+        $this->pageService = $this->createMock(PageServiceInterface::class);
         $this->template = $this->createMock(TemplateRendererInterface::class);
-        
-        $this->handler = new GetPageViewHandler($this->template, $this->repository);
+
+        $this->handler = new GetPageViewHandler($this->template, $this->pageService);
     }
 
     public function testCanCreateHandler(): void
@@ -49,12 +50,18 @@ class GetPageViewHandlerTest extends TestCase
             isPublished: true
         );
 
-        $request = new ServerRequest();
-        $request = $request->withAttribute('slug', $slug);
-
-        $this->repository
+        $routeResult = $this->createMock(RouteResult::class);
+        $routeResult
             ->expects($this->once())
-            ->method('findBySlug')
+            ->method('getMatchedParams')
+            ->willReturn(['slug' => $slug]);
+
+        $request = new ServerRequest();
+        $request = $request->withAttribute(RouteResult::class, $routeResult);
+
+        $this->pageService
+            ->expects($this->once())
+            ->method('getPageBySlug')
             ->with($slug)
             ->willReturn($page);
 
@@ -64,6 +71,7 @@ class GetPageViewHandlerTest extends TestCase
             ->with('page::view', [
                 'page' => $page,
                 'title' => 'Test Page',
+                'content' => '<h1>Test Content</h1>',
                 'metaDescription' => 'Test description',
                 'metaKeywords' => [],
             ])
@@ -79,22 +87,26 @@ class GetPageViewHandlerTest extends TestCase
     public function testHandleReturns404WhenPageNotFound(): void
     {
         $slug = 'non-existent-page';
-        $request = new ServerRequest();
-        $request = $request->withAttribute('slug', $slug);
 
-        $this->repository
+        $routeResult = $this->createMock(RouteResult::class);
+        $routeResult
             ->expects($this->once())
-            ->method('findBySlug')
+            ->method('getMatchedParams')
+            ->willReturn(['slug' => $slug]);
+
+        $request = new ServerRequest();
+        $request = $request->withAttribute(RouteResult::class, $routeResult);
+
+        $this->pageService
+            ->expects($this->once())
+            ->method('getPageBySlug')
             ->with($slug)
             ->willReturn(null);
 
         $this->template
             ->expects($this->once())
             ->method('render')
-            ->with('error::404', [
-                'title' => 'Page Not Found',
-                'message' => 'The requested page could not be found.',
-            ])
+            ->with('error::404', ['slug' => $slug])
             ->willReturn('<html>404 Not Found</html>');
 
         $response = $this->handler->handle($request);
@@ -117,12 +129,18 @@ class GetPageViewHandlerTest extends TestCase
             isPublished: true
         );
 
-        $request = new ServerRequest();
-        $request = $request->withAttribute('slug', $slug);
-
-        $this->repository
+        $routeResult = $this->createMock(RouteResult::class);
+        $routeResult
             ->expects($this->once())
-            ->method('findBySlug')
+            ->method('getMatchedParams')
+            ->willReturn(['slug' => $slug]);
+
+        $request = new ServerRequest();
+        $request = $request->withAttribute(RouteResult::class, $routeResult);
+
+        $this->pageService
+            ->expects($this->once())
+            ->method('getPageBySlug')
             ->with($slug)
             ->willReturn($page);
 
@@ -132,6 +150,7 @@ class GetPageViewHandlerTest extends TestCase
             ->with('page::view', [
                 'page' => $page,
                 'title' => 'Page with Keywords',
+                'content' => '<h1>Content</h1>',
                 'metaDescription' => 'Description',
                 'metaKeywords' => ['php', 'framework', 'testing'],
             ])
@@ -144,22 +163,25 @@ class GetPageViewHandlerTest extends TestCase
 
     public function testHandleWithEmptySlug(): void
     {
-        $request = new ServerRequest();
-        $request = $request->withAttribute('slug', '');
-
-        $this->repository
+        $routeResult = $this->createMock(RouteResult::class);
+        $routeResult
             ->expects($this->once())
-            ->method('findBySlug')
+            ->method('getMatchedParams')
+            ->willReturn(['slug' => '']);
+
+        $request = new ServerRequest();
+        $request = $request->withAttribute(RouteResult::class, $routeResult);
+
+        $this->pageService
+            ->expects($this->once())
+            ->method('getPageBySlug')
             ->with('')
             ->willReturn(null);
 
         $this->template
             ->expects($this->once())
             ->method('render')
-            ->with('error::404', [
-                'title' => 'Page Not Found',
-                'message' => 'The requested page could not be found.',
-            ])
+            ->with('error::404', ['slug' => ''])
             ->willReturn('<html>404 Not Found</html>');
 
         $response = $this->handler->handle($request);
@@ -169,22 +191,25 @@ class GetPageViewHandlerTest extends TestCase
 
     public function testHandleWithMissingSlugAttribute(): void
     {
-        $request = new ServerRequest();
-        // No slug attribute set
-
-        $this->repository
+        $routeResult = $this->createMock(RouteResult::class);
+        $routeResult
             ->expects($this->once())
-            ->method('findBySlug')
+            ->method('getMatchedParams')
+            ->willReturn([]); // No slug parameter
+
+        $request = new ServerRequest();
+        $request = $request->withAttribute(RouteResult::class, $routeResult);
+
+        $this->pageService
+            ->expects($this->once())
+            ->method('getPageBySlug')
             ->with('')
             ->willReturn(null);
 
         $this->template
             ->expects($this->once())
             ->method('render')
-            ->with('error::404', [
-                'title' => 'Page Not Found',
-                'message' => 'The requested page could not be found.',
-            ])
+            ->with('error::404', ['slug' => ''])
             ->willReturn('<html>404 Not Found</html>');
 
         $response = $this->handler->handle($request);
