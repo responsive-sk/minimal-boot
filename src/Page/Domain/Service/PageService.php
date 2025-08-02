@@ -52,19 +52,7 @@ class PageService implements PageServiceInterface
             );
         }
 
-        $now = new DateTimeImmutable();
-
-        $page = new Page(
-            slug: $slug,
-            title: $title,
-            content: $content,
-            metaDescription: $metaDescription,
-            metaKeywords: $metaKeywords,
-            isPublished: false, // New pages are unpublished by default
-            publishedAt: null,
-            createdAt: $now,
-            updatedAt: $now
-        );
+        $page = Page::create($slug, $title, $content, $metaDescription);
 
         $this->pageRepository->save($page);
 
