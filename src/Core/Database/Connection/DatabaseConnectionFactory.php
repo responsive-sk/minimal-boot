@@ -31,6 +31,7 @@ class DatabaseConnectionFactory
     {
         if (!isset($this->connections[$module])) {
             $this->connections[$module] = $this->createConnection($module);
+            $this->initializeModuleDatabase($this->connections[$module], $module);
         }
 
         return $this->connections[$module];

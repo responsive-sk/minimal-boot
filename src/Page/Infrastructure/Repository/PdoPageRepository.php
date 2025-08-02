@@ -63,6 +63,11 @@ class PdoPageRepository implements PageRepositoryInterface
         return $this->findAll(); // Same as findAll since we filter by is_published
     }
 
+    public function findAllPublished(): array
+    {
+        return $this->findPublished(); // Alias for findPublished
+    }
+
     public function save(Page $page): void
     {
         $data = $this->mapToArray($page);
@@ -84,6 +89,14 @@ class PdoPageRepository implements PageRepositoryInterface
         $this->queryBuilder
             ->table('pages')
             ->where('id', '=', $id)
+            ->delete();
+    }
+
+    public function deleteBySlug(string $slug): void
+    {
+        $this->queryBuilder
+            ->table('pages')
+            ->where('slug', '=', $slug)
             ->delete();
     }
 

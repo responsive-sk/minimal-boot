@@ -61,6 +61,7 @@ class InMemoryPageRepository implements PageRepositoryInterface
         $now = new DateTimeImmutable();
 
         $this->pages['about'] = new Page(
+            id: 'page_about',
             slug: 'about',
             title: 'About Us',
             content: '<h1>About Us</h1><p>Welcome to our company. We are dedicated to providing excellent service.</p>',
@@ -73,6 +74,7 @@ class InMemoryPageRepository implements PageRepositoryInterface
         );
 
         $this->pages['privacy'] = new Page(
+            id: 'page_privacy',
             slug: 'privacy',
             title: 'Privacy Policy',
             content: '<h1>Privacy Policy</h1><p>Your privacy is important to us. ' .
@@ -86,6 +88,7 @@ class InMemoryPageRepository implements PageRepositoryInterface
         );
 
         $this->pages['terms'] = new Page(
+            id: 'page_terms',
             slug: 'terms',
             title: 'Terms of Service',
             content: '<h1>Terms of Service</h1><p>These terms govern your use of our service.</p>',

@@ -11,6 +11,7 @@ use Minimal\Page\Factory\DemoHandlerFactory;
 use Minimal\Page\Factory\GetPageViewHandlerFactory;
 use Minimal\Page\Factory\IndexHandlerFactory;
 use Minimal\Page\Factory\PageRepositoryFactory;
+use Minimal\Page\Factory\PdoPageRepositoryFactory;
 use Minimal\Page\Factory\PageServiceFactory;
 use Minimal\Page\Handler\BootstrapDemoHandler;
 use Minimal\Page\Handler\DemoHandler;
@@ -55,7 +56,7 @@ class ConfigProvider
 
                 // Domain services
                 PageServiceInterface::class => PageServiceFactory::class,
-                PageRepositoryInterface::class => PageRepositoryFactory::class,
+                PageRepositoryInterface::class => PdoPageRepositoryFactory::class,
             ],
         ];
     }
