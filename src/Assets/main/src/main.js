@@ -35,11 +35,19 @@ function initializeDropdowns() {
                 document.querySelectorAll('.dropdown-menu').forEach(menu => {
                     if (menu !== dropdown) {
                         menu.classList.add('hidden');
+                        menu.classList.remove('opacity-100', 'visible');
+                        menu.classList.add('opacity-0', 'invisible');
                     }
                 });
 
                 // Toggle current dropdown
-                dropdown.classList.toggle('hidden');
+                if (dropdown.classList.contains('hidden')) {
+                    dropdown.classList.remove('hidden', 'opacity-0', 'invisible');
+                    dropdown.classList.add('opacity-100', 'visible');
+                } else {
+                    dropdown.classList.add('hidden', 'opacity-0', 'invisible');
+                    dropdown.classList.remove('opacity-100', 'visible');
+                }
             });
         }
     });
@@ -70,7 +78,8 @@ function initializeDropdowns() {
     document.addEventListener('click', (e) => {
         if (!e.target.closest('.group') && !e.target.closest('[data-dropdown-toggle]')) {
             document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                menu.classList.add('hidden');
+                menu.classList.add('hidden', 'opacity-0', 'invisible');
+                menu.classList.remove('opacity-100', 'visible');
             });
         }
     });

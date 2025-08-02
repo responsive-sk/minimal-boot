@@ -38,6 +38,23 @@
 
     <!-- CSS loading detection -->
     <script>
+        // Global Bootstrap dropdown initialization function
+        function initBootstrapDropdowns() {
+            if (typeof bootstrap !== 'undefined' && bootstrap.Dropdown) {
+                // Initialize all dropdowns
+                const dropdownElementList = document.querySelectorAll('.dropdown-toggle');
+                const dropdownList = [...dropdownElementList].map(dropdownToggleEl => {
+                    return new bootstrap.Dropdown(dropdownToggleEl);
+                });
+
+                console.log('Bootstrap dropdowns initialized:', dropdownList.length);
+            } else {
+                console.warn('Bootstrap JavaScript not loaded, retrying...');
+                // Retry after Bootstrap JS loads
+                setTimeout(initBootstrapDropdowns, 100);
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             // Test Bootstrap CSS loading
             const testEl = document.createElement('div');
@@ -56,6 +73,9 @@
             setTimeout(() => {
                 document.documentElement.classList.add('theme-loaded');
             }, 100);
+
+            // Start initialization when DOM is ready
+            initBootstrapDropdowns();
         });
     </script>
 
@@ -354,7 +374,7 @@
         $finalJsUrl = 'js/app.js';
     }
     ?>
-    <script src="<?= $asset($finalJsUrl) ?>"></script>
+    <script src="<?= $asset($finalJsUrl) ?>" onload="initBootstrapDropdowns()"></script>
 
     <!-- Theme Toggle Script -->
     <script>
