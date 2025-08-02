@@ -12,12 +12,16 @@ use Mezzio\Router\Middleware\ImplicitHeadMiddleware;
 use Mezzio\Router\Middleware\ImplicitOptionsMiddleware;
 use Mezzio\Router\Middleware\MethodNotAllowedMiddleware;
 use Mezzio\Router\Middleware\RouteMiddleware;
+use ResponsiveSk\Slim4Session\Middleware\SessionMiddleware;
 
 return function (Application $app): void {
     // The error handler should be the first (most outer) middleware to catch
     // all Exceptions.
     $app->pipe(ErrorHandlerInterface::class);
     $app->pipe(ServerUrlMiddleware::class);
+
+    // Session middleware - must be early in the pipeline
+    $app->pipe(SessionMiddleware::class);
 
     // Pipe more middleware here that you want to execute on every request:
     // - bootstrapping
