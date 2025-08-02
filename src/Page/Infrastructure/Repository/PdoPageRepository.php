@@ -58,14 +58,9 @@ class PdoPageRepository implements PageRepositoryInterface
         return array_map([$this, 'mapToEntity'], $results);
     }
 
-    public function findPublished(): array
-    {
-        return $this->findAll(); // Same as findAll since we filter by is_published
-    }
-
     public function findAllPublished(): array
     {
-        return $this->findPublished(); // Alias for findPublished
+        return $this->findAll(); // Same as findAll since we filter by is_published
     }
 
     public function save(Page $page): void

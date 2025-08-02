@@ -39,27 +39,7 @@ interface PageServiceInterface
     ): Page;
 
     /**
-     * Update page content.
-     */
-    public function updatePageContent(string $slug, string $content): ?Page;
-
-    /**
      * Publish page.
      */
     public function publishPage(string $slug): ?Page;
-
-    /**
-     * Unpublish page.
-     */
-    public function unpublishPage(string $slug): ?Page;
-
-    /**
-     * Delete page.
-     */
-    public function deletePage(string $slug): bool;
-
-    /**
-     * Check if page exists.
-     */
-    public function pageExists(string $slug): bool;
 }

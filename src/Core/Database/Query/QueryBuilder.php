@@ -57,21 +57,7 @@ class QueryBuilder
         return $this;
     }
 
-    /**
-     * Add WHERE IN condition.
-     */
-    public function whereIn(string $column, array $values): self
-    {
-        $placeholders = [];
-        foreach ($values as $i => $value) {
-            $placeholder = ':wherein_' . $i;
-            $placeholders[] = $placeholder;
-            $this->bindings[$placeholder] = $value;
-        }
-        
-        $this->where[] = "{$column} IN (" . implode(', ', $placeholders) . ")";
-        return $this;
-    }
+
 
     /**
      * Add ORDER BY clause.
@@ -142,20 +128,25 @@ class QueryBuilder
     public function update(array $data): bool
     {
         $setParts = [];
+        $updateBindings = [];
+
         foreach ($data as $column => $value) {
             $placeholder = ":update_{$column}";
             $setParts[] = "{$column} = {$placeholder}";
-            $this->bindings[$placeholder] = $value;
+            $updateBindings[$placeholder] = $value;
         }
-        
+
         $sql = "UPDATE {$this->table} SET " . implode(', ', $setParts);
-        
+
         if (!empty($this->where)) {
             $sql .= " WHERE " . implode(' AND ', $this->where);
         }
-        
+
+        // Merge update bindings with where bindings
+        $allBindings = array_merge($updateBindings, $this->bindings);
+
         $stmt = $this->pdo->prepare($sql);
-        return $stmt->execute($this->bindings);
+        return $stmt->execute($allBindings);
     }
 
     /**
@@ -191,15 +182,7 @@ class QueryBuilder
         return (int) $result['count'];
     }
 
-    /**
-     * Execute raw SQL query.
-     */
-    public function raw(string $sql, array $bindings = []): PDOStatement
-    {
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute($bindings);
-        return $stmt;
-    }
+
 
     /**
      * Build SELECT query string.
@@ -227,19 +210,5 @@ class QueryBuilder
         return $sql;
     }
 
-    /**
-     * Reset query builder state.
-     */
-    public function reset(): self
-    {
-        $this->table = '';
-        $this->select = ['*'];
-        $this->where = [];
-        $this->orderBy = [];
-        $this->limit = null;
-        $this->offset = null;
-        $this->bindings = [];
-        
-        return $this;
-    }
+
 }

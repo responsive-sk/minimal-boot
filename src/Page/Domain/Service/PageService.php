@@ -71,20 +71,6 @@ class PageService implements PageServiceInterface
         return $page;
     }
 
-    public function updatePageContent(string $slug, string $content): ?Page
-    {
-        $page = $this->pageRepository->findBySlug($slug);
-
-        if ($page === null) {
-            return null;
-        }
-
-        $updatedPage = $page->withContent($content);
-        $this->pageRepository->save($updatedPage);
-
-        return $updatedPage;
-    }
-
     public function publishPage(string $slug): ?Page
     {
         $page = $this->pageRepository->findBySlug($slug);
@@ -97,34 +83,5 @@ class PageService implements PageServiceInterface
         $this->pageRepository->save($publishedPage);
 
         return $publishedPage;
-    }
-
-    public function unpublishPage(string $slug): ?Page
-    {
-        $page = $this->pageRepository->findBySlug($slug);
-
-        if ($page === null) {
-            return null;
-        }
-
-        $unpublishedPage = $page->unpublish();
-        $this->pageRepository->save($unpublishedPage);
-
-        return $unpublishedPage;
-    }
-
-    public function deletePage(string $slug): bool
-    {
-        if (!$this->pageRepository->existsBySlug($slug)) {
-            return false;
-        }
-
-        $this->pageRepository->deleteBySlug($slug);
-        return true;
-    }
-
-    public function pageExists(string $slug): bool
-    {
-        return $this->pageRepository->existsBySlug($slug);
     }
 }

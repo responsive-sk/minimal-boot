@@ -107,15 +107,16 @@ class Page
     public function withContent(string $content): self
     {
         return new self(
-            $this->slug,
-            $this->title,
-            $content,
-            $this->metaDescription,
-            $this->metaKeywords,
-            $this->isPublished,
-            $this->publishedAt,
-            $this->createdAt,
-            new DateTimeImmutable()
+            id: $this->id,
+            slug: $this->slug,
+            title: $this->title,
+            content: $content,
+            metaDescription: $this->metaDescription,
+            metaKeywords: $this->metaKeywords,
+            isPublished: $this->isPublished,
+            publishedAt: $this->publishedAt,
+            createdAt: $this->createdAt,
+            updatedAt: new DateTimeImmutable()
         );
     }
 
@@ -144,15 +145,16 @@ class Page
     public function unpublish(): self
     {
         return new self(
-            $this->slug,
-            $this->title,
-            $this->content,
-            $this->metaDescription,
-            $this->metaKeywords,
-            false,
-            null,
-            $this->createdAt,
-            new DateTimeImmutable()
+            id: $this->id,
+            slug: $this->slug,
+            title: $this->title,
+            content: $this->content,
+            metaDescription: $this->metaDescription,
+            metaKeywords: $this->metaKeywords,
+            isPublished: false,
+            publishedAt: null,
+            createdAt: $this->createdAt,
+            updatedAt: new DateTimeImmutable()
         );
     }
 }
