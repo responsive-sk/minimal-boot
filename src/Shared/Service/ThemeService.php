@@ -22,6 +22,7 @@ class ThemeService
             'js' => 'themes/bootstrap/assets/main.js',
             'build_dir' => 'src/Assets/bootstrap',
             'output_dir' => 'public/themes/bootstrap/assets',
+            'template_path' => 'src/Shared/templates/bootstrap',
         ],
         'tailwind' => [
             'name' => 'Tailwind CSS',
@@ -30,6 +31,7 @@ class ThemeService
             'js' => 'themes/main/assets/main.js',
             'build_dir' => 'src/Assets/main',
             'output_dir' => 'public/themes/main/assets',
+            'template_path' => 'src/Shared/templates/tailwind',
         ],
     ];
 
@@ -153,5 +155,24 @@ class ThemeService
     public function isTailwind(): bool
     {
         return $this->getCurrentTheme() === 'tailwind';
+    }
+
+    /**
+     * Get theme template path.
+     */
+    public function getThemeTemplatePath(string $theme = null): string
+    {
+        $theme = $theme ?? $this->getCurrentTheme();
+        $config = $this->getThemeConfig($theme);
+
+        return $config['template_path'];
+    }
+
+    /**
+     * Get current theme template path.
+     */
+    public function getCurrentThemeTemplatePath(): string
+    {
+        return $this->getThemeTemplatePath();
     }
 }

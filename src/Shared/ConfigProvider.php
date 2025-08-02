@@ -43,6 +43,7 @@ class ConfigProvider
                 Service\ThemeService::class => Factory\ThemeServiceFactory::class,
                 Handler\ThemeSwitchHandler::class => Factory\ThemeSwitchHandlerFactory::class,
                 Middleware\ThemeMiddleware::class => Factory\ThemeMiddlewareFactory::class,
+                Middleware\ThemeTemplateMiddleware::class => Factory\ThemeTemplateMiddlewareFactory::class,
             ],
         ];
     }

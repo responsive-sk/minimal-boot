@@ -26,6 +26,9 @@ return function (Application $app): void {
     // Theme middleware - adds ThemeService to templates
     $app->pipe(\Minimal\Shared\Middleware\ThemeMiddleware::class);
 
+    // Theme template middleware - sets template paths based on theme
+    $app->pipe(\Minimal\Shared\Middleware\ThemeTemplateMiddleware::class);
+
     // Pipe more middleware here that you want to execute on every request:
     // - bootstrapping
     // - pre-conditions

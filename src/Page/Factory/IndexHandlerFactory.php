@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Minimal\Page\Factory;
 
 use Minimal\Page\Handler\IndexHandler;
+use Minimal\Shared\Service\ThemeService;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Container\ContainerInterface;
 use ResponsiveSk\Slim4Paths\Paths;
@@ -21,6 +22,9 @@ class IndexHandlerFactory
         $paths = $container->get(Paths::class);
         assert($paths instanceof Paths);
 
-        return new IndexHandler($template, $paths);
+        $themeService = $container->get(ThemeService::class);
+        assert($themeService instanceof ThemeService);
+
+        return new IndexHandler($template, $paths, $themeService);
     }
 }

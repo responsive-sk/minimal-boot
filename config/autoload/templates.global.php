@@ -15,8 +15,8 @@ return [
             // Session Templates
             'session' => ['src/Session/templates'],
 
-            // Layout Templates (Shared)
-            'layout' => ['src/Shared/templates/layout'],
+            // Layout Templates (Shared) - Bootstrap by default
+            'layout' => ['src/Shared/templates/bootstrap/layout'],
 
             // Error Templates (Shared)
             'error' => ['src/Shared/templates/error'],
