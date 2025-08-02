@@ -22,7 +22,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <?php 
+    <?php
     // Determine CSS URL: explicit cssUrl > ThemeService > fallback
     if (isset($cssUrl)) {
         $finalCssUrl = $cssUrl;
@@ -32,17 +32,83 @@
         $finalCssUrl = 'themes/main/assets/main.css';
     }
     ?>
-    <link rel="stylesheet" href="<?= $asset($finalCssUrl) ?>"/>
+    <!-- Preload critical CSS to prevent FOUC -->
+    <link rel="preload" href="<?= $asset($finalCssUrl) ?>" as="style" onload="this.onload=null;this.rel='stylesheet';document.documentElement.classList.add('theme-loaded');">
+    <noscript><link rel="stylesheet" href="<?= $asset($finalCssUrl) ?>"></noscript>
+
+    <!-- Fallback CSS loading detection -->
+    <script>
+        // Add theme-loaded class when CSS is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if CSS is loaded by testing a Tailwind class
+            const testEl = document.createElement('div');
+            testEl.className = 'bg-blue-500';
+            testEl.style.display = 'none';
+            document.body.appendChild(testEl);
+
+            const bgColor = window.getComputedStyle(testEl).backgroundColor;
+            if (bgColor === 'rgb(59, 130, 246)' || bgColor === 'rgba(59, 130, 246, 1)') {
+                document.documentElement.classList.add('theme-loaded');
+            }
+
+            document.body.removeChild(testEl);
+
+            // Fallback: add class after 100ms
+            setTimeout(() => {
+                document.documentElement.classList.add('theme-loaded');
+            }, 100);
+        });
+    </script>
 
     <style>
-        /* Tailwind-specific custom styles */
+        /* Critical CSS to prevent FOUC */
         body {
             font-family: 'Inter', system-ui, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fafb; /* bg-gray-50 */
+            min-height: 100vh;
+        }
+
+        /* Critical layout styles */
+        .min-h-screen { min-height: 100vh; }
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .flex-1 { flex: 1 1 0%; }
+        .fixed { position: fixed; }
+        .top-0 { top: 0; }
+        .w-full { width: 100%; }
+        .z-50 { z-index: 50; }
+        .pt-16 { padding-top: 4rem; }
+
+        /* Critical heading styles to fix h1 warning */
+        h1 {
+            font-size: 2.25rem; /* text-4xl */
+            line-height: 1.2;
+            font-weight: 700;
+            margin: 0 0 1.5rem 0;
+        }
+
+        /* Navigation critical styles */
+        nav {
+            background-color: white;
+            border-bottom: 1px solid #e5e7eb;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        /* Hide content until CSS loads */
+        .theme-loading {
+            visibility: hidden;
+        }
+
+        /* Show content when CSS is loaded */
+        .theme-loaded .theme-loading {
+            visibility: visible;
         }
     </style>
 </head>
 
-<body class="bg-gray-50 min-h-screen">
+<body class="bg-gray-50 min-h-screen theme-loading">
     <div class="min-h-screen flex flex-col">
         <!-- Navigation -->
         <nav class="bg-white shadow-sm border-b border-gray-200 fixed w-full top-0 z-50">

@@ -29,10 +29,35 @@
     } elseif (isset($themeService)) {
         $finalCssUrl = $themeService->getThemeCssUrl();
     } else {
-        $finalCssUrl = 'css/app.css';
+        $finalCssUrl = 'themes/bootstrap/assets/main.css';
     }
     ?>
-    <link rel="stylesheet" href="<?= $asset($finalCssUrl) ?>"/>
+    <!-- Preload critical CSS to prevent FOUC -->
+    <link rel="preload" href="<?= $asset($finalCssUrl) ?>" as="style" onload="this.onload=null;this.rel='stylesheet';document.documentElement.classList.add('theme-loaded');">
+    <noscript><link rel="stylesheet" href="<?= $asset($finalCssUrl) ?>"></noscript>
+
+    <!-- CSS loading detection -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Test Bootstrap CSS loading
+            const testEl = document.createElement('div');
+            testEl.className = 'container';
+            testEl.style.display = 'none';
+            document.body.appendChild(testEl);
+
+            const maxWidth = window.getComputedStyle(testEl).maxWidth;
+            if (maxWidth && maxWidth !== 'none') {
+                document.documentElement.classList.add('theme-loaded');
+            }
+
+            document.body.removeChild(testEl);
+
+            // Fallback
+            setTimeout(() => {
+                document.documentElement.classList.add('theme-loaded');
+            }, 100);
+        });
+    </script>
 
     <!-- Prevent FOUC (Flash of Unstyled Content) for theme -->
     <script>
@@ -48,9 +73,35 @@
     </script>
 
     <style>
-        /* Source Sans Pro font family - same as ozi.responsive.sk */
+        /* Critical CSS to prevent FOUC */
         body {
             font-family: 'Source Sans Pro', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        /* Critical Bootstrap-like styles */
+        .container { max-width: 1140px; margin: 0 auto; padding: 0 15px; }
+        .navbar { background-color: #f8f9fa; border-bottom: 1px solid #dee2e6; }
+        .fixed-top { position: fixed; top: 0; right: 0; left: 0; z-index: 1030; }
+        .app-content { padding-top: 60px; }
+
+        /* Critical heading styles */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Hide content until CSS loads */
+        .theme-loading {
+            visibility: hidden;
+        }
+
+        .theme-loaded .theme-loading {
+            visibility: visible;
         }
 
         /* Theme toggle button */
@@ -176,7 +227,7 @@
     </style>
 </head>
 
-<body class="app <?= $body_class ?? '' ?>"">
+<body class="app theme-loading <?= $body_class ?? '' ?>">
     <div class="app-wrapper">
         <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
             <div class="container">
