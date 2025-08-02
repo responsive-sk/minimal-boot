@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="/home/ian/Desktop/07/dk/minimal-boot/phpunit.xml" tests="37" assertions="4" errors="33" failures="0" skipped="0" time="0.010485">
+    <testsuite name="Unit" tests="24" assertions="4" errors="20" failures="0" skipped="0" time="0.010485">
+      <testsuite name="MinimalTest\Unit\Core\Database\Connection\DatabaseConnectionFactoryTest" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Core/Database/Connection/DatabaseConnectionFactoryTest.php" tests="13" assertions="1" errors="12" failures="0" skipped="0" time="0.009794">
+        <testcase name="testCanCreateConnectionFactory" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Core/Database/Connection/DatabaseConnectionFactoryTest.php" line="42" class="MinimalTest\Unit\Core\Database\Connection\DatabaseConnectionFactoryTest" classname="MinimalTest.Unit.Core.Database.Connection.DatabaseConnectionFactoryTest" assertions="1" time="0.009794"/>
+        <testcase name="testCanGetConnectionForModule" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Core/Database/Connection/DatabaseConnectionFactoryTest.php" line="49" class="MinimalTest\Unit\Core\Database\Connection\DatabaseConnectionFactoryTest" classname="MinimalTest.Unit.Core.Database.Connection.DatabaseConnectionFactoryTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Unit\Core\Database\Connection\DatabaseConnectionFactoryTest::testCanGetConnectionForModule
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37
+/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Core/Database/Connection/DatabaseConnectionFactoryTest.php:21</error>
+        </testcase>
+        <testcase name="testConnectionsAreReused" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Core/Database/Connection/DatabaseConnectionFactoryTest.php" line="58" class="MinimalTest\Unit\Core\Database\Connection\DatabaseConnectionFactoryTest" classname="MinimalTest.Unit.Core.Database.Connection.DatabaseConnectionFactoryTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Unit\Core\Database\Connection\DatabaseConnectionFactoryTest::testConnectionsAreReused
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37
+/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Core/Database/Connection/DatabaseConnectionFactoryTest.php:21</error>
+        </testcase>
+        <testcase name="testDifferentModulesGetDifferentConnections" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Core/Database/Connection/DatabaseConnectionFactoryTest.php" line="68" class="MinimalTest\Unit\Core\Database\Connection\DatabaseConnectionFactoryTest" classname="MinimalTest.Unit.Core.Database.Connection.DatabaseConnectionFactoryTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Unit\Core\Database\Connection\DatabaseConnectionFactoryTest::testDifferentModulesGetDifferentConnections
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37
+/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Core/Database/Connection/DatabaseConnectionFactoryTest.php:21</error>
+        </testcase>
+        <testcase name="testInMemoryDatabase" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Core/Database/Connection/DatabaseConnectionFactoryTest.php" line="78" class="MinimalTest\Unit\Core\Database\Connection\DatabaseConnectionFactoryTest" classname="MinimalTest.Unit.Core.Database.Connection.DatabaseConnectionFactoryTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Unit\Core\Database\Connection\DatabaseConnectionFactoryTest::testInMemoryDatabase
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37
+/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Core/Database/Connection/DatabaseConnectionFactoryTest.php:21</error>
+        </testcase>
+        <testcase name="testModuleExists" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Core/Database/Connection/DatabaseConnectionFactoryTest.php" line="96" class="MinimalTest\Unit\Core\Database\Connection\DatabaseConnectionFactoryTest" classname="MinimalTest.Unit.Core.Database.Connection.DatabaseConnectionFactoryTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Unit\Core\Database\Connection\DatabaseConnectionFactoryTest::testModuleExists
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37
+/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Core/Database/Connection/DatabaseConnectionFactoryTest.php:21</error>
+        </testcase>
+        <testcase name="testCreateModuleDatabase" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Core/Database/Connection/DatabaseConnectionFactoryTest.php" line="110" class="MinimalTest\Unit\Core\Database\Connection\DatabaseConnectionFactoryTest" classname="MinimalTest.Unit.Core.Database.Connection.DatabaseConnectionFactoryTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Unit\Core\Database\Connection\DatabaseConnectionFactoryTest::testCreateModuleDatabase
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37
+/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Core/Database/Connection/DatabaseConnectionFactoryTest.php:21</error>
+        </testcase>
+        <testcase name="testGetAvailableModules" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Core/Database/Connection/DatabaseConnectionFactoryTest.php" line="121" class="MinimalTest\Unit\Core\Database\Connection\DatabaseConnectionFactoryTest" classname="MinimalTest.Unit.Core.Database.Connection.DatabaseConnectionFactoryTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Unit\Core\Database\Connection\DatabaseConnectionFactoryTest::testGetAvailableModules
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37
+/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Core/Database/Connection/DatabaseConnectionFactoryTest.php:21</error>
+        </testcase>
+        <testcase name="testConnectionHasCorrectAttributes" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Core/Database/Connection/DatabaseConnectionFactoryTest.php" line="138" class="MinimalTest\Unit\Core\Database\Connection\DatabaseConnectionFactoryTest" classname="MinimalTest.Unit.Core.Database.Connection.DatabaseConnectionFactoryTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Unit\Core\Database\Connection\DatabaseConnectionFactoryTest::testConnectionHasCorrectAttributes
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37
+/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Core/Database/Connection/DatabaseConnectionFactoryTest.php:21</error>
+        </testcase>
+        <testcase name="testForeignKeysAreEnabled" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Core/Database/Connection/DatabaseConnectionFactoryTest.php" line="149" class="MinimalTest\Unit\Core\Database\Connection\DatabaseConnectionFactoryTest" classname="MinimalTest.Unit.Core.Database.Connection.DatabaseConnectionFactoryTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Unit\Core\Database\Connection\DatabaseConnectionFactoryTest::testForeignKeysAreEnabled
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37
+/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Core/Database/Connection/DatabaseConnectionFactoryTest.php:21</error>
+        </testcase>
+        <testcase name="testMigrationsTableIsCreated" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Core/Database/Connection/DatabaseConnectionFactoryTest.php" line="161" class="MinimalTest\Unit\Core\Database\Connection\DatabaseConnectionFactoryTest" classname="MinimalTest.Unit.Core.Database.Connection.DatabaseConnectionFactoryTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Unit\Core\Database\Connection\DatabaseConnectionFactoryTest::testMigrationsTableIsCreated
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37
+/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Core/Database/Connection/DatabaseConnectionFactoryTest.php:21</error>
+        </testcase>
+        <testcase name="testCloseConnections" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Core/Database/Connection/DatabaseConnectionFactoryTest.php" line="173" class="MinimalTest\Unit\Core\Database\Connection\DatabaseConnectionFactoryTest" classname="MinimalTest.Unit.Core.Database.Connection.DatabaseConnectionFactoryTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Unit\Core\Database\Connection\DatabaseConnectionFactoryTest::testCloseConnections
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37
+/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Core/Database/Connection/DatabaseConnectionFactoryTest.php:21</error>
+        </testcase>
+        <testcase name="testInvalidDatabasePathThrowsException" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Core/Database/Connection/DatabaseConnectionFactoryTest.php" line="189" class="MinimalTest\Unit\Core\Database\Connection\DatabaseConnectionFactoryTest" classname="MinimalTest.Unit.Core.Database.Connection.DatabaseConnectionFactoryTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Unit\Core\Database\Connection\DatabaseConnectionFactoryTest::testInvalidDatabasePathThrowsException
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37
+/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Core/Database/Connection/DatabaseConnectionFactoryTest.php:21</error>
+        </testcase>
+      </testsuite>
+      <testsuite name="MinimalTest\Unit\Page\Domain\Entity\PageTest" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Page/Domain/Entity/PageTest.php" tests="8" assertions="0" errors="8" failures="0" skipped="0" time="0.000000">
+        <testcase name="testPageCanBeCreatedWithAllProperties" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Page/Domain/Entity/PageTest.php" line="16" class="MinimalTest\Unit\Page\Domain\Entity\PageTest" classname="MinimalTest.Unit.Page.Domain.Entity.PageTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Unit\Page\Domain\Entity\PageTest::testPageCanBeCreatedWithAllProperties
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37</error>
+        </testcase>
+        <testcase name="testPageCanBeCreatedWithMinimalProperties" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Page/Domain/Entity/PageTest.php" line="54" class="MinimalTest\Unit\Page\Domain\Entity\PageTest" classname="MinimalTest.Unit.Page.Domain.Entity.PageTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Unit\Page\Domain\Entity\PageTest::testPageCanBeCreatedWithMinimalProperties
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37</error>
+        </testcase>
+        <testcase name="testPageCanBeCreatedUsingFactoryMethod" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Page/Domain/Entity/PageTest.php" line="80" class="MinimalTest\Unit\Page\Domain\Entity\PageTest" classname="MinimalTest.Unit.Page.Domain.Entity.PageTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Unit\Page\Domain\Entity\PageTest::testPageCanBeCreatedUsingFactoryMethod
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37</error>
+        </testcase>
+        <testcase name="testPageFactoryGeneratesUniqueIds" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Page/Domain/Entity/PageTest.php" line="101" class="MinimalTest\Unit\Page\Domain\Entity\PageTest" classname="MinimalTest.Unit.Page.Domain.Entity.PageTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Unit\Page\Domain\Entity\PageTest::testPageFactoryGeneratesUniqueIds
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37</error>
+        </testcase>
+        <testcase name="testPageWithEmptyMetaKeywords" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Page/Domain/Entity/PageTest.php" line="111" class="MinimalTest\Unit\Page\Domain\Entity\PageTest" classname="MinimalTest.Unit.Page.Domain.Entity.PageTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Unit\Page\Domain\Entity\PageTest::testPageWithEmptyMetaKeywords
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37</error>
+        </testcase>
+        <testcase name="testPageWithMultipleMetaKeywords" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Page/Domain/Entity/PageTest.php" line="124" class="MinimalTest\Unit\Page\Domain\Entity\PageTest" classname="MinimalTest.Unit.Page.Domain.Entity.PageTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Unit\Page\Domain\Entity\PageTest::testPageWithMultipleMetaKeywords
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37</error>
+        </testcase>
+        <testcase name="testUnpublishedPageDefaults" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Page/Domain/Entity/PageTest.php" line="140" class="MinimalTest\Unit\Page\Domain\Entity\PageTest" classname="MinimalTest.Unit.Page.Domain.Entity.PageTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Unit\Page\Domain\Entity\PageTest::testUnpublishedPageDefaults
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37</error>
+        </testcase>
+        <testcase name="testPageCreatedAtCurrentTime" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/Page/Domain/Entity/PageTest.php" line="154" class="MinimalTest\Unit\Page\Domain\Entity\PageTest" classname="MinimalTest.Unit.Page.Domain.Entity.PageTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Unit\Page\Domain\Entity\PageTest::testPageCreatedAtCurrentTime
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37</error>
+        </testcase>
+      </testsuite>
+      <testsuite name="MinimalTest\Unit\SimpleTest" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/SimpleTest.php" tests="3" assertions="3" errors="0" failures="0" skipped="0" time="0.000692">
+        <testcase name="testTrueIsTrue" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/SimpleTest.php" line="14" class="MinimalTest\Unit\SimpleTest" classname="MinimalTest.Unit.SimpleTest" assertions="1" time="0.000279"/>
+        <testcase name="testStringConcatenation" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/SimpleTest.php" line="19" class="MinimalTest\Unit\SimpleTest" classname="MinimalTest.Unit.SimpleTest" assertions="1" time="0.000214"/>
+        <testcase name="testArrayCount" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Unit/SimpleTest.php" line="25" class="MinimalTest\Unit\SimpleTest" classname="MinimalTest.Unit.SimpleTest" assertions="1" time="0.000199"/>
+      </testsuite>
+    </testsuite>
+    <testsuite name="Integration" tests="13" assertions="0" errors="13" failures="0" skipped="0" time="0.000000">
+      <testsuite name="MinimalTest\Integration\Page\Infrastructure\Repository\PdoPageRepositoryTest" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Integration/Page/Infrastructure/Repository/PdoPageRepositoryTest.php" tests="13" assertions="0" errors="13" failures="0" skipped="0" time="0.000000">
+        <testcase name="testCanSaveAndFindPageById" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Integration/Page/Infrastructure/Repository/PdoPageRepositoryTest.php" line="52" class="MinimalTest\Integration\Page\Infrastructure\Repository\PdoPageRepositoryTest" classname="MinimalTest.Integration.Page.Infrastructure.Repository.PdoPageRepositoryTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Integration\Page\Infrastructure\Repository\PdoPageRepositoryTest::testCanSaveAndFindPageById
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37
+/home/ian/Desktop/07/dk/minimal-boot/tests/Integration/Page/Infrastructure/Repository/PdoPageRepositoryTest.php:23</error>
+        </testcase>
+        <testcase name="testCanFindPageBySlug" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Integration/Page/Infrastructure/Repository/PdoPageRepositoryTest.php" line="67" class="MinimalTest\Integration\Page\Infrastructure\Repository\PdoPageRepositoryTest" classname="MinimalTest.Integration.Page.Infrastructure.Repository.PdoPageRepositoryTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Integration\Page\Infrastructure\Repository\PdoPageRepositoryTest::testCanFindPageBySlug
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37
+/home/ian/Desktop/07/dk/minimal-boot/tests/Integration/Page/Infrastructure/Repository/PdoPageRepositoryTest.php:23</error>
+        </testcase>
+        <testcase name="testCannotFindUnpublishedPageBySlug" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Integration/Page/Infrastructure/Repository/PdoPageRepositoryTest.php" line="86" class="MinimalTest\Integration\Page\Infrastructure\Repository\PdoPageRepositoryTest" classname="MinimalTest.Integration.Page.Infrastructure.Repository.PdoPageRepositoryTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Integration\Page\Infrastructure\Repository\PdoPageRepositoryTest::testCannotFindUnpublishedPageBySlug
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37
+/home/ian/Desktop/07/dk/minimal-boot/tests/Integration/Page/Infrastructure/Repository/PdoPageRepositoryTest.php:23</error>
+        </testcase>
+        <testcase name="testCanFindAllPublishedPages" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Integration/Page/Infrastructure/Repository/PdoPageRepositoryTest.php" line="103" class="MinimalTest\Integration\Page\Infrastructure\Repository\PdoPageRepositoryTest" classname="MinimalTest.Integration.Page.Infrastructure.Repository.PdoPageRepositoryTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Integration\Page\Infrastructure\Repository\PdoPageRepositoryTest::testCanFindAllPublishedPages
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37
+/home/ian/Desktop/07/dk/minimal-boot/tests/Integration/Page/Infrastructure/Repository/PdoPageRepositoryTest.php:23</error>
+        </testcase>
+        <testcase name="testCanUpdateExistingPage" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Integration/Page/Infrastructure/Repository/PdoPageRepositoryTest.php" line="145" class="MinimalTest\Integration\Page\Infrastructure\Repository\PdoPageRepositoryTest" classname="MinimalTest.Integration.Page.Infrastructure.Repository.PdoPageRepositoryTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Integration\Page\Infrastructure\Repository\PdoPageRepositoryTest::testCanUpdateExistingPage
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37
+/home/ian/Desktop/07/dk/minimal-boot/tests/Integration/Page/Infrastructure/Repository/PdoPageRepositoryTest.php:23</error>
+        </testcase>
+        <testcase name="testCanDeletePageById" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Integration/Page/Infrastructure/Repository/PdoPageRepositoryTest.php" line="173" class="MinimalTest\Integration\Page\Infrastructure\Repository\PdoPageRepositoryTest" classname="MinimalTest.Integration.Page.Infrastructure.Repository.PdoPageRepositoryTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Integration\Page\Infrastructure\Repository\PdoPageRepositoryTest::testCanDeletePageById
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37
+/home/ian/Desktop/07/dk/minimal-boot/tests/Integration/Page/Infrastructure/Repository/PdoPageRepositoryTest.php:23</error>
+        </testcase>
+        <testcase name="testCanDeletePageBySlug" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Integration/Page/Infrastructure/Repository/PdoPageRepositoryTest.php" line="188" class="MinimalTest\Integration\Page\Infrastructure\Repository\PdoPageRepositoryTest" classname="MinimalTest.Integration.Page.Infrastructure.Repository.PdoPageRepositoryTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Integration\Page\Infrastructure\Repository\PdoPageRepositoryTest::testCanDeletePageBySlug
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37
+/home/ian/Desktop/07/dk/minimal-boot/tests/Integration/Page/Infrastructure/Repository/PdoPageRepositoryTest.php:23</error>
+        </testcase>
+        <testcase name="testExistsReturnsTrueForExistingPage" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Integration/Page/Infrastructure/Repository/PdoPageRepositoryTest.php" line="210" class="MinimalTest\Integration\Page\Infrastructure\Repository\PdoPageRepositoryTest" classname="MinimalTest.Integration.Page.Infrastructure.Repository.PdoPageRepositoryTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Integration\Page\Infrastructure\Repository\PdoPageRepositoryTest::testExistsReturnsTrueForExistingPage
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37
+/home/ian/Desktop/07/dk/minimal-boot/tests/Integration/Page/Infrastructure/Repository/PdoPageRepositoryTest.php:23</error>
+        </testcase>
+        <testcase name="testExistsReturnsFalseForNonExistingPage" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Integration/Page/Infrastructure/Repository/PdoPageRepositoryTest.php" line="218" class="MinimalTest\Integration\Page\Infrastructure\Repository\PdoPageRepositoryTest" classname="MinimalTest.Integration.Page.Infrastructure.Repository.PdoPageRepositoryTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Integration\Page\Infrastructure\Repository\PdoPageRepositoryTest::testExistsReturnsFalseForNonExistingPage
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37
+/home/ian/Desktop/07/dk/minimal-boot/tests/Integration/Page/Infrastructure/Repository/PdoPageRepositoryTest.php:23</error>
+        </testcase>
+        <testcase name="testExistsBySlugReturnsTrueForExistingSlug" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Integration/Page/Infrastructure/Repository/PdoPageRepositoryTest.php" line="223" class="MinimalTest\Integration\Page\Infrastructure\Repository\PdoPageRepositoryTest" classname="MinimalTest.Integration.Page.Infrastructure.Repository.PdoPageRepositoryTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Integration\Page\Infrastructure\Repository\PdoPageRepositoryTest::testExistsBySlugReturnsTrueForExistingSlug
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37
+/home/ian/Desktop/07/dk/minimal-boot/tests/Integration/Page/Infrastructure/Repository/PdoPageRepositoryTest.php:23</error>
+        </testcase>
+        <testcase name="testExistsBySlugReturnsFalseForNonExistingSlug" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Integration/Page/Infrastructure/Repository/PdoPageRepositoryTest.php" line="238" class="MinimalTest\Integration\Page\Infrastructure\Repository\PdoPageRepositoryTest" classname="MinimalTest.Integration.Page.Infrastructure.Repository.PdoPageRepositoryTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Integration\Page\Infrastructure\Repository\PdoPageRepositoryTest::testExistsBySlugReturnsFalseForNonExistingSlug
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37
+/home/ian/Desktop/07/dk/minimal-boot/tests/Integration/Page/Infrastructure/Repository/PdoPageRepositoryTest.php:23</error>
+        </testcase>
+        <testcase name="testFindAllPublishedIsSameAsFindPublished" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Integration/Page/Infrastructure/Repository/PdoPageRepositoryTest.php" line="243" class="MinimalTest\Integration\Page\Infrastructure\Repository\PdoPageRepositoryTest" classname="MinimalTest.Integration.Page.Infrastructure.Repository.PdoPageRepositoryTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Integration\Page\Infrastructure\Repository\PdoPageRepositoryTest::testFindAllPublishedIsSameAsFindPublished
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37
+/home/ian/Desktop/07/dk/minimal-boot/tests/Integration/Page/Infrastructure/Repository/PdoPageRepositoryTest.php:23</error>
+        </testcase>
+        <testcase name="testCanHandlePageWithComplexContent" file="/home/ian/Desktop/07/dk/minimal-boot/tests/Integration/Page/Infrastructure/Repository/PdoPageRepositoryTest.php" line="263" class="MinimalTest\Integration\Page\Infrastructure\Repository\PdoPageRepositoryTest" classname="MinimalTest.Integration.Page.Infrastructure.Repository.PdoPageRepositoryTest" assertions="0" time="0.000000">
+          <error type="PDOException">MinimalTest\Integration\Page\Infrastructure\Repository\PdoPageRepositoryTest::testCanHandlePageWithComplexContent
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: pages.slug
+
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:148
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:111
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:84
+/home/ian/Desktop/07/dk/minimal-boot/tests/TestCase.php:37
+/home/ian/Desktop/07/dk/minimal-boot/tests/Integration/Page/Infrastructure/Repository/PdoPageRepositoryTest.php:23</error>
+        </testcase>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>

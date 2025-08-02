@@ -1,19 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
-         bootstrap="vendor/autoload.php"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/12.3/phpunit.xsd"
+         bootstrap="tests/bootstrap.php"
+         cacheDirectory=".phpunit.cache"
          colors="true"
-         stopOnError="true">
+         executionOrder="depends,defects"
+         stopOnError="false"
+         stopOnFailure="false"
+         beStrictAboutOutputDuringTests="true"
+         failOnRisky="true"
+         failOnWarning="true">
+
     <testsuites>
-        <testsuite name="UnitTests">
-            <directory>./test/Unit</directory>
-            <exclude>./test/Unit/UnitTest.php</exclude>
+        <testsuite name="Unit">
+            <directory>tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Integration">
+            <directory>tests/Integration</directory>
+        </testsuite>
+        <testsuite name="Functional">
+            <directory>tests/Functional</directory>
         </testsuite>
     </testsuites>
-    <coverage/>
-    <source>
+
+    <source restrictDeprecations="true" restrictNotices="true" restrictWarnings="true">
         <include>
-            <directory>./src</directory>
+            <directory>src</directory>
         </include>
+        <exclude>
+            <directory>src/Assets</directory>
+            <file>src/*/templates/*</file>
+        </exclude>
     </source>
+
+
+
+    <logging>
+        <junit outputFile="var/logs/junit.xml"/>
+    </logging>
+
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="DATABASE_PATH" value=":memory:"/>
+        <ini name="memory_limit" value="1G"/>
+        <ini name="error_reporting" value="-1"/>
+    </php>
 </phpunit>
