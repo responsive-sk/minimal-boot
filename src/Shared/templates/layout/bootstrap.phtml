@@ -82,10 +82,33 @@
             transform: scale(1.1);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
+
+        /* Smooth theme transitions */
+        *, *::before, *::after {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Prevent transition on page load */
+        .no-transition * {
+            transition: none !important;
+        }
     </style>
+
+    <!-- Prevent FOUC (Flash of Unstyled Content) for theme -->
+    <script>
+        (function() {
+            // Get saved theme or system preference
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+
+            // Set theme immediately to prevent flash
+            document.documentElement.setAttribute('data-bs-theme', theme);
+        })();
+    </script>
 </head>
 
-<body class="app <?= $body_class ?? '' ?>" data-bs-theme="light">
+<body class="app <?= $body_class ?? '' ?>"">
     <div class="app-wrapper">
         <!-- Bootstrap Navigation -->
         <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
@@ -155,6 +178,15 @@
     <button id="theme-toggle" class="theme-toggle" aria-label="Toggle between light and dark theme">
         <span class="theme-toggle-icon">🌙</span>
     </button>
+
+    <!-- Theme change notification -->
+    <div id="theme-notification" class="position-fixed top-0 start-50 translate-middle-x mt-3" style="z-index: 9999; display: none;">
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <i class="bi bi-palette-fill me-2"></i>
+            <span id="theme-message">Switched to dark theme</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
     
     <!-- Bootstrap JS -->
     <?php if (isset($jsUrl)): ?>
@@ -170,30 +202,53 @@
 
         // Only initialize theme functionality if elements exist
         if (themeToggle && themeIcon) {
-            // Check for saved theme preference or default to light mode
-            const currentTheme = localStorage.getItem('theme') || 'light';
-            html.setAttribute('data-bs-theme', currentTheme);
+            // Get current theme from HTML attribute (set by inline script)
+            const currentTheme = html.getAttribute('data-bs-theme') || 'light';
             updateThemeIcon(currentTheme);
 
             themeToggle.addEventListener('click', () => {
                 const currentTheme = html.getAttribute('data-bs-theme');
                 const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
+                // Add smooth transition
+                document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
+
                 html.setAttribute('data-bs-theme', newTheme);
                 localStorage.setItem('theme', newTheme);
                 updateThemeIcon(newTheme);
+                showThemeNotification(newTheme);
+
+                // Remove transition after animation
+                setTimeout(() => {
+                    document.body.style.transition = '';
+                }, 300);
             });
 
             function updateThemeIcon(theme) {
                 themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+                themeToggle.setAttribute('aria-label',
+                    `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`);
             }
 
-            // Respect system preference
-            if (!localStorage.getItem('theme')) {
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                if (prefersDark) {
-                    html.setAttribute('data-bs-theme', 'dark');
-                    updateThemeIcon('dark');
+            function showThemeNotification(theme) {
+                const notification = document.getElementById('theme-notification');
+                const message = document.getElementById('theme-message');
+
+                if (notification && message) {
+                    message.textContent = `Switched to ${theme} theme`;
+                    notification.style.display = 'block';
+
+                    // Auto-hide after 2 seconds
+                    setTimeout(() => {
+                        const alert = notification.querySelector('.alert');
+                        if (alert) {
+                            alert.classList.remove('show');
+                            setTimeout(() => {
+                                notification.style.display = 'none';
+                                alert.classList.add('show');
+                            }, 150);
+                        }
+                    }, 2000);
                 }
             }
         }

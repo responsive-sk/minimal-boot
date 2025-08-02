@@ -10,9 +10,9 @@ $layout('layout::tailwind', [
 
 <!-- Hero Section -->
 <div class="relative overflow-hidden bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 min-h-[60vh]">
-    <!-- Background Image with WebP support -->
+    <!-- Background Image -->
     <div class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
-         style="background-image: url('/themes/main/assets/images/javascript.webp'), url('/themes/main/assets/images/javascript.jpg')"></div>
+         style="background-image: url('/themes/main/assets/images/javascript.jpg')"></div>
 
     <!-- Content -->
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
@@ -51,17 +51,12 @@ $layout('layout::tailwind', [
 
             <div class="hidden lg:block">
                 <div class="relative">
-                    <picture>
-                        <!-- WebP format for modern browsers -->
-                        <source srcset="/themes/main/assets/images/digital-marketing.webp" type="image/webp">
-                        <!-- Fallback JPEG -->
-                        <img src="/themes/main/assets/images/digital-marketing.jpg"
-                             alt="Modern Web Development"
-                             class="rounded-2xl shadow-2xl w-full h-80 object-cover"
-                             loading="lazy"
-                             width="427"
-                             height="273">
-                    </picture>
+                    <img src="/themes/main/assets/images/digital-marketing.jpg"
+                         alt="Modern Web Development"
+                         class="rounded-2xl shadow-2xl w-full h-80 object-cover"
+                         loading="lazy"
+                         width="427"
+                         height="273">
                     <div class="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent rounded-2xl"></div>
                 </div>
             </div>

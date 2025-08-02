@@ -17,14 +17,160 @@
     <link rel="mask-icon" href="<?= $asset('images/app/favicon/safari-pinned-tab.svg') ?>" color="#5bbad5"/>
     <meta name="msapplication-TileColor" content="#da532c"/>
 
+    <!-- Google Fonts - Source Sans Pro -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     <?php if (isset($cssUrl)): ?>
         <link rel="stylesheet" href="<?= $e($cssUrl) ?>"/>
     <?php else: ?>
         <link rel="stylesheet" href="<?= $asset('css/app.css') ?>"/>
     <?php endif; ?>
+
+    <!-- Prevent FOUC (Flash of Unstyled Content) for theme -->
+    <script>
+        (function() {
+            // Get saved theme or system preference
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+
+            // Set theme immediately to prevent flash
+            document.documentElement.setAttribute('data-bs-theme', theme);
+        })();
+    </script>
+
+    <style>
+        /* Source Sans Pro font family - same as ozi.responsive.sk */
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        /* Theme toggle button */
+        .theme-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--bs-primary, #0d6efd);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Dark mode support */
+        [data-bs-theme="dark"] {
+            color-scheme: dark;
+        }
+
+        [data-bs-theme="dark"] body {
+            background-color: #212529;
+            color: #f8f9fa;
+        }
+
+        [data-bs-theme="dark"] .navbar-light {
+            background-color: #343a40 !important;
+        }
+
+        [data-bs-theme="dark"] .navbar-light .navbar-brand,
+        [data-bs-theme="dark"] .navbar-light .navbar-nav .nav-link {
+            color: #f8f9fa !important;
+        }
+
+        [data-bs-theme="dark"] .card {
+            background-color: #343a40;
+            border-color: #495057;
+            color: #f8f9fa;
+        }
+
+        [data-bs-theme="dark"] .btn-primary {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+        }
+
+        /* Navigation theme toggle (slider style) */
+        .nav-theme-toggle {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+            margin: 0;
+        }
+
+        .nav-theme-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .nav-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.3s;
+            border-radius: 30px;
+        }
+
+        .nav-slider:before {
+            position: absolute;
+            content: "🌙";
+            height: 26px;
+            width: 26px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: 0.3s;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .nav-theme-toggle input:checked + .nav-slider {
+            background-color: #007bff;
+        }
+
+        .nav-theme-toggle input:checked + .nav-slider:before {
+            transform: translateX(30px);
+            content: "☀️";
+        }
+
+        [data-bs-theme="dark"] .nav-slider {
+            background-color: #495057;
+        }
+
+        [data-bs-theme="dark"] .nav-slider:before {
+            background-color: #f8f9fa;
+        }
+
+        /* Smooth theme transitions */
+        *, *::before, *::after {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+    </style>
 </head>
 
-<body class="app <?= $body_class ?? '' ?>" data-bs-theme="light">
+<body class="app <?= $body_class ?? '' ?>"">
     <div class="app-wrapper">
         <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
             <div class="container">
@@ -64,12 +210,12 @@
                         </li>
                     </ul>
 
-                    <!-- Theme Toggle -->
+                    <!-- Theme Toggle in Navigation -->
                     <div class="d-flex align-items-center">
-                        <span class="me-2 text-muted small">Theme:</span>
-                        <label class="theme-toggle">
-                            <input type="checkbox" id="themeToggle">
-                            <span class="slider"></span>
+                        <span class="me-2 text-muted small d-none d-md-inline">Theme:</span>
+                        <label class="nav-theme-toggle">
+                            <input type="checkbox" id="nav-theme-checkbox">
+                            <span class="nav-slider"></span>
                         </label>
                     </div>
                 </div>
@@ -94,10 +240,104 @@
         </footer>
     </div>
 
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle between light and dark theme">
+        <span class="theme-toggle-icon">🌙</span>
+    </button>
+
+    <!-- Theme change notification -->
+    <div id="theme-notification" class="position-fixed top-0 start-50 translate-middle-x mt-3" style="z-index: 9999; display: none;">
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <i class="bi bi-palette-fill me-2"></i>
+            <span id="theme-message">Switched to dark theme</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+
     <?php if (isset($jsUrl)): ?>
         <script src="<?= $e($jsUrl) ?>"></script>
     <?php else: ?>
         <script src="<?= $asset('js/app.js') ?>"></script>
     <?php endif; ?>
+
+    <!-- Theme Toggle Script -->
+    <script>
+        // Dark mode functionality for both navigation and floating buttons
+        const themeToggle = document.getElementById('theme-toggle');
+        const navThemeCheckbox = document.getElementById('nav-theme-checkbox');
+        const html = document.documentElement;
+        const themeIcon = document.querySelector('.theme-toggle-icon');
+
+        // Get current theme from HTML attribute (set by inline script)
+        const currentTheme = html.getAttribute('data-bs-theme') || 'light';
+        updateAllThemeIcons(currentTheme);
+
+        // Add event listeners to both buttons
+        if (themeToggle) {
+            themeToggle.addEventListener('click', toggleTheme);
+        }
+
+        if (navThemeCheckbox) {
+            navThemeCheckbox.addEventListener('change', toggleTheme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = html.getAttribute('data-bs-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            // Add smooth transition
+            document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
+
+            html.setAttribute('data-bs-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateAllThemeIcons(newTheme);
+            showThemeNotification(newTheme);
+
+            // Remove transition after animation
+            setTimeout(() => {
+                document.body.style.transition = '';
+            }, 300);
+        }
+
+        function updateAllThemeIcons(theme) {
+            const icon = theme === 'dark' ? '☀️' : '🌙';
+            const ariaLabel = `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`;
+
+            // Update floating button
+            if (themeIcon) {
+                themeIcon.textContent = icon;
+            }
+            if (themeToggle) {
+                themeToggle.setAttribute('aria-label', ariaLabel);
+            }
+
+            // Update navigation checkbox
+            if (navThemeCheckbox) {
+                navThemeCheckbox.checked = theme === 'dark';
+            }
+        }
+
+        function showThemeNotification(theme) {
+            const notification = document.getElementById('theme-notification');
+            const message = document.getElementById('theme-message');
+
+            if (notification && message) {
+                message.textContent = `Switched to ${theme} theme`;
+                notification.style.display = 'block';
+
+                // Auto-hide after 2 seconds
+                setTimeout(() => {
+                    const alert = notification.querySelector('.alert');
+                    if (alert) {
+                        alert.classList.remove('show');
+                        setTimeout(() => {
+                            notification.style.display = 'none';
+                            alert.classList.add('show');
+                        }, 150);
+                    }
+                }, 2000);
+            }
+        }
+    </script>
 </body>
 </html>

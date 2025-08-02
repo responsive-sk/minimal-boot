@@ -21,9 +21,8 @@ window.themeAssets = {
 // Initialize Alpine.js
 window.Alpine = Alpine;
 
-// Wait for DOM to be ready before starting Alpine
-document.addEventListener('DOMContentLoaded', () => {
-    Alpine.start();
-    console.log('Main theme (TailwindCSS + Alpine.js) loaded');
-    console.log('Theme assets loaded:', window.themeAssets);
-});
+// Start Alpine.js immediately
+Alpine.start();
+
+console.log('Main theme (TailwindCSS + Alpine.js) loaded');
+console.log('Theme assets loaded:', window.themeAssets);

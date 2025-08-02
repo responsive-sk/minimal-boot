@@ -143,12 +143,33 @@
         </footer>
     </div>
 
-    <!-- TailwindCSS + Alpine.js -->
-    <script defer src="<?= $e($jsUrl) ?>"></script>
-
     <!-- Alpine.js cloak styles -->
     <style>
         [x-cloak] { display: none !important; }
     </style>
+
+    <!-- Alpine.js from CDN -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- TailwindCSS styles only -->
+    <link rel="stylesheet" href="<?= $e($cssUrl) ?>">
+
+    <!-- Theme assets and initialization -->
+    <script>
+        // Load theme assets
+        console.log('TailwindCSS theme loaded');
+
+        // Theme assets for dynamic use
+        window.themeAssets = {
+            images: {
+                hdmBoot: '/themes/main/assets/images/php82.jpg',
+                slim4: '/themes/main/assets/images/javascript.jpg',
+                ephemeris: '/themes/main/assets/images/digital-marketing.jpg',
+                logo: '/themes/main/assets/images/logo.svg'
+            }
+        };
+
+        console.log('Theme assets loaded:', window.themeAssets);
+    </script>
 </body>
 </html>
