@@ -32,6 +32,10 @@ class PdoPageRepositoryTest extends TestCase
     private function createPagesTable(): void
     {
         $pdo = $this->connectionFactory->getConnection('page');
+
+        // Drop table if exists first
+        $pdo->exec("DROP TABLE IF EXISTS pages");
+
         $pdo->exec("
             CREATE TABLE pages (
                 id VARCHAR(255) PRIMARY KEY,

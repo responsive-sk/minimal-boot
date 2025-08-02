@@ -117,11 +117,14 @@ abstract class TestCase extends PHPUnitTestCase
     protected function seedTestData(): void
     {
         $pageDb = $this->databaseFactory->getConnection('page');
-        
+
+        // Clear existing data first
+        $pageDb->exec("DELETE FROM pages");
+
         $testPages = [
             [
-                'id' => 'test_page_1',
-                'slug' => 'test-page',
+                'id' => 'test_page_' . uniqid(),
+                'slug' => 'test-page-' . uniqid(),
                 'title' => 'Test Page',
                 'content' => '<h1>Test Page Content</h1><p>This is a test page.</p>',
                 'meta_description' => 'Test page description',
@@ -129,8 +132,8 @@ abstract class TestCase extends PHPUnitTestCase
                 'author' => 'Test Author',
             ],
             [
-                'id' => 'test_page_2',
-                'slug' => 'draft-page',
+                'id' => 'test_page_' . uniqid(),
+                'slug' => 'draft-page-' . uniqid(),
                 'title' => 'Draft Page',
                 'content' => '<h1>Draft Content</h1>',
                 'meta_description' => 'Draft page',

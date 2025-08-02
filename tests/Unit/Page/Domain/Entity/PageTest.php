@@ -160,4 +160,78 @@ class PageTest extends TestCase
         $this->assertGreaterThanOrEqual($beforeCreation, $page->getCreatedAt());
         $this->assertLessThanOrEqual($afterCreation, $page->getCreatedAt());
     }
+
+    public function testPageWithPublishedAt(): void
+    {
+        $publishedAt = new DateTimeImmutable('2025-01-01 12:00:00');
+
+        $page = new Page(
+            id: 'published_page',
+            slug: 'published-page',
+            title: 'Published Page',
+            content: 'Published content',
+            isPublished: true,
+            publishedAt: $publishedAt
+        );
+
+        $this->assertTrue($page->isPublished());
+        $this->assertEquals($publishedAt, $page->getPublishedAt());
+    }
+
+    public function testPageWithCreatedAndUpdatedAt(): void
+    {
+        $createdAt = new DateTimeImmutable('2025-01-01 10:00:00');
+        $updatedAt = new DateTimeImmutable('2025-01-01 11:00:00');
+
+        $page = new Page(
+            id: 'timestamped_page',
+            slug: 'timestamped-page',
+            title: 'Timestamped Page',
+            content: 'Content with timestamps',
+            createdAt: $createdAt,
+            updatedAt: $updatedAt
+        );
+
+        $this->assertEquals($createdAt, $page->getCreatedAt());
+        $this->assertEquals($updatedAt, $page->getUpdatedAt());
+    }
+
+    public function testPageFactoryWithMetaDescription(): void
+    {
+        $page = Page::create(
+            slug: 'factory-full',
+            title: 'Factory Full Page',
+            content: 'Full factory content',
+            metaDescription: 'Factory description'
+        );
+
+        $this->assertStringStartsWith('page_', $page->getId());
+        $this->assertEquals('factory-full', $page->getSlug());
+        $this->assertEquals('Factory Full Page', $page->getTitle());
+        $this->assertEquals('Full factory content', $page->getContent());
+        $this->assertEquals('Factory description', $page->getMetaDescription());
+        $this->assertEquals([], $page->getMetaKeywords());
+        $this->assertFalse($page->isPublished());
+        $this->assertNull($page->getPublishedAt());
+        $this->assertInstanceOf(DateTimeImmutable::class, $page->getCreatedAt());
+        $this->assertNull($page->getUpdatedAt());
+    }
+
+    public function testPagePublishMethod(): void
+    {
+        $page = Page::create('test-publish', 'Test Publish', 'Content');
+
+        $this->assertFalse($page->isPublished());
+        $this->assertNull($page->getPublishedAt());
+
+        $publishedPage = $page->publish();
+
+        $this->assertTrue($publishedPage->isPublished());
+        $this->assertInstanceOf(DateTimeImmutable::class, $publishedPage->getPublishedAt());
+        $this->assertInstanceOf(DateTimeImmutable::class, $publishedPage->getUpdatedAt());
+
+        // Original page should remain unchanged
+        $this->assertFalse($page->isPublished());
+        $this->assertNull($page->getPublishedAt());
+    }
 }

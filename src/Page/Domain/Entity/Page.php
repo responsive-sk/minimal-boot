@@ -125,15 +125,16 @@ class Page
     public function publish(): self
     {
         return new self(
-            $this->slug,
-            $this->title,
-            $this->content,
-            $this->metaDescription,
-            $this->metaKeywords,
-            true,
-            new DateTimeImmutable(),
-            $this->createdAt,
-            new DateTimeImmutable()
+            id: $this->id,
+            slug: $this->slug,
+            title: $this->title,
+            content: $this->content,
+            metaDescription: $this->metaDescription,
+            metaKeywords: $this->metaKeywords,
+            isPublished: true,
+            publishedAt: new DateTimeImmutable(),
+            createdAt: $this->createdAt,
+            updatedAt: new DateTimeImmutable()
         );
     }
 
