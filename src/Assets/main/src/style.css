@@ -204,10 +204,6 @@
     @apply text-xl text-blue-100 leading-relaxed;
   }
 
-  .my-4 {
-    @apply my-4;
-  }
-
   /* App layout */
   .app-wrapper {
     @apply min-h-full;
@@ -237,7 +233,6 @@
   .text-end {
     @apply text-right;
   }
-}
 
   .form-input {
     @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent;

@@ -18,11 +18,128 @@ window.themeAssets = {
     }
 };
 
+// Dropdown functionality for Tailwind theme
+function initializeDropdowns() {
+    // Handle all dropdown toggles
+    document.querySelectorAll('[data-dropdown-toggle]').forEach(button => {
+        const targetId = button.getAttribute('data-dropdown-toggle');
+        const dropdown = document.getElementById(targetId);
+
+        if (dropdown) {
+            // Toggle dropdown on click
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                // Close other dropdowns
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    if (menu !== dropdown) {
+                        menu.classList.add('hidden');
+                    }
+                });
+
+                // Toggle current dropdown
+                dropdown.classList.toggle('hidden');
+            });
+        }
+    });
+
+    // Handle group hover dropdowns (desktop)
+    document.querySelectorAll('.group').forEach(group => {
+        const dropdown = group.querySelector('.group-hover\\:opacity-100, .group-hover\\:visible');
+
+        if (dropdown) {
+            let hoverTimeout;
+
+            group.addEventListener('mouseenter', () => {
+                clearTimeout(hoverTimeout);
+                dropdown.classList.remove('opacity-0', 'invisible');
+                dropdown.classList.add('opacity-100', 'visible');
+            });
+
+            group.addEventListener('mouseleave', () => {
+                hoverTimeout = setTimeout(() => {
+                    dropdown.classList.remove('opacity-100', 'visible');
+                    dropdown.classList.add('opacity-0', 'invisible');
+                }, 150);
+            });
+        }
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.group') && !e.target.closest('[data-dropdown-toggle]')) {
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                menu.classList.add('hidden');
+            });
+        }
+    });
+
+    // Handle mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+
+    // Theme switching functionality
+    document.querySelectorAll('.theme-switch-link').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const theme = this.dataset.theme;
+
+            // Show loading state
+            const button = document.getElementById('themeDropdown');
+            const originalText = button.textContent;
+            button.textContent = 'Switching...';
+            button.disabled = true;
+
+            // Make AJAX request to switch theme
+            fetch('/theme/switch', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: JSON.stringify({ theme: theme })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Reload page to apply new theme
+                    window.location.reload();
+                } else {
+                    alert('Error switching theme: ' + (data.error || 'Unknown error'));
+                    button.textContent = originalText;
+                    button.disabled = false;
+                }
+            })
+            .catch(error => {
+                console.error('Theme switch error:', error);
+                alert('Error switching theme. Please try again.');
+                button.textContent = originalText;
+                button.disabled = false;
+            });
+        });
+    });
+}
+
 // Initialize Alpine.js
 window.Alpine = Alpine;
 
 // Start Alpine.js immediately
 Alpine.start();
+
+// Initialize dropdowns when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeDropdowns);
+} else {
+    initializeDropdowns();
+}
 
 console.log('Main theme (TailwindCSS + Alpine.js) loaded');
 console.log('Theme assets loaded:', window.themeAssets);
