@@ -46,12 +46,11 @@
                 const dropdownList = [...dropdownElementList].map(dropdownToggleEl => {
                     return new bootstrap.Dropdown(dropdownToggleEl);
                 });
-
-                console.log('Bootstrap dropdowns initialized:', dropdownList.length);
+                return true;
             } else {
-                console.warn('Bootstrap JavaScript not loaded, retrying...');
                 // Retry after Bootstrap JS loads
-                setTimeout(initBootstrapDropdowns, 100);
+                setTimeout(initBootstrapDropdowns, 200);
+                return false;
             }
         }
 
@@ -76,6 +75,11 @@
 
             // Start initialization when DOM is ready
             initBootstrapDropdowns();
+
+            // Also try after a delay to ensure Bootstrap is loaded
+            setTimeout(() => {
+                initBootstrapDropdowns();
+            }, 500);
         });
     </script>
 
