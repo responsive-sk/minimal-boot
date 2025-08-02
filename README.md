@@ -314,6 +314,34 @@ $layout('layout::default', [
 - **CSRF Protection** - Token validation for forms
 - **Safe Includes** - Controlled template inclusion
 
+## TODO / Roadmap
+
+### Database Architecture
+- [ ] **Native PDO with SQLite** - Lightweight, file-based database solution
+- [ ] **Modular Database Design** - Separate SQLite files per domain/module
+  - `var/db/page.sqlite` - Page management data
+  - `var/db/contact.sqlite` - Contact form submissions
+  - `var/db/auth.sqlite` - User authentication data
+  - `var/db/session.sqlite` - Session storage
+- [ ] **Database Migrations** - Simple PHP-based migration system
+- [ ] **Repository Implementations** - PDO-based repository implementations
+- [ ] **Connection Factory** - Database connection management per module
+- [ ] **Query Builder** - Simple query builder for common operations
+
+### Framework Enhancements
+- [ ] **Validation Layer** - Input validation with custom rules
+- [ ] **Event System** - Domain events for loose coupling
+- [ ] **Caching Layer** - File-based caching for performance
+- [ ] **CLI Commands** - Console commands for migrations and maintenance
+- [ ] **Testing Suite** - Unit and integration tests
+- [ ] **API Module** - RESTful API endpoints with JSON responses
+
+### Documentation
+- [ ] **Database Guide** - Complete database setup and usage documentation
+- [ ] **Migration Guide** - How to create and run database migrations
+- [ ] **Testing Guide** - Testing strategies and examples
+- [ ] **Deployment Guide** - Production deployment best practices
+
 ## License
 
 This project is open source and available under the MIT License.

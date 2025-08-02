@@ -14,6 +14,7 @@ use DateTimeImmutable;
 class Page
 {
     public function __construct(
+        private readonly string $id,
         private readonly string $slug,
         private readonly string $title,
         private readonly string $content,
@@ -25,6 +26,31 @@ class Page
         private readonly ?DateTimeImmutable $createdAt = null,
         private readonly ?DateTimeImmutable $updatedAt = null
     ) {
+    }
+
+    public static function create(
+        string $slug,
+        string $title,
+        string $content,
+        string $metaDescription = ''
+    ): self {
+        return new self(
+            id: uniqid('page_', true),
+            slug: $slug,
+            title: $title,
+            content: $content,
+            metaDescription: $metaDescription,
+            metaKeywords: [],
+            isPublished: false,
+            publishedAt: null,
+            createdAt: new DateTimeImmutable(),
+            updatedAt: null
+        );
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
     }
 
     public function getSlug(): string

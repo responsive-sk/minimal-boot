@@ -76,3 +76,12 @@ var/logs/*.log
 
 # Backup files
 *.backup
+
+# Database files
+/var/db/*.sqlite
+/var/db/*.sqlite-wal
+/var/db/*.sqlite-shm
+
+# Cache and temporary files
+/var/cache/
+/var/tmp/
