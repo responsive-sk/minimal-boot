@@ -22,7 +22,11 @@ class DatabaseConnectionFactory
     public function __construct(string $databasePath = 'var/db')
     {
         $this->databasePath = $databasePath;
-        $this->ensureDatabaseDirectory();
+
+        // Only ensure directory for file-based databases
+        if ($databasePath !== ':memory:') {
+            $this->ensureDatabaseDirectory();
+        }
     }
 
     /**
@@ -71,6 +75,11 @@ class DatabaseConnectionFactory
      */
     private function getDatabaseFile(string $module): string
     {
+        // For in-memory databases, return :memory: directly
+        if ($this->databasePath === ':memory:') {
+            return ':memory:';
+        }
+
         return $this->databasePath . '/' . strtolower($module) . '.sqlite';
     }
 
@@ -112,6 +121,11 @@ class DatabaseConnectionFactory
      */
     public function moduleExists(string $module): bool
     {
+        // In-memory databases don't create files
+        if ($this->databasePath === ':memory:') {
+            return false;
+        }
+
         return file_exists($this->getDatabaseFile($module));
     }
 
@@ -120,6 +134,11 @@ class DatabaseConnectionFactory
      */
     public function createModuleDatabase(string $module): void
     {
+        // Skip file creation for in-memory databases
+        if ($this->databasePath === ':memory:') {
+            return;
+        }
+
         $databaseFile = $this->getDatabaseFile($module);
 
         if (!file_exists($databaseFile)) {
