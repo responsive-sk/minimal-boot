@@ -151,10 +151,20 @@ function initializeDropdowns()
 // Initialize Alpine.js
 window.Alpine = Alpine;
 
-// Start Alpine.js after a small delay to ensure DOM is fully ready
-setTimeout(() => {
-    Alpine.start();
-}, 100);
+// Start Alpine.js efficiently to avoid forced reflows
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        // Use requestAnimationFrame to avoid forced reflows
+        requestAnimationFrame(() => {
+            Alpine.start();
+        });
+    });
+} else {
+    // DOM is already ready
+    requestAnimationFrame(() => {
+        Alpine.start();
+    });
+}
 
 // Initialize dropdowns when DOM is ready
 if (document.readyState === 'loading') {

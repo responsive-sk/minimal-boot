@@ -7,6 +7,21 @@ export default {
         "../../../templates/**/*.phtml",
         "../../../modules/**/*.phtml"
         ],
+        // Aggressive CSS purging for production
+        safelist: [
+            // Keep essential classes that might be added dynamically
+            'active',
+            'show',
+            'hide',
+            'fade',
+            'collapse',
+            'collapsing',
+            // Alpine.js classes
+            'x-cloak',
+            // Theme switching classes
+            'dark',
+            'light'
+        ],
         darkMode: 'class',
         theme: {
             extend: {
