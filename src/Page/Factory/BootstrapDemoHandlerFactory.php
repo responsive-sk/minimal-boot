@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Minimal\Page\Factory;
 
 use Minimal\Page\Handler\BootstrapDemoHandler;
+use Minimal\Shared\Service\ThemeService;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Container\ContainerInterface;
 
@@ -17,6 +18,9 @@ class BootstrapDemoHandlerFactory
         $template = $container->get(TemplateRendererInterface::class);
         assert($template instanceof TemplateRendererInterface);
 
-        return new BootstrapDemoHandler($template);
+        $themeService = $container->get(ThemeService::class);
+        assert($themeService instanceof ThemeService);
+
+        return new BootstrapDemoHandler($template, $themeService);
     }
 }

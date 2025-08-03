@@ -6,6 +6,7 @@ namespace Minimal\Page\Handler;
 
 use Laminas\Diactoros\Response\HtmlResponse;
 use Mezzio\Template\TemplateRendererInterface;
+use Minimal\Shared\Service\ThemeService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -13,7 +14,8 @@ use Psr\Http\Server\RequestHandlerInterface;
 class BootstrapDemoHandler implements RequestHandlerInterface
 {
     public function __construct(
-        private readonly TemplateRendererInterface $template
+        private readonly TemplateRendererInterface $template,
+        private readonly ThemeService $themeService
     ) {
     }
 
@@ -26,9 +28,10 @@ class BootstrapDemoHandler implements RequestHandlerInterface
             'description' => 'The world\'s most popular CSS framework for responsive design',
         ];
 
-        // Vite compiled assets for Bootstrap
-        $cssUrl = '/themes/bootstrap/assets/main.css';
-        $jsUrl  = '/themes/bootstrap/assets/main.js';
+        // Force Bootstrap theme and get its assets
+        $this->themeService->setTheme('bootstrap');
+        $cssUrl = $this->themeService->getThemeCssUrl();
+        $jsUrl  = $this->themeService->getThemeJsUrl();
 
         // Use Bootstrap theme template from new structure
         $templateName = 'bootstrap_pages::demo';

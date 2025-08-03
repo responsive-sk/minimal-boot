@@ -6,6 +6,7 @@ namespace Minimal\Page\Handler;
 
 use Laminas\Diactoros\Response\HtmlResponse;
 use Mezzio\Template\TemplateRendererInterface;
+use Minimal\Shared\Service\ThemeService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -13,7 +14,8 @@ use Psr\Http\Server\RequestHandlerInterface;
 class DemoHandler implements RequestHandlerInterface
 {
     public function __construct(
-        private readonly TemplateRendererInterface $template
+        private readonly TemplateRendererInterface $template,
+        private readonly ThemeService $themeService
     ) {
     }
 
@@ -26,9 +28,9 @@ class DemoHandler implements RequestHandlerInterface
             'description' => 'Modern utility-first CSS framework with reactive components',
         ];
 
-        // Vite compiled assets (CSS and JS)
-        $cssUrl = '/themes/main/assets/main.css';
-        $jsUrl  = '/themes/main/assets/main.js';
+        // Use theme-specific CSS and JS
+        $cssUrl = $this->themeService->getThemeCssUrl();
+        $jsUrl  = $this->themeService->getThemeJsUrl();
 
         // Use theme-specific template from new structure
         $currentTheme = $this->themeService->getCurrentTheme();
