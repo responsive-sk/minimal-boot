@@ -87,40 +87,40 @@ return [
         // Template namespace paths for ConfigBasedTemplatePathProvider
         'templates' => [
             // Theme-based templates
-            'bootstrap' => 'templates_bootstrap',
-            'tailwind' => 'templates_tailwind',
+            'bootstrap' => 'templates/themes/bootstrap',
+            'tailwind' => 'templates/themes/tailwind',
 
             // Theme layouts
-            'bootstrap_layouts' => 'templates_bootstrap_layouts',
-            'tailwind_layouts' => 'templates_tailwind_layouts',
+            'bootstrap_layouts' => 'templates/themes/bootstrap/layouts',
+            'tailwind_layouts' => 'templates/themes/tailwind/layouts',
 
             // Theme pages
-            'bootstrap_pages' => 'templates_bootstrap_pages',
-            'tailwind_pages' => 'templates_tailwind_pages',
+            'bootstrap_pages' => 'templates/themes/bootstrap/pages',
+            'tailwind_pages' => 'templates/themes/tailwind/pages',
 
             // Theme partials
-            'bootstrap_partials' => 'templates_bootstrap_partials',
-            'tailwind_partials' => 'templates_tailwind_partials',
+            'bootstrap_partials' => 'templates/themes/bootstrap/partials',
+            'tailwind_partials' => 'templates/themes/tailwind/partials',
 
             // Module templates
-            'auth' => 'templates_auth',
-            'contact' => 'templates_contact',
-            'user' => 'templates_user',
-            'page' => 'templates_page',
-            'session' => 'templates_session',
+            'auth' => 'templates/modules/auth',
+            'contact' => 'templates/modules/contact',
+            'user' => 'templates/modules/user',
+            'page' => 'templates/modules/page',
+            'session' => 'templates/modules/session',
 
             // Shared templates
-            'shared' => 'templates_shared',
-            'error' => 'templates_error',
-            'email' => 'templates_email',
+            'shared' => 'templates/shared',
+            'error' => 'templates/shared/error',
+            'email' => 'templates/shared/email',
 
             // Component templates
-            'components' => 'templates_components',
-            'forms' => 'templates_forms',
-            'ui' => 'templates_ui',
+            'components' => 'templates/components',
+            'forms' => 'templates/components/forms',
+            'ui' => 'templates/components/ui',
 
             // Backward compatibility
-            'layout' => 'templates_bootstrap_layouts', // Default to Bootstrap
+            'layout' => 'templates/themes/bootstrap/layouts', // Default to Bootstrap
 
             // Cache subdirectories
             'config_cache' => 'var/cache/config',
