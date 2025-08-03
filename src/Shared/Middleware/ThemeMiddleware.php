@@ -25,8 +25,13 @@ class ThemeMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         // Add ThemeService to template default parameters
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
         if (method_exists($this->template, 'addDefaultParam')) {
-            $this->template->addDefaultParam(TemplateRendererInterface::TEMPLATE_ALL, 'themeService', $this->themeService);
+            $this->template->addDefaultParam(
+                TemplateRendererInterface::TEMPLATE_ALL,
+                'themeService',
+                $this->themeService
+            );
         }
 
         return $handler->handle($request);

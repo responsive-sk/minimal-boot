@@ -1,8 +1,12 @@
+# Quality assurance artifacts
 clover.xml
+coverage.xml
 coveralls-upload.json
 .phpcs-cache
 .phpunit.result.cache
+.phpunit.cache
 .twig-cs-fixer.cache
+/var/coverage/
 
 # Node.js
 node_modules/

@@ -9,6 +9,8 @@ use Minimal\Shared\Service\ThemeService;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Container\ContainerInterface;
 
+use function assert;
+
 /**
  * Factory for ThemeMiddleware.
  */
@@ -18,6 +20,10 @@ class ThemeMiddlewareFactory
     {
         $themeService = $container->get(ThemeService::class);
         $template = $container->get(TemplateRendererInterface::class);
+
+        // Ensure proper types
+        assert($themeService instanceof ThemeService);
+        assert($template instanceof TemplateRendererInterface);
 
         return new ThemeMiddleware($themeService, $template);
     }

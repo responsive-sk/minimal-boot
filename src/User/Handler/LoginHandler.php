@@ -32,11 +32,11 @@ class LoginHandler implements RequestHandlerInterface
         }
 
         $method = $request->getMethod();
-        
+
         if ($method === 'GET') {
             return $this->showLoginForm($request);
         }
-        
+
         if ($method === 'POST') {
             return $this->processLogin($request);
         }
@@ -61,6 +61,10 @@ class LoginHandler implements RequestHandlerInterface
     private function processLogin(ServerRequestInterface $request): ResponseInterface
     {
         $data = $request->getParsedBody() ?? [];
+        if (!is_array($data)) {
+            $data = [];
+        }
+        /** @var array<string, mixed> $data */
         $form = LoginForm::fromArray($data);
 
         if (!$form->validate()) {
@@ -81,12 +85,13 @@ class LoginHandler implements RequestHandlerInterface
         if ($success) {
             // Get redirect URL from query parameter or default to dashboard
             $redirectUrl = $request->getQueryParams()['redirect'] ?? '/dashboard';
+            $redirectUrl = is_string($redirectUrl) ? $redirectUrl : '/dashboard';
             return new RedirectResponse($redirectUrl);
         }
 
         // Login failed, show form with flash messages
         $flashMessages = $this->authService->getFlashMessages();
-        
+
         $html = $this->template->render('user::login', [
             'title' => 'Login',
             'form' => $form,

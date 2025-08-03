@@ -12,6 +12,8 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+use function assert;
+
 /**
  * Permission middleware - requires specific permission.
  */
@@ -27,14 +29,14 @@ class PermissionMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $user = $this->authService->getAuthenticatedUser();
-        
+
         if (!$user || !$user->getRole()->hasPermission($this->requiredPermission)) {
             $html = $this->template->render('error::403', [
                 'title' => 'Access Denied',
                 'message' => 'You do not have permission to access this resource.',
                 'required_permission' => $this->requiredPermission,
             ]);
-            
+
             return new HtmlResponse($html, 403);
         }
 
@@ -47,11 +49,14 @@ class PermissionMiddleware implements MiddlewareInterface
     public static function requirePermission(string $permission): callable
     {
         return function ($container) use ($permission) {
-            return new self(
-                $container->get(AuthenticationService::class),
-                $container->get(TemplateRendererInterface::class),
-                $permission
-            );
+            assert($container instanceof \Psr\Container\ContainerInterface);
+            $authService = $container->get(AuthenticationService::class);
+            $template = $container->get(TemplateRendererInterface::class);
+
+            assert($authService instanceof AuthenticationService);
+            assert($template instanceof TemplateRendererInterface);
+
+            return new self($authService, $template, $permission);
         };
     }
 }

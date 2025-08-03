@@ -9,6 +9,8 @@ use Minimal\User\Handler\DashboardHandler;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Container\ContainerInterface;
 
+use function assert;
+
 /**
  * Factory for DashboardHandler.
  */
@@ -18,6 +20,9 @@ class DashboardHandlerFactory
     {
         $template = $container->get(TemplateRendererInterface::class);
         $authService = $container->get(AuthenticationService::class);
+
+        assert($template instanceof TemplateRendererInterface);
+        assert($authService instanceof AuthenticationService);
 
         return new DashboardHandler($template, $authService);
     }

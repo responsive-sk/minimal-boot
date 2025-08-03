@@ -24,11 +24,11 @@ class ThemeSwitchHandler implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $method = $request->getMethod();
-        
+
         if ($method === 'POST') {
             return $this->switchTheme($request);
         }
-        
+
         if ($method === 'GET') {
             return $this->getCurrentTheme($request);
         }
@@ -40,11 +40,16 @@ class ThemeSwitchHandler implements RequestHandlerInterface
     {
         $data = $request->getParsedBody() ?? [];
         $queryParams = $request->getQueryParams();
-        
+
+        // Ensure data is an array
+        if (!is_array($data)) {
+            $data = [];
+        }
+
         // Get theme from POST data or query parameter
         $theme = $data['theme'] ?? $queryParams['theme'] ?? null;
-        
-        if ($theme) {
+
+        if ($theme && is_string($theme)) {
             try {
                 $this->themeService->setTheme($theme);
                 $newTheme = $theme;
@@ -57,9 +62,9 @@ class ThemeSwitchHandler implements RequestHandlerInterface
         }
 
         // Check if this is an AJAX request
-        $isAjax = $request->hasHeader('X-Requested-With') && 
+        $isAjax = $request->hasHeader('X-Requested-With') &&
                   $request->getHeaderLine('X-Requested-With') === 'XMLHttpRequest';
-        
+
         if ($isAjax) {
             return new JsonResponse([
                 'success' => true,
@@ -71,7 +76,7 @@ class ThemeSwitchHandler implements RequestHandlerInterface
         // Redirect back to the referring page or home
         $referer = $request->getHeaderLine('Referer');
         $redirectUrl = $referer ?: '/';
-        
+
         return new RedirectResponse($redirectUrl);
     }
 

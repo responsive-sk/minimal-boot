@@ -236,9 +236,13 @@ class PdoUserRepository implements UserRepositoryInterface
             lastName: $data['last_name'],
             role: UserRole::from($data['role']),
             status: UserStatus::from($data['status']),
-            emailVerificationToken: $data['email_verification_token'],
+            emailVerificationToken: is_string($data['email_verification_token'])
+                ? $data['email_verification_token']
+                : null,
             emailVerifiedAt: $emailVerifiedAt,
-            passwordResetToken: $data['password_reset_token'],
+            passwordResetToken: is_string($data['password_reset_token'])
+                ? $data['password_reset_token']
+                : null,
             passwordResetExpiresAt: $passwordResetExpiresAt,
             lastLoginAt: $lastLoginAt,
             createdAt: $createdAt,

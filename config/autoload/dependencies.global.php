@@ -27,9 +27,12 @@ return [
             // Environment::class => PathsAwareTwigEnvironmentFactory::class,
 
             // User module
-            \Minimal\User\Domain\Repository\UserRepositoryInterface::class => \Minimal\User\Factory\PdoUserRepositoryFactory::class,
-            \Minimal\User\Domain\Service\UserService::class => \Minimal\User\Factory\UserServiceFactory::class,
-            \Minimal\User\Domain\Service\AuthenticationService::class => \Minimal\User\Factory\AuthenticationServiceFactory::class,
+            \Minimal\User\Domain\Repository\UserRepositoryInterface::class =>
+                \Minimal\User\Factory\PdoUserRepositoryFactory::class,
+            \Minimal\User\Domain\Service\UserService::class =>
+                \Minimal\User\Factory\UserServiceFactory::class,
+            \Minimal\User\Domain\Service\AuthenticationService::class =>
+                \Minimal\User\Factory\AuthenticationServiceFactory::class,
 
             // User handlers
             \Minimal\User\Handler\LoginHandler::class => \Minimal\User\Factory\LoginHandlerFactory::class,
@@ -38,7 +41,8 @@ return [
             \Minimal\User\Handler\DashboardHandler::class => \Minimal\User\Factory\DashboardHandlerFactory::class,
 
             // User middleware
-            \Minimal\User\Middleware\AuthenticationMiddleware::class => \Minimal\User\Factory\AuthenticationMiddlewareFactory::class,
+            \Minimal\User\Middleware\AuthenticationMiddleware::class =>
+                \Minimal\User\Factory\AuthenticationMiddlewareFactory::class,
         ],
     ],
 ];

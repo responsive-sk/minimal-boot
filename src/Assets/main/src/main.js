@@ -19,7 +19,8 @@ window.themeAssets = {
 };
 
 // Dropdown functionality for Tailwind theme
-function initializeDropdowns() {
+function initializeDropdowns()
+{
     // Handle all dropdown toggles
     document.querySelectorAll('[data-dropdown-toggle]').forEach(button => {
         const targetId = button.getAttribute('data-dropdown-toggle');
@@ -44,19 +45,19 @@ function initializeDropdowns() {
                 // Toggle current dropdown
                 const isHidden = dropdown.classList.contains('hidden');
 
-                if (isHidden) {
-                    dropdown.classList.remove('hidden', 'opacity-0', 'invisible');
-                    dropdown.classList.add('opacity-100', 'visible');
-                    // Force display with inline styles for reliable visibility
-                    dropdown.style.display = 'block';
-                    dropdown.style.opacity = '1';
-                    dropdown.style.visibility = 'visible';
-                    dropdown.style.zIndex = '9999';
-                } else {
-                    dropdown.classList.add('hidden', 'opacity-0', 'invisible');
-                    dropdown.classList.remove('opacity-100', 'visible');
-                    dropdown.style.display = 'none';
-                }
+            if (isHidden) {
+                dropdown.classList.remove('hidden', 'opacity-0', 'invisible');
+                dropdown.classList.add('opacity-100', 'visible');
+                // Force display with inline styles for reliable visibility
+                dropdown.style.display = 'block';
+                dropdown.style.opacity = '1';
+                dropdown.style.visibility = 'visible';
+                dropdown.style.zIndex = '9999';
+            } else {
+                dropdown.classList.add('hidden', 'opacity-0', 'invisible');
+                dropdown.classList.remove('opacity-100', 'visible');
+                dropdown.style.display = 'none';
+            }
             });
         }
     });
@@ -105,8 +106,8 @@ function initializeDropdowns() {
     }
 
     // Theme switching functionality
-    document.querySelectorAll('.theme-switch-link').forEach(function(link) {
-        link.addEventListener('click', function(e) {
+    document.querySelectorAll('.theme-switch-link').forEach(function (link) {
+        link.addEventListener('click', function (e) {
             e.preventDefault();
 
             const theme = this.dataset.theme;

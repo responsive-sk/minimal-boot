@@ -13,7 +13,7 @@ class ThemeService
 {
     private const SESSION_THEME_KEY = 'selected_theme';
     private const DEFAULT_THEME = 'bootstrap';
-    
+
     private const AVAILABLE_THEMES = [
         'bootstrap' => [
             'name' => 'Bootstrap 5',
@@ -45,7 +45,8 @@ class ThemeService
      */
     public function getCurrentTheme(): string
     {
-        return $this->session->get(self::SESSION_THEME_KEY, self::DEFAULT_THEME);
+        $theme = $this->session->get(self::SESSION_THEME_KEY, self::DEFAULT_THEME);
+        return is_string($theme) ? $theme : self::DEFAULT_THEME;
     }
 
     /**
@@ -110,35 +111,35 @@ class ThemeService
         $currentTheme = $this->getCurrentTheme();
         $themes = array_keys(self::AVAILABLE_THEMES);
         $currentIndex = array_search($currentTheme, $themes);
-        
+
         $nextIndex = ($currentIndex + 1) % count($themes);
         $nextTheme = $themes[$nextIndex];
-        
+
         $this->setTheme($nextTheme);
-        
+
         return $nextTheme;
     }
 
     /**
      * Get theme CSS URL.
      */
-    public function getThemeCssUrl(string $theme = null): string
+    public function getThemeCssUrl(?string $theme = null): string
     {
         $theme = $theme ?? $this->getCurrentTheme();
         $config = $this->getThemeConfig($theme);
-        
-        return $config['css'];
+
+        return is_string($config['css']) ? $config['css'] : '';
     }
 
     /**
      * Get theme JS URL.
      */
-    public function getThemeJsUrl(string $theme = null): string
+    public function getThemeJsUrl(?string $theme = null): string
     {
         $theme = $theme ?? $this->getCurrentTheme();
         $config = $this->getThemeConfig($theme);
-        
-        return $config['js'];
+
+        return is_string($config['js']) ? $config['js'] : '';
     }
 
     /**
@@ -160,12 +161,12 @@ class ThemeService
     /**
      * Get theme template path.
      */
-    public function getThemeTemplatePath(string $theme = null): string
+    public function getThemeTemplatePath(?string $theme = null): string
     {
         $theme = $theme ?? $this->getCurrentTheme();
         $config = $this->getThemeConfig($theme);
 
-        return $config['template_path'];
+        return is_string($config['template_path']) ? $config['template_path'] : '';
     }
 
     /**

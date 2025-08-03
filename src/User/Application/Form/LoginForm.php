@@ -9,6 +9,7 @@ namespace Minimal\User\Application\Form;
  */
 class LoginForm
 {
+    /** @var array<string, string> */
     private array $errors = [];
 
     public function __construct(
@@ -25,9 +26,12 @@ class LoginForm
      */
     public static function fromArray(array $data): self
     {
+        $emailOrUsername = $data['email_or_username'] ?? '';
+        $password = $data['password'] ?? '';
+
         return new self(
-            emailOrUsername: (string) ($data['email_or_username'] ?? ''),
-            password: (string) ($data['password'] ?? ''),
+            emailOrUsername: is_string($emailOrUsername) ? $emailOrUsername : '',
+            password: is_string($password) ? $password : '',
             rememberMe: !empty($data['remember_me'])
         );
     }

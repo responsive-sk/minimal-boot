@@ -33,7 +33,7 @@ class RoutesDelegator
         // Public routes (no authentication required)
         $app->route('/login', LoginHandler::class, ['GET', 'POST'], 'user.login');
         $app->route('/register', RegisterHandler::class, ['GET', 'POST'], 'user.register');
-        
+
         // Protected routes (authentication required)
         $app->get('/logout', [AuthenticationMiddleware::class, LogoutHandler::class], 'user.logout');
         $app->get('/dashboard', [AuthenticationMiddleware::class, DashboardHandler::class], 'user.dashboard');

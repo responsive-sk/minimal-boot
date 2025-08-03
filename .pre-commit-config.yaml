@@ -1,0 +1,38 @@
+# Pre-commit hooks configuration
+# Install with: pip install pre-commit && pre-commit install
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: ['--maxkb=1000']
+
+  - repo: local
+    hooks:
+      - id: phpcs
+        name: PHP Code Style (PHPCS)
+        entry: composer cs-check
+        language: system
+        files: \.(php)$
+        pass_filenames: false
+        
+      - id: phpstan
+        name: PHP Static Analysis (PHPStan)
+        entry: composer static-analysis
+        language: system
+        files: \.(php)$
+        pass_filenames: false
+        
+      - id: phpunit
+        name: PHP Unit Tests
+        entry: composer test
+        language: system
+        files: \.(php)$
+        pass_filenames: false
+        stages: [push]

@@ -103,7 +103,7 @@ class UserService
         }
 
         $verifiedUser = $user->withEmailVerified();
-        
+
         // Activate user after email verification
         if ($verifiedUser->getStatus() === UserStatus::PENDING) {
             $verifiedUser = new User(
@@ -143,7 +143,7 @@ class UserService
 
         $expiresAt = new DateTimeImmutable('+1 hour');
         $userWithToken = $user->withPasswordResetToken($this->generateToken(), $expiresAt);
-        
+
         $this->userRepository->save($userWithToken);
 
         return $userWithToken;

@@ -29,13 +29,13 @@ class AuthenticationService
     {
         try {
             $user = $this->userService->authenticate($emailOrUsername, $password);
-            
+
             if ($user) {
                 $this->setAuthenticatedUser($user);
                 $this->addFlashMessage('success', 'Successfully logged in!');
                 return true;
             }
-            
+
             $this->addFlashMessage('error', 'Invalid credentials.');
             return false;
         } catch (\Exception $e) {
@@ -79,7 +79,7 @@ class AuthenticationService
 
         // If not cached, load from database
         $userId = $this->session->get(self::SESSION_USER_ID_KEY);
-        if ($userId) {
+        if ($userId && is_string($userId)) {
             $user = $this->userService->getUserById($userId);
             if ($user) {
                 $this->setAuthenticatedUser($user); // Cache in session
@@ -140,6 +140,12 @@ class AuthenticationService
     public function addFlashMessage(string $type, string $message): void
     {
         $messages = $this->session->get(self::SESSION_FLASH_KEY, []);
+        if (!is_array($messages)) {
+            $messages = [];
+        }
+        if (!isset($messages[$type]) || !is_array($messages[$type])) {
+            $messages[$type] = [];
+        }
         $messages[$type][] = $message;
         $this->session->set(self::SESSION_FLASH_KEY, $messages);
     }
@@ -152,8 +158,20 @@ class AuthenticationService
     public function getFlashMessages(): array
     {
         $messages = $this->session->get(self::SESSION_FLASH_KEY, []);
+        if (!is_array($messages)) {
+            $messages = [];
+        }
+
+        // Ensure proper type structure
+        $result = [];
+        foreach ($messages as $type => $typeMessages) {
+            if (is_string($type) && is_array($typeMessages)) {
+                $result[$type] = array_filter($typeMessages, 'is_string');
+            }
+        }
+
         $this->session->remove(self::SESSION_FLASH_KEY);
-        return $messages;
+        return $result;
     }
 
     /**

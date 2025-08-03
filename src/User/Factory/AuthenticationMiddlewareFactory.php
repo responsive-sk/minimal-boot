@@ -8,6 +8,8 @@ use Minimal\User\Domain\Service\AuthenticationService;
 use Minimal\User\Middleware\AuthenticationMiddleware;
 use Psr\Container\ContainerInterface;
 
+use function assert;
+
 /**
  * Factory for AuthenticationMiddleware.
  */
@@ -16,6 +18,7 @@ class AuthenticationMiddlewareFactory
     public function __invoke(ContainerInterface $container): AuthenticationMiddleware
     {
         $authService = $container->get(AuthenticationService::class);
+        assert($authService instanceof AuthenticationService);
 
         return new AuthenticationMiddleware($authService);
     }

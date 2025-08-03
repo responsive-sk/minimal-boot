@@ -27,6 +27,7 @@
     },
     "require": {
         "php": "~8.2.0 || ~8.3.0 || ~8.4.0",
+        "ext-pdo": "*",
         "dotkernel/dot-errorhandler": "^4.2.1",
         "laminas/laminas-component-installer": "^3.5.0",
         "laminas/laminas-config-aggregator": "^1.17.0",
@@ -72,10 +73,27 @@
             "@cs-check",
             "@static-analysis"
         ],
+        "check-all": [
+            "@cs-check",
+            "@static-analysis",
+            "@test-ci"
+        ],
+        "pre-commit": [
+            "@cs-check",
+            "@static-analysis"
+        ],
+        "ci": [
+            "@check-all",
+            "@security-audit"
+        ],
         "clear-config-cache": "php bin/clear-config-cache.php",
         "serve": "php -S 0.0.0.0:8080 -t public/",
         "cs-check": "vendor/bin/phpcs --standard=PSR12 --ignore=*/node_modules/*,*/vendor/* src/ config/",
         "cs-fix": "vendor/bin/phpcbf --standard=PSR12 --ignore=*/node_modules/*,*/vendor/* src/ config/",
-        "static-analysis": "phpstan analyse --memory-limit 1G"
+        "static-analysis": "phpstan analyse --memory-limit 1G",
+        "test": "vendor/bin/phpunit --testsuite Unit,Integration --fail-on-warning",
+        "test-ci": "vendor/bin/phpunit --testsuite Unit,Integration --dont-report-useless-tests",
+        "test-coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --testsuite Unit,Integration --coverage-html var/coverage",
+        "security-audit": "composer audit"
     }
 }

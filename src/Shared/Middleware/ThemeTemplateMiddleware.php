@@ -29,6 +29,7 @@ class ThemeTemplateMiddleware implements MiddlewareInterface
         $templatePath = $this->themeService->getThemeTemplatePath($currentTheme);
 
         // Update template paths dynamically using reflection to access private property
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
         if (method_exists($this->template, 'addPath')) {
             try {
                 $reflection = new \ReflectionClass($this->template);

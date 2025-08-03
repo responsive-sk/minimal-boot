@@ -27,9 +27,9 @@ class AuthenticationMiddleware implements MiddlewareInterface
             // Store the requested URL for redirect after login
             $requestedUrl = (string) $request->getUri();
             $loginUrl = '/login?redirect=' . urlencode($requestedUrl);
-            
+
             $this->authService->addFlashMessage('warning', 'Please log in to access this page.');
-            
+
             return new RedirectResponse($loginUrl);
         }
 

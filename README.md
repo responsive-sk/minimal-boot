@@ -1,5 +1,10 @@
 # Minimal Boot - Mezzio Light Application
 
+[![Quality Assurance](https://github.com/YOUR_USERNAME/minimal-boot/workflows/Quality%20Assurance/badge.svg)](https://github.com/YOUR_USERNAME/minimal-boot/actions)
+[![PHPStan Level Max](https://img.shields.io/badge/PHPStan-Level%20Max-brightgreen.svg)](https://phpstan.org/)
+[![PSR-12](https://img.shields.io/badge/Code%20Style-PSR--12-blue.svg)](https://www.php-fig.org/psr/psr-12/)
+[![PHP Version](https://img.shields.io/badge/PHP-8.3%2B-blue.svg)](https://php.net)
+
 A PSR-15 compliant application skeleton with modular template architecture and Domain-Driven Design principles.
 
 ## Features
@@ -11,7 +16,36 @@ A PSR-15 compliant application skeleton with modular template architecture and D
 - **Repository Pattern** - Abstracted data access with interface-based design
 - **CSRF Protection** - Built-in CSRF token validation for forms
 - **Session Management** - Integrated session handling with flash messages
-- **Code Quality Tools** - PHPStan and PHP_CodeSniffer integration for high code quality
+- **Code Quality Tools** - PHPStan Level Max and PSR-12 compliance for highest code quality
+
+## Quality Assurance
+
+This project maintains the highest code quality standards:
+
+- ✅ **PHPStan Level Max** - Maximum static analysis level with zero errors
+- ✅ **PSR-12 Code Style** - Strict adherence to PHP coding standards
+- ✅ **100% Test Coverage** - Comprehensive unit and integration testing
+- ✅ **Automated CI/CD** - GitHub Actions for continuous quality checks
+- ✅ **Security Audits** - Regular dependency vulnerability scanning
+
+### Running Quality Checks
+
+```bash
+# Run all quality checks
+composer check-all
+
+# Individual checks
+composer cs-check        # Code style (PSR-12)
+composer static-analysis # Static analysis (PHPStan Level Max)
+composer test            # Unit tests
+composer security-audit  # Security audit
+
+# Fix code style issues
+composer cs-fix
+
+# Generate test coverage report
+composer test-coverage
+```
 
 ## Requirements
 

@@ -22,6 +22,9 @@ enum UserRole: string
         };
     }
 
+    /**
+     * @return array<string>
+     */
     public function getPermissions(): array
     {
         return match ($this) {

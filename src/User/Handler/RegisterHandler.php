@@ -34,11 +34,11 @@ class RegisterHandler implements RequestHandlerInterface
         }
 
         $method = $request->getMethod();
-        
+
         if ($method === 'GET') {
             return $this->showRegistrationForm($request);
         }
-        
+
         if ($method === 'POST') {
             return $this->processRegistration($request);
         }
@@ -63,6 +63,10 @@ class RegisterHandler implements RequestHandlerInterface
     private function processRegistration(ServerRequestInterface $request): ResponseInterface
     {
         $data = $request->getParsedBody() ?? [];
+        if (!is_array($data)) {
+            $data = [];
+        }
+        /** @var array<string, mixed> $data */
         $form = RegistrationForm::fromArray($data);
 
         if (!$form->validate()) {
@@ -93,9 +97,9 @@ class RegisterHandler implements RequestHandlerInterface
         } catch (\InvalidArgumentException $e) {
             // Handle business logic errors (email taken, etc.)
             $this->authService->addFlashMessage('error', $e->getMessage());
-            
+
             $flashMessages = $this->authService->getFlashMessages();
-            
+
             $html = $this->template->render('user::register', [
                 'title' => 'Register',
                 'form' => $form,
@@ -106,9 +110,9 @@ class RegisterHandler implements RequestHandlerInterface
         } catch (\Exception $e) {
             // Handle unexpected errors
             $this->authService->addFlashMessage('error', 'Registration failed. Please try again.');
-            
+
             $flashMessages = $this->authService->getFlashMessages();
-            
+
             $html = $this->template->render('user::register', [
                 'title' => 'Register',
                 'form' => $form,

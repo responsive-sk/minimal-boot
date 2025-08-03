@@ -23,7 +23,7 @@ class LogoutHandler implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $this->authService->logout();
-        
+
         return new RedirectResponse('/login');
     }
 }

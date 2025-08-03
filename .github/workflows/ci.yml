@@ -1,0 +1,68 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: Test Suite
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        php-version: [8.3, 8.4]
+        
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup PHP ${{ matrix.php-version }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: pdo, pdo_sqlite, mbstring, xml, ctype, json, tokenizer
+          coverage: none
+          tools: composer:v2
+          
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+        
+      - name: Create required directories
+        run: |
+          mkdir -p var/db
+          mkdir -p var/logs
+          mkdir -p var/cache
+          mkdir -p var/sessions
+          
+      - name: Run tests
+        run: vendor/bin/phpunit --testsuite Unit,Integration --no-coverage
+
+  build:
+    name: Build Assets
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: 'package-lock.json'
+          
+      - name: Install Node dependencies
+        run: npm ci
+        
+      - name: Build assets
+        run: npm run build
+        
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: built-assets
+          path: public/dist/

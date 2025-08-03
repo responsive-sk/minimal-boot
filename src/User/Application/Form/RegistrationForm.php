@@ -9,6 +9,7 @@ namespace Minimal\User\Application\Form;
  */
 class RegistrationForm
 {
+    /** @var array<string, string> */
     private array $errors = [];
 
     public function __construct(
@@ -28,13 +29,20 @@ class RegistrationForm
      */
     public static function fromArray(array $data): self
     {
+        $email = $data['email'] ?? '';
+        $username = $data['username'] ?? '';
+        $password = $data['password'] ?? '';
+        $passwordConfirm = $data['password_confirm'] ?? '';
+        $firstName = $data['first_name'] ?? '';
+        $lastName = $data['last_name'] ?? '';
+
         return new self(
-            email: (string) ($data['email'] ?? ''),
-            username: (string) ($data['username'] ?? ''),
-            password: (string) ($data['password'] ?? ''),
-            passwordConfirm: (string) ($data['password_confirm'] ?? ''),
-            firstName: (string) ($data['first_name'] ?? ''),
-            lastName: (string) ($data['last_name'] ?? '')
+            email: is_string($email) ? $email : '',
+            username: is_string($username) ? $username : '',
+            password: is_string($password) ? $password : '',
+            passwordConfirm: is_string($passwordConfirm) ? $passwordConfirm : '',
+            firstName: is_string($firstName) ? $firstName : '',
+            lastName: is_string($lastName) ? $lastName : ''
         );
     }
 
