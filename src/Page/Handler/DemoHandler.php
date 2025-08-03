@@ -28,7 +28,8 @@ class DemoHandler implements RequestHandlerInterface
             'description' => 'Modern utility-first CSS framework with reactive components',
         ];
 
-        // Use theme-specific CSS and JS
+        // Force Tailwind theme and get its assets
+        $this->themeService->setTheme('tailwind');
         $cssUrl = $this->themeService->getThemeCssUrl();
         $jsUrl  = $this->themeService->getThemeJsUrl();
 

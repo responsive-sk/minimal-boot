@@ -6,6 +6,7 @@ namespace Minimal\Page\Handler;
 
 use Laminas\Diactoros\Response\HtmlResponse;
 use Minimal\Page\Domain\Service\PageServiceInterface;
+use Minimal\Shared\Service\ThemeService;
 use Mezzio\Router\RouteResult;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -19,7 +20,8 @@ class GetPageViewHandler implements RequestHandlerInterface
 {
     public function __construct(
         protected TemplateRendererInterface $template,
-        protected PageServiceInterface $pageService
+        protected PageServiceInterface $pageService,
+        protected ThemeService $themeService
     ) {
     }
 
@@ -51,6 +53,8 @@ class GetPageViewHandler implements RequestHandlerInterface
                 'content' => $page->getContent(),
                 'metaDescription' => $page->getMetaDescription(),
                 'metaKeywords' => $page->getMetaKeywords(),
+                'cssUrl' => $this->themeService->getThemeCssUrl(),
+                'jsUrl' => $this->themeService->getThemeJsUrl(),
             ])
         );
     }

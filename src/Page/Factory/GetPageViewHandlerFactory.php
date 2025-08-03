@@ -6,6 +6,7 @@ namespace Minimal\Page\Factory;
 
 use Minimal\Page\Domain\Service\PageServiceInterface;
 use Minimal\Page\Handler\GetPageViewHandler;
+use Minimal\Shared\Service\ThemeService;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
@@ -28,6 +29,9 @@ class GetPageViewHandlerFactory
         $pageService = $container->get(PageServiceInterface::class);
         assert($pageService instanceof PageServiceInterface);
 
-        return new GetPageViewHandler($template, $pageService);
+        $themeService = $container->get(ThemeService::class);
+        assert($themeService instanceof ThemeService);
+
+        return new GetPageViewHandler($template, $pageService, $themeService);
     }
 }
