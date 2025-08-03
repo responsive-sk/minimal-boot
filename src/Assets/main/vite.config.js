@@ -14,9 +14,13 @@ export default defineConfig(({ mode }) => ({
                 entryFileNames: 'assets/[name].js',
                 chunkFileNames: 'assets/[name].js',
                 assetFileNames: (assetInfo) => {
-                  // Optimize image file names for better caching
+                  // Optimize file organization for better caching
                     if (assetInfo.name && /\.(png|jpe?g|gif|svg|webp|avif)$/i.test(assetInfo.name)) {
                         return 'assets/images/[name].[ext]';
+                    }
+                    // Font files go to fonts directory
+                    if (assetInfo.name && /\.(woff2?|eot|ttf|otf)$/i.test(assetInfo.name)) {
+                        return 'assets/fonts/[name].[ext]';
                     }
                     return 'assets/[name].[ext]';
                 }

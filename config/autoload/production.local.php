@@ -50,7 +50,7 @@ return [
     // Logging configuration
     'log' => [
         'level' => $_ENV['LOG_LEVEL'] ?? 'error',
-        'path' => $_ENV['LOG_PATH'] ?? 'data/logs',
+        'path' => $_ENV['LOG_PATH'] ?? 'var/log',
         'filename' => 'application.log',
         'max_files' => 30,
         'format' => '[%datetime%] %level_name%: %message% %context% %extra%' . PHP_EOL,
@@ -115,7 +115,7 @@ return [
             'ttl' => 3600,
             'adapter' => 'filesystem',
             'options' => [
-                'cache_dir' => 'data/cache',
+                'cache_dir' => $_ENV['CACHE_PATH'] ?? 'var/cache',
                 'dir_level' => 2,
             ],
         ],
@@ -125,7 +125,7 @@ return [
     'upload' => [
         'max_size' => $_ENV['UPLOAD_MAX_SIZE'] ?? '10M',
         'allowed_types' => explode(',', $_ENV['UPLOAD_ALLOWED_TYPES'] ?? 'jpg,jpeg,png,gif,pdf'),
-        'upload_path' => 'data/uploads',
+        'upload_path' => $_ENV['UPLOAD_PATH'] ?? 'var/uploads',
     ],
     
     // Email configuration (if using email features)

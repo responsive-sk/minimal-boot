@@ -52,6 +52,31 @@ cp -r templates "$BUILD_DIR/"
 cp composer.json "$BUILD_DIR/"
 cp composer.lock "$BUILD_DIR/"
 
+# Copy database and var directory if they exist
+if [ -d "data" ]; then
+    cp -r data "$BUILD_DIR/"
+    log_success "Database directory copied"
+fi
+
+if [ -d "var" ]; then
+    cp -r var "$BUILD_DIR/"
+    log_success "Var directory copied"
+else
+    # Create var directory structure for production
+    mkdir -p "$BUILD_DIR/var/cache"
+    mkdir -p "$BUILD_DIR/var/log"
+    mkdir -p "$BUILD_DIR/var/sessions"
+    mkdir -p "$BUILD_DIR/var/tmp"
+    mkdir -p "$BUILD_DIR/var/uploads"
+    log_success "Var directory structure created"
+fi
+
+# Ensure data directory exists for SQLite
+if [ ! -d "$BUILD_DIR/data" ]; then
+    mkdir -p "$BUILD_DIR/data"
+    log_success "Data directory created"
+fi
+
 # Copy environment template
 if [ -f ".env.production" ]; then
     cp .env.production "$BUILD_DIR/.env"
@@ -85,6 +110,7 @@ log_success "Application files copied"
 
 # Step 3: Install production dependencies
 log_info "Installing production dependencies..."
+ORIGINAL_DIR=$(pwd)
 cd "$BUILD_DIR"
 composer install --no-dev --optimize-autoloader --no-scripts --quiet
 if [ $? -eq 0 ]; then
@@ -93,7 +119,7 @@ else
     log_error "Failed to install dependencies"
     exit 1
 fi
-cd ..
+cd "$ORIGINAL_DIR"
 
 # Step 4: Build production assets
 log_info "Building production assets..."
@@ -104,15 +130,15 @@ if [ -d "src/Assets/main" ]; then
     if [ -f "package.json" ]; then
         log_info "Building Tailwind assets..."
         if command -v pnpm &> /dev/null; then
-            pnpm run build --silent
+            pnpm run build > /dev/null 2>&1
         elif command -v npm &> /dev/null; then
-            npm run build --silent
+            npm run build > /dev/null 2>&1
         else
             log_warning "No package manager found, skipping asset build"
         fi
         log_success "Tailwind assets built"
     fi
-    cd ../../..
+    cd "$ORIGINAL_DIR"
 fi
 
 # Build Bootstrap assets
@@ -121,20 +147,20 @@ if [ -d "src/Assets/bootstrap" ]; then
     if [ -f "package.json" ]; then
         log_info "Building Bootstrap assets..."
         if command -v pnpm &> /dev/null; then
-            pnpm run build --silent
+            pnpm run build > /dev/null 2>&1
         elif command -v npm &> /dev/null; then
-            npm run build --silent
+            npm run build > /dev/null 2>&1
         else
             log_warning "No package manager found, skipping asset build"
         fi
         log_success "Bootstrap assets built"
     fi
-    cd ../../..
+    cd "$ORIGINAL_DIR"
 fi
 
 # Step 5: Security hardening and cleanup
 log_info "Security hardening and cleanup..."
-cd "$BUILD_DIR"
+cd "$ORIGINAL_DIR/$BUILD_DIR"
 
 # Remove development and sensitive files
 rm -rf .git 2>/dev/null || true
@@ -160,9 +186,27 @@ rm -f src/Assets/*/vite.config.js 2>/dev/null || true
 rm -f src/Assets/*/tailwind.config.js 2>/dev/null || true
 rm -f src/Assets/*/postcss.config.js 2>/dev/null || true
 
+# Ensure proper permissions for var directory
+if [ -d "var" ]; then
+    chmod -R 755 var/
+    chmod -R 777 var/cache 2>/dev/null || true
+    chmod -R 777 var/log 2>/dev/null || true
+    chmod -R 777 var/sessions 2>/dev/null || true
+    chmod -R 777 var/tmp 2>/dev/null || true
+    chmod -R 777 var/uploads 2>/dev/null || true
+fi
+
+# Ensure proper permissions for data directory
+if [ -d "data" ]; then
+    chmod -R 755 data/
+    chmod 666 data/*.db 2>/dev/null || true
+    chmod -R 777 data/cache 2>/dev/null || true
+    chmod -R 777 data/logs 2>/dev/null || true
+fi
+
 log_success "Security hardening completed"
 
-cd ..
+cd "$ORIGINAL_DIR"
 
 # Step 6: Create deployment info
 log_info "Creating deployment info..."

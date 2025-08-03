@@ -86,7 +86,7 @@ export default {
                     }
                 },
                 fontFamily: {
-                    sans: ['Inter', 'system-ui', 'sans-serif'],
+                    sans: ['Source Sans Pro', 'Inter', 'system-ui', 'sans-serif'],
                 },
                 fontSize: {
                     'xs': ['0.75rem', { lineHeight: '1.5' }],
