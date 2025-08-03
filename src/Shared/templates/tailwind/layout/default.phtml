@@ -250,8 +250,9 @@
         </footer>
     </div>
 
-    <?php 
+    <?php
     // Determine JS URL: explicit jsUrl > ThemeService > fallback
+    $finalJsUrl = null;
     if (isset($jsUrl)) {
         $finalJsUrl = $jsUrl;
     } elseif (isset($themeService)) {
@@ -259,8 +260,11 @@
     } else {
         $finalJsUrl = 'themes/main/assets/main.js';
     }
-    ?>
+
+    // Only load script if we have a valid JS URL
+    if ($finalJsUrl !== null && $finalJsUrl !== ''): ?>
     <script src="<?= $asset($finalJsUrl) ?>"></script>
+    <?php endif; ?>
 
     <!-- Theme switching functionality (handled by main.js) -->
 </body>
