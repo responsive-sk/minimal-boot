@@ -206,6 +206,15 @@ fi
 
 log_success "Security hardening completed"
 
+# Step 6: Copy production .htaccess
+log_info "Setting up production .htaccess..."
+if [ -f "../../../public/.htaccess.production" ]; then
+    cp "../../../public/.htaccess.production" "public/.htaccess"
+    log_success "Production .htaccess copied with optimized cache headers"
+else
+    log_warning "Production .htaccess not found, using default"
+fi
+
 cd "$ORIGINAL_DIR"
 
 # Step 6: Create deployment info

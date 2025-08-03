@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="<?= $this->e($description ?? 'Mezzio Light Application') ?>">
+    <meta name="author" content="<?= $this->e($author ?? 'Dotkernel Team') ?>">
+    
+    <title><?= $this->e($title ?? 'Mezzio Light Application') ?></title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Meta tags for social sharing -->
+    <meta property="og:title" content="<?= $this->e($title ?? 'Mezzio Light Application') ?>">
+    <meta property="og:description" content="<?= $this->e($description ?? 'Mezzio Light Application') ?>">
+    <meta property="og:type" content="website">
+    
+    <!-- Critical CSS inlined for faster rendering -->
+    <?php
+    $criticalCssFile = __DIR__ . '/../../../../src/Assets/critical/tailwind-critical.css';
+    if (file_exists($criticalCssFile)) {
+        echo "<style id=\"critical-css\">\n";
+        echo file_get_contents($criticalCssFile);
+        echo "\n</style>\n";
+    }
+    ?>
+    
+    <!-- Local fonts are now included in CSS bundle for better performance -->
+    
+    <?php
+    // Determine CSS URL: explicit cssUrl > ThemeService > fallback
+    $finalCssUrl = null;
+    if (isset($cssUrl)) {
+        $finalCssUrl = $cssUrl;
+    } elseif (isset($themeService)) {
+        $finalCssUrl = $themeService->getThemeCssUrl();
+    } else {
+        $finalCssUrl = 'themes/main/assets/main.css';
+    }
+
+    // Only load CSS if we have a valid CSS URL
+    if ($finalCssUrl !== null && $finalCssUrl !== ''): ?>
+    <link rel="preload" href="<?= $asset($finalCssUrl) ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="<?= $asset($finalCssUrl) ?>"></noscript>
+    <?php endif; ?>
+
+    <!-- Alpine.js from CDN for demo functionality -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- Preload critical resources -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    
+    <!-- Additional head content -->
+    <?= $this->section('head') ?>
+</head>
+
+<body class="<?= $this->e($body_class ?? 'bg-gray-50') ?>">
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded-md z-50">
+        Skip to main content
+    </a>
+
+    <div class="min-h-screen flex flex-col">
+        <!-- Navigation -->
+        <nav class="bg-white shadow-lg sticky top-0 z-40" x-data="{ mobileMenuOpen: false }">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <!-- Logo and primary navigation -->
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 flex items-center">
+                            <a href="/" class="flex items-center space-x-2">
+                                <img src="<?= $asset('themes/main/assets/images/nav/logo.svg') ?>" alt="Logo" class="h-8 w-8">
+                                <span class="text-xl font-bold text-gray-900">Demo</span>
+                            </a>
+                        </div>
+                        
+                        <!-- Desktop navigation -->
+                        <div class="hidden md:ml-6 md:flex md:space-x-8">
+                            <a href="/" class="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">
+                                Home
+                            </a>
+                            <a href="/demo" class="text-blue-600 border-b-2 border-blue-600 px-3 py-2 text-sm font-medium">
+                                Tailwind Demo
+                            </a>
+                            <a href="/demo/bootstrap" class="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">
+                                Bootstrap Demo
+                            </a>
+                            <a href="/contact" class="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">
+                                Contact
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Theme switcher and mobile menu button -->
+                    <div class="flex items-center space-x-4">
+                        <!-- Theme Switcher -->
+                        <div class="hidden sm:block">
+                            <a href="/theme/switch" 
+                               class="inline-flex items-center px-3 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"></path>
+                                </svg>
+                                Switch Theme
+                            </a>
+                        </div>
+
+                        <!-- Mobile menu button -->
+                        <div class="md:hidden">
+                            <button @click="mobileMenuOpen = !mobileMenuOpen" 
+                                    class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+                                <span class="sr-only">Open main menu</span>
+                                <svg class="h-6 w-6" :class="{ 'hidden': mobileMenuOpen, 'block': !mobileMenuOpen }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                                </svg>
+                                <svg class="h-6 w-6" :class="{ 'block': mobileMenuOpen, 'hidden': !mobileMenuOpen }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile menu -->
+            <div class="md:hidden" x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200">
+                    <a href="/" class="text-gray-900 hover:text-blue-600 block px-3 py-2 text-base font-medium">Home</a>
+                    <a href="/demo" class="text-blue-600 bg-blue-50 block px-3 py-2 text-base font-medium">Tailwind Demo</a>
+                    <a href="/demo/bootstrap" class="text-gray-900 hover:text-blue-600 block px-3 py-2 text-base font-medium">Bootstrap Demo</a>
+                    <a href="/contact" class="text-gray-900 hover:text-blue-600 block px-3 py-2 text-base font-medium">Contact</a>
+                    <a href="/theme/switch" class="text-gray-900 hover:text-blue-600 block px-3 py-2 text-base font-medium">Switch Theme</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main content -->
+        <main id="main-content" class="flex-1">
+            <?= $this->section('content') ?>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white">
+            <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="text-gray-300 text-sm">
+                        &copy; <?= date('Y') ?> Mezzio Light Application. All rights reserved.
+                    </div>
+                    <div class="text-gray-400 text-sm mt-2 md:mt-0">
+                        Demo with <a href="https://alpinejs.dev/" target="_blank" class="text-blue-400 hover:text-blue-300">Alpine.js from CDN</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- NO local JavaScript bundle - Alpine.js loaded from CDN -->
+    
+    <!-- Additional scripts -->
+    <?= $this->section('scripts') ?>
+</body>
+</html>

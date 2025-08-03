@@ -1,10 +1,10 @@
 <?php
-$layout('tailwind_layouts::app', [
+$layout('tailwind_layouts::demo', [
     'title' => 'TailwindCSS + Alpine.js Demo - Mezzio Light',
     'description' => 'TailwindCSS and Alpine.js theme demonstration for Mezzio Light application.',
     'body_class' => 'tailwind-demo',
     'cssUrl' => $cssUrl ?? null,
-    'jsUrl' => $jsUrl ?? null,
+    // No jsUrl - Alpine.js loaded from CDN in demo layout
 ]);
 ?>
 
