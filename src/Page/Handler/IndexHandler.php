@@ -26,11 +26,8 @@ class IndexHandler implements RequestHandlerInterface
         // Get current theme to determine template
         $currentTheme = $this->themeService->getCurrentTheme();
 
-        // Use theme-specific template if available, fallback to default
-        $templateName = 'page::index';
-        if ($currentTheme === 'tailwind' && $this->templateExists('page::tailwind/index')) {
-            $templateName = 'page::tailwind/index';
-        }
+        // Use theme-specific template from new structure
+        $templateName = $currentTheme . '_pages::home';
 
         $templateData = [];
 

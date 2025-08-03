@@ -123,6 +123,15 @@ class NativePhpRenderer implements TemplateRendererInterface
      */
     public function addPath(string $path, ?string $namespace = null): void
     {
+        // Handle @path_name syntax for Paths service integration
+        if (str_starts_with($path, '@')) {
+            $pathName = substr($path, 1);
+            $resolvedPath = $this->pathsService->getPath($pathName, '');
+            if ($resolvedPath) {
+                $path = $resolvedPath;
+            }
+        }
+
         // Sanitize path to prevent path traversal
         $sanitizedPath = $this->sanitizePath($path);
 

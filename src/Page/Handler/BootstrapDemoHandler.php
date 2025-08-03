@@ -30,7 +30,10 @@ class BootstrapDemoHandler implements RequestHandlerInterface
         $cssUrl = '/themes/bootstrap/assets/main.css';
         $jsUrl  = '/themes/bootstrap/assets/main.js';
 
-        $html = $this->template->render('page::bootstrap-demo', [
+        // Use Bootstrap theme template from new structure
+        $templateName = 'bootstrap_pages::demo';
+
+        $html = $this->template->render($templateName, [
             'themeInfo' => $themeInfo,
             'cssUrl'    => $cssUrl,
             'jsUrl'     => $jsUrl,

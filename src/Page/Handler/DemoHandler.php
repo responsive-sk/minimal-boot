@@ -30,7 +30,11 @@ class DemoHandler implements RequestHandlerInterface
         $cssUrl = '/themes/main/assets/main.css';
         $jsUrl  = '/themes/main/assets/main.js';
 
-        $html = $this->template->render('page::demo', [
+        // Use theme-specific template from new structure
+        $currentTheme = $this->themeService->getCurrentTheme();
+        $templateName = $currentTheme . '_pages::demo';
+
+        $html = $this->template->render($templateName, [
             'themeInfo' => $themeInfo,
             'cssUrl'    => $cssUrl,
             'jsUrl'     => $jsUrl,
