@@ -57,20 +57,37 @@ cp config/autoload/local.php.dist config/autoload/local.php
 2. **Configure your application** by editing `config/autoload/local.php`:
 ```php
 <?php
+declare(strict_types=1);
+
+$baseUrl = 'http://localhost:8080';
+
 return [
-    'debug' => true, // Set to false in production
-    'config_cache_enabled' => false, // Enable in production
-    
-    // Database configuration (if needed)
-    'db' => [
-        'driver' => 'pdo_mysql',
-        'host' => 'localhost',
-        'dbname' => 'your_database',
-        'username' => 'your_username',
-        'password' => 'your_password',
+    'application' => [
+        'url' => $baseUrl,
+    ],
+    'routes' => [
+        'page' => [
+            'about' => 'about',
+            'who-we-are' => 'who-we-are',
+        ],
     ],
 ];
 ```
+
+### Database Setup
+
+Minimal Boot uses modular SQLite databases. Create the database directory:
+
+```bash
+mkdir -p var/db
+chmod 755 var/db
+```
+
+The application will automatically create SQLite database files as needed:
+- `var/db/page.sqlite` - Page content
+- `var/db/contact.sqlite` - Contact forms
+- `var/db/auth.sqlite` - User authentication
+- `var/db/session.sqlite` - Session storage
 
 ### Directory Permissions
 
@@ -179,14 +196,19 @@ composer static-analysis
 
 ### Debug Mode
 
-Enable debug mode for development:
+Debug mode is controlled in `config/autoload/mezzio.global.php`:
 
 ```php
-// config/autoload/local.php
+// config/autoload/mezzio.global.php
 return [
-    'debug' => true,
-    'config_cache_enabled' => false,
+    'debug' => true, // Set to false in production
+    ConfigAggregator::ENABLE_CACHE => false, // Disable config cache in development
 ];
+```
+
+For development, you can also copy and modify:
+```bash
+cp config/autoload/development.local.php.dist config/autoload/development.local.php
 ```
 
 ## Next Steps
