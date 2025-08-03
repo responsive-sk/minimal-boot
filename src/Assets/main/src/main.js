@@ -151,8 +151,10 @@ function initializeDropdowns()
 // Initialize Alpine.js
 window.Alpine = Alpine;
 
-// Start Alpine.js immediately
-Alpine.start();
+// Start Alpine.js after a small delay to ensure DOM is fully ready
+setTimeout(() => {
+    Alpine.start();
+}, 100);
 
 // Initialize dropdowns when DOM is ready
 if (document.readyState === 'loading') {

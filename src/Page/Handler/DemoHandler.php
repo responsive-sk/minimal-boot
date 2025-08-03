@@ -26,9 +26,9 @@ class DemoHandler implements RequestHandlerInterface
             'description' => 'Modern utility-first CSS framework with reactive components',
         ];
 
-        // Vite compiled assets (CSS only, Alpine.js from CDN)
+        // Vite compiled assets (CSS and JS)
         $cssUrl = '/themes/main/assets/main.css';
-        $jsUrl  = ''; // Using CDN Alpine.js instead - empty string prevents ThemeService fallback
+        $jsUrl  = '/themes/main/assets/main.js';
 
         $html = $this->template->render('page::demo', [
             'themeInfo' => $themeInfo,

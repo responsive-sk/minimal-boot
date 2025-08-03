@@ -263,7 +263,7 @@
 
     // Only load script if we have a valid JS URL
     if ($finalJsUrl !== null && $finalJsUrl !== ''): ?>
-    <script src="<?= $asset($finalJsUrl) ?>"></script>
+    <script defer src="<?= $asset($finalJsUrl) ?>"></script>
     <?php endif; ?>
 
     <!-- Theme switching functionality (handled by main.js) -->
