@@ -92,6 +92,11 @@ defaults:
       layout: "page"
   - scope:
       path: ""
+      type: "core"
+    values:
+      layout: "page"
+  - scope:
+      path: ""
       type: "pages"
     values:
       layout: "page"
