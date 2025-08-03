@@ -84,10 +84,8 @@ chmod 755 var/db
 ```
 
 The application will automatically create SQLite database files as needed:
-- `var/db/page.sqlite` - Page content
-- `var/db/contact.sqlite` - Contact forms
-- `var/db/auth.sqlite` - User authentication
-- `var/db/session.sqlite` - Session storage
+- `var/db/page.sqlite` - Page content and CMS data
+- `var/db/user.sqlite` - User authentication and management
 
 ### Directory Permissions
 

@@ -9,7 +9,7 @@
 
 declare(strict_types=1);
 
-$baseUrl = 'http://localhost';
+$baseUrl = 'http://localhost:8080';
 
 return [
     'application' => [

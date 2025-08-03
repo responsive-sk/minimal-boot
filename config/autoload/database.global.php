@@ -16,9 +16,7 @@ return [
         // Module database mapping
         'modules' => [
             'page' => 'page.sqlite',
-            'contact' => 'contact.sqlite',
-            'auth' => 'auth.sqlite',
-            'session' => 'session.sqlite',
+            'user' => 'user.sqlite',
         ],
 
         // Migration settings

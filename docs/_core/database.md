@@ -16,10 +16,8 @@ Each module/domain has its own SQLite database file:
 
 ```
 var/db/
-├── user.sqlite      # User management data
-├── page.sqlite      # Page/content data
-├── blog.sqlite      # Blog posts and comments
-└── analytics.sqlite # Analytics and tracking
+├── user.sqlite      # User management and authentication
+└── page.sqlite      # Page content and CMS data
 ```
 
 **Benefits:**
@@ -40,8 +38,8 @@ use Minimal\Core\Database\Connection\DatabaseConnectionFactory;
 $factory = new DatabaseConnectionFactory('var/db');
 
 // Get connection for specific module
-$userDb = $factory->getConnection('user');
-$pageDb = $factory->getConnection('page');
+$userDb = $factory->getConnection('user');   // var/db/user.sqlite
+$pageDb = $factory->getConnection('page');   // var/db/page.sqlite
 
 // Connections are pooled and reused
 $sameUserDb = $factory->getConnection('user'); // Returns same instance
