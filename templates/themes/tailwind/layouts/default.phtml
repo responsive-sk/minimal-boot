@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="<?= $e($description ?? 'Mezzio Light Application') ?>"/>
+    <meta name="author" content="<?= $e($author ?? 'Dotkernel Team') ?>"/>
+    <meta name="generator" content="Mezzio"/>
+    <meta name="theme-color" content="#ffffff"/>
+
+    <title><?= $e($title ?? 'Mezzio Light Application') ?></title>
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="<?= $asset('images/app/favicon/favicon-32x32.png') ?>"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= $asset('images/app/favicon/favicon-16x16.png') ?>"/>
+    <link rel="manifest" href="<?= $asset('images/app/favicon/site.webmanifest') ?>"/>
+    <link rel="mask-icon" href="<?= $asset('images/app/favicon/safari-pinned-tab.svg') ?>" color="#5bbad5"/>
+    <meta name="msapplication-TileColor" content="#da532c"/>
+
+    <!-- TailwindCSS -->
+    <link rel="stylesheet" href="<?= $e($cssUrl) ?>"/>
+
+    <!-- Custom Fonts -->
+    <style>
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+    </style>
+</head>
+
+<body class="h-full bg-gray-50 <?= $body_class ?? '' ?>">
+    <div class="min-h-full">
+        <!-- True Roave-inspired Navigation -->
+        <nav class="bg-white fixed w-full top-0 z-50" x-data="{ mobileMenuOpen: false }">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <!-- Logo -->
+                    <div class="flex items-center">
+                        <a href="<?= $url('page::index') ?>" class="text-xl font-bold text-gray-900 hover:text-gray-700 transition-colors duration-200">
+                            responsive.sk
+                        </a>
+                    </div>
+
+                    <!-- Desktop: Simple Contact Button (like Roave's "Speak to us") -->
+                    <div class="hidden md:flex items-center">
+                        <a href="mailto:hello@responsive.sk"
+                           class="inline-flex items-center px-6 py-2 bg-black hover:bg-gray-800 text-white font-medium text-sm rounded-full transition-all duration-200 hover:shadow-lg">
+                            Speak to us
+                        </a>
+                    </div>
+
+                    <!-- Mobile: Menu button -->
+                    <div class="md:hidden flex items-center">
+                        <button @click="mobileMenuOpen = !mobileMenuOpen"
+                                class="p-2 text-gray-900 hover:text-gray-700 transition-colors duration-200">
+                            <span class="sr-only">Menu</span>
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path x-show="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                                <path x-show="mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                            <span class="ml-2 text-sm font-medium">Menu</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation Menu (Roave-style) -->
+            <div x-show="mobileMenuOpen"
+                 x-cloak
+                 x-transition:enter="transition ease-out duration-300"
+                 x-transition:enter-start="opacity-0"
+                 x-transition:enter-end="opacity-100"
+                 x-transition:leave="transition ease-in duration-200"
+                 x-transition:leave-start="opacity-100"
+                 x-transition:leave-end="opacity-0"
+                 class="md:hidden fixed inset-0 bg-white z-40"
+                 @click.away="mobileMenuOpen = false">
+
+                <div class="flex flex-col h-full">
+                    <!-- Mobile menu header -->
+                    <div class="flex justify-between items-center px-6 py-4 border-b border-gray-100">
+                        <a href="<?= $url('page::index') ?>" class="text-xl font-bold text-gray-900">
+                            responsive.sk
+                        </a>
+                        <button @click="mobileMenuOpen = false" class="p-2 text-gray-900">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Mobile menu items -->
+                    <div class="flex-1 px-6 py-8">
+                        <nav class="space-y-2">
+                            <a href="<?= $url('page::index') ?>"
+                               class="block py-3 text-lg font-medium text-gray-900 hover:text-gray-600 transition-colors duration-200">
+                                Home
+                            </a>
+                            <a href="/demo"
+                               class="block py-3 text-lg font-medium text-blue-600 hover:text-blue-800 transition-colors duration-200">
+                                TailwindCSS Demo
+                            </a>
+                            <a href="/demo/bootstrap"
+                               class="block py-3 text-lg font-medium text-gray-900 hover:text-gray-600 transition-colors duration-200">
+                                Bootstrap Demo
+                            </a>
+                            <a href="/page/about"
+                               class="block py-3 text-lg font-medium text-gray-900 hover:text-gray-600 transition-colors duration-200">
+                                About
+                            </a>
+                            <a href="/contact"
+                               class="block py-3 text-lg font-medium text-gray-900 hover:text-gray-600 transition-colors duration-200">
+                                Contact us
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="pt-16">
+            <?= $content ?>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-white border-t border-gray-200 mt-16">
+            <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-4 md:mb-0">
+                        <p class="text-gray-600">&copy; <?= date('Y') ?> Mezzio Boot. Built with TailwindCSS + Alpine.js.</p>
+                    </div>
+                    <div class="flex space-x-6">
+                        <a href="https://responsive-sk.github.io/minimal-boot/" target="_blank" class="text-gray-600 hover:text-blue-600 transition-colors">
+                            Documentation
+                        </a>
+                        <a href="https://github.com/responsive-sk/minimal-boot" target="_blank" class="text-gray-600 hover:text-blue-600 transition-colors">
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Alpine.js cloak styles -->
+    <style>
+        [x-cloak] { display: none !important; }
+    </style>
+
+    <!-- Alpine.js from CDN -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- TailwindCSS styles only -->
+    <link rel="stylesheet" href="<?= $e($cssUrl) ?>">
+
+    <!-- Theme assets and initialization -->
+    <script>
+        // Load theme assets
+        console.log('TailwindCSS theme loaded');
+
+        // Theme assets for dynamic use
+        window.themeAssets = {
+            images: {
+                hdmBoot: '/themes/main/assets/images/php82.jpg',
+                slim4: '/themes/main/assets/images/javascript.jpg',
+                ephemeris: '/themes/main/assets/images/digital-marketing.jpg',
+                logo: '/themes/main/assets/images/logo.svg'
+            }
+        };
+
+        console.log('Theme assets loaded:', window.themeAssets);
+    </script>
+</body>
+</html>

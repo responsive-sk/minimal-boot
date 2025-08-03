@@ -1,0 +1,152 @@
+<?php
+$layout('layout::default', [
+    'title' => $title,
+]);
+?>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">Register</h4>
+                </div>
+                <div class="card-body">
+                    <?php if (!empty($flash_messages)): ?>
+                        <?php foreach ($flash_messages as $type => $messages): ?>
+                            <?php foreach ($messages as $message): ?>
+                                <div class="alert alert-<?= $type === 'error' ? 'danger' : $type ?> alert-dismissible fade show" role="alert">
+                                    <?= $e($message) ?>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>
+                            <?php endforeach ?>
+                        <?php endforeach ?>
+                    <?php endif ?>
+
+                    <form method="POST" action="/register">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="first_name" class="form-label">First Name</label>
+                                    <input 
+                                        type="text" 
+                                        class="form-control <?= $form->hasError('first_name') ? 'is-invalid' : '' ?>" 
+                                        id="first_name" 
+                                        name="first_name" 
+                                        value="<?= $e($form->getFirstName()) ?>"
+                                        required
+                                    >
+                                    <?php if ($form->hasError('first_name')): ?>
+                                        <div class="invalid-feedback">
+                                            <?= $e($form->getError('first_name')) ?>
+                                        </div>
+                                    <?php endif ?>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="last_name" class="form-label">Last Name</label>
+                                    <input 
+                                        type="text" 
+                                        class="form-control <?= $form->hasError('last_name') ? 'is-invalid' : '' ?>" 
+                                        id="last_name" 
+                                        name="last_name" 
+                                        value="<?= $e($form->getLastName()) ?>"
+                                        required
+                                    >
+                                    <?php if ($form->hasError('last_name')): ?>
+                                        <div class="invalid-feedback">
+                                            <?= $e($form->getError('last_name')) ?>
+                                        </div>
+                                    <?php endif ?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input 
+                                type="email" 
+                                class="form-control <?= $form->hasError('email') ? 'is-invalid' : '' ?>" 
+                                id="email" 
+                                name="email" 
+                                value="<?= $e($form->getEmail()) ?>"
+                                required
+                            >
+                            <?php if ($form->hasError('email')): ?>
+                                <div class="invalid-feedback">
+                                    <?= $e($form->getError('email')) ?>
+                                </div>
+                            <?php endif ?>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input 
+                                type="text" 
+                                class="form-control <?= $form->hasError('username') ? 'is-invalid' : '' ?>" 
+                                id="username" 
+                                name="username" 
+                                value="<?= $e($form->getUsername()) ?>"
+                                required
+                            >
+                            <?php if ($form->hasError('username')): ?>
+                                <div class="invalid-feedback">
+                                    <?= $e($form->getError('username')) ?>
+                                </div>
+                            <?php endif ?>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input 
+                                        type="password" 
+                                        class="form-control <?= $form->hasError('password') ? 'is-invalid' : '' ?>" 
+                                        id="password" 
+                                        name="password"
+                                        required
+                                    >
+                                    <?php if ($form->hasError('password')): ?>
+                                        <div class="invalid-feedback">
+                                            <?= $e($form->getError('password')) ?>
+                                        </div>
+                                    <?php endif ?>
+                                    <div class="form-text">
+                                        Must be 8+ chars with uppercase, lowercase, and number.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="password_confirm" class="form-label">Confirm Password</label>
+                                    <input 
+                                        type="password" 
+                                        class="form-control <?= $form->hasError('password_confirm') ? 'is-invalid' : '' ?>" 
+                                        id="password_confirm" 
+                                        name="password_confirm"
+                                        required
+                                    >
+                                    <?php if ($form->hasError('password_confirm')): ?>
+                                        <div class="invalid-feedback">
+                                            <?= $e($form->getError('password_confirm')) ?>
+                                        </div>
+                                    <?php endif ?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </div>
+                    </form>
+
+                    <div class="text-center mt-3">
+                        <p>Already have an account? <a href="/login">Login here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

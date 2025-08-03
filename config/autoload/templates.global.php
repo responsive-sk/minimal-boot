@@ -6,35 +6,41 @@ return [
     'templates' => [
         'extension' => 'phtml',
         'paths'     => [
-            // Contact Templates
-            'contact' => ['src/Contact/templates'],
+            // Theme-based templates (using Paths service)
+            'bootstrap' => ['@templates_bootstrap'],
+            'tailwind' => ['@templates_tailwind'],
 
-            // Auth Templates
-            'auth' => ['src/Auth/templates'],
+            // Theme layouts
+            'bootstrap_layouts' => ['@templates_bootstrap_layouts'],
+            'tailwind_layouts' => ['@templates_tailwind_layouts'],
 
-            // Session Templates
-            'session' => ['src/Session/templates'],
+            // Theme pages
+            'bootstrap_pages' => ['@templates_bootstrap_pages'],
+            'tailwind_pages' => ['@templates_tailwind_pages'],
 
-            // Layout Templates (Shared) - Bootstrap by default
-            'layout' => ['src/Shared/templates/bootstrap/layout'],
+            // Theme partials
+            'bootstrap_partials' => ['@templates_bootstrap_partials'],
+            'tailwind_partials' => ['@templates_tailwind_partials'],
 
-            // Bootstrap Templates (Shared)
-            'bootstrap' => ['src/Shared/templates/bootstrap'],
+            // Module templates (using Paths service)
+            'auth' => ['@templates_auth'],
+            'contact' => ['@templates_contact'],
+            'user' => ['@templates_user'],
+            'page' => ['@templates_page'],
+            'session' => ['@templates_session'],
 
-            // Tailwind Templates (Shared)
-            'tailwind' => ['src/Shared/templates/tailwind'],
+            // Shared templates
+            'shared' => ['@templates_shared'],
+            'error' => ['@templates_error'],
+            'email' => ['@templates_email'],
 
-            // Error Templates (Shared)
-            'error' => ['src/Shared/templates/error'],
+            // Component templates
+            'components' => ['@templates_components'],
+            'forms' => ['@templates_forms'],
+            'ui' => ['@templates_ui'],
 
-            // Partial Templates (Shared)
-            'partial' => ['src/Shared/templates/partial'],
-
-            // Page Templates (includes index and demo)
-            'page' => ['src/Page/templates'],
-
-            // User Templates
-            'user' => ['src/User/templates'],
+            // Backward compatibility (will be removed after migration)
+            'layout' => ['@templates_bootstrap_layouts'], // Default to Bootstrap
         ],
     ],
 ];

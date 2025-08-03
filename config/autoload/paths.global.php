@@ -45,14 +45,43 @@ return [
             'mark_module' => 'modules/Mark',
             'blog_module' => 'modules/Blog',
 
-            // Template subdirectories
-            'contact_templates' => 'src/Contact/templates',
-            'auth_templates'    => 'src/Auth/templates',
-            'session_templates' => 'src/Session/templates',
-            'error_templates'   => 'src/Shared/templates/error',
-            'layout_templates'  => 'src/Shared/templates/layout',
-            'partial_templates' => 'src/Shared/templates/partial',
-            'page_templates'    => 'src/Page/templates/page',
+            // Template root directory
+            'templates' => 'templates',
+
+            // Theme-based templates
+            'templates_themes' => 'templates/themes',
+            'templates_bootstrap' => 'templates/themes/bootstrap',
+            'templates_tailwind' => 'templates/themes/tailwind',
+
+            // Theme layouts
+            'templates_bootstrap_layouts' => 'templates/themes/bootstrap/layouts',
+            'templates_tailwind_layouts' => 'templates/themes/tailwind/layouts',
+
+            // Theme pages
+            'templates_bootstrap_pages' => 'templates/themes/bootstrap/pages',
+            'templates_tailwind_pages' => 'templates/themes/tailwind/pages',
+
+            // Theme partials
+            'templates_bootstrap_partials' => 'templates/themes/bootstrap/partials',
+            'templates_tailwind_partials' => 'templates/themes/tailwind/partials',
+
+            // Module templates
+            'templates_modules' => 'templates/modules',
+            'templates_auth' => 'templates/modules/auth',
+            'templates_contact' => 'templates/modules/contact',
+            'templates_user' => 'templates/modules/user',
+            'templates_page' => 'templates/modules/page',
+            'templates_session' => 'templates/modules/session',
+
+            // Shared templates
+            'templates_shared' => 'templates/shared',
+            'templates_error' => 'templates/shared/error',
+            'templates_email' => 'templates/shared/email',
+
+            // Component templates
+            'templates_components' => 'templates/components',
+            'templates_forms' => 'templates/components/forms',
+            'templates_ui' => 'templates/components/ui',
 
             // Cache subdirectories
             'config_cache' => 'var/cache/config',

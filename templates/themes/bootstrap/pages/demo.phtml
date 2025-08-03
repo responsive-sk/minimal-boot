@@ -1,0 +1,248 @@
+<?php
+$layout('bootstrap_layouts::app', [
+    'title' => 'Bootstrap 5 Demo - Minimal Boot',
+    'description' => 'Bootstrap 5 framework demonstration for Minimal Boot application.',
+    'cssUrl' => $cssUrl ?? null,
+    'jsUrl' => $jsUrl ?? null,
+]);
+?>
+
+<!-- Hero Section -->
+<div class="bg-primary text-white py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-light mb-3">Bootstrap 5 Demo</h1>
+                <p class="lead mb-4">
+                    Experience the power of Bootstrap 5 - the world's most popular CSS framework 
+                    for building responsive, mobile-first websites.
+                </p>
+                <div class="d-flex gap-3">
+                    <a href="#components" class="btn btn-light btn-lg">View Components</a>
+                    <a href="https://getbootstrap.com" target="_blank" class="btn btn-outline-light btn-lg">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <i class="bi bi-bootstrap-fill" style="font-size: 8rem; opacity: 0.8;"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Features Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-light mb-3">Why Bootstrap?</h2>
+                <p class="lead text-muted">
+                    Bootstrap provides a comprehensive set of components and utilities 
+                    for rapid web development.
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="bi bi-lightning-charge-fill text-primary fs-4"></i>
+                        </div>
+                        <h5 class="card-title">Fast Development</h5>
+                        <p class="card-text text-muted">
+                            Pre-built components and utilities speed up development time significantly.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="bi bi-phone-fill text-success fs-4"></i>
+                        </div>
+                        <h5 class="card-title">Mobile First</h5>
+                        <p class="card-text text-muted">
+                            Responsive design that works perfectly on all devices and screen sizes.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="bg-info bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="bi bi-palette-fill text-info fs-4"></i>
+                        </div>
+                        <h5 class="card-title">Customizable</h5>
+                        <p class="card-text text-muted">
+                            Easily customize colors, spacing, and components to match your brand.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Components Demo -->
+<section id="components" class="py-5 bg-light">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="display-5 fw-light mb-3">Component Showcase</h2>
+                <p class="lead text-muted">
+                    Explore some of Bootstrap's most popular components in action.
+                </p>
+            </div>
+        </div>
+        
+        <!-- Alerts -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h4 class="mb-3">Alerts</h4>
+                <div class="alert alert-primary" role="alert">
+                    <i class="bi bi-info-circle-fill me-2"></i>
+                    This is a primary alert with an icon!
+                </div>
+                <div class="alert alert-success" role="alert">
+                    <i class="bi bi-check-circle-fill me-2"></i>
+                    This is a success alert - great job!
+                </div>
+                <div class="alert alert-warning" role="alert">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                    This is a warning alert - please be careful!
+                </div>
+            </div>
+        </div>
+        
+        <!-- Buttons -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h4 class="mb-3">Buttons</h4>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                    <button type="button" class="btn btn-primary">Primary</button>
+                    <button type="button" class="btn btn-secondary">Secondary</button>
+                    <button type="button" class="btn btn-success">Success</button>
+                    <button type="button" class="btn btn-danger">Danger</button>
+                    <button type="button" class="btn btn-warning">Warning</button>
+                    <button type="button" class="btn btn-info">Info</button>
+                </div>
+                <div class="d-flex flex-wrap gap-2">
+                    <button type="button" class="btn btn-outline-primary">Outline Primary</button>
+                    <button type="button" class="btn btn-outline-secondary">Outline Secondary</button>
+                    <button type="button" class="btn btn-outline-success">Outline Success</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Cards -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h4 class="mb-3">Cards</h4>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Card Header</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            This is a basic card with header, body, and footer sections.
+                        </p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Card footer
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4 mb-3">
+                <div class="card border-primary">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">Primary Card</h5>
+                        <p class="card-text">
+                            This card has a primary border color and title.
+                        </p>
+                        <a href="#" class="btn btn-outline-primary">Learn more</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4 mb-3">
+                <div class="card bg-dark text-white">
+                    <div class="card-body">
+                        <h5 class="card-title">Dark Card</h5>
+                        <p class="card-text">
+                            This is a dark variant card with white text.
+                        </p>
+                        <a href="#" class="btn btn-light">Get started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Form -->
+        <div class="row mb-4">
+            <div class="col-lg-6">
+                <h4 class="mb-3">Form Components</h4>
+                <form>
+                    <div class="mb-3">
+                        <label for="exampleEmail" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="exampleEmail" placeholder="name@example.com">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleSelect" class="form-label">Example select</label>
+                        <select class="form-select" id="exampleSelect">
+                            <option selected>Choose...</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleTextarea" class="form-label">Example textarea</label>
+                        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck">
+                        <label class="form-check-label" for="exampleCheck">
+                            Check me out
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5 bg-primary text-white">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-light mb-3">Ready to Build?</h2>
+                <p class="lead mb-4">
+                    Start building amazing responsive websites with Bootstrap 5 and Minimal Boot framework.
+                </p>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="/" class="btn btn-light btn-lg">
+                        <i class="bi bi-house-fill me-2"></i>
+                        Go Home
+                    </a>
+                    <a href="/demo" class="btn btn-outline-light btn-lg">
+                        <i class="bi bi-palette me-2"></i>
+                        TailwindCSS Demo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

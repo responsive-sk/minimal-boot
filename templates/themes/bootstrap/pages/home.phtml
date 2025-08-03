@@ -1,0 +1,134 @@
+<?php
+$layout('bootstrap_layouts::app', [
+    'title' => 'Minimal Boot - Modern PHP Framework',
+    'description' => 'A PSR-15 compliant application framework with Domain-Driven Design and modular architecture',
+    'author' => 'Responsive SK',
+]);
+?>
+
+<div class="page-intro">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="display-4 fw-light">Welcome to Minimal Boot</h1>
+                <p class="lead">A PSR-15 compliant application framework with Domain-Driven Design and modular architecture</p>
+                <hr class="my-4">
+                <p>This application demonstrates modern web development with native PHP templates, DDD principles, and multiple frontend frameworks.</p>
+
+                <div class="d-flex flex-wrap gap-3 mb-4">
+                    <a class="btn btn-primary btn-lg" href="/page/about" role="button">
+                        <i class="bi bi-info-circle me-2"></i>Learn More
+                    </a>
+                    <a class="btn btn-success btn-lg" href="/demo" role="button">
+                        <i class="bi bi-palette me-2"></i>TailwindCSS Demo
+                    </a>
+                    <a class="btn btn-info btn-lg" href="/demo/bootstrap" role="button">
+                        <i class="bi bi-bootstrap me-2"></i>Bootstrap Demo
+                    </a>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <i class="bi bi-book text-primary me-2"></i>Documentation
+                                </h5>
+                                <p class="card-text">Complete documentation with examples and best practices.</p>
+                                <a href="https://responsive-sk.github.io/minimal-boot/" target="_blank" class="btn btn-outline-primary">
+                                    View Docs
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <i class="bi bi-github text-dark me-2"></i>Source Code
+                                </h5>
+                                <p class="card-text">Open source framework available on GitHub.</p>
+                                <a href="https://github.com/responsive-sk/minimal-boot" target="_blank" class="btn btn-outline-dark">
+                                    View GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <i class="bi bi-envelope text-success me-2"></i>Contact
+                                </h5>
+                                <p class="card-text">Get in touch with questions or feedback.</p>
+                                <a href="/contact" class="btn btn-outline-success">
+                                    Contact Form
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">PSR-15 Compliant</h3>
+                    <p class="card-text">Built on Mezzio framework following PSR-15 middleware standards for maximum interoperability.</p>
+                    <a href="https://www.php-fig.org/psr/psr-15/" class="btn btn-outline-primary" target="_blank">Learn about PSR-15</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Modular Templates</h3>
+                    <p class="card-text">Core uses Plates for speed and reliability. Optional Twig and Blade modules available.</p>
+                    <a href="/page/privacy" class="btn btn-outline-primary">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Dark Theme</h3>
+                    <p class="card-text">Built-in dark/light theme switching with localStorage persistence and system detection.</p>
+                    <button class="btn btn-outline-primary" onclick="ThemeUtils.toggleTheme()">Toggle Theme</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Features</h2>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <strong>Zend4Boot Protocol:</strong> Modular architecture with src/Core/ and modules/ structure
+                </li>
+                <li class="list-group-item">
+                    <strong>Paths Service:</strong> Centralized path management using <a href="https://github.com/responsive-sk/slim4-paths" target="_blank" rel="noopener" aria-label="Visit responsive-sk/slim4-paths GitHub repository">responsive-sk/slim4-paths</a>
+                </li>
+                <li class="list-group-item">
+                    <strong>Mark Convention:</strong> Admin functionality uses 'mark' instead of 'admin' for security
+                </li>
+                <li class="list-group-item">
+                    <strong>Quality Gates:</strong> PHPStan level MAX, strict types, PSR compliance
+                </li>
+                <li class="list-group-item">
+                    <strong>Asset Pipeline:</strong> Vite compilation with pnpm package management
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Alpine.js from CDN -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>

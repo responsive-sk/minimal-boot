@@ -1,0 +1,25 @@
+<?php
+/**
+ * @var array $data Template data
+ * @var string $title Page title
+ * @var string $module Module name
+ */
+$this->layout('layout::default', ['title' => $title ?? 'Auth']);
+?>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1><?= $this->escapeHtml($title ?? 'Auth') ?></h1>
+            <p>Welcome to the <?= $this->escapeHtml($module ?? 'Auth') ?> module!</p>
+            
+            <div class="alert alert-info">
+                <strong>Module created successfully!</strong>
+                <br>
+                This is a sample template for the Auth module.
+                <br>
+                Edit <code>src/Auth/templates/index.phtml</code> to customize this page.
+            </div>
+        </div>
+    </div>
+</div>

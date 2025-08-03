@@ -1,0 +1,138 @@
+<?php
+$layout('layout::default', [
+    'title' => $title,
+]);
+?>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <?php if (!empty($flash_messages)): ?>
+                <?php foreach ($flash_messages as $type => $messages): ?>
+                    <?php foreach ($messages as $message): ?>
+                        <div class="alert alert-<?= $type === 'error' ? 'danger' : $type ?> alert-dismissible fade show" role="alert">
+                            <?= $e($message) ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    <?php endforeach ?>
+                <?php endforeach ?>
+            <?php endif ?>
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1>Dashboard</h1>
+                <div>
+                    <span class="badge bg-<?= $user->getRole()->value === 'admin' ? 'danger' : ($user->getRole()->value === 'editor' ? 'warning' : 'secondary') ?>">
+                        <?= $e($user->getRole()->getLabel()) ?>
+                    </span>
+                    <a href="/logout" class="btn btn-outline-secondary ms-2">Logout</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Profile Information</h5>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Name:</strong> <?= $e($user->getFullName()) ?></p>
+                            <p><strong>Email:</strong> <?= $e($user->getEmail()) ?></p>
+                            <p><strong>Username:</strong> <?= $e($user->getUsername()) ?></p>
+                            <p><strong>Role:</strong> <?= $e($user->getRole()->getLabel()) ?></p>
+                            <p><strong>Status:</strong> 
+                                <span class="badge bg-<?= $user->getStatus()->value === 'active' ? 'success' : 'warning' ?>">
+                                    <?= $e($user->getStatus()->getLabel()) ?>
+                                </span>
+                            </p>
+                            <p><strong>Email Verified:</strong> 
+                                <?php if ($user->isEmailVerified()): ?>
+                                    <span class="badge bg-success">Yes</span>
+                                <?php else: ?>
+                                    <span class="badge bg-warning">No</span>
+                                <?php endif ?>
+                            </p>
+                            <p><strong>Member Since:</strong> <?= $user->getCreatedAt()?->format('M j, Y') ?></p>
+                            <?php if ($user->getLastLoginAt()): ?>
+                                <p><strong>Last Login:</strong> <?= $user->getLastLoginAt()->format('M j, Y g:i A') ?></p>
+                            <?php endif ?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Quick Actions</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="card bg-light">
+                                        <div class="card-body text-center">
+                                            <h6>Pages</h6>
+                                            <p class="text-muted">Manage website pages</p>
+                                            <a href="/pages" class="btn btn-primary btn-sm">View Pages</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <?php if ($user->getRole()->hasPermission('user.read')): ?>
+                                <div class="col-md-6 mb-3">
+                                    <div class="card bg-light">
+                                        <div class="card-body text-center">
+                                            <h6>Users</h6>
+                                            <p class="text-muted">Manage users</p>
+                                            <a href="/admin/users" class="btn btn-primary btn-sm">Manage Users</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php endif ?>
+
+                                <div class="col-md-6 mb-3">
+                                    <div class="card bg-light">
+                                        <div class="card-body text-center">
+                                            <h6>Profile</h6>
+                                            <p class="text-muted">Update your profile</p>
+                                            <a href="/profile" class="btn btn-primary btn-sm">Edit Profile</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <div class="card bg-light">
+                                        <div class="card-body text-center">
+                                            <h6>Settings</h6>
+                                            <p class="text-muted">Account settings</p>
+                                            <a href="/settings" class="btn btn-primary btn-sm">Settings</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <?php if ($user->getRole()->hasPermission('admin.access')): ?>
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Admin Tools</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <a href="/admin/users" class="btn btn-outline-primary w-100 mb-2">User Management</a>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="/admin/pages" class="btn btn-outline-primary w-100 mb-2">Page Management</a>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="/admin/settings" class="btn btn-outline-primary w-100 mb-2">System Settings</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endif ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
