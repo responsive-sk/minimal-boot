@@ -51,12 +51,12 @@ curl -s "https://fonts.gstatic.com/s/sourcesanspro/v22/6xK3dSBYKcSV-LCoeQqfX1RYO
 curl -s "https://fonts.gstatic.com/s/sourcesanspro/v22/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7luixj9_2pGg.woff" \
   -o "$FONT_DIR/source-sans-pro-300.woff"
 
-# Source Sans Pro 400 (Regular)
+# Source Sans Pro 400 (Regular) - Different URL for 400 weight
 log_info "Downloading Source Sans Pro 400 (Regular)..."
-curl -s "https://fonts.gstatic.com/s/sourcesanspro/v22/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7lujVj9w.woff2" \
+curl -s "https://fonts.gstatic.com/s/sourcesanspro/v22/6xK3dSBYKcSV-LCoeQqfX1RYOo3qPK7lujVj9w.woff2" \
   -o "$FONT_DIR/source-sans-pro-400.woff2"
 
-curl -s "https://fonts.gstatic.com/s/sourcesanspro/v22/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7luixj9_2pGg.woff" \
+curl -s "https://fonts.gstatic.com/s/sourcesanspro/v22/6xK3dSBYKcSV-LCoeQqfX1RYOo3qPK7luixj9_2pGg.woff" \
   -o "$FONT_DIR/source-sans-pro-400.woff"
 
 # Source Sans Pro 600 (SemiBold)

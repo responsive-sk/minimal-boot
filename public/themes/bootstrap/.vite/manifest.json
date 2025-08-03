@@ -1,20 +1,4 @@
 {
-  "fonts/source-sans-pro/source-sans-pro-300.woff2": {
-    "file": "assets/fonts/source-sans-pro-300.woff2",
-    "src": "fonts/source-sans-pro/source-sans-pro-300.woff2"
-  },
-  "fonts/source-sans-pro/source-sans-pro-400.woff2": {
-    "file": "assets/fonts/source-sans-pro-300.woff2",
-    "src": "fonts/source-sans-pro/source-sans-pro-300.woff2"
-  },
-  "fonts/source-sans-pro/source-sans-pro-600.woff2": {
-    "file": "assets/fonts/source-sans-pro-600.woff2",
-    "src": "fonts/source-sans-pro/source-sans-pro-600.woff2"
-  },
-  "fonts/source-sans-pro/source-sans-pro-700.woff2": {
-    "file": "assets/fonts/source-sans-pro-700.woff2",
-    "src": "fonts/source-sans-pro/source-sans-pro-700.woff2"
-  },
   "main.js": {
     "file": "assets/main.js",
     "name": "main",
@@ -22,11 +6,6 @@
     "isEntry": true,
     "css": [
       "assets/main.css"
-    ],
-    "assets": [
-      "assets/fonts/source-sans-pro-300.woff2",
-      "assets/fonts/source-sans-pro-600.woff2",
-      "assets/fonts/source-sans-pro-700.woff2"
     ]
   }
 }
