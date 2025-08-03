@@ -28,7 +28,7 @@ class DemoHandler implements RequestHandlerInterface
 
         // Vite compiled assets (CSS only, Alpine.js from CDN)
         $cssUrl = '/themes/main/assets/main.css';
-        $jsUrl  = null; // Using CDN Alpine.js instead
+        $jsUrl  = ''; // Using CDN Alpine.js instead - empty string prevents ThemeService fallback
 
         $html = $this->template->render('page::demo', [
             'themeInfo' => $themeInfo,
