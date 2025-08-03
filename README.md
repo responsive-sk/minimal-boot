@@ -222,6 +222,36 @@ $layout($currentTheme . '_layouts::app', [
 
 For detailed documentation, see [docs/TEMPLATES.md](docs/TEMPLATES.md).
 
+## Production Deployment
+
+Minimal Boot includes automated deployment tools for production shared hosting:
+
+### Quick Deployment
+
+```bash
+# 1. Build production version
+bin/build-production.sh
+
+# 2. Configure FTPS settings
+# Edit .ftps-config with your hosting details
+
+# 3. Deploy to production
+bin/deploy-ftps.sh
+```
+
+### Manual Deployment
+
+```bash
+# Build production version
+bin/build-production.sh
+
+# Upload build/production/* to your web server
+# Point your domain to the 'public' directory
+# Update .env with production settings
+```
+
+For detailed deployment instructions, see [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
+
 ## Available Routes
 
 - `GET /` - Homepage (theme-aware)

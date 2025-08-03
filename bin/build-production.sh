@@ -1,0 +1,217 @@
+#!/bin/bash
+
+# Production Build Script for Minimal Boot
+# Creates a minimized, production-ready build
+
+set -e
+
+echo "🚀 Building production version of Minimal Boot..."
+
+# Configuration
+BUILD_DIR="build/production"
+TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+# Functions
+log_info() {
+    echo -e "${BLUE}ℹ️  $1${NC}"
+}
+
+log_success() {
+    echo -e "${GREEN}✅ $1${NC}"
+}
+
+log_warning() {
+    echo -e "${YELLOW}⚠️  $1${NC}"
+}
+
+log_error() {
+    echo -e "${RED}❌ $1${NC}"
+}
+
+# Step 1: Clean previous build
+log_info "Cleaning previous build..."
+if [ -d "$BUILD_DIR" ]; then
+    rm -rf "$BUILD_DIR"
+fi
+mkdir -p "$BUILD_DIR"
+log_success "Build directory cleaned"
+
+# Step 2: Copy essential application files
+log_info "Copying application files..."
+cp -r config "$BUILD_DIR/"
+cp -r public "$BUILD_DIR/"
+cp -r src "$BUILD_DIR/"
+cp -r templates "$BUILD_DIR/"
+cp composer.json "$BUILD_DIR/"
+cp composer.lock "$BUILD_DIR/"
+
+# Copy environment template
+if [ -f ".env.production" ]; then
+    cp .env.production "$BUILD_DIR/.env"
+    log_success "Production environment copied"
+else
+    log_warning "No .env.production found, creating template..."
+    cat > "$BUILD_DIR/.env" << 'EOF'
+# Production Environment
+APP_ENV=production
+DEBUG=false
+
+# Database Configuration
+DB_HOST=localhost
+DB_NAME=your_database_name
+DB_USER=your_database_user
+DB_PASS=your_database_password
+
+# Security
+SESSION_COOKIE_SECURE=true
+SESSION_COOKIE_HTTPONLY=true
+SESSION_COOKIE_SAMESITE=Strict
+
+# Performance
+OPCACHE_ENABLE=true
+CACHE_ENABLE=true
+EOF
+    log_warning "Please update $BUILD_DIR/.env with your production settings"
+fi
+
+log_success "Application files copied"
+
+# Step 3: Install production dependencies
+log_info "Installing production dependencies..."
+cd "$BUILD_DIR"
+composer install --no-dev --optimize-autoloader --no-scripts --quiet
+if [ $? -eq 0 ]; then
+    log_success "Production dependencies installed"
+else
+    log_error "Failed to install dependencies"
+    exit 1
+fi
+cd ..
+
+# Step 4: Build production assets
+log_info "Building production assets..."
+
+# Build Tailwind assets
+if [ -d "src/Assets/main" ]; then
+    cd src/Assets/main
+    if [ -f "package.json" ]; then
+        log_info "Building Tailwind assets..."
+        if command -v pnpm &> /dev/null; then
+            pnpm run build --silent
+        elif command -v npm &> /dev/null; then
+            npm run build --silent
+        else
+            log_warning "No package manager found, skipping asset build"
+        fi
+        log_success "Tailwind assets built"
+    fi
+    cd ../../..
+fi
+
+# Build Bootstrap assets
+if [ -d "src/Assets/bootstrap" ]; then
+    cd src/Assets/bootstrap
+    if [ -f "package.json" ]; then
+        log_info "Building Bootstrap assets..."
+        if command -v pnpm &> /dev/null; then
+            pnpm run build --silent
+        elif command -v npm &> /dev/null; then
+            npm run build --silent
+        else
+            log_warning "No package manager found, skipping asset build"
+        fi
+        log_success "Bootstrap assets built"
+    fi
+    cd ../../..
+fi
+
+# Step 5: Security hardening and cleanup
+log_info "Security hardening and cleanup..."
+cd "$BUILD_DIR"
+
+# Remove development and sensitive files
+rm -rf .git 2>/dev/null || true
+rm -rf tests 2>/dev/null || true
+rm -rf docs 2>/dev/null || true
+rm -f phpunit.xml 2>/dev/null || true
+rm -f phpstan.neon 2>/dev/null || true
+rm -f .gitignore 2>/dev/null || true
+rm -rf .github 2>/dev/null || true
+rm -f .env.local 2>/dev/null || true
+rm -f .env.development 2>/dev/null || true
+
+# Remove documentation files (except vendor)
+find . -name "*.md" -not -path "./vendor/*" -delete 2>/dev/null || true
+find . -name ".DS_Store" -delete 2>/dev/null || true
+find . -name "Thumbs.db" -delete 2>/dev/null || true
+
+# Remove source asset files (keep only built assets)
+rm -rf src/Assets/*/node_modules 2>/dev/null || true
+rm -rf src/Assets/*/src 2>/dev/null || true
+rm -f src/Assets/*/package*.json 2>/dev/null || true
+rm -f src/Assets/*/vite.config.js 2>/dev/null || true
+rm -f src/Assets/*/tailwind.config.js 2>/dev/null || true
+rm -f src/Assets/*/postcss.config.js 2>/dev/null || true
+
+log_success "Security hardening completed"
+
+cd ..
+
+# Step 6: Create deployment info
+log_info "Creating deployment info..."
+cat > "$BUILD_DIR/DEPLOYMENT_INFO.txt" << EOF
+Minimal Boot Production Build
+============================
+
+Build Date: $(date)
+Build Version: $TIMESTAMP
+Git Commit: $(git rev-parse HEAD 2>/dev/null || echo "N/A")
+Git Branch: $(git branch --show-current 2>/dev/null || echo "N/A")
+
+Deployment Instructions:
+1. Upload all files to your web server
+2. Point your domain to the 'public' directory
+3. Update .env with your production settings
+4. Set proper file permissions (644 for files, 755 for directories)
+5. Ensure your web server has PHP 8.3+ with required extensions
+
+Required PHP Extensions:
+- json
+- mbstring
+- openssl
+- pdo
+- pdo_mysql (or your database driver)
+- session
+- xml
+
+For detailed deployment instructions, see:
+https://github.com/responsive-sk/minimal-boot/blob/main/docs/DEPLOYMENT.md
+EOF
+
+# Step 7: Calculate build size
+BUILD_SIZE=$(du -sh "$BUILD_DIR" | cut -f1)
+log_success "Production build completed!"
+
+echo ""
+echo "📊 Build Summary:"
+echo "=================="
+echo "Build directory: $BUILD_DIR"
+echo "Build size: $BUILD_SIZE"
+echo "Build timestamp: $TIMESTAMP"
+echo ""
+echo "🚀 Ready for deployment!"
+echo ""
+echo "Next steps:"
+echo "1. Review $BUILD_DIR/.env and update with production settings"
+echo "2. Test the build locally if needed"
+echo "3. Deploy to production using FTPS or your preferred method"
+echo ""
+echo "For FTPS deployment, use: bin/deploy-ftps.sh"
+echo "For manual deployment, upload contents of $BUILD_DIR/ to your web server"
