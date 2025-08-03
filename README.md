@@ -14,6 +14,8 @@ A PSR-15 compliant application skeleton with modular template architecture and D
 - **Domain-Driven Design Architecture** - Clean separation of concerns with Domain, Application, and Infrastructure layers
 - **Modular Structure** - Each module is self-contained with its own handlers, templates, and services
 - **PSR-15 Middleware** - Full PSR-15 compliance for HTTP message handling
+- **Modern Template System** - Organized, theme-aware templates with centralized path management
+- **Multi-Theme Support** - Bootstrap and Tailwind CSS themes with automatic switching
 - **Native PHP Templates** - Clean PHP template system with layout support (no Twig dependency)
 - **Repository Pattern** - Abstracted data access with interface-based design
 - **CSRF Protection** - Built-in CSRF token validation for forms
@@ -158,19 +160,77 @@ ModuleName/
 │   └── Service/          # Business logic services
 ├── Handler/              # HTTP request handlers
 ├── Factory/              # Dependency injection factories
-├── templates/            # Module-specific templates
+├── templates/            # Module-specific templates (deprecated - moved to templates/modules/)
 ├── ConfigProvider.php   # Module configuration
 └── RoutesDelegator.php   # Route definitions
 ```
 
+## Template System
+
+Minimal Boot features a modern, organized template system with theme-aware capabilities:
+
+### Template Structure
+
+```
+templates/
+├── themes/
+│   ├── bootstrap/          # Bootstrap 5 theme
+│   │   ├── layouts/        # Bootstrap layouts
+│   │   ├── pages/          # Bootstrap pages
+│   │   └── partials/       # Bootstrap components
+│   └── tailwind/           # Tailwind CSS theme
+│       ├── layouts/        # Tailwind layouts
+│       ├── pages/          # Tailwind pages
+│       └── partials/       # Tailwind components
+├── modules/                # Module-specific templates
+│   ├── auth/              # Authentication templates
+│   ├── contact/           # Contact form templates
+│   ├── user/              # User management templates
+│   └── page/              # Dynamic page templates
+├── shared/                # Shared templates
+│   ├── error/             # Error pages (404, 500)
+│   └── email/             # Email templates
+└── components/            # Reusable components
+    ├── forms/             # Form components
+    └── ui/                # UI components
+```
+
+### Theme-Aware Templates
+
+Templates automatically adapt to the current theme:
+
+```php
+// In handlers
+$currentTheme = $this->themeService->getCurrentTheme();
+$templateName = $currentTheme . '_pages::home';
+
+// In templates
+$layout($currentTheme . '_layouts::app', [
+    'title' => $title,
+    'cssUrl' => $cssUrl,
+    'jsUrl' => $jsUrl,
+]);
+```
+
+### Template Namespaces
+
+- `bootstrap_layouts::app` → Bootstrap layout
+- `tailwind_pages::home` → Tailwind home page
+- `auth::login` → Authentication login
+- `error::404` → 404 error page
+- `forms::input` → Form input component
+
+For detailed documentation, see [docs/TEMPLATES.md](docs/TEMPLATES.md).
+
 ## Available Routes
 
-- `GET /` - Homepage
+- `GET /` - Homepage (theme-aware)
 - `GET /demo` - TailwindCSS + Alpine.js demo
 - `GET /demo/bootstrap` - Bootstrap 5 demo
 - `GET /page/{slug}` - Dynamic pages (about, privacy, terms)
 - `GET /contact` - Contact form
 - `POST /contact` - Contact form submission
+- `GET /theme/switch` - Theme switcher
 
 ## Configuration
 
