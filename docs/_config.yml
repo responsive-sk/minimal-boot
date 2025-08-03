@@ -47,14 +47,21 @@ navigation:
     url: "/book/architecture/"
   - title: "Core Module"
     url: "/core/"
+    subnav:
+      - title: "Overview"
+        url: "/core/overview/"
+      - title: "Database Layer"
+        url: "/core/database/"
+      - title: "Template System"
+        url: "/core/templates/"
+      - title: "Compatibility"
+        url: "/core/compatibility/"
   - title: "Modules"
     url: "/book/modules/"
-  - title: "Templates"
-    url: "/book/templates/"
-  - title: "Assets & Frontend"
-    url: "/book/assets/"
   - title: "Domain Layer"
     url: "/book/domain/"
+  - title: "Assets & Frontend"
+    url: "/book/assets/"
 
 # Plugins
 plugins:
