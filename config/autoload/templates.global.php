@@ -18,6 +18,12 @@ return [
             // Layout Templates (Shared) - Bootstrap by default
             'layout' => ['src/Shared/templates/bootstrap/layout'],
 
+            // Bootstrap Templates (Shared)
+            'bootstrap' => ['src/Shared/templates/bootstrap'],
+
+            // Tailwind Templates (Shared)
+            'tailwind' => ['src/Shared/templates/tailwind'],
+
             // Error Templates (Shared)
             'error' => ['src/Shared/templates/error'],
 
