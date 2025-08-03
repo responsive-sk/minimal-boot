@@ -43,7 +43,7 @@ class GetPageViewHandler implements RequestHandlerInterface
             );
         }
 
-        // Render page with data from domain entity
+        // Render page with data from domain entity using new template structure
         return new HtmlResponse(
             $this->template->render('page::view', [
                 'page' => $page,
