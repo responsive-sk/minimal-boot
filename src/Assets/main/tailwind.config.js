@@ -9,19 +9,22 @@ export default {
         ],
         // Aggressive CSS purging for production
         safelist: [
-            // Keep essential classes that might be added dynamically
+            // Keep only essential dynamic classes
             'active',
             'show',
             'hide',
-            'fade',
-            'collapse',
-            'collapsing',
-            // Alpine.js classes
             'x-cloak',
-            // Theme switching classes
             'dark',
-            'light'
+            'light',
+            // Theme classes
+            'theme-loaded'
         ],
+        // Remove unused CSS more aggressively
+        options: {
+            keyframes: true,
+            fontFace: true,
+            variables: true,
+        },
         darkMode: 'class',
         theme: {
             extend: {

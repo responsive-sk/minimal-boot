@@ -17,6 +17,16 @@
     <link rel="mask-icon" href="<?= $asset('images/app/favicon/safari-pinned-tab.svg') ?>" color="#5bbad5"/>
     <meta name="msapplication-TileColor" content="#da532c"/>
 
+    <!-- Critical CSS inlined for faster rendering -->
+    <?php
+    $criticalCssFile = __DIR__ . '/../../../../src/Assets/critical/bootstrap-critical.css';
+    if (file_exists($criticalCssFile)) {
+        echo "<style id=\"critical-css\">\n";
+        echo file_get_contents($criticalCssFile);
+        echo "\n</style>\n";
+    }
+    ?>
+
     <!-- Local fonts are now included in CSS bundle for better performance -->
 
     <?php
@@ -375,7 +385,7 @@
         $finalJsUrl = 'js/app.js';
     }
     ?>
-    <script src="<?= $asset($finalJsUrl) ?>" onload="initBootstrapDropdowns()"></script>
+    <script src="<?= $asset($finalJsUrl) ?>" defer onload="initBootstrapDropdowns()"></script>
 
     <!-- Theme Toggle Script -->
     <script>
