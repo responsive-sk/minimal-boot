@@ -1,0 +1,30 @@
+# Codecov configuration
+# See: https://docs.codecov.com/docs/codecov-yaml
+
+coverage:
+  status:
+    project:
+      default:
+        target: 80%
+        threshold: 1%
+        if_not_found: success
+    patch:
+      default:
+        target: 80%
+        threshold: 1%
+        if_not_found: success
+
+  ignore:
+    - "tests/"
+    - "var/"
+    - "public/"
+    - "bin/"
+    - "config/"
+    - "src/Assets/"
+    - "src/Templates/"
+    - "vendor/"
+
+comment:
+  layout: "reach,diff,flags,tree"
+  behavior: default
+  require_changes: false
