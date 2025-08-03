@@ -178,13 +178,25 @@ find . -name "*.md" -not -path "./vendor/*" -delete 2>/dev/null || true
 find . -name ".DS_Store" -delete 2>/dev/null || true
 find . -name "Thumbs.db" -delete 2>/dev/null || true
 
-# Remove source asset files (keep only built assets)
+# Remove source asset files and development dependencies (keep only built assets)
+log_info "Removing development files and node_modules..."
 rm -rf src/Assets/*/node_modules 2>/dev/null || true
 rm -rf src/Assets/*/src 2>/dev/null || true
 rm -f src/Assets/*/package*.json 2>/dev/null || true
+rm -f src/Assets/*/pnpm-lock.yaml 2>/dev/null || true
+rm -f src/Assets/*/yarn.lock 2>/dev/null || true
+rm -f src/Assets/*/package-lock.json 2>/dev/null || true
 rm -f src/Assets/*/vite.config.js 2>/dev/null || true
 rm -f src/Assets/*/tailwind.config.js 2>/dev/null || true
 rm -f src/Assets/*/postcss.config.js 2>/dev/null || true
+rm -rf src/Assets/*/.vite 2>/dev/null || true
+rm -rf src/Assets/*/dist 2>/dev/null || true
+
+# Remove any remaining node_modules directories
+find . -name "node_modules" -type d -exec rm -rf {} + 2>/dev/null || true
+find . -name ".pnpm-store" -type d -exec rm -rf {} + 2>/dev/null || true
+
+log_success "Development files and node_modules removed"
 
 # Ensure proper permissions for var directory
 if [ -d "var" ]; then
@@ -248,8 +260,25 @@ For detailed deployment instructions, see:
 https://github.com/responsive-sk/minimal-boot/blob/main/docs/DEPLOYMENT.md
 EOF
 
-# Step 7: Calculate build size
+# Step 7: Calculate build size and show breakdown
+log_info "Calculating build size..."
 BUILD_SIZE=$(du -sh "$BUILD_DIR" | cut -f1)
+
+# Show size breakdown
+echo ""
+log_info "Build size breakdown:"
+echo "  Total build size: $BUILD_SIZE"
+echo "  Vendor dependencies: $(du -sh "$BUILD_DIR/vendor" 2>/dev/null | cut -f1 || echo 'N/A')"
+echo "  Application code: $(du -sh "$BUILD_DIR/src" 2>/dev/null | cut -f1 || echo 'N/A')"
+echo "  Templates: $(du -sh "$BUILD_DIR/templates" 2>/dev/null | cut -f1 || echo 'N/A')"
+echo "  Public assets: $(du -sh "$BUILD_DIR/public" 2>/dev/null | cut -f1 || echo 'N/A')"
+echo "  Configuration: $(du -sh "$BUILD_DIR/config" 2>/dev/null | cut -f1 || echo 'N/A')"
+
+# Check for any remaining large files/directories
+echo ""
+log_info "Checking for large files (>1MB)..."
+find "$BUILD_DIR" -type f -size +1M -exec ls -lh {} \; 2>/dev/null | head -10 || echo "  No large files found"
+
 log_success "Production build completed!"
 
 echo ""
@@ -268,3 +297,29 @@ echo "3. Deploy to production using FTPS or your preferred method"
 echo ""
 echo "For FTPS deployment, use: bin/deploy-ftps.sh"
 echo "For manual deployment, upload contents of $BUILD_DIR/ to your web server"
+echo ""
+echo "🧹 Cleanup verification:"
+if [ -d "$BUILD_DIR" ]; then
+    NODE_MODULES_COUNT=$(find "$BUILD_DIR" -name "node_modules" -type d | wc -l)
+    PACKAGE_JSON_COUNT=$(find "$BUILD_DIR" -name "package*.json" | wc -l)
+
+    if [ "$NODE_MODULES_COUNT" -eq 0 ]; then
+        echo "  ✅ No node_modules directories found"
+    else
+        echo "  ⚠️  Found $NODE_MODULES_COUNT node_modules directories"
+    fi
+
+    if [ "$PACKAGE_JSON_COUNT" -eq 0 ]; then
+        echo "  ✅ No package.json files found"
+    else
+        echo "  ⚠️  Found $PACKAGE_JSON_COUNT package.json files"
+    fi
+
+    # Check for other development files (excluding vendor directory)
+    DEV_FILES=$(find "$BUILD_DIR" -path "*/vendor" -prune -o -name "*.config.js" -o -name "*.lock" -o -name ".git*" -print | wc -l)
+    if [ "$DEV_FILES" -eq 0 ]; then
+        echo "  ✅ No development configuration files found (excluding vendor)"
+    else
+        echo "  ℹ️  Found $DEV_FILES development files (excluding vendor - this is normal)"
+    fi
+fi
