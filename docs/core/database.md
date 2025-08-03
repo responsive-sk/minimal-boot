@@ -1,3 +1,9 @@
+---
+layout: page
+title: "Core Database Layer"
+description: "Database connections, migrations, and query building in Core module"
+---
+
 # Core Database Layer
 
 The Core database layer provides a modular approach to database management with SQLite as the primary storage engine.

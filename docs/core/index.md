@@ -1,3 +1,9 @@
+---
+layout: page
+title: "Core Module Documentation"
+description: "Essential infrastructure services for the Minimal Boot framework"
+---
+
 # Core Module Documentation
 
 Welcome to the Core module documentation. The Core module provides essential infrastructure services that power the entire application.

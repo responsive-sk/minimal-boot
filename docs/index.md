@@ -37,9 +37,18 @@ php -S localhost:8080 -t public/
 
 ## Documentation Structure
 
+### Getting Started
 - [Installation](book/installation/) - Complete installation guide
 - [Getting Started](book/getting-started/) - Your first steps with Minimal Boot
 - [Architecture](book/architecture/) - Understanding the framework architecture
+
+### Core Framework
+- [Core Module](core/) - Essential infrastructure services
+  - [Database Layer](core/database/) - Connections, migrations, and query building
+  - [Template System](core/templates/) - Native PHP templating
+  - [Compatibility Layer](core/compatibility/) - Shared hosting support
+
+### Application Development
 - [Modules](book/modules/) - Working with modular components
 - [Templates](book/templates/) - Template system and layouts
 - [Assets & Frontend](book/assets/) - Frontend build systems and styling

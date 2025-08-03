@@ -1,3 +1,9 @@
+---
+layout: page
+title: "Core Module Overview"
+description: "Complete overview of Core module components and architecture"
+---
+
 # Core Module Documentation
 
 The Core module provides essential infrastructure services for the entire application. It follows Domain-Driven Design principles and PSR standards compliance.

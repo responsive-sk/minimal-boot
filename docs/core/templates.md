@@ -1,3 +1,9 @@
+---
+layout: page
+title: "Core Template System"
+description: "Native PHP templating with namespaces and layouts"
+---
+
 # Core Template System
 
 The Core template system provides a lightweight, native PHP templating solution with namespace support and layout management.

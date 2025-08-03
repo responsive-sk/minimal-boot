@@ -1,3 +1,9 @@
+---
+layout: page
+title: "Core Compatibility Layer"
+description: "Shared hosting environment support and function detection"
+---
+
 # Core Compatibility Layer
 
 The compatibility layer provides safe fallbacks and detection mechanisms for shared hosting environments where certain PHP functions may be disabled.
