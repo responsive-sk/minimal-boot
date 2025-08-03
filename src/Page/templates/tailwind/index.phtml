@@ -6,159 +6,359 @@ $layout('layout::default', [
 ]);
 ?>
 
-<!-- Hero Section -->
-<section class="bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 text-white py-24 lg:py-32">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-            <h1 class="text-4xl lg:text-6xl font-bold mb-6">
-                Welcome to <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">Minimal Boot</span>
+<!-- Hero Section with Modern Design -->
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <!-- Animated Background -->
+    <div class="absolute inset-0 w-full h-full">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-pink-600/20"></div>
+        <div class="absolute top-0 -left-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+        <div class="absolute top-0 -right-4 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="space-y-8">
+            <!-- Badge -->
+            <div class="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-sm font-medium">
+                <span class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                PHP 8.4 Ready • PSR-15 Compliant
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-tight">
+                <span class="block">Minimal</span>
+                <span class="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 animate-gradient-x">
+                    Boot
+                </span>
             </h1>
-            <p class="text-xl lg:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed">
-                A PSR-15 compliant application framework with Domain-Driven Design and modular architecture
+
+            <!-- Subtitle -->
+            <p class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                A modern PHP framework built with
+                <span class="text-cyan-400 font-semibold">Domain-Driven Design</span>,
+                <span class="text-blue-400 font-semibold">PSR standards</span>, and
+                <span class="text-purple-400 font-semibold">enterprise architecture</span>
             </p>
-            <div class="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-400 mx-auto mb-8"></div>
-            <p class="text-lg text-blue-100 mb-12 max-w-2xl mx-auto">
-                This application demonstrates modern web development with native PHP templates, DDD principles, and multiple frontend frameworks.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="/page/about" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors duration-200 flex items-center justify-center">
-                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-                    </svg>
-                    Learn More
+
+            <!-- Feature Pills -->
+            <div class="flex flex-wrap justify-center gap-3 mt-8">
+                <span class="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm font-medium border border-blue-500/30">
+                    🚀 Lightning Fast
+                </span>
+                <span class="px-4 py-2 bg-green-500/20 text-green-300 rounded-full text-sm font-medium border border-green-500/30">
+                    🔒 Type Safe
+                </span>
+                <span class="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-full text-sm font-medium border border-purple-500/30">
+                    🎨 Theme Ready
+                </span>
+                <span class="px-4 py-2 bg-pink-500/20 text-pink-300 rounded-full text-sm font-medium border border-pink-500/30">
+                    📱 Responsive
+                </span>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mt-12">
+                <a href="/page/about" class="group relative px-8 py-4 bg-white text-gray-900 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                    <span class="relative z-10 flex items-center justify-center">
+                        <svg class="w-5 h-5 mr-2 transition-transform group-hover:rotate-12" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                        Explore Framework
+                    </span>
                 </a>
-                <a href="/demo" class="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors duration-200 flex items-center justify-center">
-                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M4 2a2 2 0 00-2 2v11a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2H4zm0 2h12v11H4V4z" clip-rule="evenodd"/>
-                    </svg>
-                    TailwindCSS Demo
+                <a href="/demo" class="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/25">
+                    <span class="relative z-10 flex items-center justify-center">
+                        <svg class="w-5 h-5 mr-2 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4 2a2 2 0 00-2 2v11a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2H4zm0 2h12v11H4V4z" clip-rule="evenodd"/>
+                        </svg>
+                        Live Demo
+                    </span>
                 </a>
-                <a href="/demo/bootstrap" class="bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors duration-200 flex items-center justify-center">
-                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" clip-rule="evenodd"/>
-                    </svg>
-                    Bootstrap Demo
+                <a href="/demo/bootstrap" class="group relative px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25">
+                    <span class="relative z-10 flex items-center justify-center">
+                        <svg class="w-5 h-5 mr-2 transition-transform group-hover:rotate-180" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" clip-rule="evenodd"/>
+                        </svg>
+                        Bootstrap Theme
+                    </span>
                 </a>
             </div>
         </div>
     </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+        <div class="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+            <div class="w-1 h-3 bg-white rounded-full mt-2 animate-bounce"></div>
+        </div>
+    </div>
 </section>
 
-<!-- Features Section -->
-<section class="py-16 bg-white">
+<!-- Features Section with Modern Cards -->
+<section class="py-24 bg-gradient-to-b from-gray-50 to-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">Features</h2>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                Built with modern PHP practices and enterprise-grade architecture
+        <!-- Section Header -->
+        <div class="text-center mb-20">
+            <div class="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-800 text-sm font-medium mb-6">
+                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                Core Features
+            </div>
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                Built for <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Modern Development</span>
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Enterprise-grade architecture meets developer experience with cutting-edge PHP practices
             </p>
         </div>
 
+        <!-- Features Grid -->
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="bg-white p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow duration-200">
-                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                    <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"/>
-                    </svg>
+            <!-- Feature 1 -->
+            <div class="group relative bg-white p-8 rounded-2xl border border-gray-200 hover:border-blue-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="relative z-10">
+                    <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Modular Architecture</h3>
+                    <p class="text-gray-600 leading-relaxed">Clean separation with Core infrastructure and domain modules following Zend4Boot protocol</p>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-900 mb-2">Zend4Boot Protocol</h3>
-                <p class="text-gray-600">Modular architecture with src/Core/ and modules/ structure</p>
             </div>
 
-            <div class="bg-white p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow duration-200">
-                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                    <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                    </svg>
+            <!-- Feature 2 -->
+            <div class="group relative bg-white p-8 rounded-2xl border border-gray-200 hover:border-green-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <div class="absolute inset-0 bg-gradient-to-br from-green-50 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="relative z-10">
+                    <div class="w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Quality Assurance</h3>
+                    <p class="text-gray-600 leading-relaxed">PHPStan Level Max, strict types, PSR compliance, and comprehensive testing suite</p>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-900 mb-2">Paths Service</h3>
-                <p class="text-gray-600">Centralized path management using <a href="https://github.com/responsive-sk/slim4-paths" target="_blank" class="text-blue-600 hover:text-blue-800">responsive-sk/slim4-paths</a></p>
             </div>
 
-            <div class="bg-white p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow duration-200">
-                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                    <svg class="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M18 8a6 6 0 01-7.743 5.743L10 14l-1 1-1 1H6v2H2v-4l4.257-4.257A6 6 0 1118 8zm-6-4a1 1 0 100 2 2 2 0 012 2 1 1 0 102 0 4 4 0 00-4-4z" clip-rule="evenodd"/>
-                    </svg>
+            <!-- Feature 3 -->
+            <div class="group relative bg-white p-8 rounded-2xl border border-gray-200 hover:border-purple-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <div class="absolute inset-0 bg-gradient-to-br from-purple-50 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="relative z-10">
+                    <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 8a6 6 0 01-7.743 5.743L10 14l-1 1-1 1H6v2H2v-4l4.257-4.257A6 6 0 1118 8zm-6-4a1 1 0 100 2 2 2 0 012 2 1 1 0 102 0 4 4 0 00-4-4z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Security First</h3>
+                    <p class="text-gray-600 leading-relaxed">Mark convention for admin routes, type safety, and secure-by-default configurations</p>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-900 mb-2">Mark Convention</h3>
-                <p class="text-gray-600">Admin functionality uses 'mark' instead of 'admin' for security</p>
             </div>
 
-            <div class="bg-white p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow duration-200">
-                <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
-                    <svg class="w-6 h-6 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                    </svg>
+            <!-- Feature 4 -->
+            <div class="group relative bg-white p-8 rounded-2xl border border-gray-200 hover:border-cyan-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <div class="absolute inset-0 bg-gradient-to-br from-cyan-50 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="relative z-10">
+                    <div class="w-14 h-14 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Path Management</h3>
+                    <p class="text-gray-600 leading-relaxed">Centralized path service with <a href="https://github.com/responsive-sk/slim4-paths" target="_blank" class="text-cyan-600 hover:text-cyan-800 font-medium">responsive-sk/slim4-paths</a></p>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-900 mb-2">Quality Gates</h3>
-                <p class="text-gray-600">PHPStan level MAX, strict types, PSR compliance</p>
             </div>
 
-            <div class="bg-white p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow duration-200">
-                <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
-                    <svg class="w-6 h-6 text-red-600" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                    </svg>
+            <!-- Feature 5 -->
+            <div class="group relative bg-white p-8 rounded-2xl border border-gray-200 hover:border-orange-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <div class="absolute inset-0 bg-gradient-to-br from-orange-50 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="relative z-10">
+                    <div class="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Native Templates</h3>
+                    <p class="text-gray-600 leading-relaxed">Lightning-fast PHP templates with layout inheritance and zero compilation overhead</p>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-900 mb-2">Native Templates</h3>
-                <p class="text-gray-600">Fast PHP templates with layout inheritance and helpers</p>
             </div>
 
-            <div class="bg-white p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow duration-200">
-                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                    <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                    </svg>
+            <!-- Feature 6 -->
+            <div class="group relative bg-white p-8 rounded-2xl border border-gray-200 hover:border-pink-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <div class="absolute inset-0 bg-gradient-to-br from-pink-50 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="relative z-10">
+                    <div class="w-14 h-14 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Multi-Theme Support</h3>
+                    <p class="text-gray-600 leading-relaxed">Dynamic switching between Bootstrap, Tailwind, and custom themes with hot-reload</p>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-900 mb-2">Theme Switching</h3>
-                <p class="text-gray-600">Dynamic switching between Bootstrap and Tailwind themes</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Technology Stack -->
-<section class="py-16 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">Technology Stack</h2>
-            <p class="text-lg text-gray-600">Built with modern tools and frameworks</p>
+<!-- Technology Stack with Modern Design -->
+<section class="py-24 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white relative overflow-hidden">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-10">
+        <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0); background-size: 20px 20px;"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-sm font-medium mb-6">
+                <span class="w-2 h-2 bg-cyan-400 rounded-full mr-2 animate-pulse"></span>
+                Technology Stack
+            </div>
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                Powered by <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">Modern Tech</span>
+            </h2>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                Built with cutting-edge tools and frameworks for maximum performance and developer experience
+            </p>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div class="text-center">
-                <div class="w-16 h-16 bg-blue-600 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                    <span class="text-white font-bold text-xl">PHP</span>
+        <!-- Tech Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+            <!-- PHP 8.4 -->
+            <div class="group text-center">
+                <div class="relative w-20 h-20 mx-auto mb-6">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300"></div>
+                    <div class="relative w-full h-full flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">PHP</span>
+                    </div>
                 </div>
-                <h3 class="font-semibold text-gray-900">PHP 8.4</h3>
-                <p class="text-sm text-gray-600">Modern PHP with strict types</p>
+                <h3 class="font-bold text-white text-lg mb-2">PHP 8.4</h3>
+                <p class="text-gray-400 text-sm">Modern PHP with strict types and performance</p>
             </div>
 
-            <div class="text-center">
-                <div class="w-16 h-16 bg-purple-600 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                    <span class="text-white font-bold text-sm">PSR</span>
+            <!-- PSR Standards -->
+            <div class="group text-center">
+                <div class="relative w-20 h-20 mx-auto mb-6">
+                    <div class="absolute inset-0 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300"></div>
+                    <div class="relative w-full h-full flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">PSR</span>
+                    </div>
                 </div>
-                <h3 class="font-semibold text-gray-900">PSR-15</h3>
-                <p class="text-sm text-gray-600">HTTP Server Request Handlers</p>
+                <h3 class="font-bold text-white text-lg mb-2">PSR-15</h3>
+                <p class="text-gray-400 text-sm">HTTP Server Request Handlers standard</p>
             </div>
 
-            <div class="text-center">
-                <div class="w-16 h-16 bg-green-600 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                    <span class="text-white font-bold text-sm">DDD</span>
+            <!-- Domain-Driven Design -->
+            <div class="group text-center">
+                <div class="relative w-20 h-20 mx-auto mb-6">
+                    <div class="absolute inset-0 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300"></div>
+                    <div class="relative w-full h-full flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">DDD</span>
+                    </div>
                 </div>
-                <h3 class="font-semibold text-gray-900">Domain-Driven</h3>
-                <p class="text-sm text-gray-600">Clean architecture patterns</p>
+                <h3 class="font-bold text-white text-lg mb-2">Domain-Driven</h3>
+                <p class="text-gray-400 text-sm">Clean architecture and design patterns</p>
             </div>
 
-            <div class="text-center">
-                <div class="w-16 h-16 bg-cyan-600 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                    <span class="text-white font-bold text-sm">TW</span>
+            <!-- Tailwind CSS -->
+            <div class="group text-center">
+                <div class="relative w-20 h-20 mx-auto mb-6">
+                    <div class="absolute inset-0 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-2xl transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300"></div>
+                    <div class="relative w-full h-full flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">TW</span>
+                    </div>
                 </div>
-                <h3 class="font-semibold text-gray-900">Tailwind CSS</h3>
-                <p class="text-sm text-gray-600">Utility-first CSS framework</p>
+                <h3 class="font-bold text-white text-lg mb-2">Tailwind CSS</h3>
+                <p class="text-gray-400 text-sm">Utility-first CSS framework</p>
             </div>
+        </div>
+
+        <!-- Additional Tech Stack -->
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Development Tools -->
+            <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                <h3 class="text-xl font-bold text-white mb-4">Development</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center text-gray-300">
+                        <div class="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
+                        <span>PHPStan Level Max</span>
+                    </div>
+                    <div class="flex items-center text-gray-300">
+                        <div class="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
+                        <span>Composer 2.x</span>
+                    </div>
+                    <div class="flex items-center text-gray-300">
+                        <div class="w-2 h-2 bg-purple-400 rounded-full mr-3"></div>
+                        <span>PHPUnit Testing</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Infrastructure -->
+            <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                <h3 class="text-xl font-bold text-white mb-4">Infrastructure</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center text-gray-300">
+                        <div class="w-2 h-2 bg-yellow-400 rounded-full mr-3"></div>
+                        <span>SQLite Database</span>
+                    </div>
+                    <div class="flex items-center text-gray-300">
+                        <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>
+                        <span>Mezzio Framework</span>
+                    </div>
+                    <div class="flex items-center text-gray-300">
+                        <div class="w-2 h-2 bg-pink-400 rounded-full mr-3"></div>
+                        <span>GitHub Actions CI/CD</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Frontend -->
+            <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                <h3 class="text-xl font-bold text-white mb-4">Frontend</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center text-gray-300">
+                        <div class="w-2 h-2 bg-orange-400 rounded-full mr-3"></div>
+                        <span>Bootstrap 5</span>
+                    </div>
+                    <div class="flex items-center text-gray-300">
+                        <div class="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
+                        <span>Alpine.js</span>
+                    </div>
+                    <div class="flex items-center text-gray-300">
+                        <div class="w-2 h-2 bg-red-400 rounded-full mr-3"></div>
+                        <span>Native PHP Templates</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            Ready to Build Something <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Amazing?</span>
+        </h2>
+        <p class="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
+            Start your next project with Minimal Boot and experience the power of modern PHP development
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="https://github.com/responsive-sk/minimal-boot" target="_blank" class="group inline-flex items-center px-8 py-4 bg-gray-900 text-white rounded-xl font-semibold hover:bg-gray-800 transition-all duration-300 hover:scale-105">
+                <svg class="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clip-rule="evenodd"/>
+                </svg>
+                View on GitHub
+            </a>
+            <a href="/page/about" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 hover:scale-105">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                </svg>
+                Learn More
+            </a>
         </div>
     </div>
 </section>
