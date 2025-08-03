@@ -1,8 +1,16 @@
 <?php
-$layout('bootstrap_layouts::app', [
+// Use theme-aware layout - determine from CSS URL
+$currentTheme = 'bootstrap'; // default
+if (isset($cssUrl) && str_contains($cssUrl, 'themes/main/assets')) {
+    $currentTheme = 'tailwind';
+}
+
+$layout($currentTheme . '_layouts::app', [
     'title' => $page->getTitle(),
     'description' => $page->getMetaDescription(),
-    'author' => 'Dotkernel Team'
+    'author' => 'Dotkernel Team',
+    'cssUrl' => $cssUrl ?? null,
+    'jsUrl' => $jsUrl ?? null,
 ]);
 ?>
 
