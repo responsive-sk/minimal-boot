@@ -31,6 +31,9 @@ collections:
   book:
     output: true
     permalink: /:collection/:name/
+  core:
+    output: true
+    permalink: /:collection/:name/
 
 # Navigation
 navigation:
@@ -42,6 +45,8 @@ navigation:
     url: "/book/getting-started/"
   - title: "Architecture"
     url: "/book/architecture/"
+  - title: "Core Module"
+    url: "/core/"
   - title: "Modules"
     url: "/book/modules/"
   - title: "Templates"
