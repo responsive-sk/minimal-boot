@@ -1,5 +1,7 @@
 import { defineConfig } from 'vite';
 import path from 'path';
+import { copyFileSync, mkdirSync, existsSync } from 'fs';
+import { glob } from 'glob';
 
 export default defineConfig(({ mode }) => ({
     root: path.resolve(__dirname, 'src'),
@@ -19,7 +21,7 @@ export default defineConfig(({ mode }) => ({
                     if (assetInfo.name && /\.(png|jpe?g|gif|svg|webp|avif)$/i.test(assetInfo.name)) {
                         return 'assets/images/[name].[ext]';
                     }
-                    // Font files go to fonts directory
+                    // Font files are handled by custom copy logic
                     if (assetInfo.name && /\.(woff2?|eot|ttf|otf)$/i.test(assetInfo.name)) {
                         return 'assets/fonts/[name].[ext]';
                     }
@@ -28,6 +30,27 @@ export default defineConfig(({ mode }) => ({
             }
         }
     },
+    plugins: [
+        {
+            name: 'copy-fonts-to-public',
+            writeBundle() {
+                // Copy fonts to central public/fonts directory
+                const publicFontsDir = path.resolve(__dirname, '../../../public/fonts');
+                if (!existsSync(publicFontsDir)) {
+                    mkdirSync(publicFontsDir, { recursive: true });
+                }
+
+                const fontFiles = glob.sync('fonts/**/*.{woff,woff2,eot,ttf,otf}', { cwd: path.resolve(__dirname, 'src') });
+                fontFiles.forEach(fontFile => {
+                    const fileName = path.basename(fontFile);
+                    const srcPath = path.resolve(__dirname, 'src', fontFile);
+                    const destPath = path.resolve(publicFontsDir, fileName);
+                    copyFileSync(srcPath, destPath);
+                    console.log(`Copied ${fileName} to public/fonts/`);
+                });
+            }
+        }
+    ],
     server: {
         port: 3001
     }

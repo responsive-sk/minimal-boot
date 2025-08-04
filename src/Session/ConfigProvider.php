@@ -46,7 +46,7 @@ class ConfigProvider
                 // Session services
                 SessionInterface::class => static function (): SessionInterface {
                     return SessionFactory::createForDevelopment([
-                        'name' => 'light_app_session',
+                        'name' => 'minimal_boot_session',
                         'cache_expire' => 180,
                         'cookie_httponly' => true,
                         'cookie_secure' => isset($_SERVER['HTTPS']),

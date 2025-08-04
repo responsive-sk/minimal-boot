@@ -20,18 +20,7 @@
     <meta property="og:description" content="<?= $this->e($description ?? 'Mezzio Light Application') ?>">
     <meta property="og:type" content="website">
     
-    <!-- Critical CSS inlined for faster rendering -->
-    <?php
-    $criticalCssFile = __DIR__ . '/../../../../src/Assets/critical/tailwind-critical.css';
-    if (file_exists($criticalCssFile)) {
-        $criticalCss = file_get_contents($criticalCssFile);
-    }
-    ?>
-    <?php if (isset($criticalCss)): ?>
-    <style id="critical-css">
-<?= $criticalCss ?>
-    </style>
-    <?php endif; ?>
+    <!-- Critical CSS moved to main CSS file -->
     
     <!-- Local fonts are now included in CSS bundle for better performance -->
     
@@ -77,9 +66,8 @@
                     <!-- Logo and primary navigation -->
                     <div class="flex items-center">
                         <div class="flex-shrink-0 flex items-center">
-                            <a href="/" class="flex items-center space-x-2">
+                            <a href="/" class="flex items-center">
                                 <img src="<?= $asset('themes/main/assets/images/nav/logo.svg') ?>" alt="Logo" class="h-8 w-8">
-                                <span class="text-xl font-bold text-gray-900">Demo</span>
                             </a>
                         </div>
                         

@@ -2,6 +2,9 @@
 import Alpine from 'alpinejs';
 import './style.css';
 
+// Import theme utilities
+import { NavigationUtils } from './js/utils.js';
+
 // Import images for Vite processing
 import hdmBootImg from './images/php82.jpg';
 import slim4Img from './images/javascript.jpg';
@@ -17,6 +20,9 @@ window.themeAssets = {
         logo: logoSvg
     }
 };
+
+// Make navigation utilities globally available
+window.NavigationUtils = NavigationUtils;
 
 // Dropdown functionality for Tailwind theme
 function initializeDropdowns()

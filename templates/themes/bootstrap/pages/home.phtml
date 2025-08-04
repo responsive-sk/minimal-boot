@@ -17,7 +17,7 @@ $layout('bootstrap_layouts::app', [
 
                 <div class="d-flex flex-wrap gap-3 mb-4">
                     <a class="btn btn-primary btn-lg" href="/page/about" role="button">
-                        <i class="bi bi-info-circle me-2"></i>Learn More
+                        <i class="bi bi-info-circle me-2"></i>Learn More About Minimal Boot
                     </a>
                     <a class="btn btn-success btn-lg" href="/demo" role="button">
                         <i class="bi bi-palette me-2"></i>TailwindCSS Demo
@@ -98,7 +98,7 @@ $layout('bootstrap_layouts::app', [
                 <div class="card-body">
                     <h3 class="card-title">Dark Theme</h3>
                     <p class="card-text">Built-in dark/light theme switching with localStorage persistence and system detection.</p>
-                    <button class="btn btn-outline-primary" onclick="ThemeUtils.toggleTheme()">Toggle Theme</button>
+                    <button class="btn btn-outline-primary" data-action="toggle-theme">Toggle Theme</button>
                 </div>
             </div>
         </div>

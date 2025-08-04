@@ -3,10 +3,28 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content="<?= $e($description ?? 'Mezzio Light Application') ?>"/>
+    <meta name="description" content="<?= $e($description ?? 'Modern PHP framework built with Mezzio, featuring multiple frontend themes and clean architecture') ?>"/>
     <meta name="author" content="<?= $e($author ?? 'responsive.sk Team') ?>"/>
     <meta name="generator" content="Mezzio"/>
     <meta name="theme-color" content="#ffffff"/>
+    <meta name="robots" content="index, follow"/>
+    <meta name="keywords" content="PHP, Mezzio, Framework, Bootstrap, TailwindCSS, Modern Web Development"/>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="<?= $e($canonical ?? $_SERVER['REQUEST_URI'] ?? '') ?>"/>
+    <meta property="og:title" content="<?= $e($title ?? 'Minimal Boot - Modern PHP Framework') ?>"/>
+    <meta property="og:description" content="<?= $e($description ?? 'Modern PHP framework built with Mezzio, featuring multiple frontend themes and clean architecture') ?>"/>
+    <meta property="og:site_name" content="Minimal Boot"/>
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image"/>
+    <meta property="twitter:url" content="<?= $e($canonical ?? $_SERVER['REQUEST_URI'] ?? '') ?>"/>
+    <meta property="twitter:title" content="<?= $e($title ?? 'Minimal Boot - Modern PHP Framework') ?>"/>
+    <meta property="twitter:description" content="<?= $e($description ?? 'Modern PHP framework built with Mezzio, featuring multiple frontend themes and clean architecture') ?>"/>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="<?= $e($canonical ?? $_SERVER['REQUEST_URI'] ?? '') ?>"/>
 
     <title><?= $e($title ?? 'Mezzio Light Application') ?></title>
 
@@ -17,18 +35,7 @@
     <link rel="mask-icon" href="/images/app/favicon/safari-pinned-tab.svg" color="#5bbad5"/>
     <meta name="msapplication-TileColor" content="#da532c"/>
 
-    <!-- Critical CSS inlined for faster rendering -->
-    <?php
-    $criticalCssFile = __DIR__ . '/../../../../src/Assets/critical/tailwind-critical.css';
-    if (file_exists($criticalCssFile)) {
-        $criticalCss = file_get_contents($criticalCssFile);
-    }
-    ?>
-    <?php if (isset($criticalCss)): ?>
-    <style id="critical-css">
-<?= $criticalCss ?>
-    </style>
-    <?php endif; ?>
+    <!-- Critical CSS moved to main CSS file -->
 
     <!-- Local fonts are now included in CSS bundle for better performance -->
 
@@ -42,92 +49,21 @@
         $finalCssUrl = 'themes/main/assets/main.css';
     }
     ?>
-    <!-- Preload critical CSS to prevent FOUC -->
-    <link rel="preload" href="<?= $asset($finalCssUrl) ?>" as="style" onload="this.onload=null;this.rel='stylesheet';document.documentElement.classList.add('theme-loaded');">
-    <noscript><link rel="stylesheet" href="<?= $asset($finalCssUrl) ?>"></noscript>
+    <!-- Load CSS synchronously to prevent FOUC -->
+    <link rel="stylesheet" href="<?= $asset($finalCssUrl) ?>">
 
-    <!-- Fallback CSS loading detection -->
-    <script>
-        // Add theme-loaded class when CSS is ready
-        document.addEventListener('DOMContentLoaded', function() {
-            // Check if CSS is loaded by testing a Tailwind class
-            const testEl = document.createElement('div');
-            testEl.className = 'bg-blue-500';
-            testEl.style.display = 'none';
-            document.body.appendChild(testEl);
-
-            const bgColor = window.getComputedStyle(testEl).backgroundColor;
-            if (bgColor === 'rgb(59, 130, 246)' || bgColor === 'rgba(59, 130, 246, 1)') {
-                document.documentElement.classList.add('theme-loaded');
-            }
-
-            document.body.removeChild(testEl);
-
-            // Fallback: add class after 100ms
-            setTimeout(() => {
-                document.documentElement.classList.add('theme-loaded');
-            }, 100);
-        });
-    </script>
-
-    <style>
-        /* Critical CSS to prevent FOUC */
-        body {
-            font-family: 'Inter', system-ui, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9fafb; /* bg-gray-50 */
-            min-height: 100vh;
-        }
-
-        /* Critical layout styles */
-        .min-h-screen { min-height: 100vh; }
-        .flex { display: flex; }
-        .flex-col { flex-direction: column; }
-        .flex-1 { flex: 1 1 0%; }
-        .fixed { position: fixed; }
-        .top-0 { top: 0; }
-        .w-full { width: 100%; }
-        .z-50 { z-index: 50; }
-        .pt-16 { padding-top: 4rem; }
-
-        /* Critical heading styles to fix h1 warning */
-        h1 {
-            font-size: 2.25rem; /* text-4xl */
-            line-height: 1.2;
-            font-weight: 700;
-            margin: 0 0 1.5rem 0;
-        }
-
-        /* Navigation critical styles */
-        nav {
-            background-color: white;
-            border-bottom: 1px solid #e5e7eb;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-        }
-
-        /* Hide content until CSS loads */
-        .theme-loading {
-            visibility: hidden;
-        }
-
-        /* Show content when CSS is loaded */
-        .theme-loaded .theme-loading {
-            visibility: visible;
-        }
-    </style>
+    <!-- Critical CSS moved to main CSS file -->
 </head>
 
-<body class="bg-gray-50 min-h-screen theme-loading">
+<body class="bg-gray-50 min-h-screen">
     <div class="min-h-screen flex flex-col">
         <!-- Navigation -->
         <nav class="bg-white shadow-sm border-b border-gray-200 fixed w-full top-0 z-40">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between h-16">
                     <div class="flex items-center">
-                        <a href="<?= $url('page::index') ?>" class="flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded" aria-label="Go to homepage - Minimal Boot">
-                            <img src="/images/app/logo.svg" class="h-8 w-auto" alt="Minimal Boot Logo"/>
-                            <span class="ml-2 text-xl font-bold text-gray-900">Minimal Boot</span>
+                        <a href="<?= $url('page::index') ?>" class="flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded" aria-label="Go to homepage">
+                            <img src="/images/app/logo.svg" class="h-8 w-auto" alt="Logo"/>
                         </a>
                     </div>
 

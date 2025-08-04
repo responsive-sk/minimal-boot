@@ -1,0 +1,37 @@
+/* Source Sans Pro Font Family */
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/source-sans-pro-300.woff2?v=1') format('woff2'),
+       url('/fonts/source-sans-pro-300.woff?v=1') format('woff');
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+  src: url('/fonts/source-sans-pro-400.woff2?v=1') format('woff2'),
+       url('/fonts/source-sans-pro-400.woff?v=1') format('woff');
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/source-sans-pro-600.woff2?v=1') format('woff2'),
+       url('/fonts/source-sans-pro-600.woff?v=1') format('woff');
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/source-sans-pro-700.woff2?v=1') format('woff2'),
+       url('/fonts/source-sans-pro-700.woff?v=1') format('woff');
+}

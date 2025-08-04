@@ -112,6 +112,192 @@ body {
   transform: translateX(26px);
 }
 
+/* Critical CSS to prevent FOUC */
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+}
+
+/* Critical Bootstrap-like styles */
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.navbar {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.fixed-top {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
+
+.app-content {
+  padding-top: 60px;
+}
+
+/* Critical heading styles */
+h1 {
+  font-size: 2.5rem;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+/* Prevent layout shift for images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--bs-primary, #0d6efd);
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark mode support */
+[data-bs-theme="dark"] {
+  color-scheme: dark;
+}
+
+[data-bs-theme="dark"] body {
+  background-color: #212529;
+  color: #f8f9fa;
+}
+
+[data-bs-theme="dark"] .navbar-light {
+  background-color: #343a40 !important;
+}
+
+[data-bs-theme="dark"] .navbar-light .navbar-brand,
+[data-bs-theme="dark"] .navbar-light .navbar-nav .nav-link {
+  color: #f8f9fa !important;
+}
+
+[data-bs-theme="dark"] .card {
+  background-color: #343a40;
+  border-color: #495057;
+  color: #f8f9fa;
+}
+
+[data-bs-theme="dark"] .btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+/* Navigation theme toggle (slider style) */
+.nav-theme-toggle {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  margin: 0;
+}
+
+.nav-theme-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.nav-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.3s;
+  border-radius: 30px;
+}
+
+.nav-slider:before {
+  position: absolute;
+  content: "🌙";
+  height: 26px;
+  width: 26px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.nav-theme-toggle input:checked + .nav-slider {
+  background-color: #007bff;
+}
+
+.nav-theme-toggle input:checked + .nav-slider:before {
+  transform: translateX(30px);
+  content: "☀️";
+}
+
+[data-bs-theme="dark"] .nav-slider {
+  background-color: #495057;
+}
+
+[data-bs-theme="dark"] .nav-slider:before {
+  background-color: #f8f9fa;
+}
+
+/* Smooth theme transitions */
+*, *::before, *::after {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Custom CSS classes to replace inline styles */
+
+/* Theme notification positioning */
+.theme-notification {
+  z-index: 9999;
+  display: none;
+}
+
+/* Icon sizing utilities */
+.icon-8rem {
+  font-size: 8rem;
+  opacity: 0.8;
+}
+
+.icon-circle-60 {
+  width: 60px;
+  height: 60px;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .app-content {

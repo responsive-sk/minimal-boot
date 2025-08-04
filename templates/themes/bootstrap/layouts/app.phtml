@@ -3,10 +3,28 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content="<?= $e($description ?? 'Mezzio Light Application') ?>"/>
+    <meta name="description" content="<?= $e($description ?? 'Modern PHP framework built with Mezzio, featuring Bootstrap theme and clean architecture') ?>"/>
     <meta name="author" content="<?= $e($author ?? 'responsive.sk Team') ?>"/>
     <meta name="generator" content="Mezzio"/>
     <meta name="theme-color" content="#ffffff"/>
+    <meta name="robots" content="index, follow"/>
+    <meta name="keywords" content="PHP, Mezzio, Framework, Bootstrap, Modern Web Development"/>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="<?= $e($canonical ?? $_SERVER['REQUEST_URI'] ?? '') ?>"/>
+    <meta property="og:title" content="<?= $e($title ?? 'Minimal Boot - Modern PHP Framework') ?>"/>
+    <meta property="og:description" content="<?= $e($description ?? 'Modern PHP framework built with Mezzio, featuring Bootstrap theme and clean architecture') ?>"/>
+    <meta property="og:site_name" content="Minimal Boot"/>
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image"/>
+    <meta property="twitter:url" content="<?= $e($canonical ?? $_SERVER['REQUEST_URI'] ?? '') ?>"/>
+    <meta property="twitter:title" content="<?= $e($title ?? 'Minimal Boot - Modern PHP Framework') ?>"/>
+    <meta property="twitter:description" content="<?= $e($description ?? 'Modern PHP framework built with Mezzio, featuring Bootstrap theme and clean architecture') ?>"/>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="<?= $e($canonical ?? $_SERVER['REQUEST_URI'] ?? '') ?>"/>
 
     <title><?= $e($title ?? 'Mezzio Light Application') ?></title>
 
@@ -17,18 +35,7 @@
     <link rel="mask-icon" href="<?= $asset('images/app/favicon/safari-pinned-tab.svg') ?>" color="#5bbad5"/>
     <meta name="msapplication-TileColor" content="#da532c"/>
 
-    <!-- Critical CSS inlined for faster rendering -->
-    <?php
-    $criticalCssFile = __DIR__ . '/../../../../src/Assets/critical/bootstrap-critical.css';
-    if (file_exists($criticalCssFile)) {
-        $criticalCss = file_get_contents($criticalCssFile);
-    }
-    ?>
-    <?php if (isset($criticalCss)): ?>
-    <style id="critical-css">
-<?= $criticalCss ?>
-    </style>
-    <?php endif; ?>
+    <!-- Critical CSS moved to main CSS file -->
 
     <!-- Local fonts are now included in CSS bundle for better performance -->
 
@@ -42,9 +49,8 @@
         $finalCssUrl = 'themes/bootstrap/assets/main.css';
     }
     ?>
-    <!-- Preload critical CSS to prevent FOUC -->
-    <link rel="preload" href="<?= $asset($finalCssUrl) ?>" as="style" onload="this.onload=null;this.rel='stylesheet';document.documentElement.classList.add('theme-loaded');">
-    <noscript><link rel="stylesheet" href="<?= $asset($finalCssUrl) ?>"></noscript>
+    <!-- Load CSS synchronously to prevent FOUC -->
+    <link rel="stylesheet" href="<?= $asset($finalCssUrl) ?>">
 
     <!-- CSS loading detection -->
     <script>
@@ -106,168 +112,15 @@
         })();
     </script>
 
-    <style>
-        /* Critical CSS to prevent FOUC */
-        body {
-            font-family: 'Source Sans Pro', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff;
-        }
-
-        /* Critical Bootstrap-like styles */
-        .container { max-width: 1140px; margin: 0 auto; padding: 0 15px; }
-        .navbar { background-color: #f8f9fa; border-bottom: 1px solid #dee2e6; }
-        .fixed-top { position: fixed; top: 0; right: 0; left: 0; z-index: 1030; }
-        .app-content { padding-top: 60px; }
-
-        /* Critical heading styles */
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 400;
-            line-height: 1.2;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Hide content until CSS loads */
-        .theme-loading {
-            visibility: hidden;
-        }
-
-        .theme-loaded .theme-loading {
-            visibility: visible;
-        }
-
-        /* Theme toggle button */
-        .theme-toggle {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--bs-primary, #0d6efd);
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .theme-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Dark mode support */
-        [data-bs-theme="dark"] {
-            color-scheme: dark;
-        }
-
-        [data-bs-theme="dark"] body {
-            background-color: #212529;
-            color: #f8f9fa;
-        }
-
-        [data-bs-theme="dark"] .navbar-light {
-            background-color: #343a40 !important;
-        }
-
-        [data-bs-theme="dark"] .navbar-light .navbar-brand,
-        [data-bs-theme="dark"] .navbar-light .navbar-nav .nav-link {
-            color: #f8f9fa !important;
-        }
-
-        [data-bs-theme="dark"] .card {
-            background-color: #343a40;
-            border-color: #495057;
-            color: #f8f9fa;
-        }
-
-        [data-bs-theme="dark"] .btn-primary {
-            background-color: #0d6efd;
-            border-color: #0d6efd;
-        }
-
-        /* Navigation theme toggle (slider style) */
-        .nav-theme-toggle {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 30px;
-            margin: 0;
-        }
-
-        .nav-theme-toggle input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .nav-slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: 0.3s;
-            border-radius: 30px;
-        }
-
-        .nav-slider:before {
-            position: absolute;
-            content: "🌙";
-            height: 26px;
-            width: 26px;
-            left: 2px;
-            bottom: 2px;
-            background-color: white;
-            transition: 0.3s;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-        }
-
-        .nav-theme-toggle input:checked + .nav-slider {
-            background-color: #007bff;
-        }
-
-        .nav-theme-toggle input:checked + .nav-slider:before {
-            transform: translateX(30px);
-            content: "☀️";
-        }
-
-        [data-bs-theme="dark"] .nav-slider {
-            background-color: #495057;
-        }
-
-        [data-bs-theme="dark"] .nav-slider:before {
-            background-color: #f8f9fa;
-        }
-
-        /* Smooth theme transitions */
-        *, *::before, *::after {
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-    </style>
+    <!-- Critical CSS moved to main CSS file -->
 </head>
 
-<body class="app theme-loading <?= $body_class ?? '' ?>">
+<body class="app <?= $body_class ?? '' ?>">
     <div class="app-wrapper">
         <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="<?= $url('page::index') ?>" aria-label="Go to homepage - Minimal Boot">
-                    <img src="/images/app/logo.svg" width="150" height="30" alt="Minimal Boot Logo"/>
-                    <span class="visually-hidden">Minimal Boot</span>
+                <a class="navbar-brand" href="<?= $url('page::index') ?>" aria-label="Go to homepage">
+                    <img src="/images/app/logo.svg" width="150" height="30" alt="Logo"/>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader"
                         aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -369,7 +222,7 @@
     </button>
 
     <!-- Theme change notification -->
-    <div id="theme-notification" class="position-fixed top-0 start-50 translate-middle-x mt-3" style="z-index: 9999; display: none;">
+    <div id="theme-notification" class="position-fixed top-0 start-50 translate-middle-x mt-3 theme-notification">
         <div class="alert alert-info alert-dismissible fade show" role="alert">
             <i class="bi bi-palette-fill me-2"></i>
             <span id="theme-message">Switched to dark theme</span>
@@ -389,126 +242,6 @@
     ?>
     <script src="<?= $asset($finalJsUrl) ?>" defer onload="initBootstrapDropdowns()"></script>
 
-    <!-- Theme Toggle Script -->
-    <script>
-        // Dark mode functionality for both navigation and floating buttons
-        const themeToggle = document.getElementById('theme-toggle');
-        const navThemeCheckbox = document.getElementById('nav-theme-checkbox');
-        const html = document.documentElement;
-        const themeIcon = document.querySelector('.theme-toggle-icon');
-
-        // Get current theme from HTML attribute (set by inline script)
-        const currentTheme = html.getAttribute('data-bs-theme') || 'light';
-        updateAllThemeIcons(currentTheme);
-
-        // Add event listeners to both buttons
-        if (themeToggle) {
-            themeToggle.addEventListener('click', toggleTheme);
-        }
-
-        if (navThemeCheckbox) {
-            navThemeCheckbox.addEventListener('change', toggleTheme);
-        }
-
-        function toggleTheme() {
-            const currentTheme = html.getAttribute('data-bs-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-            // Add smooth transition
-            document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
-
-            html.setAttribute('data-bs-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateAllThemeIcons(newTheme);
-            showThemeNotification(newTheme);
-
-            // Remove transition after animation
-            setTimeout(() => {
-                document.body.style.transition = '';
-            }, 300);
-        }
-
-        function updateAllThemeIcons(theme) {
-            const icon = theme === 'dark' ? '☀️' : '🌙';
-            const ariaLabel = `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`;
-
-            // Update floating button
-            if (themeIcon) {
-                themeIcon.textContent = icon;
-            }
-            if (themeToggle) {
-                themeToggle.setAttribute('aria-label', ariaLabel);
-            }
-
-            // Update navigation checkbox
-            if (navThemeCheckbox) {
-                navThemeCheckbox.checked = theme === 'dark';
-            }
-        }
-
-        function showThemeNotification(theme) {
-            const notification = document.getElementById('theme-notification');
-            const message = document.getElementById('theme-message');
-
-            if (notification && message) {
-                message.textContent = `Switched to ${theme} theme`;
-                notification.style.display = 'block';
-
-                // Auto-hide after 2 seconds
-                setTimeout(() => {
-                    const alert = notification.querySelector('.alert');
-                    if (alert) {
-                        alert.classList.remove('show');
-                        setTimeout(() => {
-                            notification.style.display = 'none';
-                            alert.classList.add('show');
-                        }, 150);
-                    }
-                }, 2000);
-            }
-        }
-
-        // Theme switching functionality
-        document.querySelectorAll('.theme-switch-link').forEach(function(link) {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-
-                const theme = this.dataset.theme;
-
-                // Show loading state
-                const button = document.getElementById('themeDropdown');
-                const originalText = button.textContent;
-                button.textContent = 'Switching...';
-                button.disabled = true;
-
-                // Make AJAX request to switch theme
-                fetch('/theme/switch', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-Requested-With': 'XMLHttpRequest'
-                    },
-                    body: JSON.stringify({ theme: theme })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        // Reload page to apply new theme
-                        window.location.reload();
-                    } else {
-                        alert('Error switching theme: ' + (data.error || 'Unknown error'));
-                        button.textContent = originalText;
-                        button.disabled = false;
-                    }
-                })
-                .catch(error => {
-                    console.error('Theme switch error:', error);
-                    alert('Error switching theme. Please try again.');
-                    button.textContent = originalText;
-                    button.disabled = false;
-                });
-            });
-        });
-    </script>
+    <!-- Theme toggle functionality moved to main.js -->
 </body>
 </html>

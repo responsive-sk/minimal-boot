@@ -1,9 +1,59 @@
 /* Import local fonts */
-@import './fonts/source-sans-pro/source-sans-pro.css';
+@import './fonts/source-sans-pro.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Critical CSS to prevent FOUC */
+@layer base {
+  body {
+    font-family: 'Source Sans Pro', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    margin: 0;
+    padding: 0;
+    background-color: #f9fafb; /* bg-gray-50 */
+    min-height: 100vh;
+  }
+
+  h1 {
+    font-size: 2.25rem; /* text-4xl */
+    line-height: 1.2;
+    font-weight: 700;
+    margin: 0 0 1.5rem 0;
+  }
+
+  nav {
+    background-color: white;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Critical layout utilities */
+@layer utilities {
+  /* Alpine.js cloak utility */
+  [x-cloak] {
+    display: none !important;
+  }
+
+  /* Prevent layout shift for images */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Custom CSS classes to replace inline styles */
+
+/* Background patterns and images */
+.bg-pattern-dots {
+  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0);
+  background-size: 20px 20px;
+}
+
+.bg-hero-js {
+  background-image: url('/themes/main/assets/images/javascript.jpg');
+}
 
 /* Fix for fixed navbar overlapping content */
 .app-content {
@@ -326,5 +376,12 @@
 
   .animate-blob {
     animation: blob 7s infinite;
+  }
+}
+
+/* Fix for mobile menu visibility on desktop - force hide with !important */
+@media (min-width: 768px) {
+  .md\:hidden {
+    display: none !important;
   }
 }
