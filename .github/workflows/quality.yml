@@ -60,11 +60,19 @@ jobs:
       - name: Run Unit Tests (PHPUnit)
         run: |
           if [ -f "phpunit.xml" ]; then
-            vendor/bin/phpunit --coverage-clover=coverage.xml
+            XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover=coverage.xml
           else
             echo "No phpunit.xml found, skipping tests"
             touch coverage.xml
           fi
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./coverage.xml
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: false
         
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3

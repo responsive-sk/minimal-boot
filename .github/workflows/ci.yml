@@ -69,6 +69,14 @@ jobs:
           pnpm install
           pnpm run build
 
+      - name: Run basic tests
+        run: |
+          if [ -f "phpunit.xml" ]; then
+            XDEBUG_MODE=off vendor/bin/phpunit --no-coverage --testsuite Unit
+          else
+            echo "No phpunit.xml found, skipping tests"
+          fi
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
