@@ -288,6 +288,41 @@ $layout($currentTheme . '_layouts::app', [
 - **Shared templates** → `templates/shared/{type}/`
 - **Reusable components** → `templates/components/{type}/`
 
+### 5. Asset Management
+Always use the `$asset()` helper for proper asset URLs:
+
+```php
+<!-- CSS and JS assets -->
+<link rel="stylesheet" href="<?= $asset($finalCssUrl) ?>">
+<script src="<?= $asset($finalJsUrl) ?>" defer></script>
+
+<!-- Images with proper dimensions -->
+<img src="<?= $asset('images/app/logo.svg') ?>"
+     alt="Logo"
+     width="120"
+     height="32"
+     class="h-8 w-auto">
+```
+
+### 6. Font Management
+Fonts are centrally managed and automatically copied during build:
+
+```css
+/* Font definitions in theme CSS */
+@font-face {
+    font-family: 'Source Sans Pro';
+    font-weight: 400;
+    font-display: optional;
+    src: url('/fonts/source-sans-pro-400.woff2?v=1') format('woff2');
+}
+```
+
+Build process automatically copies fonts:
+```bash
+# Vite build copies fonts from src to public/fonts/
+Copied source-sans-pro-400.woff2 to public/fonts/
+```
+
 ## Migration from Old System
 
 The old template system used scattered templates in module directories:
@@ -297,6 +332,144 @@ The old template system used scattered templates in module directories:
 
 All old template directories have been removed and templates migrated to the new organized structure.
 
+## Template Code Quality and Security
+
+### Inline CSS and JavaScript Removal
+
+All templates have been refactored to remove inline CSS and JavaScript for better security, performance, and maintainability:
+
+#### Before (Problematic)
+```html
+<!-- Inline styles -->
+<div style="z-index: 9999; display: none;">...</div>
+<img style="width: 60px; height: 60px;" src="...">
+
+<!-- Inline JavaScript -->
+<button onclick="history.back()">Go Back</button>
+<script>
+    function toggleTheme() {
+        // Large inline script...
+    }
+</script>
+```
+
+#### After (Clean)
+```html
+<!-- CSS classes -->
+<div class="theme-notification">...</div>
+<img class="icon-circle-60" src="..." width="60" height="60">
+
+<!-- Data attributes with event listeners -->
+<button data-action="go-back">Go Back</button>
+<!-- JavaScript in separate modules -->
+```
+
+### CSS Architecture
+
+#### Centralized Styles
+- **Bootstrap theme**: `src/Assets/bootstrap/src/style.css`
+- **Tailwind theme**: `src/Assets/main/src/style.css`
+- **Font management**: Centralized in `public/fonts/`
+
+#### CSS Classes for Inline Styles
+```css
+/* Theme utilities */
+.theme-notification { z-index: 9999; display: none; }
+.icon-8rem { font-size: 8rem; opacity: 0.8; }
+.icon-circle-60 { width: 60px; height: 60px; }
+
+/* Background patterns */
+.bg-pattern-dots {
+    background-image: radial-gradient(...);
+    background-size: 20px 20px;
+}
+```
+
+### JavaScript Architecture
+
+#### Modular JavaScript
+- **Bootstrap utilities**: `src/Assets/bootstrap/src/js/utils.js`
+- **Tailwind utilities**: `src/Assets/main/src/js/utils.js`
+
+#### Event Handling
+```javascript
+// Modern event delegation
+document.addEventListener('click', (e) => {
+    const action = e.target.getAttribute('data-action');
+
+    switch (action) {
+        case 'go-back':
+            NavigationUtils.goBack();
+            break;
+        case 'toggle-theme':
+            ThemeUtils.toggleTheme();
+            break;
+    }
+});
+```
+
+### Performance Optimizations
+
+#### Cache Headers
+```apache
+# .htaccess optimizations
+# Fonts - 1 year cache
+ExpiresByType font/woff2 "access plus 1 year"
+
+# CSS/JS - 1 month cache
+ExpiresByType text/css "access plus 1 month"
+ExpiresByType application/javascript "access plus 1 month"
+```
+
+#### FOUC Prevention
+```html
+<!-- Synchronous CSS loading -->
+<link rel="stylesheet" href="<?= $asset($finalCssUrl) ?>">
+
+<!-- No theme-loading classes needed -->
+<body class="bg-gray-50 min-h-screen">
+```
+
+### SEO and Accessibility
+
+#### Descriptive Link Text
+```html
+<!-- Before -->
+<a href="/page/about">Learn More</a>
+
+<!-- After -->
+<a href="/page/about" aria-label="Learn more about our development approach">
+    Learn More About Our Development Approach
+</a>
+```
+
+#### Complete Meta Tags
+```html
+<meta name="description" content="Modern PHP framework...">
+<meta name="robots" content="index, follow">
+<meta name="keywords" content="PHP, Mezzio, Framework...">
+
+<!-- Open Graph -->
+<meta property="og:title" content="...">
+<meta property="og:description" content="...">
+
+<!-- Twitter Cards -->
+<meta property="twitter:card" content="summary_large_image">
+```
+
+### Security Benefits
+
+#### CSP Compliance
+Templates are now Content Security Policy compliant:
+```http
+Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'
+```
+
+#### XSS Prevention
+- No inline JavaScript execution
+- All user content properly escaped
+- Event handlers use data attributes
+
 ## Benefits
 
 1. **Clear Organization** - Templates organized by theme and purpose
@@ -305,3 +478,7 @@ All old template directories have been removed and templates migrated to the new
 4. **Scalable** - Easy to add new themes and modules
 5. **Maintainable** - Consistent structure and naming conventions
 6. **Performance** - Efficient path resolution via Paths service
+7. **Security** - CSP-compliant, no inline CSS/JS
+8. **SEO Optimized** - Descriptive links, complete meta tags
+9. **Accessible** - ARIA labels, semantic markup
+10. **Fast Loading** - Cache optimizations, FOUC prevention
