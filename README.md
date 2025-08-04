@@ -222,6 +222,24 @@ $layout($currentTheme . '_layouts::app', [
 
 For detailed documentation, see [docs/TEMPLATES.md](docs/TEMPLATES.md).
 
+## Theme Management
+
+Minimal Boot includes a powerful ThemeService for managing multiple themes:
+
+- **Multi-theme support** - Bootstrap 5 and Tailwind CSS
+- **Session-based persistence** - User's theme choice is remembered
+- **Automatic asset resolution** - CSS/JS URLs based on current theme
+- **Theme switching** - Easy switching between themes via `/theme/switch`
+
+```php
+// Basic usage
+$currentTheme = $themeService->getCurrentTheme();
+$themeService->setTheme('tailwind');
+$cssUrl = $themeService->getThemeCssUrl();
+```
+
+For detailed ThemeService documentation, see [docs/THEME-SERVICE.md](docs/THEME-SERVICE.md).
+
 ## Production Deployment
 
 Minimal Boot includes automated deployment tools for production shared hosting:
@@ -251,6 +269,27 @@ bin/build-production.sh
 ```
 
 For detailed deployment instructions, see [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
+
+## Development Mode
+
+Minimal Boot includes development mode management for optimal development experience:
+
+```bash
+# Check development status
+composer development-status
+
+# Enable development mode (detailed errors, debug info)
+composer development-enable
+
+# Disable development mode (for production)
+composer development-disable
+```
+
+**Development mode features:**
+- Detailed error reporting with Whoops
+- Debug information display
+- Development-specific configuration
+- Enhanced logging and debugging tools
 
 ## Available Routes
 

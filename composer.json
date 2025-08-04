@@ -38,6 +38,7 @@
         "responsive-sk/slim4-session": "^2.2"
     },
     "require-dev": {
+        "laminas/laminas-development-mode": "^3.14",
         "phpstan/phpstan": "^2.1",
         "phpstan/phpstan-phpunit": "^2.0",
         "phpunit/phpunit": "^12.3",

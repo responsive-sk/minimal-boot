@@ -40,7 +40,7 @@ return [
             'ui' => ['@templates_ui'],
 
             // Backward compatibility (will be removed after migration)
-            'layout' => ['@templates_bootstrap_layouts'], // Default to Bootstrap
+            'layout' => ['@templates_tailwind_layouts'], // Default to ...
         ],
     ],
 ];
