@@ -1,7 +1,7 @@
 # Minimal Boot - Mezzio Light Application
 
-[![Quality Assurance](https://github.com/responsive-sk/minimal-boot/workflows/Quality%20Assurance/badge.svg)](https://github.com/responsive-sk/minimal-boot/actions)
-[![Continuous Integration](https://github.com/responsive-sk/minimal-boot/workflows/Continuous%20Integration/badge.svg)](https://github.com/responsive-sk/minimal-boot/actions)
+[![Quality Assurance](https://github.com/responsive-sk/minimal-boot/workflows/Quality%20Assurance/badge.svg?branch=main)](https://github.com/responsive-sk/minimal-boot/actions)
+[![Continuous Integration](https://github.com/responsive-sk/minimal-boot/workflows/Continuous%20Integration/badge.svg?branch=main)](https://github.com/responsive-sk/minimal-boot/actions)
 [![codecov](https://codecov.io/gh/responsive-sk/minimal-boot/branch/main/graph/badge.svg)](https://codecov.io/gh/responsive-sk/minimal-boot)
 [![PHPStan Level Max](https://img.shields.io/badge/PHPStan-Level%20Max-brightgreen.svg)](https://phpstan.org/)
 [![PSR-12](https://img.shields.io/badge/Code%20Style-PSR--12-blue.svg)](https://www.php-fig.org/psr/psr-12/)
