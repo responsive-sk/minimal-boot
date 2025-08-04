@@ -1,8 +1,16 @@
 <?php
-$layout('layout::default', [
+// Use theme-aware layout - determine from CSS URL or default to bootstrap
+$currentTheme = 'bootstrap'; // default
+if (isset($cssUrl) && str_contains($cssUrl, 'themes/main/assets')) {
+    $currentTheme = 'tailwind';
+}
+
+$layout($currentTheme . '_layouts::app', [
     'title' => 'Who We Are',
     'description' => 'Meet the team behind this innovative Mezzio Light application',
-    'author' => 'Dotkernel Team'
+    'author' => 'Dotkernel Team',
+    'cssUrl' => $cssUrl ?? null,
+    'jsUrl' => $jsUrl ?? null,
 ]);
 ?>
 

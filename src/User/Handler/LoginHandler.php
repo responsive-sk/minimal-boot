@@ -6,6 +6,7 @@ namespace Minimal\User\Handler;
 
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\RedirectResponse;
+use Minimal\Shared\Service\ThemeService;
 use Minimal\User\Application\Form\LoginForm;
 use Minimal\User\Domain\Service\AuthenticationService;
 use Mezzio\Template\TemplateRendererInterface;
@@ -20,7 +21,8 @@ class LoginHandler implements RequestHandlerInterface
 {
     public function __construct(
         private TemplateRendererInterface $template,
-        private AuthenticationService $authService
+        private AuthenticationService $authService,
+        private ThemeService $themeService
     ) {
     }
 
@@ -53,6 +55,8 @@ class LoginHandler implements RequestHandlerInterface
             'title' => 'Login',
             'form' => $form,
             'flash_messages' => $flashMessages,
+            'cssUrl' => $this->themeService->getThemeCssUrl(),
+            'jsUrl' => $this->themeService->getThemeJsUrl(),
         ]);
 
         return new HtmlResponse($html);
