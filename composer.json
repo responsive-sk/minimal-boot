@@ -91,7 +91,7 @@
         "serve": "php -S 0.0.0.0:8080 -t public/",
         "cs-check": "vendor/bin/phpcs --standard=PSR12 --ignore=*/node_modules/*,*/vendor/* src/ config/",
         "cs-fix": "vendor/bin/phpcbf --standard=PSR12 --ignore=*/node_modules/*,*/vendor/* src/ config/",
-        "static-analysis": "phpstan analyse --memory-limit 1G",
+        "static-analysis": "vendor/bin/phpstan analyse --memory-limit 1G",
         "test": "vendor/bin/phpunit --testsuite Unit,Integration --fail-on-warning",
         "test-ci": "vendor/bin/phpunit --testsuite Unit,Integration --dont-report-useless-tests",
         "test-coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --testsuite Unit,Integration --coverage-html var/coverage",

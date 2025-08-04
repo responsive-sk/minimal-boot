@@ -52,17 +52,27 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
-          cache-dependency-path: 'package-lock.json'
-          
-      - name: Install Node dependencies
-        run: npm ci
-        
-      - name: Build assets
-        run: npm run build
-        
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install and build Tailwind assets
+        run: |
+          cd src/Assets/main
+          pnpm install
+          pnpm run build
+
+      - name: Install and build Bootstrap assets
+        run: |
+          cd src/Assets/bootstrap
+          pnpm install
+          pnpm run build
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
           name: built-assets
-          path: public/dist/
+          path: |
+            public/themes/main/assets/
+            public/themes/bootstrap/assets/
