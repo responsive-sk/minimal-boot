@@ -221,14 +221,12 @@
                         <span class="me-2 text-muted small">Theme:</span>
                         <div class="dropdown">
                             <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="themeDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                <?php
-                                if (isset($themeService)) {
-                                    $themeConfig = $themeService->getCurrentThemeConfig();
-                                    echo $e($themeConfig['name']);
-                                } else {
-                                    echo 'Bootstrap 5';
-                                }
-                                ?>
+                                <?php if (isset($themeService)): ?>
+                                    <?php $themeConfig = $themeService->getCurrentThemeConfig(); ?>
+                                    <?= $e($themeConfig['name']) ?>
+                                <?php else: ?>
+                                    Bootstrap 5
+                                <?php endif; ?>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="themeDropdown">
                                 <?php

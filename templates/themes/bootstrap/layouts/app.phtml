@@ -21,11 +21,14 @@
     <?php
     $criticalCssFile = __DIR__ . '/../../../../src/Assets/critical/bootstrap-critical.css';
     if (file_exists($criticalCssFile)) {
-        echo "<style id=\"critical-css\">\n";
-        echo file_get_contents($criticalCssFile);
-        echo "\n</style>\n";
+        $criticalCss = file_get_contents($criticalCssFile);
     }
     ?>
+    <?php if (isset($criticalCss)): ?>
+    <style id="critical-css">
+<?= $criticalCss ?>
+    </style>
+    <?php endif; ?>
 
     <!-- Local fonts are now included in CSS bundle for better performance -->
 
@@ -304,14 +307,12 @@
                         <span class="me-2 text-muted small">Theme:</span>
                         <div class="dropdown">
                             <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="themeDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                <?php
-                                if (isset($themeService)) {
-                                    $themeConfig = $themeService->getCurrentThemeConfig();
-                                    echo $e($themeConfig['name']);
-                                } else {
-                                    echo 'Bootstrap 5';
-                                }
-                                ?>
+                                <?php if (isset($themeService)): ?>
+                                    <?php $themeConfig = $themeService->getCurrentThemeConfig(); ?>
+                                    <?= $e($themeConfig['name']) ?>
+                                <?php else: ?>
+                                    Bootstrap 5
+                                <?php endif; ?>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="themeDropdown">
                                 <?php

@@ -23,7 +23,7 @@ use Dot\Log\Logger;
 
 return [
     'dot-errorhandler' => [
-        'loggerEnabled'           => true,
+        'loggerEnabled'           => false,
         'logger'                  => 'dot-log.default_logger',
         ExtraProvider::CONFIG_KEY => [
             CookieProvider::class  => [

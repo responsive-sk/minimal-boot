@@ -21,11 +21,14 @@
     <?php
     $criticalCssFile = __DIR__ . '/../../../../src/Assets/critical/tailwind-critical.css';
     if (file_exists($criticalCssFile)) {
-        echo "<style id=\"critical-css\">\n";
-        echo file_get_contents($criticalCssFile);
-        echo "\n</style>\n";
+        $criticalCss = file_get_contents($criticalCssFile);
     }
     ?>
+    <?php if (isset($criticalCss)): ?>
+    <style id="critical-css">
+<?= $criticalCss ?>
+    </style>
+    <?php endif; ?>
 
     <!-- Local fonts are now included in CSS bundle for better performance -->
 
@@ -182,14 +185,12 @@
                             <div class="relative group">
                                 <button id="themeDropdown" class="bg-white border border-gray-300 text-gray-700 px-3 py-1 rounded-md text-sm hover:bg-gray-50 flex items-center"
                                         data-dropdown-toggle="theme-dropdown">
-                                    <?php
-                                    if (isset($themeService)) {
-                                        $themeConfig = $themeService->getCurrentThemeConfig();
-                                        echo $e($themeConfig['name']);
-                                    } else {
-                                        echo 'Tailwind CSS';
-                                    }
-                                    ?>
+                                    <?php if (isset($themeService)): ?>
+                                        <?php $themeConfig = $themeService->getCurrentThemeConfig(); ?>
+                                        <?= $e($themeConfig['name']) ?>
+                                    <?php else: ?>
+                                        Tailwind CSS
+                                    <?php endif; ?>
                                     <svg class="ml-1 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
                                     </svg>

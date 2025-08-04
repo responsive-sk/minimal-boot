@@ -24,11 +24,14 @@
     <?php
     $criticalCssFile = __DIR__ . '/../../../../src/Assets/critical/tailwind-critical.css';
     if (file_exists($criticalCssFile)) {
-        echo "<style id=\"critical-css\">\n";
-        echo file_get_contents($criticalCssFile);
-        echo "\n</style>\n";
+        $criticalCss = file_get_contents($criticalCssFile);
     }
     ?>
+    <?php if (isset($criticalCss)): ?>
+    <style id="critical-css">
+<?= $criticalCss ?>
+    </style>
+    <?php endif; ?>
     
     <!-- Local fonts are now included in CSS bundle for better performance -->
     
