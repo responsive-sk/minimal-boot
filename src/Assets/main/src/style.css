@@ -55,6 +55,32 @@
   background-image: url('/themes/main/assets/images/javascript.jpg');
 }
 
+/* Layout stability improvements */
+.h-screen {
+  height: 100vh;
+  min-height: 600px; /* Fallback for small screens */
+}
+
+/* Prevent layout shift from animations */
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+@keyframes blob {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
 /* Fix for fixed navbar overlapping content */
 .app-content {
   padding-top: 60px; /* Height of fixed navbar (56px) + small margin (4px) */

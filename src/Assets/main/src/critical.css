@@ -1,0 +1,73 @@
+/* Critical CSS for above-the-fold content - Tailwind theme */
+
+/* Reset and base styles */
+*,::before,::after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}
+::before,::after{--tw-content:''}
+html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:'Source Sans Pro',system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal}
+body{margin:0;line-height:inherit;background-color:#f9fafb;min-height:100vh}
+
+/* Critical layout utilities */
+.min-h-screen{min-height:100vh}
+.flex{display:flex}
+.flex-col{flex-direction:column}
+.fixed{position:fixed}
+.w-full{width:100%}
+.top-0{top:0}
+.h-16{height:4rem}
+.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity))}
+.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}
+.border-b{border-bottom-width:1px}
+.border-gray-200{--tw-border-opacity:1;border-color:rgb(229 231 235 / var(--tw-border-opacity))}
+
+/* Navigation critical styles */
+.max-w-7xl{max-width:80rem}
+.mx-auto{margin-left:auto;margin-right:auto}
+.px-4{padding-left:1rem;padding-right:1rem}
+.px-6{padding-left:1.5rem;padding-right:1.5rem}
+.justify-between{justify-content:space-between}
+.items-center{align-items:center}
+.space-x-8>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(2rem * var(--tw-space-x-reverse));margin-left:calc(2rem * calc(1 - var(--tw-space-x-reverse)))}
+
+/* Logo and images */
+.h-8{height:2rem}
+.w-auto{width:auto}
+img{max-width:100%;height:auto}
+
+/* Typography */
+h1{font-size:2.25rem;line-height:1.2;font-weight:700;margin:0 0 1.5rem 0}
+.text-xl{font-size:1.25rem;line-height:1.75rem}
+.font-bold{font-weight:700}
+.text-gray-900{--tw-text-opacity:1;color:rgb(17 24 39 / var(--tw-text-opacity))}
+.text-blue-600{--tw-text-opacity:1;color:rgb(37 99 235 / var(--tw-text-opacity))}
+
+/* Buttons and interactive elements */
+.bg-blue-600{--tw-bg-opacity:1;background-color:rgb(37 99 235 / var(--tw-bg-opacity))}
+.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity))}
+.px-8{padding-left:2rem;padding-right:2rem}
+.py-4{padding-top:1rem;padding-bottom:1rem}
+.rounded-xl{border-radius:0.75rem}
+.font-semibold{font-weight:600}
+
+/* Mobile menu */
+.hidden{display:none}
+.md\:flex{display:flex}
+.md\:hidden{display:none}
+
+/* Z-index */
+.z-40{z-index:40}
+.z-50{z-index:50}
+
+/* Alpine.js cloak */
+[x-cloak]{display:none !important}
+
+/* Focus styles */
+.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}
+.focus\:ring-2:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}
+.focus\:ring-blue-500:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(59 130 246 / var(--tw-ring-opacity))}
+
+/* Responsive utilities */
+@media (min-width: 768px) {
+  .md\:flex{display:flex}
+  .md\:hidden{display:none !important}
+  .lg\:px-8{padding-left:2rem;padding-right:2rem}
+}
