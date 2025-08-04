@@ -10,7 +10,9 @@
     "preview": "vite preview",
     "clean": "rm -rf ../../../public/themes/main"
   },
-  "dependencies": {},
+  "dependencies": {
+    "alpinejs": "^3.14.9"
+  },
   "devDependencies": {
     "@vheemstra/vite-plugin-imagemin": "^2.2.0",
     "autoprefixer": "^10.4.21",
