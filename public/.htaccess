@@ -1,10 +1,17 @@
 RewriteEngine On
 
-# Font MIME types
-AddType font/woff .woff
+# Font MIME types (correct modern MIME types)
 AddType font/woff2 .woff2
-AddType application/font-woff .woff
-AddType application/font-woff2 .woff2
+AddType font/woff .woff
+AddType font/ttf .ttf
+AddType font/otf .otf
+
+# CORS headers for fonts
+<FilesMatch "\.(woff2?|eot|ttf|otf)$">
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET"
+    Header set Access-Control-Allow-Headers "Content-Type"
+</FilesMatch>
 
 # Cache Control Headers for Performance
 <IfModule mod_expires.c>
@@ -13,8 +20,8 @@ AddType application/font-woff2 .woff2
     # Fonts - 1 year cache
     ExpiresByType font/woff2 "access plus 1 year"
     ExpiresByType font/woff "access plus 1 year"
-    ExpiresByType application/font-woff "access plus 1 year"
-    ExpiresByType application/font-woff2 "access plus 1 year"
+    ExpiresByType font/ttf "access plus 1 year"
+    ExpiresByType font/otf "access plus 1 year"
 
     # CSS and JS - 1 month cache (with versioning)
     ExpiresByType text/css "access plus 1 month"

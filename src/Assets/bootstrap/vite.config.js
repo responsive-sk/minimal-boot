@@ -40,7 +40,7 @@ export default defineConfig(({ mode }) => ({
                     mkdirSync(publicFontsDir, { recursive: true });
                 }
 
-                const fontFiles = glob.sync('fonts/**/*.{woff,woff2,eot,ttf,otf}', { cwd: path.resolve(__dirname, 'src') });
+                const fontFiles = glob.sync('fonts/source-sans-pro/*.woff2', { cwd: path.resolve(__dirname, 'src') });
                 fontFiles.forEach(fontFile => {
                     const fileName = path.basename(fontFile);
                     const srcPath = path.resolve(__dirname, 'src', fontFile);
