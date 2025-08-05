@@ -10,6 +10,14 @@
     <meta name="robots" content="index, follow"/>
     <meta name="keywords" content="PHP, Mezzio, Framework, Bootstrap, TailwindCSS, Modern Web Development"/>
 
+    <?php
+    // Generate canonical URL early for use in meta tags
+    $scheme = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+    $uri = $_SERVER['REQUEST_URI'] ?? '/';
+    $canonicalUrl = $canonical ?? ($scheme . '://' . $host . $uri);
+    ?>
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="<?= $e($canonicalUrl) ?>"/>
@@ -28,12 +36,6 @@
     <meta property="twitter:image" content="<?= $e($scheme . '://' . $host) ?>/images/app/logo.svg"/>
 
     <!-- Canonical URL -->
-    <?php
-    $scheme = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
-    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
-    $uri = $_SERVER['REQUEST_URI'] ?? '/';
-    $canonicalUrl = $canonical ?? ($scheme . '://' . $host . $uri);
-    ?>
     <link rel="canonical" href="<?= $e($canonicalUrl) ?>"/>
 
     <!-- Resource hints for better performance -->
