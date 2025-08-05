@@ -200,4 +200,19 @@ return [
             'dsn' => $_ENV['SENTRY_DSN'] ?? '',
         ],
     ],
+
+    // Production logging configuration - disable file logging for shared hosting
+    'dot_log' => [
+        'loggers' => [
+            'default_logger' => [
+                'writers' => [
+                    'NoopWriter' => [
+                        'name'    => 'noop',
+                        'level'   => \Dot\Log\Logger::EMERG,
+                        'options' => [],
+                    ],
+                ],
+            ],
+        ],
+    ],
 ];

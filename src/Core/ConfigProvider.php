@@ -52,6 +52,9 @@ class ConfigProvider
 
                 // Core template renderer (Native PHP) - register for Mezzio interface
                 TemplateRendererInterface::class => NativePhpRendererFactory::class,
+
+                // Path-aware log writer for shared hosting compatibility
+                \Minimal\Core\Log\PathAwareStreamWriter::class => \Minimal\Core\Factory\PathAwareStreamWriterFactory::class,
             ],
         ];
     }

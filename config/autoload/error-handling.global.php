@@ -87,10 +87,10 @@ return [
             'default_logger' => [
                 'writers' => [
                     'FileWriter' => [
-                        'name'    => 'stream',
+                        'name'    => \Minimal\Core\Log\PathAwareStreamWriter::class,
                         'level'   => Logger::ALERT,
                         'options' => [
-                            'stream' => __DIR__ . '/../../var/logs/error-log-{Y}-{m}-{d}.log',
+                            'stream' => 'var/logs/error-log-{Y}-{m}-{d}.log',
                             // explicitly log all messages
                             'filters'   => [
                                 'allMessages' => [
