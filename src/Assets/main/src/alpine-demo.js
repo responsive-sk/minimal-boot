@@ -64,19 +64,19 @@ document.addEventListener('alpine:init', () => {
         errors: {},
         validate() {
             this.errors = {};
-            
+
             if (!this.email) {
                 this.errors.email = 'Email is required';
             } else if (!/\S+@\S+\.\S+/.test(this.email)) {
                 this.errors.email = 'Email is invalid';
             }
-            
+
             if (!this.password) {
                 this.errors.password = 'Password is required';
             } else if (this.password.length < 6) {
                 this.errors.password = 'Password must be at least 6 characters';
             }
-            
+
             return Object.keys(this.errors).length === 0;
         },
         submit() {
@@ -96,7 +96,8 @@ document.addEventListener('alpine:init', () => {
         ],
         search() {
             if (this.query.length > 0) {
-                this.results = this.items.filter(item =>
+                this.results = this.items.filter(
+                    item =>
                     item.toLowerCase().includes(this.query.toLowerCase())
                 );
             } else {

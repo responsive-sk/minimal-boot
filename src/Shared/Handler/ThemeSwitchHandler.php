@@ -30,6 +30,16 @@ class ThemeSwitchHandler implements RequestHandlerInterface
         }
 
         if ($method === 'GET') {
+            // Check if theme parameter is provided for switching
+            $queryParams = $request->getQueryParams();
+            $theme = $queryParams['theme'] ?? null;
+
+            if ($theme && is_string($theme)) {
+                // Switch theme via GET request
+                return $this->switchTheme($request);
+            }
+
+            // Otherwise just return current theme info
             return $this->getCurrentTheme($request);
         }
 
@@ -51,9 +61,16 @@ class ThemeSwitchHandler implements RequestHandlerInterface
 
         if ($theme && is_string($theme)) {
             try {
+                error_log("DEBUG: Attempting to set theme to: {$theme}");
                 $this->themeService->setTheme($theme);
                 $newTheme = $theme;
+                error_log("DEBUG: Theme set successfully to: {$newTheme}");
+
+                // Verify theme was actually set
+                $currentTheme = $this->themeService->getCurrentTheme();
+                error_log("DEBUG: Current theme after setting: {$currentTheme}");
             } catch (\InvalidArgumentException $e) {
+                error_log("DEBUG: Error setting theme: " . $e->getMessage());
                 return new JsonResponse(['error' => $e->getMessage()], 400);
             }
         } else {
@@ -70,6 +87,11 @@ class ThemeSwitchHandler implements RequestHandlerInterface
                 'success' => true,
                 'theme' => $newTheme,
                 'config' => $this->themeService->getCurrentThemeConfig(),
+                'debug' => [
+                    'requested_theme' => $theme,
+                    'new_theme' => $newTheme,
+                    'current_theme_after_set' => $this->themeService->getCurrentTheme()
+                ]
             ]);
         }
 
@@ -90,6 +112,12 @@ class ThemeSwitchHandler implements RequestHandlerInterface
             'current' => $currentTheme,
             'config' => $config,
             'available' => $availableThemes,
+            'debug' => [
+                'session_id' => session_id(),
+                'session_started' => session_status() === PHP_SESSION_ACTIVE,
+                'method' => $request->getMethod(),
+                'query_params' => $request->getQueryParams()
+            ]
         ]);
     }
 }

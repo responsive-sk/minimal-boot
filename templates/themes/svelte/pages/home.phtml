@@ -1,0 +1,211 @@
+<?php
+$layout('svelte_layouts::default', [
+    'title' => 'Modern Web Development - Minimal Boot',
+    'description' => 'Experience lightning-fast web development with Svelte, Tailwind CSS, and Mezzio PHP. Interactive components, glassmorphism design, and SEO optimization.',
+    'author' => 'Minimal Boot Team',
+]);
+?>
+
+<!-- SEO-friendly HTML content with Svelte enhancements -->
+
+<!-- Navigation -->
+<nav class="fixed w-full top-0 z-50 transition-all duration-300 bg-transparent">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <a href="/" class="flex items-center space-x-3 group focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded" aria-label="Go to homepage">
+          <img src="/images/app/logo.svg" class="h-10 w-auto group-hover:scale-105 transition-transform duration-300 filter brightness-0 invert" alt="Responsive Logo" width="150" height="40"/>
+          <span class="text-white font-semibold text-xl hidden sm:block">Web Solutions</span>
+        </a>
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="/" class="text-white/80 hover:text-white transition-colors duration-300">Home</a>
+        <a href="/about" class="text-white/80 hover:text-white transition-colors duration-300">About</a>
+        <a href="/contact" class="text-white/80 hover:text-white transition-colors duration-300">Contact</a>
+
+        <!-- Theme Links -->
+        <div class="flex items-center space-x-2 text-sm">
+          <span class="text-white/60">Themes:</span>
+          <a href="/theme/switch?theme=tailwind" class="text-blue-400 hover:text-blue-300 transition-colors duration-300">TW</a>
+          <a href="/theme/switch?theme=bootstrap" class="text-purple-400 hover:text-purple-300 transition-colors duration-300">BS</a>
+          <a href="/theme/switch?theme=svelte" class="text-green-400 hover:text-green-300 transition-colors duration-300 font-bold">SV</a>
+          <a href="/theme/switch?theme=vue" class="text-cyan-400 hover:text-cyan-300 transition-colors duration-300">VU</a>
+        </div>
+
+        <button class="btn-primary px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium transition-all duration-300">Get Started</button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button id="mobile-menu-button" class="text-white p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden backdrop-blur-md bg-white/10 border border-white/20 rounded-lg mt-2 p-4 space-y-4">
+      <a href="/" class="block text-white/80 hover:text-white transition-colors duration-300">Home</a>
+      <a href="/about" class="block text-white/80 hover:text-white transition-colors duration-300">About</a>
+      <a href="/contact" class="block text-white/80 hover:text-white transition-colors duration-300">Contact</a>
+
+      <!-- Mobile Theme Links -->
+      <div class="border-t border-white/20 pt-4">
+        <span class="text-white/60 text-sm">Themes:</span>
+        <div class="flex space-x-2 mt-2">
+          <a href="/theme/switch?theme=tailwind" class="text-blue-400 hover:text-blue-300 text-sm border border-blue-400/50 px-2 py-1 rounded">Tailwind</a>
+          <a href="/theme/switch?theme=bootstrap" class="text-purple-400 hover:text-purple-300 text-sm border border-purple-400/50 px-2 py-1 rounded">Bootstrap</a>
+          <a href="/theme/switch?theme=svelte" class="text-green-400 hover:text-green-300 text-sm border border-green-400 px-2 py-1 rounded font-bold">Svelte</a>
+          <a href="/theme/switch?theme=vue" class="text-cyan-400 hover:text-cyan-300 text-sm border border-cyan-400/50 px-2 py-1 rounded">Vue</a>
+        </div>
+      </div>
+
+      <button class="btn-primary w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium">Get Started</button>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section with SEO-optimized content -->
+<main>
+  <section class="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <!-- Content -->
+    <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
+      <!-- Main Heading - Critical for SEO -->
+      <h1 class="text-5xl md:text-7xl font-bold mb-6">
+        <span class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">Modern</span>
+        <span class="text-white block">Web Development</span>
+      </h1>
+
+      <p class="text-xl md:text-2xl text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed">
+        Built with <strong>Svelte</strong>, <strong>Tailwind CSS</strong>, and <strong>Mezzio PHP</strong> for lightning-fast performance and exceptional user experience.
+      </p>
+
+      <!-- Feature Cards with SEO content -->
+      <div class="grid md:grid-cols-3 gap-6 mb-12">
+        <div class="feature-card backdrop-blur-md bg-white/10 border border-white/20 rounded-xl p-6 transition-all duration-300">
+          <div class="w-8 h-8 text-blue-400 mx-auto mb-4">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-8 h-8">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-white font-semibold mb-2">Interactive Components</h3>
+          <p class="text-white/70 text-sm">Reactive Svelte components with smooth animations and real-time user interactions for modern web experiences.</p>
+        </div>
+
+        <div class="feature-card backdrop-blur-md bg-white/10 border border-white/20 rounded-xl p-6 transition-all duration-300">
+          <div class="w-8 h-8 text-yellow-400 mx-auto mb-4">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-8 h-8">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-white font-semibold mb-2">Lightning Fast Performance</h3>
+          <p class="text-white/70 text-sm">Optimized for speed with minimal bundle size, server-side rendering, and advanced caching strategies.</p>
+        </div>
+
+        <div class="feature-card backdrop-blur-md bg-white/10 border border-white/20 rounded-xl p-6 transition-all duration-300">
+          <div class="w-8 h-8 text-green-400 mx-auto mb-4">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-8 h-8">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-white font-semibold mb-2">Enterprise Security</h3>
+          <p class="text-white/70 text-sm">Built with security best practices, CSRF protection, input validation, and modern authentication systems.</p>
+        </div>
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/demo" class="btn-primary inline-block text-lg px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium transition-all duration-300 text-center">
+          Get Started Now
+        </a>
+        <a href="/examples" class="btn-secondary inline-block text-lg px-8 py-4 backdrop-blur-md bg-white/10 border border-white/20 text-white rounded-lg font-medium transition-all duration-300 text-center">
+          View Live Demo
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <button
+      onclick="window.scrollTo({top: window.innerHeight, behavior: 'smooth'})"
+      class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/60 hover:text-white transition-colors duration-300"
+      aria-label="Scroll to content"
+    >
+      <svg class="w-8 h-8 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+      </svg>
+    </button>
+  </section>
+</main>
+
+<!-- Footer with SEO-friendly content -->
+<footer class="relative border-t" style="background: rgba(0, 0, 0, 0.9) !important; backdrop-filter: blur(12px); border-top: 1px solid rgba(255, 255, 255, 0.1);">
+  <div class="max-w-7xl mx-auto px-6 py-12">
+    <div class="grid md:grid-cols-4 gap-8">
+      <!-- Brand -->
+      <div class="md:col-span-2">
+        <div class="flex items-center space-x-3 mb-4">
+          <img src="/images/app/logo.svg" class="h-10 w-auto filter brightness-0 invert" alt="Responsive Logo" width="150" height="40"/>
+          <span class="text-white font-semibold text-xl">Web Solutions</span>
+        </div>
+        <p class="text-white/70 mb-6 max-w-md">
+          A modern, fast, and secure web application framework built with cutting-edge technologies.
+          Perfect for developers who want to build scalable applications with excellent performance.
+        </p>
+        <div class="flex space-x-4">
+          <a href="https://github.com/minimal-boot" class="text-white/60 hover:text-white transition-colors duration-300" aria-label="GitHub">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </a>
+          <a href="https://twitter.com/minimal-boot" class="text-white/60 hover:text-white transition-colors duration-300" aria-label="Twitter">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="text-white font-semibold mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="/" class="text-white/70 hover:text-white transition-colors duration-300">Home</a></li>
+          <li><a href="/about" class="text-white/70 hover:text-white transition-colors duration-300">About</a></li>
+          <li><a href="/contact" class="text-white/70 hover:text-white transition-colors duration-300">Contact</a></li>
+          <li><a href="/demo" class="text-white/70 hover:text-white transition-colors duration-300">Live Demo</a></li>
+        </ul>
+      </div>
+
+      <!-- Resources -->
+      <div>
+        <h3 class="text-white font-semibold mb-4">Resources</h3>
+        <ul class="space-y-2">
+          <li><a href="/docs" class="text-white/70 hover:text-white transition-colors duration-300">Documentation</a></li>
+          <li><a href="/api" class="text-white/70 hover:text-white transition-colors duration-300">API Reference</a></li>
+          <li><a href="/examples" class="text-white/70 hover:text-white transition-colors duration-300">Examples</a></li>
+          <li><a href="/support" class="text-white/70 hover:text-white transition-colors duration-300">Support</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="border-t border-white/10 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+      <p class="text-white/60 text-sm">
+        © <?= date('Y') ?> Minimal Boot. Made with ❤️ by responsive.sk
+      </p>
+      <div class="flex space-x-6 mt-4 md:mt-0">
+        <a href="/privacy" class="text-white/60 hover:text-white text-sm transition-colors duration-300">Privacy Policy</a>
+        <a href="/terms" class="text-white/60 hover:text-white text-sm transition-colors duration-300">Terms of Service</a>
+        <a href="/cookies" class="text-white/60 hover:text-white text-sm transition-colors duration-300">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Svelte Enhancement Mount Point -->
+<div id="svelte-app"></div>

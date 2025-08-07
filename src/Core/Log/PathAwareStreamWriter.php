@@ -13,17 +13,17 @@ use ResponsiveSk\Slim4Paths\Paths;
  */
 class PathAwareStreamWriter extends Stream
 {
-    private Paths $paths;
+    private ?Paths $paths;
 
-    public function __construct($streamOrUrl, $mode = null, $logSeparator = null, Paths $paths = null)
+    public function __construct(mixed $streamOrUrl, ?string $mode = null, ?string $logSeparator = null, ?Paths $paths = null)
     {
         $this->paths = $paths;
-        
+
         // If stream is a relative path and we have Paths service, resolve it
         if ($this->paths && is_string($streamOrUrl) && !$this->isAbsolutePath($streamOrUrl)) {
             $streamOrUrl = $this->paths->getPath($streamOrUrl);
         }
-        
+
         parent::__construct($streamOrUrl, $mode, $logSeparator);
     }
 

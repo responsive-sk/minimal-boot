@@ -1,0 +1,180 @@
+<?php
+$layout('bootstrap_layouts::app', [
+    'title' => 'Forest Calm - Digital Nature Sanctuary',
+    'description' => 'Peaceful digital forest with React and nature-inspired healing design',
+    'author' => 'Forest Calm Team',
+]);
+?>
+
+<!-- React Enhancement Mount Point -->
+<div id="react-app"></div>
+
+<!-- Forest Calm Content -->
+<div class="container-fluid p-0" style="background: linear-gradient(135deg, #1a2e05, #2d5016, #4a7c59); min-height: 100vh; color: #f5f5dc;">
+    <link rel="stylesheet" href="/themes/react/assets/style.css"/>
+
+<!-- Forest Navigation -->
+<nav class="fixed w-full top-0 z-50 transition-all duration-700 bg-transparent">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Forest Logo -->
+      <div class="flex items-center">
+        <a href="/" class="flex items-center space-x-3 group" aria-label="Go to Forest Calm homepage">
+          <div class="text-3xl">🌲</div>
+          <span class="text-green-300 font-semibold text-xl hidden sm:block" style="text-shadow: 0 0 10px rgba(168, 198, 134, 0.5);">
+            Forest Calm
+          </span>
+        </a>
+      </div>
+      
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="/" class="text-green-100 hover:text-green-300 transition-colors duration-500 font-medium">Forest</a>
+        <a href="/about" class="text-green-100 hover:text-green-300 transition-colors duration-500 font-medium">Nature</a>
+        <a href="/contact" class="text-green-100 hover:text-green-300 transition-colors duration-500 font-medium">Harmony</a>
+        
+        <!-- Theme Links -->
+        <div class="flex items-center space-x-3 text-sm">
+          <span class="text-green-100/60">Themes:</span>
+          <a href="/theme/switch?theme=tailwind" class="text-blue-400 hover:text-blue-300 transition-colors duration-500 px-2 py-1 rounded-lg hover:bg-green-800/20">TW</a>
+          <a href="/theme/switch?theme=bootstrap" class="text-purple-400 hover:text-purple-300 transition-colors duration-500 px-2 py-1 rounded-lg hover:bg-green-800/20">BS</a>
+          <a href="/theme/switch?theme=svelte" class="text-green-400 hover:text-green-300 transition-colors duration-500 px-2 py-1 rounded-lg hover:bg-green-800/20">SV</a>
+          <a href="/theme/switch?theme=vue" class="text-cyan-400 hover:text-cyan-300 transition-colors duration-500 px-2 py-1 rounded-lg hover:bg-green-800/20">VU</a>
+          <a href="/theme/switch?theme=react" class="text-green-300 hover:text-green-200 transition-colors duration-500 px-2 py-1 rounded-lg bg-green-700/30 font-semibold">🌲 RC</a>
+        </div>
+        
+        <button class="px-6 py-3 bg-green-600/80 hover:bg-green-600 text-green-100 font-medium rounded-xl transition-all duration-500 backdrop-blur-sm">
+          🍃 Breathe
+        </button>
+      </div>
+      
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button class="bg-green-800/20 backdrop-blur-sm border border-green-600/30 p-2 rounded-lg">
+          🌿
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<main>
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-16" style="background: linear-gradient(135deg, #1a2e05, #2d5016, #4a7c59);">
+    <!-- Content -->
+    <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
+      <!-- Breathing Guide -->
+      <div class="mb-8">
+        <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-3xl">
+          🫁
+        </div>
+        <p class="text-green-100 text-lg">Breathe in slowly... 🌬️</p>
+      </div>
+
+      <!-- Main Heading -->
+      <h1 class="text-5xl md:text-7xl font-bold mb-6">
+        <span class="text-green-300 block mb-2" style="text-shadow: 0 0 20px rgba(168, 198, 134, 0.5);">Digital Forest</span>
+        <span class="text-green-100 block">Healing Space</span>
+      </h1>
+      
+      <div class="text-xl md:text-2xl text-green-100/80 mb-12 max-w-3xl mx-auto leading-relaxed">
+        Built with <strong>React</strong>, <strong>Framer Motion</strong>, and <strong>Nature's Wisdom</strong> for deep relaxation and digital wellness.
+      </div>
+      
+      <!-- Nature Feature Cards -->
+      <div class="grid md:grid-cols-3 gap-8 mb-12">
+        <div class="bg-green-700/20 backdrop-blur-sm border border-green-500/30 rounded-2xl p-6 transition-all duration-500 hover:scale-105">
+          <div class="text-5xl mb-4">🌱</div>
+          <h3 class="text-green-300 font-semibold mb-3 text-xl" style="text-shadow: 0 0 10px rgba(168, 198, 134, 0.5);">Growth</h3>
+          <p class="text-green-100/70 text-sm leading-relaxed">Gentle progress, like nature - slow, steady, and sustainable for your mind and soul.</p>
+        </div>
+        
+        <div class="bg-green-700/20 backdrop-blur-sm border border-green-500/30 rounded-2xl p-6 transition-all duration-500 hover:scale-105">
+          <div class="text-5xl mb-4">🍃</div>
+          <h3 class="text-green-300 font-semibold mb-3 text-xl" style="text-shadow: 0 0 10px rgba(168, 198, 134, 0.5);">Breathe</h3>
+          <p class="text-green-100/70 text-sm leading-relaxed">Deep breathing exercises integrated into the interface for natural stress relief.</p>
+        </div>
+        
+        <div class="bg-green-700/20 backdrop-blur-sm border border-green-500/30 rounded-2xl p-6 transition-all duration-500 hover:scale-105">
+          <div class="text-5xl mb-4">🌳</div>
+          <h3 class="text-green-300 font-semibold mb-3 text-xl" style="text-shadow: 0 0 10px rgba(168, 198, 134, 0.5);">Stability</h3>
+          <p class="text-green-100/70 text-sm leading-relaxed">Rooted like ancient trees - reliable, strong, and peaceful digital foundation.</p>
+        </div>
+      </div>
+      
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-6 justify-center">
+        <button class="px-8 py-4 bg-green-600/80 hover:bg-green-600 text-green-100 font-medium rounded-xl transition-all duration-500 backdrop-blur-sm text-lg">
+          🧘‍♀️ Start Meditation
+        </button>
+        <button class="px-8 py-4 bg-green-700/30 hover:bg-green-700/50 text-green-100 font-medium rounded-xl transition-all duration-500 backdrop-blur-sm border border-green-500/30 text-lg">
+          🌿 Explore Nature
+        </button>
+      </div>
+    </div>
+    
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer">
+      <div class="w-8 h-12 border-2 border-green-500/50 rounded-full flex justify-center backdrop-blur-sm">
+        <div class="w-1 h-3 bg-green-400 rounded-full mt-2"></div>
+      </div>
+      <p class="text-green-100/60 text-xs mt-2">Scroll gently</p>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="relative bg-green-800/20 backdrop-blur-sm border-t-2 border-green-600/30 mt-20">
+  <div class="max-w-7xl mx-auto px-6 py-12">
+    <div class="grid md:grid-cols-4 gap-8">
+      <!-- Brand -->
+      <div class="md:col-span-2">
+        <div class="flex items-center space-x-3 mb-6">
+          <div class="text-3xl">🌲</div>
+          <span class="text-green-300 font-bold text-2xl" style="text-shadow: 0 0 10px rgba(168, 198, 134, 0.5);">
+            Forest Calm
+          </span>
+        </div>
+        <p class="text-green-100/80 mb-6 max-w-md leading-relaxed">
+          A digital sanctuary where technology meets nature's wisdom. 
+          Find peace, breathe deeply, and let your mind wander through our virtual forest.
+        </p>
+      </div>
+      
+      <!-- Links -->
+      <div>
+        <h3 class="text-green-300 font-semibold mb-4 text-lg">Forest Paths</h3>
+        <ul class="space-y-3">
+          <li><a href="/" class="text-green-100/70 hover:text-green-300 transition-colors duration-500 text-sm">🏠 Forest Home</a></li>
+          <li><a href="/about" class="text-green-100/70 hover:text-green-300 transition-colors duration-500 text-sm">🌿 Nature Guide</a></li>
+          <li><a href="/contact" class="text-green-100/70 hover:text-green-300 transition-colors duration-500 text-sm">🍃 Contact Grove</a></li>
+          <li><a href="/demo" class="text-green-100/70 hover:text-green-300 transition-colors duration-500 text-sm">🌲 Demo Trail</a></li>
+        </ul>
+      </div>
+      
+      <!-- Resources -->
+      <div>
+        <h3 class="text-green-300 font-semibold mb-4 text-lg">Nature Resources</h3>
+        <ul class="space-y-3">
+          <li><a href="/docs" class="text-green-100/70 hover:text-green-300 transition-colors duration-500 text-sm">📚 Wisdom Library</a></li>
+          <li><a href="/api" class="text-green-100/70 hover:text-green-300 transition-colors duration-500 text-sm">🔗 API Roots</a></li>
+          <li><a href="/examples" class="text-green-100/70 hover:text-green-300 transition-colors duration-500 text-sm">💻 Code Seeds</a></li>
+          <li><a href="/support" class="text-green-100/70 hover:text-green-300 transition-colors duration-500 text-sm">🛠️ Support Circle</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- Bottom Bar -->
+    <div class="border-t border-green-600/30 mt-8 pt-8 text-center">
+      <p class="text-green-100/60 text-sm">
+        © 2025 Forest Calm // Digital Nature Sanctuary //
+        <span class="text-green-300">Breathe • Relax • Heal</span>
+      </p>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- React App Script -->
+    <script src="/themes/react/assets/main.js"></script>
+</div>

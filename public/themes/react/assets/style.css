@@ -1,0 +1,347 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Georgia:wght@400;700&display=swap');
+
+/* Forest Calm - Digital Nature Sanctuary */
+:root {
+  --forest-dark: #1a2e05;
+  --forest-deep: #2d5016;
+  --forest-main: #4a7c59;
+  --forest-sage: #87a96b;
+  --forest-light: #a8c686;
+  --forest-mist: #c8d5b9;
+  --nature-cream: #f5f5dc;
+  --earth-bark: #8b4513;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Georgia', serif;
+  background: linear-gradient(135deg, var(--forest-dark), var(--forest-deep), var(--forest-main));
+  background-attachment: fixed;
+  color: var(--nature-cream);
+  min-height: 100vh;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Forest Card Styles */
+.forest-card {
+  background: rgba(77, 124, 89, 0.2);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(135, 169, 107, 0.3);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 8px 32px rgba(77, 124, 89, 0.2);
+}
+
+.forest-button {
+  background: rgba(135, 169, 107, 0.8);
+  color: var(--nature-cream);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  backdrop-filter: blur(8px);
+}
+
+.forest-button:hover {
+  background: var(--forest-sage);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 32px rgba(77, 124, 89, 0.3);
+}
+
+/* Forest Glow Text */
+.forest-glow {
+  color: var(--forest-light);
+  text-shadow: 
+    0 0 10px rgba(168, 198, 134, 0.5),
+    0 0 20px rgba(168, 198, 134, 0.3),
+    0 0 30px rgba(168, 198, 134, 0.1);
+}
+
+/* Nature Text */
+.nature-text {
+  color: rgba(245, 245, 220, 0.9);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Breathing Animation */
+@keyframes breathe {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% { 
+    transform: scale(1.02);
+    opacity: 1;
+  }
+}
+
+.breathing-card {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+/* Gentle Float Animation */
+@keyframes float-gentle {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% { 
+    transform: translateY(-10px) rotate(2deg);
+  }
+}
+
+.float-gentle {
+  animation: float-gentle 6s ease-in-out infinite;
+}
+
+/* Sway Animation */
+@keyframes sway {
+  0%, 100% { 
+    transform: translateX(0px) rotate(0deg);
+  }
+  25% { 
+    transform: translateX(5px) rotate(1deg);
+  }
+  75% { 
+    transform: translateX(-5px) rotate(-1deg);
+  }
+}
+
+.sway {
+  animation: sway 8s ease-in-out infinite;
+}
+
+/* Fade In Animation */
+@keyframes fade-in {
+  0% { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fade-in 2s ease-out;
+}
+
+/* Leaf Fall Animation */
+@keyframes leaf-fall {
+  0% { 
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% { 
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.leaf-fall {
+  animation: leaf-fall 15s linear infinite;
+}
+
+/* Wind Rustle Animation */
+@keyframes wind-rustle {
+  0%, 100% { 
+    transform: translateX(0px);
+  }
+  25% { 
+    transform: translateX(2px);
+  }
+  75% { 
+    transform: translateX(-2px);
+  }
+}
+
+.wind-rustle {
+  animation: wind-rustle 3s ease-in-out infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--forest-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--forest-sage), var(--forest-main));
+  border-radius: 6px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--forest-light), var(--forest-sage));
+}
+
+/* Focus Styles */
+*:focus {
+  outline: 2px solid rgba(168, 198, 134, 0.5);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  
+  .forest-card {
+    padding: 1rem;
+  }
+  
+  .forest-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Utility Classes */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+.mb-8 { margin-bottom: 2rem; }
+.mb-12 { margin-bottom: 3rem; }
+
+.p-4 { padding: 1rem; }
+.p-6 { padding: 1.5rem; }
+.p-8 { padding: 2rem; }
+
+.rounded { border-radius: 0.25rem; }
+.rounded-lg { border-radius: 0.5rem; }
+.rounded-xl { border-radius: 0.75rem; }
+.rounded-2xl { border-radius: 1rem; }
+
+.opacity-60 { opacity: 0.6; }
+.opacity-70 { opacity: 0.7; }
+.opacity-80 { opacity: 0.8; }
+
+/* Grid System */
+.grid { display: grid; }
+.grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+.grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+.gap-4 { gap: 1rem; }
+.gap-6 { gap: 1.5rem; }
+.gap-8 { gap: 2rem; }
+
+@media (min-width: 768px) {
+  .md\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .md\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .md\:grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Flexbox */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.space-x-2 > * + * { margin-left: 0.5rem; }
+.space-x-3 > * + * { margin-left: 0.75rem; }
+.space-x-4 > * + * { margin-left: 1rem; }
+.space-x-6 > * + * { margin-left: 1.5rem; }
+.space-x-8 > * + * { margin-left: 2rem; }
+
+/* Typography */
+.text-xs { font-size: 0.75rem; }
+.text-sm { font-size: 0.875rem; }
+.text-base { font-size: 1rem; }
+.text-lg { font-size: 1.125rem; }
+.text-xl { font-size: 1.25rem; }
+.text-2xl { font-size: 1.5rem; }
+.text-3xl { font-size: 1.875rem; }
+.text-4xl { font-size: 2.25rem; }
+.text-5xl { font-size: 3rem; }
+.text-6xl { font-size: 3.75rem; }
+.text-7xl { font-size: 4.5rem; }
+
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+
+/* Positioning */
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+.inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+.top-0 { top: 0; }
+.bottom-0 { bottom: 0; }
+.left-0 { left: 0; }
+.right-0 { right: 0; }
+.z-10 { z-index: 10; }
+.z-50 { z-index: 50; }
+
+/* Sizing */
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+.min-h-screen { min-height: 100vh; }
+.max-w-7xl { max-width: 80rem; }
+.max-w-6xl { max-width: 72rem; }
+.max-w-3xl { max-width: 48rem; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+/* Spacing */
+.px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+.px-8 { padding-left: 2rem; padding-right: 2rem; }
+.py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+.py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+.py-12 { padding-top: 3rem; padding-bottom: 3rem; }
+.pt-16 { padding-top: 4rem; }
+.mt-20 { margin-top: 5rem; }
+
+/* Display */
+.hidden { display: none; }
+.block { display: block; }
+.inline-block { display: inline-block; }
+
+@media (min-width: 768px) {
+  .md\:flex { display: flex; }
+  .md\:hidden { display: none; }
+  .md\:block { display: block; }
+  .md\:text-2xl { font-size: 1.5rem; }
+  .md\:text-4xl { font-size: 2.25rem; }
+  .md\:text-7xl { font-size: 4.5rem; }
+}
+
+@media (min-width: 1024px) {
+  .lg\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+}
+
+/* Hover Effects */
+.hover\:scale-105:hover { transform: scale(1.05); }
+.hover\:bg-green-600:hover { background-color: #16a34a; }
+.hover\:text-green-300:hover { color: #86efac; }
+.transition-all { transition: all 0.3s ease; }
+.transition-colors { transition: color 0.3s ease; }
+.duration-500 { transition-duration: 0.5s; }
+.duration-700 { transition-duration: 0.7s; }

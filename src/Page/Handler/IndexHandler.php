@@ -29,21 +29,20 @@ class IndexHandler implements RequestHandlerInterface
         // Use theme-specific template from new structure
         $templateName = $currentTheme . '_pages::home';
 
-        $templateData = [];
+        $templateData = [
+            'title' => 'Home - Mezzio Light Application',
+            'description' => 'Welcome to Mezzio Light - A modern, fast, and secure PHP application framework',
+            'author' => 'Dotkernel Team',
+            'cssUrl' => $this->themeService->getThemeCssUrl(),
+            'jsUrl' => $this->themeService->getThemeJsUrl(),
+            'debug_theme' => $currentTheme,
+            'debug_template' => $templateName
+        ];
 
         return new HtmlResponse(
             $this->template->render($templateName, $templateData)
         );
     }
 
-    private function templateExists(string $templateName): bool
-    {
-        try {
-            // Try to render with empty data to check if template exists
-            $this->template->render($templateName, []);
-            return true;
-        } catch (\Exception $e) {
-            return false;
-        }
-    }
+
 }

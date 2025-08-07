@@ -6,7 +6,7 @@ namespace Minimal\Shared\Service;
 
 /**
  * Theme-aware template service.
- * 
+ *
  * Provides theme-specific template paths using the new organized structure.
  */
 class ThemeAwareTemplateService
@@ -69,6 +69,8 @@ class ThemeAwareTemplateService
 
     /**
      * Get all available themes.
+     *
+     * @return array<string>
      */
     public function getAvailableThemes(): array
     {

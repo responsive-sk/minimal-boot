@@ -11,6 +11,7 @@ use Mezzio\Template\TemplateRendererInterface;
 use Minimal\Page\Domain\Entity\Page;
 use Minimal\Page\Domain\Service\PageServiceInterface;
 use Minimal\Page\Handler\GetPageViewHandler;
+use Minimal\Shared\Service\ThemeService;
 use MinimalTest\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 
@@ -22,6 +23,7 @@ class GetPageViewHandlerTest extends TestCase
     private GetPageViewHandler $handler;
     private PageServiceInterface|MockObject $pageService;
     private TemplateRendererInterface|MockObject $template;
+    private ThemeService|MockObject $themeService;
 
     protected function setUp(): void
     {
@@ -29,8 +31,9 @@ class GetPageViewHandlerTest extends TestCase
 
         $this->pageService = $this->createMock(PageServiceInterface::class);
         $this->template = $this->createMock(TemplateRendererInterface::class);
+        $this->themeService = $this->createMock(ThemeService::class);
 
-        $this->handler = new GetPageViewHandler($this->template, $this->pageService);
+        $this->handler = new GetPageViewHandler($this->template, $this->pageService, $this->themeService);
     }
 
     public function testCanCreateHandler(): void
@@ -65,6 +68,16 @@ class GetPageViewHandlerTest extends TestCase
             ->with($slug)
             ->willReturn($page);
 
+        $this->themeService
+            ->expects($this->once())
+            ->method('getThemeCssUrl')
+            ->willReturn('/css/theme.css');
+
+        $this->themeService
+            ->expects($this->once())
+            ->method('getThemeJsUrl')
+            ->willReturn('/js/theme.js');
+
         $this->template
             ->expects($this->once())
             ->method('render')
@@ -74,6 +87,8 @@ class GetPageViewHandlerTest extends TestCase
                 'content' => '<h1>Test Content</h1>',
                 'metaDescription' => 'Test description',
                 'metaKeywords' => [],
+                'cssUrl' => '/css/theme.css',
+                'jsUrl' => '/js/theme.js',
             ])
             ->willReturn('<html>Rendered page</html>');
 
@@ -144,6 +159,16 @@ class GetPageViewHandlerTest extends TestCase
             ->with($slug)
             ->willReturn($page);
 
+        $this->themeService
+            ->expects($this->once())
+            ->method('getThemeCssUrl')
+            ->willReturn('/css/theme.css');
+
+        $this->themeService
+            ->expects($this->once())
+            ->method('getThemeJsUrl')
+            ->willReturn('/js/theme.js');
+
         $this->template
             ->expects($this->once())
             ->method('render')
@@ -153,6 +178,8 @@ class GetPageViewHandlerTest extends TestCase
                 'content' => '<h1>Content</h1>',
                 'metaDescription' => 'Description',
                 'metaKeywords' => ['php', 'framework', 'testing'],
+                'cssUrl' => '/css/theme.css',
+                'jsUrl' => '/js/theme.js',
             ])
             ->willReturn('<html>Page with keywords</html>');
 

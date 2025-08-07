@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace MinimalTest\Integration\App\Handler;
 
 use Laminas\Diactoros\ServerRequest;
-use Minimal\App\Handler\IndexHandler;
+use Minimal\Page\Handler\IndexHandler;
 use Minimal\Shared\Service\ThemeService;
 use Mezzio\Template\TemplateRendererInterface;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Http\Message\ResponseInterface;
+use ResponsiveSk\Slim4Paths\Paths;
 
 /**
  * Integration tests for IndexHandler
@@ -20,14 +21,17 @@ class IndexHandlerTest extends TestCase
     private IndexHandler $handler;
     private TemplateRendererInterface|MockObject $templateRenderer;
     private ThemeService|MockObject $themeService;
+    private Paths|MockObject $paths;
 
     protected function setUp(): void
     {
         $this->templateRenderer = $this->createMock(TemplateRendererInterface::class);
         $this->themeService = $this->createMock(ThemeService::class);
-        
+        $this->paths = $this->createMock(Paths::class);
+
         $this->handler = new IndexHandler(
             $this->templateRenderer,
+            $this->paths,
             $this->themeService
         );
     }
@@ -58,12 +62,16 @@ class IndexHandlerTest extends TestCase
             ->with(
                 'bootstrap_pages::home',
                 $this->callback(function ($data) {
-                    return isset($data['title']) 
-                        && isset($data['cssUrl']) 
+                    return isset($data['title'])
+                        && isset($data['cssUrl'])
                         && isset($data['jsUrl'])
+                        && isset($data['debug_theme'])
+                        && isset($data['debug_template'])
                         && $data['title'] === 'Home - Mezzio Light Application'
                         && $data['cssUrl'] === 'themes/bootstrap/assets/main.css'
-                        && $data['jsUrl'] === 'themes/bootstrap/assets/main.js';
+                        && $data['jsUrl'] === 'themes/bootstrap/assets/main.js'
+                        && $data['debug_theme'] === 'bootstrap'
+                        && $data['debug_template'] === 'bootstrap_pages::home';
                 })
             )
             ->willReturn('<html>Home Page</html>');
@@ -103,8 +111,16 @@ class IndexHandlerTest extends TestCase
             ->with(
                 'tailwind_pages::home',
                 $this->callback(function ($data) {
-                    return $data['cssUrl'] === 'themes/main/assets/main.css'
-                        && $data['jsUrl'] === 'themes/main/assets/main.js';
+                    return isset($data['title'])
+                        && isset($data['cssUrl'])
+                        && isset($data['jsUrl'])
+                        && isset($data['debug_theme'])
+                        && isset($data['debug_template'])
+                        && $data['title'] === 'Home - Mezzio Light Application'
+                        && $data['cssUrl'] === 'themes/main/assets/main.css'
+                        && $data['jsUrl'] === 'themes/main/assets/main.js'
+                        && $data['debug_theme'] === 'tailwind'
+                        && $data['debug_template'] === 'tailwind_pages::home';
                 })
             )
             ->willReturn('<html>Tailwind Home Page</html>');
@@ -140,17 +156,19 @@ class IndexHandlerTest extends TestCase
                 'bootstrap_pages::home',
                 $this->callback(function ($data) {
                     // Verify all required template data is present
-                    $requiredKeys = ['title', 'description', 'author', 'cssUrl', 'jsUrl'];
+                    $requiredKeys = ['title', 'description', 'author', 'cssUrl', 'jsUrl', 'debug_theme', 'debug_template'];
                     foreach ($requiredKeys as $key) {
                         if (!isset($data[$key])) {
                             return false;
                         }
                     }
-                    
+
                     // Verify specific values
                     return $data['title'] === 'Home - Mezzio Light Application'
                         && $data['description'] === 'Welcome to Mezzio Light - A modern, fast, and secure PHP application framework'
-                        && $data['author'] === 'Dotkernel Team';
+                        && $data['author'] === 'Dotkernel Team'
+                        && $data['debug_theme'] === 'bootstrap'
+                        && $data['debug_template'] === 'bootstrap_pages::home';
                 })
             )
             ->willReturn('<html>Test</html>');

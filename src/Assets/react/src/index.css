@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Georgia:wght@400;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply antialiased bg-gradient-to-br from-forest-dark via-forest-deep to-forest-main text-nature-cream font-nature;
+    background-image: 
+      radial-gradient(circle at 20% 80%, rgba(77, 124, 89, 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(139, 69, 19, 0.2) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(143, 188, 143, 0.1) 0%, transparent 50%);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .forest-card {
+    @apply bg-forest-main/20 backdrop-blur-sm border border-forest-sage/30 rounded-2xl p-6 shadow-nature;
+    background-image: linear-gradient(135deg, rgba(77, 124, 89, 0.1) 0%, rgba(135, 169, 107, 0.05) 100%);
+  }
+  
+  .forest-button {
+    @apply px-6 py-3 bg-forest-sage/80 hover:bg-forest-sage text-nature-cream font-medium rounded-xl transition-all duration-500 shadow-soft;
+    backdrop-filter: blur(8px);
+  }
+  
+  .forest-button:hover {
+    @apply scale-105 shadow-nature;
+    transform: translateY(-2px) scale(1.05);
+  }
+  
+  .nature-text {
+    @apply text-nature-cream/90;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .forest-glow {
+    @apply text-forest-light;
+    text-shadow: 
+      0 0 10px rgba(168, 198, 134, 0.5),
+      0 0 20px rgba(168, 198, 134, 0.3),
+      0 0 30px rgba(168, 198, 134, 0.1);
+  }
+  
+  .breathing-card {
+    @apply forest-card;
+    animation: breathe 4s ease-in-out infinite;
+  }
+  
+  .leaf {
+    @apply absolute w-3 h-3 opacity-70;
+    background: linear-gradient(45deg, #4a7c59, #87a96b);
+    border-radius: 0 100% 0 100%;
+    transform-origin: center;
+  }
+  
+  .tree-shadow {
+    box-shadow: 
+      0 10px 30px rgba(77, 124, 89, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Custom scrollbar - forest theme */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-forest-dark;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gradient-to-b from-forest-sage to-forest-main rounded-full;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply from-forest-light to-forest-sage;
+}
+
+/* Gentle focus styles */
+*:focus {
+  outline: 2px solid rgba(168, 198, 134, 0.5);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Smooth transitions for everything */
+* {
+  transition: all 0.3s ease;
+}
+
+/* Nature sounds visualization (optional) */
+.sound-wave {
+  @apply w-1 bg-forest-light/50 rounded-full;
+  animation: windRustle 2s ease-in-out infinite;
+}
+
+.sound-wave:nth-child(2) { animation-delay: 0.2s; }
+.sound-wave:nth-child(3) { animation-delay: 0.4s; }
+.sound-wave:nth-child(4) { animation-delay: 0.6s; }

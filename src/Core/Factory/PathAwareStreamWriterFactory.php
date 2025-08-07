@@ -13,18 +13,25 @@ use ResponsiveSk\Slim4Paths\Paths;
  */
 class PathAwareStreamWriterFactory
 {
+    /**
+     * @param array<string, mixed>|null $options
+     */
     public function __invoke(ContainerInterface $container, string $requestedName, ?array $options = null): PathAwareStreamWriter
     {
         $options = $options ?? [];
-        
+
         // Get Paths service from container
-        $paths = $container->has(Paths::class) ? $container->get(Paths::class) : null;
-        
+        $paths = null;
+        if ($container->has(Paths::class)) {
+            $pathsService = $container->get(Paths::class);
+            $paths = $pathsService instanceof Paths ? $pathsService : null;
+        }
+
         // Extract stream URL from options
         $streamOrUrl = $options['stream'] ?? 'php://output';
-        $mode = $options['mode'] ?? 'a';
-        $logSeparator = $options['log_separator'] ?? null;
-        
+        $mode = is_string($options['mode'] ?? null) ? $options['mode'] : 'a';
+        $logSeparator = is_string($options['log_separator'] ?? null) ? $options['log_separator'] : null;
+
         return new PathAwareStreamWriter($streamOrUrl, $mode, $logSeparator, $paths);
     }
 }

@@ -1,0 +1,51 @@
+<?php
+$layout('svelte_layouts::default', [
+    'title' => 'Demo - Svelte Interactive Components',
+    'description' => 'Interactive demo showcasing Svelte components with glassmorphism design and smooth animations.',
+    'author' => 'Minimal Boot Team',
+]);
+
+// Svelte theme demo page
+// The actual content is rendered by Svelte components
+$this->headMeta()->setName('description', 'Interactive demo showcasing Svelte components with glassmorphism design and smooth animations.');
+$this->headMeta()->setName('keywords', 'svelte, demo, interactive, components, glassmorphism, animations');
+
+// Open Graph meta tags for social sharing
+$this->headMeta()->setProperty('og:title', 'Svelte Demo - Interactive Components');
+$this->headMeta()->setProperty('og:description', 'Experience modern interactive components built with Svelte');
+$this->headMeta()->setProperty('og:type', 'website');
+$this->headMeta()->setProperty('og:url', $url('page::demo'));
+
+// Twitter Card meta tags
+$this->headMeta()->setName('twitter:card', 'summary_large_image');
+$this->headMeta()->setName('twitter:title', 'Svelte Demo - Interactive Components');
+$this->headMeta()->setName('twitter:description', 'Experience modern interactive components built with Svelte');
+
+// Structured data for SEO
+$structuredData = [
+    '@context' => 'https://schema.org',
+    '@type' => 'WebPage',
+    'name' => 'Svelte Demo',
+    'description' => 'Interactive demo showcasing Svelte components with modern design',
+    'url' => $url('page::demo'),
+    'isPartOf' => [
+        '@type' => 'WebSite',
+        'name' => 'Minimal Boot',
+        'url' => $url('page::index')
+    ]
+];
+?>
+
+<script type="application/ld+json">
+<?= json_encode($structuredData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) ?>
+</script>
+
+<!-- 
+The actual demo content is rendered by Svelte components:
+- Interactive animations and transitions
+- Glassmorphism UI elements
+- Mouse tracking effects
+- Responsive design showcase
+
+All content is dynamically rendered on the client side for maximum interactivity.
+-->

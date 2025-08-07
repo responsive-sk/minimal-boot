@@ -42,7 +42,8 @@ export const CSSUtils = {
 };
 
 // Initialize theme utilities
-export function initThemeUtils() {
+export function initThemeUtils()
+{
     console.log('TailwindCSS theme loaded');
     console.log('Theme assets loaded:', ThemeAssets);
 
@@ -58,7 +59,8 @@ export function initThemeUtils() {
 }
 
 // Initialize event listeners for data-action attributes
-function initEventListeners() {
+function initEventListeners()
+{
     document.addEventListener('click', (e) => {
         const action = e.target.getAttribute('data-action');
 

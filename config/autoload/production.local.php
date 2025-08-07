@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 /**
  * Production Configuration Override
- * 
+ *
  * This file contains production-specific configuration that overrides
  * development settings for optimal performance and security.
  */
@@ -12,10 +12,10 @@ declare(strict_types=1);
 return [
     // Disable debugging in production
     'debug' => false,
-    
+
     // Enable configuration cache for better performance
     'config_cache_enabled' => true,
-    
+
     // Mezzio configuration
     'mezzio' => [
         // Production error handling
@@ -24,11 +24,11 @@ return [
             'template_error' => 'error::error',
             'layout'         => 'error::layout',
         ],
-        
+
         // Disable development middleware
         'programmatic_pipeline' => false,
     ],
-    
+
     // Database configuration for production
     'db' => [
         'driver' => 'pdo_mysql',
@@ -46,7 +46,7 @@ return [
             PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
         ],
     ],
-    
+
     // Logging configuration
     'log' => [
         'level' => $_ENV['LOG_LEVEL'] ?? 'error',
@@ -55,7 +55,7 @@ return [
         'max_files' => 30,
         'format' => '[%datetime%] %level_name%: %message% %context% %extra%' . PHP_EOL,
     ],
-    
+
     // Session configuration for production
     'session' => [
         'cookie_name' => $_ENV['SESSION_NAME'] ?? 'minimal_boot_session',
@@ -67,14 +67,14 @@ return [
         'gc_probability' => 1,
         'gc_divisor' => 100,
     ],
-    
+
     // CSRF protection
     'csrf' => [
         'token_name' => $_ENV['CSRF_TOKEN_NAME'] ?? 'csrf_token',
         'header_name' => $_ENV['CSRF_HEADER_NAME'] ?? 'X-CSRF-Token',
         'timeout' => 3600,
     ],
-    
+
     // Security headers
     'security' => [
         'headers' => [
@@ -84,21 +84,21 @@ return [
             'Referrer-Policy' => 'strict-origin-when-cross-origin',
             'Permissions-Policy' => 'geolocation=(), microphone=(), camera=()',
         ],
-        
+
         // HSTS header (only if HTTPS is properly configured)
         'hsts' => [
             'max_age' => (int) ($_ENV['HSTS_MAX_AGE'] ?? 31536000),
             'include_subdomains' => true,
             'preload' => false,
         ],
-        
+
         // Content Security Policy
         'csp' => [
             'enabled' => filter_var($_ENV['SECURITY_HEADERS_ENABLED'] ?? 'true', FILTER_VALIDATE_BOOLEAN),
             'policy' => $_ENV['CONTENT_SECURITY_POLICY'] ?? "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
         ],
     ],
-    
+
     // Performance optimizations
     'performance' => [
         'opcache' => [
@@ -109,7 +109,7 @@ return [
             'fast_shutdown' => true,
             'enable_cli' => false,
         ],
-        
+
         'cache' => [
             'enabled' => filter_var($_ENV['CACHE_ENABLE'] ?? 'true', FILTER_VALIDATE_BOOLEAN),
             'ttl' => 3600,
@@ -120,14 +120,14 @@ return [
             ],
         ],
     ],
-    
+
     // File upload settings
     'upload' => [
         'max_size' => $_ENV['UPLOAD_MAX_SIZE'] ?? '10M',
         'allowed_types' => explode(',', $_ENV['UPLOAD_ALLOWED_TYPES'] ?? 'jpg,jpeg,png,gif,pdf'),
         'upload_path' => $_ENV['UPLOAD_PATH'] ?? 'var/uploads',
     ],
-    
+
     // Email configuration (if using email features)
     'mail' => [
         'transport' => [
@@ -148,7 +148,7 @@ return [
             'from_name' => $_ENV['MAIL_FROM_NAME'] ?? 'Minimal Boot',
         ],
     ],
-    
+
     // Rate limiting
     'rate_limit' => [
         'enabled' => filter_var($_ENV['RATE_LIMIT_ENABLED'] ?? 'true', FILTER_VALIDATE_BOOLEAN),
@@ -156,14 +156,14 @@ return [
         'window' => (int) ($_ENV['RATE_LIMIT_WINDOW'] ?? 60),
         'storage' => 'filesystem',
     ],
-    
+
     // Maintenance mode
     'maintenance' => [
         'enabled' => filter_var($_ENV['MAINTENANCE_MODE'] ?? 'false', FILTER_VALIDATE_BOOLEAN),
         'message' => $_ENV['MAINTENANCE_MESSAGE'] ?? 'We are currently performing scheduled maintenance.',
         'allowed_ips' => [], // Add IPs that should bypass maintenance mode
     ],
-    
+
     // Feature flags
     'features' => [
         'contact_form' => filter_var($_ENV['FEATURE_CONTACT_FORM'] ?? 'true', FILTER_VALIDATE_BOOLEAN),
@@ -171,7 +171,7 @@ return [
         'theme_switching' => filter_var($_ENV['FEATURE_THEME_SWITCHING'] ?? 'true', FILTER_VALIDATE_BOOLEAN),
         'analytics' => filter_var($_ENV['FEATURE_ANALYTICS'] ?? 'false', FILTER_VALIDATE_BOOLEAN),
     ],
-    
+
     // Asset configuration
     'assets' => [
         'base_url' => $_ENV['ASSET_URL'] ?? $_ENV['APP_URL'] ?? '',
@@ -181,20 +181,20 @@ return [
             'url' => $_ENV['CDN_URL'] ?? '',
         ],
     ],
-    
+
     // Third-party integrations
     'integrations' => [
         'google_analytics' => [
             'enabled' => !empty($_ENV['GOOGLE_ANALYTICS_ID'] ?? ''),
             'tracking_id' => $_ENV['GOOGLE_ANALYTICS_ID'] ?? '',
         ],
-        
+
         'recaptcha' => [
             'enabled' => !empty($_ENV['RECAPTCHA_SITE_KEY'] ?? ''),
             'site_key' => $_ENV['RECAPTCHA_SITE_KEY'] ?? '',
             'secret_key' => $_ENV['RECAPTCHA_SECRET_KEY'] ?? '',
         ],
-        
+
         'sentry' => [
             'enabled' => !empty($_ENV['SENTRY_DSN'] ?? ''),
             'dsn' => $_ENV['SENTRY_DSN'] ?? '',
@@ -205,13 +205,7 @@ return [
     'dot_log' => [
         'loggers' => [
             'default_logger' => [
-                'writers' => [
-                    'NoopWriter' => [
-                        'name'    => 'noop',
-                        'level'   => \Dot\Log\Logger::EMERG,
-                        'options' => [],
-                    ],
-                ],
+                'writers' => [],
             ],
         ],
     ],

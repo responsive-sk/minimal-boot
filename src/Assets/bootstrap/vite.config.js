@@ -46,10 +46,10 @@ export default defineConfig(({ mode }) => ({
                     const srcPath = path.resolve(__dirname, 'src', fontFile);
                     const destPath = path.resolve(publicFontsDir, fileName);
                     copyFileSync(srcPath, destPath);
-                    console.log(`Copied ${fileName} to public/fonts/`);
+                    console.log(`Copied ${fileName} to public / fonts / `);
                 });
             }
-        }
+    }
     ],
     server: {
         port: 3001

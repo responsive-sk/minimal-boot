@@ -1,0 +1,25 @@
+{
+  "name": "minimal-boot-svelte-theme",
+  "version": "1.0.0",
+  "description": "Modern Svelte theme for Minimal Boot",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-check --tsconfig ./jsconfig.json"
+  },
+  "packageManager": "pnpm@8.0.0",
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^3.0.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "svelte": "^4.2.8",
+    "svelte-check": "^3.6.2",
+    "tailwindcss": "^3.3.6",
+    "vite": "^5.0.8"
+  },
+  "dependencies": {
+    "lucide-svelte": "^0.294.0"
+  }
+}

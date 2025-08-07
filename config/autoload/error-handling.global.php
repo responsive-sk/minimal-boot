@@ -86,26 +86,27 @@ return [
         'loggers' => [
             'default_logger' => [
                 'writers' => [
-                    'FileWriter' => [
-                        'name'    => \Minimal\Core\Log\PathAwareStreamWriter::class,
-                        'level'   => Logger::ALERT,
-                        'options' => [
-                            'stream' => 'var/logs/error-log-{Y}-{m}-{d}.log',
-                            // explicitly log all messages
-                            'filters'   => [
-                                'allMessages' => [
-                                    'name'    => 'level',
-                                    'options' => [
-                                        'operator' => '>=',
-                                        'level'    => Logger::EMERG,
-                                    ],
-                                ],
-                            ],
-                            'formatter' => [
-                                'name' => Json::class,
-                            ],
-                        ],
-                    ],
+                    // Disable file logging for shared hosting compatibility
+                    // 'FileWriter' => [
+                    //     'name'    => \Minimal\Core\Log\PathAwareStreamWriter::class,
+                    //     'level'   => Logger::ALERT,
+                    //     'options' => [
+                    //         'stream' => 'var/logs/error-log-{Y}-{m}-{d}.log',
+                    //         // explicitly log all messages
+                    //         'filters'   => [
+                    //             'allMessages' => [
+                    //                 'name'    => 'level',
+                    //                 'options' => [
+                    //                     'operator' => '>=',
+                    //                     'level'    => Logger::EMERG,
+                    //                 ],
+                    //             ],
+                    //         ],
+                    //         'formatter' => [
+                    //             'name' => Json::class,
+                    //         ],
+                    //     ],
+                    // ],
                 ],
             ],
         ],

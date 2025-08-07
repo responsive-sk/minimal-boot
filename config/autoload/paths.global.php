@@ -17,7 +17,7 @@ return [
         // Custom paths configuration (relative to base_path)
         'custom_paths' => [
             // Core directories
-            'templates' => 'src/Shared/templates',
+            'shared_templates' => 'src/Shared/templates',
             'content'   => 'content',
             'data'      => 'var/data',
             'db'        => 'var/db',
@@ -52,18 +52,30 @@ return [
             'templates_themes' => 'templates/themes',
             'templates_bootstrap' => 'templates/themes/bootstrap',
             'templates_tailwind' => 'templates/themes/tailwind',
+            'templates_svelte' => 'templates/themes/svelte',
+            'templates_vue' => 'templates/themes/vue',
+            'templates_react' => 'templates/themes/react',
 
             // Theme layouts
             'templates_bootstrap_layouts' => 'templates/themes/bootstrap/layouts',
             'templates_tailwind_layouts' => 'templates/themes/tailwind/layouts',
+            'templates_svelte_layouts' => 'templates/themes/svelte/layouts',
+            'templates_vue_layouts' => 'templates/themes/vue/layouts',
+            'templates_react_layouts' => 'templates/themes/react/layouts',
 
             // Theme pages
             'templates_bootstrap_pages' => 'templates/themes/bootstrap/pages',
             'templates_tailwind_pages' => 'templates/themes/tailwind/pages',
+            'templates_svelte_pages' => 'templates/themes/svelte/pages',
+            'templates_vue_pages' => 'templates/themes/vue/pages',
+            'templates_react_pages' => 'templates/themes/react/pages',
 
             // Theme partials
             'templates_bootstrap_partials' => 'templates/themes/bootstrap/partials',
             'templates_tailwind_partials' => 'templates/themes/tailwind/partials',
+            'templates_svelte_partials' => 'templates/themes/svelte/partials',
+            'templates_vue_partials' => 'templates/themes/vue/partials',
+            'templates_react_partials' => 'templates/themes/react/partials',
 
             // Module templates
             'templates_modules' => 'templates/modules',
