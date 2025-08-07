@@ -59,11 +59,11 @@ return [
     // Session configuration for production
     'session' => [
         'cookie_name' => $_ENV['SESSION_NAME'] ?? 'minimal_boot_session',
-        'cookie_lifetime' => (int) ($_ENV['SESSION_LIFETIME'] ?? 3600),
+        'cookie_lifetime' => (int) (is_numeric($_ENV['SESSION_LIFETIME'] ?? null) ? $_ENV['SESSION_LIFETIME'] : 3600),
         'cookie_secure' => filter_var($_ENV['SESSION_COOKIE_SECURE'] ?? 'true', FILTER_VALIDATE_BOOLEAN),
         'cookie_httponly' => filter_var($_ENV['SESSION_COOKIE_HTTPONLY'] ?? 'true', FILTER_VALIDATE_BOOLEAN),
         'cookie_samesite' => $_ENV['SESSION_COOKIE_SAMESITE'] ?? 'Strict',
-        'gc_maxlifetime' => (int) ($_ENV['SESSION_LIFETIME'] ?? 3600),
+        'gc_maxlifetime' => (int) (is_numeric($_ENV['SESSION_LIFETIME'] ?? null) ? $_ENV['SESSION_LIFETIME'] : 3600),
         'gc_probability' => 1,
         'gc_divisor' => 100,
     ],
@@ -87,7 +87,7 @@ return [
 
         // HSTS header (only if HTTPS is properly configured)
         'hsts' => [
-            'max_age' => (int) ($_ENV['HSTS_MAX_AGE'] ?? 31536000),
+            'max_age' => (int) (is_numeric($_ENV['HSTS_MAX_AGE'] ?? null) ? $_ENV['HSTS_MAX_AGE'] : 31536000),
             'include_subdomains' => true,
             'preload' => false,
         ],
@@ -124,7 +124,7 @@ return [
     // File upload settings
     'upload' => [
         'max_size' => $_ENV['UPLOAD_MAX_SIZE'] ?? '10M',
-        'allowed_types' => explode(',', $_ENV['UPLOAD_ALLOWED_TYPES'] ?? 'jpg,jpeg,png,gif,pdf'),
+        'allowed_types' => explode(',', is_string($_ENV['UPLOAD_ALLOWED_TYPES'] ?? null) ? $_ENV['UPLOAD_ALLOWED_TYPES'] : 'jpg,jpeg,png,gif,pdf'),
         'upload_path' => $_ENV['UPLOAD_PATH'] ?? 'var/uploads',
     ],
 
@@ -134,7 +134,7 @@ return [
             'type' => 'smtp',
             'options' => [
                 'host' => $_ENV['MAIL_HOST'] ?? '',
-                'port' => (int) ($_ENV['MAIL_PORT'] ?? 587),
+                'port' => (int) (is_numeric($_ENV['MAIL_PORT'] ?? null) ? $_ENV['MAIL_PORT'] : 587),
                 'connection_class' => 'login',
                 'connection_config' => [
                     'username' => $_ENV['MAIL_USERNAME'] ?? '',
@@ -152,8 +152,8 @@ return [
     // Rate limiting
     'rate_limit' => [
         'enabled' => filter_var($_ENV['RATE_LIMIT_ENABLED'] ?? 'true', FILTER_VALIDATE_BOOLEAN),
-        'max_requests' => (int) ($_ENV['RATE_LIMIT_MAX_REQUESTS'] ?? 60),
-        'window' => (int) ($_ENV['RATE_LIMIT_WINDOW'] ?? 60),
+        'max_requests' => (int) (is_numeric($_ENV['RATE_LIMIT_MAX_REQUESTS'] ?? null) ? $_ENV['RATE_LIMIT_MAX_REQUESTS'] : 60),
+        'window' => (int) (is_numeric($_ENV['RATE_LIMIT_WINDOW'] ?? null) ? $_ENV['RATE_LIMIT_WINDOW'] : 60),
         'storage' => 'filesystem',
     ],
 

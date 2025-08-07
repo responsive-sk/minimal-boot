@@ -87,7 +87,7 @@ return [
 
         // HSTS header (only if HTTPS is properly configured)
         'hsts' => [
-            'max_age' => (int) ($_ENV['HSTS_MAX_AGE'] ?? 31536000),
+            'max_age' => (int) (is_numeric($_ENV['HSTS_MAX_AGE'] ?? null) ? $_ENV['HSTS_MAX_AGE'] : 31536000),
             'include_subdomains' => true,
             'preload' => false,
         ],
@@ -124,7 +124,7 @@ return [
     // File upload settings
     'upload' => [
         'max_size' => $_ENV['UPLOAD_MAX_SIZE'] ?? '10M',
-        'allowed_types' => explode(',', $_ENV['UPLOAD_ALLOWED_TYPES'] ?? 'jpg,jpeg,png,gif,pdf'),
+        'allowed_types' => explode(',', is_string($_ENV['UPLOAD_ALLOWED_TYPES'] ?? null) ? $_ENV['UPLOAD_ALLOWED_TYPES'] : 'jpg,jpeg,png,gif,pdf'),
         'upload_path' => $_ENV['UPLOAD_PATH'] ?? 'var/uploads',
     ],
 
@@ -134,7 +134,7 @@ return [
             'type' => 'smtp',
             'options' => [
                 'host' => $_ENV['MAIL_HOST'] ?? '',
-                'port' => (int) ($_ENV['MAIL_PORT'] ?? 587),
+                'port' => (int) (is_numeric($_ENV['MAIL_PORT'] ?? null) ? $_ENV['MAIL_PORT'] : 587),
                 'connection_class' => 'login',
                 'connection_config' => [
                     'username' => $_ENV['MAIL_USERNAME'] ?? '',
@@ -152,8 +152,8 @@ return [
     // Rate limiting
     'rate_limit' => [
         'enabled' => filter_var($_ENV['RATE_LIMIT_ENABLED'] ?? 'true', FILTER_VALIDATE_BOOLEAN),
-        'max_requests' => (int) ($_ENV['RATE_LIMIT_MAX_REQUESTS'] ?? 60),
-        'window' => (int) ($_ENV['RATE_LIMIT_WINDOW'] ?? 60),
+        'max_requests' => (int) (is_numeric($_ENV['RATE_LIMIT_MAX_REQUESTS'] ?? null) ? $_ENV['RATE_LIMIT_MAX_REQUESTS'] : 60),
+        'window' => (int) (is_numeric($_ENV['RATE_LIMIT_WINDOW'] ?? null) ? $_ENV['RATE_LIMIT_WINDOW'] : 60),
         'storage' => 'filesystem',
     ],
 
