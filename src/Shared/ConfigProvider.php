@@ -44,6 +44,9 @@ class ConfigProvider
                 Handler\ThemeSwitchHandler::class => Factory\ThemeSwitchHandlerFactory::class,
                 Middleware\ThemeMiddleware::class => Factory\ThemeMiddlewareFactory::class,
                 Middleware\ThemeTemplateMiddleware::class => Factory\ThemeTemplateMiddlewareFactory::class,
+
+                // Security middleware
+                Middleware\SecurityMiddleware::class => Factory\SecurityMiddlewareFactory::class,
             ],
         ];
     }

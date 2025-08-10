@@ -62,16 +62,25 @@ class ConfigProvider
                     ini_set('session.cookie_path', '/');
                     ini_set('session.cookie_domain', '');
 
-                    return SessionFactory::createForDevelopment([
+                    // Detect if we're on HTTPS for proper cookie security
+                    $isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ||
+                               (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') ||
+                               (!empty($_SERVER['SERVER_PORT']) && (int)$_SERVER['SERVER_PORT'] === 443);
+
+                    $sessionSettings = [
                         'name' => $sessionConfig['cookie_name'] ?? 'minimal_boot_session',
                         'cache_expire' => $sessionConfig['cookie_lifetime'] ?? 3600,
                         'cookie_httponly' => $sessionConfig['cookie_httponly'] ?? true,
-                        'cookie_secure' => false, // Always false for development
-                        'cookie_samesite' => 'Lax',
+                        'cookie_secure' => $sessionConfig['cookie_secure'] ?? $isHttps,
+                        'cookie_samesite' => $sessionConfig['cookie_samesite'] ?? ($isHttps ? 'Strict' : 'Lax'),
                         'gc_maxlifetime' => $sessionConfig['gc_maxlifetime'] ?? 3600,
                         'gc_probability' => $sessionConfig['gc_probability'] ?? 1,
                         'gc_divisor' => $sessionConfig['gc_divisor'] ?? 100,
-                    ]);
+                    ];
+
+                    return $isHttps ?
+                        SessionFactory::createForProduction($sessionSettings) :
+                        SessionFactory::createForDevelopment($sessionSettings);
                 },
                 SessionMiddleware::class => static function ($container): SessionMiddleware {
                     assert($container instanceof ContainerInterface);
