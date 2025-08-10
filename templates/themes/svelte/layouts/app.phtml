@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="<?= $e($description ?? 'Modern Svelte Application with Glassmorphism Design') ?>"/>
+    <meta name="author" content="<?= $e($author ?? 'Minimal Boot Team') ?>"/>
+    <meta name="generator" content="Minimal Boot + Svelte"/>
+    <meta name="theme-color" content="#1e293b"/>
+    <meta name="robots" content="index, follow"/>
+    <meta name="keywords" content="PHP, Mezzio, Svelte, Framework, Glassmorphism, Modern Web Development"/>
+
+    <?php
+    // Generate canonical URL early for use in meta tags
+    $scheme = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+    $uri = $_SERVER['REQUEST_URI'] ?? '/';
+    $canonicalUrl = $canonical ?? ($scheme . '://' . $host . $uri);
+    ?>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="<?= $e($canonicalUrl) ?>"/>
+    <meta property="og:title" content="<?= $e($title ?? 'Minimal Boot - Svelte Theme') ?>"/>
+    <meta property="og:description" content="<?= $e($description ?? 'Modern Svelte application with glassmorphism design and interactive components') ?>"/>
+    <meta property="og:site_name" content="Minimal Boot"/>
+    <meta property="og:image" content="<?= $e($scheme . '://' . $host) ?>/images/app/logo.svg"/>
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image"/>
+    <meta property="twitter:url" content="<?= $e($canonicalUrl) ?>"/>
+    <meta property="twitter:title" content="<?= $e($title ?? 'Minimal Boot - Svelte Theme') ?>"/>
+    <meta property="twitter:description" content="<?= $e($description ?? 'Modern Svelte application with glassmorphism design') ?>"/>
+    <meta property="twitter:image" content="<?= $e($scheme . '://' . $host) ?>/images/app/logo.svg"/>
+
+    <title><?= $e($title ?? 'Minimal Boot - Svelte Theme') ?></title>
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="<?= $asset('images/app/favicon/favicon-32x32.png') ?>"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= $asset('images/app/favicon/favicon-16x16.png') ?>"/>
+    <link rel="manifest" href="<?= $asset('images/app/favicon/site.webmanifest') ?>"/>
+    <link rel="mask-icon" href="<?= $asset('images/app/favicon/safari-pinned-tab.svg') ?>" color="#5bbad5"/>
+    <meta name="msapplication-TileColor" content="#da532c"/>
+
+    <!-- Svelte Theme CSS -->
+    <link rel="stylesheet" href="<?= $cssUrl ?? '/themes/svelte/assets/main.css' ?>"/>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="<?= $asset('fonts/inter/Inter-Regular.woff2') ?>" as="font" type="font/woff2" crossorigin/>
+    <link rel="preload" href="<?= $asset('fonts/inter/Inter-Medium.woff2') ?>" as="font" type="font/woff2" crossorigin/>
+    <link rel="preload" href="<?= $asset('fonts/inter/Inter-SemiBold.woff2') ?>" as="font" type="font/woff2" crossorigin/>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Minimal Boot",
+        "description": "Modern PHP framework with Svelte theme",
+        "url": "<?= $e($canonicalUrl) ?>",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+</head>
+
+<body class="min-h-full bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
+    <!-- Background Effects -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div class="absolute top-40 left-40 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="relative z-50 backdrop-blur-md bg-white/10 border-b border-white/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center space-x-2">
+                        <img src="/images/app/logo.svg" class="h-8 w-auto" alt="Minimal Boot Logo"/>
+                        <span class="text-xl font-semibold text-white">Minimal Boot</span>
+                    </a>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="/" class="text-white hover:text-purple-300 px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+                        <a href="/page/about" class="text-white hover:text-purple-300 px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+                        <a href="/contact" class="text-white hover:text-purple-300 px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
+                        <a href="/demo" class="text-white hover:text-purple-300 px-3 py-2 rounded-md text-sm font-medium transition-colors">Demo</a>
+                    </div>
+                </div>
+
+                <!-- Theme Switcher -->
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <select id="theme-switcher" class="bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <option value="svelte" selected>Svelte</option>
+                            <option value="tailwind">Tailwind CSS</option>
+                            <option value="bootstrap">Bootstrap 5</option>
+                            <option value="vue">Vue Cyberpunk</option>
+                            <option value="react">Forest Calm</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="relative z-10">
+        <?= $this->section('content') ?>
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 mt-20 backdrop-blur-md bg-white/5 border-t border-white/10">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-r from-purple-400 to-pink-400 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-sm">MB</span>
+                        </div>
+                        <span class="text-xl font-semibold text-white">Minimal Boot</span>
+                    </div>
+                    <p class="text-gray-300 text-sm max-w-md">
+                        Modern PHP framework with Svelte theme featuring glassmorphism design and interactive components.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="/" class="text-gray-300 hover:text-white text-sm transition-colors">Home</a></li>
+                        <li><a href="/page/about" class="text-gray-300 hover:text-white text-sm transition-colors">About</a></li>
+                        <li><a href="/contact" class="text-gray-300 hover:text-white text-sm transition-colors">Contact</a></li>
+                        <li><a href="/demo" class="text-gray-300 hover:text-white text-sm transition-colors">Demo</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="https://github.com/responsive-sk/minimal-boot" class="text-gray-300 hover:text-white text-sm transition-colors" target="_blank">GitHub</a></li>
+                        <li><a href="/page/privacy" class="text-gray-300 hover:text-white text-sm transition-colors">Privacy Policy</a></li>
+                        <li><a href="https://docs.mezzio.dev/" class="text-gray-300 hover:text-white text-sm transition-colors" target="_blank">Documentation</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-white/10">
+                <p class="text-center text-gray-400 text-sm">
+                    &copy; 2025 Minimal Boot. Powered by Mezzio & Svelte.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Svelte Theme JavaScript -->
+    <script src="<?= $jsUrl ?? '/themes/svelte/assets/main.js' ?>"></script>
+    
+    <!-- Theme Switcher Script -->
+    <script>
+        document.getElementById('theme-switcher').addEventListener('change', function(e) {
+            const theme = e.target.value;
+            window.location.href = `/theme/switch?theme=${theme}`;
+        });
+    </script>
+</body>
+</html>

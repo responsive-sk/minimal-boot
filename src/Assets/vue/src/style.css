@@ -7,10 +7,10 @@
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
     @apply antialiased bg-cyber-darker text-cyber-cyan font-cyber;
-    background-image: 
+    background-image:
       radial-gradient(circle at 25% 25%, #ff008020 0%, transparent 50%),
       radial-gradient(circle at 75% 75%, #00ffff20 0%, transparent 50%),
       linear-gradient(45deg, #05050500, #0a0a0a80);
@@ -20,68 +20,68 @@
 @layer components {
   .cyber-border {
     @apply border border-cyber-cyan;
-    box-shadow: 
+    box-shadow:
       0 0 5px theme('colors.cyber.cyan'),
       inset 0 0 5px theme('colors.cyber.cyan');
   }
-  
+
   .cyber-glow {
     @apply text-cyber-cyan;
-    text-shadow: 
+    text-shadow:
       0 0 5px currentColor,
       0 0 10px currentColor,
       0 0 15px currentColor;
   }
-  
+
   .neon-box {
     @apply bg-cyber-dark/50 backdrop-blur-sm;
     border: 1px solid theme('colors.cyber.cyan');
-    box-shadow: 
+    box-shadow:
       0 0 10px theme('colors.cyber.cyan'),
       inset 0 0 10px theme('colors.cyber.cyan/20');
   }
-  
+
   .cyber-button {
     @apply px-6 py-3 bg-transparent border-2 border-cyber-pink text-cyber-pink font-bold uppercase tracking-wider transition-all duration-300;
     text-shadow: 0 0 5px currentColor;
     box-shadow: 0 0 10px currentColor;
   }
-  
+
   .cyber-button:hover {
     @apply bg-cyber-pink text-cyber-dark;
-    box-shadow: 
+    box-shadow:
       0 0 20px theme('colors.cyber.pink'),
       inset 0 0 20px theme('colors.cyber.pink/20');
     transform: scale(1.05);
   }
-  
+
   .hologram-text {
     @apply bg-gradient-to-r from-cyber-cyan via-cyber-pink to-cyber-purple bg-clip-text text-transparent;
     animation: hologram 3s ease-in-out infinite;
   }
-  
+
   .matrix-char {
     @apply text-cyber-green font-matrix;
     text-shadow: 0 0 5px currentColor;
     animation: cyber-flicker 2s infinite;
   }
-  
+
   .glitch-text {
     @apply relative;
   }
-  
+
   .glitch-text:before,
   .glitch-text:after {
     content: attr(data-text);
     @apply absolute top-0 left-0 w-full h-full;
   }
-  
+
   .glitch-text:before {
     @apply text-cyber-pink;
     animation: glitch 0.3s infinite;
     clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
   }
-  
+
   .glitch-text:after {
     @apply text-cyber-cyan;
     animation: glitch 0.3s infinite reverse;

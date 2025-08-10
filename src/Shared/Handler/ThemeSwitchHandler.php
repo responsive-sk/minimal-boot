@@ -61,16 +61,9 @@ class ThemeSwitchHandler implements RequestHandlerInterface
 
         if ($theme && is_string($theme)) {
             try {
-                error_log("DEBUG: Attempting to set theme to: {$theme}");
                 $this->themeService->setTheme($theme);
                 $newTheme = $theme;
-                error_log("DEBUG: Theme set successfully to: {$newTheme}");
-
-                // Verify theme was actually set
-                $currentTheme = $this->themeService->getCurrentTheme();
-                error_log("DEBUG: Current theme after setting: {$currentTheme}");
             } catch (\InvalidArgumentException $e) {
-                error_log("DEBUG: Error setting theme: " . $e->getMessage());
                 return new JsonResponse(['error' => $e->getMessage()], 400);
             }
         } else {

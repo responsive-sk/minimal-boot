@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Minimal\Contact\Handler;
 
 use Laminas\Diactoros\Response\HtmlResponse;
+use Minimal\Shared\Service\ThemeService;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -19,7 +20,8 @@ use ResponsiveSk\Slim4Session\SessionInterface;
 class ContactHandler implements RequestHandlerInterface
 {
     public function __construct(
-        private TemplateRendererInterface $template
+        private TemplateRendererInterface $template,
+        private ThemeService $themeService
     ) {
     }
 
@@ -38,14 +40,18 @@ class ContactHandler implements RequestHandlerInterface
         }
 
         // Handle GET request (display form)
+        // Get current theme to determine template
+        $currentTheme = $this->themeService->getCurrentTheme();
+        $templateName = $this->getContactTemplate($currentTheme);
+
         $data = [
             'module' => 'Contact',
             'title' => 'Contact Us',
             'csrf_token' => $session?->get('csrf_token') ?? $this->generateCsrfToken($session),
             'flash_messages' => $session?->get('flash_messages', []) ?? [],
             'contactInfo' => $this->getContactInfo(),
-            'cssUrl' => '/themes/main/assets/main.css',
-            'jsUrl' => '/themes/main/assets/main.js',
+            'cssUrl' => $this->themeService->getThemeCssUrl(),
+            'jsUrl' => $this->themeService->getThemeJsUrl(),
         ];
 
         // Clear flash messages after displaying
@@ -53,10 +59,8 @@ class ContactHandler implements RequestHandlerInterface
             $session->remove('flash_messages');
         }
 
-        // Debug removed to prevent output emission
-
         return new HtmlResponse(
-            $this->template->render('contact::contact', $data)
+            $this->template->render($templateName, $data)
         );
     }
 
@@ -235,5 +239,21 @@ class ContactHandler implements RequestHandlerInterface
                 ],
             ],
         ];
+    }
+
+    /**
+     * Get appropriate contact template based on theme.
+     */
+    private function getContactTemplate(string $theme): string
+    {
+        // List of themes that have contact templates
+        $supportedThemes = ['tailwind', 'bootstrap', 'svelte', 'vue', 'react'];
+
+        if (in_array($theme, $supportedThemes, true)) {
+            return $theme . '_pages::contact';
+        }
+
+        // Fallback to generic contact template
+        return 'contact::contact';
     }
 }

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>About Us - Minimal Boot</title>
+    <meta name="description" content="Learn more about Minimal Boot framework and its modern Svelte theme with glassmorphism design"/>
+    <meta name="author" content="Minimal Boot Team"/>
+    <link rel="stylesheet" href="/themes/svelte/assets/main.css"/>
+</head>
+<body class="h-full antialiased">
+
+<!-- Navigation -->
+<nav class="fixed w-full top-0 z-50 transition-all duration-300 bg-transparent">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <a href="/" class="flex items-center space-x-3 group focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded" aria-label="Go to homepage">
+                    <img src="/images/app/logo.svg" class="h-10 w-auto group-hover:scale-105 transition-transform duration-300" alt="Responsive Logo" width="150" height="40"/>
+                    <span class="text-white font-semibold text-xl hidden sm:block">Web Solutions</span>
+                </a>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="/" class="text-white/80 hover:text-white transition-colors duration-300">Home</a>
+                <a href="/about" class="text-white font-semibold transition-colors duration-300">About</a>
+                <a href="/contact" class="text-white/80 hover:text-white transition-colors duration-300">Contact</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- SEO-friendly HTML content with Svelte enhancements -->
+
+<!-- Main Content -->
+<main class="relative min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white pt-20">
+    <!-- Background Effects -->
+    <div class="fixed inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-indigo-900/20"></div>
+    <div class="fixed inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <!-- Page Header -->
+        <div class="text-center mb-16">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                <span class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">About</span>
+                <span class="text-white"> Minimal Boot</span>
+            </h1>
+            <p class="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+                A modern PHP framework built with <strong class="text-white">Domain-Driven Design</strong>, <strong class="text-white">PSR standards</strong>, and cutting-edge frontend technologies
+            </p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            <!-- Main Content -->
+            <div class="lg:col-span-2 space-y-8">
+
+                <!-- Mission Card -->
+                <div class="feature-card backdrop-blur-md bg-white/10 border border-white/20 rounded-xl p-8 transition-all duration-300">
+                    <h2 class="text-3xl font-bold text-white mb-6 flex items-center">
+                        <div class="w-10 h-10 bg-gradient-to-r from-purple-400 to-pink-400 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        Our Mission
+                    </h2>
+                    <p class="text-white/80 text-lg leading-relaxed">
+                        We believe in creating <strong class="text-white">robust, maintainable web applications</strong> using modern PHP practices and proven architectural patterns.
+                        Our framework combines the power of <strong class="text-purple-400">Mezzio</strong> with beautiful, interactive frontend themes.
+                    </p>
+                </div>
+
+                <!-- Technology Stack -->
+                <div class="feature-card backdrop-blur-md bg-white/10 border border-white/20 rounded-xl p-8 transition-all duration-300">
+                    <h3 class="text-2xl font-bold text-white mb-6 flex items-center">
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-400 to-purple-400 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                            </svg>
+                        </div>
+                        Technology Stack
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-4">
+                            <div class="p-4 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300">
+                                <div class="flex items-center space-x-3 mb-2">
+                                    <div class="w-3 h-3 bg-purple-400 rounded-full"></div>
+                                    <span class="text-white font-semibold">Framework</span>
+                                </div>
+                                <p class="text-white/80 text-sm">Mezzio (PSR-15 compliant)</p>
+                            </div>
+                            <div class="p-4 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300">
+                                <div class="flex items-center space-x-3 mb-2">
+                                    <div class="w-3 h-3 bg-pink-400 rounded-full"></div>
+                                    <span class="text-white font-semibold">Template Engine</span>
+                                </div>
+                                <p class="text-white/80 text-sm">Plates with theme support</p>
+                            </div>
+                            <div class="p-4 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300">
+                                <div class="flex items-center space-x-3 mb-2">
+                                    <div class="w-3 h-3 bg-blue-400 rounded-full"></div>
+                                    <span class="text-white font-semibold">Path Management</span>
+                                </div>
+                                <p class="text-white/80 text-sm">responsive-sk/slim4-paths</p>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="p-4 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300">
+                                <div class="flex items-center space-x-3 mb-2">
+                                    <div class="w-3 h-3 bg-purple-400 rounded-full"></div>
+                                    <span class="text-white font-semibold">Frontend</span>
+                                </div>
+                                <p class="text-white/80 text-sm">Svelte + Glassmorphism</p>
+                            </div>
+                            <div class="p-4 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300">
+                                <div class="flex items-center space-x-3 mb-2">
+                                    <div class="w-3 h-3 bg-pink-400 rounded-full"></div>
+                                    <span class="text-white font-semibold">Asset Pipeline</span>
+                                </div>
+                                <p class="text-white/80 text-sm">Vite with pnpm</p>
+                            </div>
+                            <div class="p-4 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300">
+                                <div class="flex items-center space-x-3 mb-2">
+                                    <div class="w-3 h-3 bg-blue-400 rounded-full"></div>
+                                    <span class="text-white font-semibold">Quality</span>
+                                </div>
+                                <p class="text-white/80 text-sm">PHPStan level MAX</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- Architecture Principles -->
+            <div class="backdrop-blur-md bg-white/10 rounded-2xl border border-white/20 p-8">
+                <h3 class="text-2xl font-bold text-white mb-6 flex items-center">
+                    <div class="w-6 h-6 bg-gradient-to-r from-green-400 to-blue-400 rounded mr-3"></div>
+                    Architecture Principles
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <div class="p-4 rounded-lg bg-white/5 border border-white/10">
+                            <h4 class="text-white font-semibold mb-2">Modular Design</h4>
+                            <p class="text-gray-300 text-sm">Clean separation with Core infrastructure and optional modules</p>
+                        </div>
+                        <div class="p-4 rounded-lg bg-white/5 border border-white/10">
+                            <h4 class="text-white font-semibold mb-2">PSR Compliance</h4>
+                            <p class="text-gray-300 text-sm">Following PHP-FIG standards for maximum interoperability</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="p-4 rounded-lg bg-white/5 border border-white/10">
+                            <h4 class="text-white font-semibold mb-2">Type Safety</h4>
+                            <p class="text-gray-300 text-sm">Strict types and comprehensive PHPStan analysis</p>
+                        </div>
+                        <div class="p-4 rounded-lg bg-white/5 border border-white/10">
+                            <h4 class="text-white font-semibold mb-2">Security First</h4>
+                            <p class="text-gray-300 text-sm">Path traversal protection and input validation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="space-y-6">
+            
+            <!-- Quick Stats -->
+            <div class="backdrop-blur-md bg-white/10 rounded-2xl border border-white/20 p-6">
+                <h4 class="text-xl font-bold text-white mb-4 flex items-center">
+                    <div class="w-5 h-5 bg-gradient-to-r from-yellow-400 to-orange-400 rounded mr-2"></div>
+                    Quick Stats
+                </h4>
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-300">PHP Version:</span>
+                        <span class="text-white font-semibold">8.2+</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-300">Template Engine:</span>
+                        <span class="text-white font-semibold">Plates</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-300">Theme Support:</span>
+                        <span class="text-white font-semibold">5 Themes</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-300">Mobile Ready:</span>
+                        <span class="text-green-400 font-semibold">✓ Yes</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-300">Production Ready:</span>
+                        <span class="text-green-400 font-semibold">✓ Yes</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features -->
+            <div class="backdrop-blur-md bg-white/10 rounded-2xl border border-white/20 p-6">
+                <h4 class="text-xl font-bold text-white mb-4 flex items-center">
+                    <div class="w-5 h-5 bg-gradient-to-r from-green-400 to-teal-400 rounded mr-2"></div>
+                    Features
+                </h4>
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                        <span class="text-gray-300 text-sm">Centralized path management</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                        <span class="text-gray-300 text-sm">Multi-theme support</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                        <span class="text-gray-300 text-sm">Glassmorphism design</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                        <span class="text-gray-300 text-sm">Interactive components</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                        <span class="text-gray-300 text-sm">Asset compilation pipeline</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                        <span class="text-gray-300 text-sm">Production optimization</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="backdrop-blur-md bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-2xl border border-purple-400/30 p-6">
+                <h4 class="text-xl font-bold text-white mb-3">Get Started</h4>
+                <p class="text-gray-300 text-sm mb-4">
+                    Ready to build something amazing with Minimal Boot?
+                </p>
+                <div class="space-y-2">
+                    <a href="https://github.com/responsive-sk/minimal-boot" 
+                       class="block w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white text-center py-2 px-4 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-200"
+                       target="_blank">
+                        View on GitHub
+                    </a>
+                    <a href="/contact" 
+                       class="block w-full bg-white/10 backdrop-blur-md text-white text-center py-2 px-4 rounded-lg font-semibold hover:bg-white/20 transition-all duration-200 border border-white/20">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="relative border-t" style="background: rgba(0, 0, 0, 0.9) !important; backdrop-filter: blur(12px); border-top: 1px solid rgba(255, 255, 255, 0.1);">
+    <div class="max-w-7xl mx-auto px-6 py-12">
+        <div class="grid md:grid-cols-4 gap-8">
+            <!-- Brand -->
+            <div class="md:col-span-2">
+                <div class="flex items-center space-x-3 mb-4">
+                    <img src="/images/app/logo.svg" class="h-10 w-auto" alt="Responsive Logo" width="150" height="40"/>
+                    <span class="text-white font-semibold text-xl">Web Solutions</span>
+                </div>
+                <p class="text-white/70 mb-6 max-w-md">
+                    A modern, fast, and secure web application framework built with cutting-edge technologies.
+                    Perfect for developers who want to build scalable applications with excellent performance.
+                </p>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h3 class="text-white font-semibold mb-4">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="/" class="text-white/70 hover:text-white transition-colors duration-300">Home</a></li>
+                    <li><a href="/about" class="text-white/70 hover:text-white transition-colors duration-300">About</a></li>
+                    <li><a href="/contact" class="text-white/70 hover:text-white transition-colors duration-300">Contact</a></li>
+                    <li><a href="/demo" class="text-white/70 hover:text-white transition-colors duration-300">Live Demo</a></li>
+                </ul>
+            </div>
+
+            <!-- Resources -->
+            <div>
+                <h3 class="text-white font-semibold mb-4">Resources</h3>
+                <ul class="space-y-2">
+                    <li><a href="/docs" class="text-white/70 hover:text-white transition-colors duration-300">Documentation</a></li>
+                    <li><a href="/api" class="text-white/70 hover:text-white transition-colors duration-300">API Reference</a></li>
+                    <li><a href="/examples" class="text-white/70 hover:text-white transition-colors duration-300">Examples</a></li>
+                    <li><a href="/support" class="text-white/70 hover:text-white transition-colors duration-300">Support</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="border-t border-white/10 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <p class="text-white/60 text-sm">
+                © <?= date('Y') ?> Minimal Boot. Made with ❤️ by responsive.sk
+            </p>
+            <div class="flex space-x-6 mt-4 md:mt-0">
+                <a href="/privacy" class="text-white/60 hover:text-white text-sm transition-colors duration-300">Privacy Policy</a>
+                <a href="/terms" class="text-white/60 hover:text-white text-sm transition-colors duration-300">Terms of Service</a>
+                <a href="/cookies" class="text-white/60 hover:text-white text-sm transition-colors duration-300">Cookie Policy</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Svelte Enhancement Mount Point -->
+<div id="svelte-app"></div>
+
+<!-- Svelte Theme JS -->
+<script src="/themes/svelte/assets/main.js"></script>
+</body>
+</html>

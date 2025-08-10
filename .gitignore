@@ -89,3 +89,8 @@ var/logs/*.log
 # Cache and temporary files
 /var/cache/
 /var/tmp/
+
+# Environment files
+.env
+.env.local
+.env.*.local

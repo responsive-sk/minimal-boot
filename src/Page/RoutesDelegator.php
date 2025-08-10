@@ -31,6 +31,9 @@ class RoutesDelegator
         $app->get('/demo', [DemoHandler::class], 'page::demo');
         $app->get('/demo/bootstrap', [BootstrapDemoHandler::class], 'page::bootstrap-demo');
 
+        // Direct about route for convenience
+        $app->get('/about', [GetPageViewHandler::class], 'page::about');
+
         // Dynamic page route with slug parameter
         $app->get('/page/{slug}', [GetPageViewHandler::class], 'page::view');
 

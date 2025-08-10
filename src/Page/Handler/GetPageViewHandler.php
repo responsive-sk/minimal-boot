@@ -30,8 +30,17 @@ class GetPageViewHandler implements RequestHandlerInterface
         $routeResult = $request->getAttribute(RouteResult::class);
         assert($routeResult instanceof RouteResult);
 
-        // Get slug from route parameters
+        // Get slug from route parameters or route name
         $slug = $routeResult->getMatchedParams()['slug'] ?? '';
+
+        // Handle direct routes like /about
+        if (empty($slug)) {
+            $routeName = $routeResult->getMatchedRouteName();
+            if ($routeName === 'page::about') {
+                $slug = 'about';
+            }
+        }
+
         assert(is_string($slug));
 
         // Get page from domain service
@@ -45,9 +54,15 @@ class GetPageViewHandler implements RequestHandlerInterface
             );
         }
 
-        // Render page with data from domain entity using new template structure
+        // Get current theme to determine template
+        $currentTheme = $this->themeService->getCurrentTheme();
+
+        // Check if theme-specific page template exists, otherwise use generic view
+        $templateName = $this->getPageTemplate($currentTheme, $slug);
+
+        // Render page with data from domain entity using theme-aware template
         return new HtmlResponse(
-            $this->template->render('page::view', [
+            $this->template->render($templateName, [
                 'page' => $page,
                 'title' => $page->getTitle(),
                 'content' => $page->getContent(),
@@ -57,5 +72,22 @@ class GetPageViewHandler implements RequestHandlerInterface
                 'jsUrl' => $this->themeService->getThemeJsUrl(),
             ])
         );
+    }
+
+    /**
+     * Get appropriate template for page based on theme and slug.
+     */
+    private function getPageTemplate(string $theme, string $slug): string
+    {
+        // Special pages that have theme-specific templates
+        $specialPages = ['about'];
+        $supportedThemes = ['tailwind', 'bootstrap', 'svelte', 'vue', 'react'];
+
+        if (in_array($slug, $specialPages, true) && in_array($theme, $supportedThemes, true)) {
+            return $theme . '_pages::' . $slug;
+        }
+
+        // For other pages, use generic view template
+        return 'page::view';
     }
 }

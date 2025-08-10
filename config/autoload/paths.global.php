@@ -101,18 +101,30 @@ return [
             // Theme-based templates
             'bootstrap' => 'templates/themes/bootstrap',
             'tailwind' => 'templates/themes/tailwind',
+            'svelte' => 'templates/themes/svelte',
+            'vue' => 'templates/themes/vue',
+            'react' => 'templates/themes/react',
 
             // Theme layouts
             'bootstrap_layouts' => 'templates/themes/bootstrap/layouts',
             'tailwind_layouts' => 'templates/themes/tailwind/layouts',
+            'svelte_layouts' => 'templates/themes/svelte/layouts',
+            'vue_layouts' => 'templates/themes/vue/layouts',
+            'react_layouts' => 'templates/themes/react/layouts',
 
             // Theme pages
             'bootstrap_pages' => 'templates/themes/bootstrap/pages',
             'tailwind_pages' => 'templates/themes/tailwind/pages',
+            'svelte_pages' => 'templates/themes/svelte/pages',
+            'vue_pages' => 'templates/themes/vue/pages',
+            'react_pages' => 'templates/themes/react/pages',
 
             // Theme partials
             'bootstrap_partials' => 'templates/themes/bootstrap/partials',
             'tailwind_partials' => 'templates/themes/tailwind/partials',
+            'svelte_partials' => 'templates/themes/svelte/partials',
+            'vue_partials' => 'templates/themes/vue/partials',
+            'react_partials' => 'templates/themes/react/partials',
 
             // Module templates
             'auth' => 'templates/modules/auth',

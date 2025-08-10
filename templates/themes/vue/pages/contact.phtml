@@ -1,0 +1,271 @@
+<?php
+$layout('vue_layouts::app', [
+    'title' => 'CONTACT.PROTOCOL - Neural Network Interface',
+    'description' => 'Establish secure communication channel with the Cyber Solutions neural network team',
+    'author' => 'Cyber Solutions Team',
+]);
+?>
+
+<div class="min-h-screen bg-black text-cyan-400 font-mono">
+    <!-- Matrix Background -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="matrix-bg opacity-10"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="relative z-50 border-b border-cyan-400/30 bg-black/80 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="text-cyan-400 font-bold text-xl glitch-text">
+                        CYBER.SOLUTIONS
+                    </div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="/" class="text-cyan-400 hover:text-cyan-300 transition-colors">[HOME]</a>
+                    <a href="/page/about" class="text-cyan-400 hover:text-cyan-300 transition-colors">[ABOUT]</a>
+                    <a href="/contact" class="text-cyan-300 border-b border-cyan-300">[CONTACT]</a>
+                    <div class="text-green-400 animate-pulse">●</div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <h1 class="text-6xl font-bold mb-4 glitch-text">
+                <span class="text-cyan-400">CONTACT</span>
+                <span class="text-pink-400">.</span>
+                <span class="text-cyan-400">PROTOCOL</span>
+            </h1>
+            <div class="text-green-400 text-lg font-mono">
+                [ESTABLISHING SECURE COMMUNICATION CHANNEL...]
+            </div>
+            <div class="mt-4 text-cyan-300">
+                ENCRYPTION STATUS: <span class="text-green-400 animate-pulse">ACTIVE</span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            
+            <!-- Contact Form -->
+            <div class="cyber-panel">
+                <div class="cyber-panel-header">
+                    <h2 class="text-xl font-bold text-cyan-400">TRANSMISSION.FORM</h2>
+                    <div class="text-green-400 text-sm animate-pulse">SECURE</div>
+                </div>
+                <div class="cyber-panel-content">
+                    
+                    <?php if (isset($flash_messages) && !empty($flash_messages)): ?>
+                        <div class="mb-6">
+                            <?php foreach ($flash_messages as $type => $messages): ?>
+                                <?php foreach ($messages as $message): ?>
+                                    <div class="p-4 border rounded mb-3 <?= $type === 'success' ? 'border-green-400 text-green-400 bg-green-400/10' : 'border-red-400 text-red-400 bg-red-400/10' ?>">
+                                        [<?= strtoupper($type) ?>] <?= htmlspecialchars($message) ?>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <form method="post" action="/contact" class="space-y-6">
+                        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrf_token ?? '') ?>">
+                        
+                        <div>
+                            <label class="block text-cyan-300 text-sm font-bold mb-2">
+                                AGENT.IDENTIFIER *
+                            </label>
+                            <input type="text" 
+                                   name="first-name" 
+                                   required
+                                   class="w-full bg-black border border-cyan-400/50 text-cyan-400 px-4 py-3 rounded focus:border-pink-400 focus:outline-none transition-colors font-mono"
+                                   placeholder="Enter your codename">
+                        </div>
+
+                        <div>
+                            <label class="block text-cyan-300 text-sm font-bold mb-2">
+                                NEURAL.LINK.ADDRESS *
+                            </label>
+                            <input type="email" 
+                                   name="email" 
+                                   required
+                                   class="w-full bg-black border border-cyan-400/50 text-cyan-400 px-4 py-3 rounded focus:border-pink-400 focus:outline-none transition-colors font-mono"
+                                   placeholder="agent@cyber.net">
+                        </div>
+
+                        <div>
+                            <label class="block text-cyan-300 text-sm font-bold mb-2">
+                                TRANSMISSION.SUBJECT
+                            </label>
+                            <input type="text" 
+                                   name="subject"
+                                   class="w-full bg-black border border-cyan-400/50 text-cyan-400 px-4 py-3 rounded focus:border-pink-400 focus:outline-none transition-colors font-mono"
+                                   placeholder="Mission briefing">
+                        </div>
+
+                        <div>
+                            <label class="block text-cyan-300 text-sm font-bold mb-2">
+                                ENCRYPTED.MESSAGE *
+                            </label>
+                            <textarea name="message" 
+                                      rows="6" 
+                                      required
+                                      class="w-full bg-black border border-cyan-400/50 text-cyan-400 px-4 py-3 rounded focus:border-pink-400 focus:outline-none transition-colors font-mono resize-none"
+                                      placeholder="Enter your classified message..."></textarea>
+                        </div>
+
+                        <button type="submit" 
+                                class="w-full bg-gradient-to-r from-pink-500 to-cyan-500 text-black font-bold py-3 px-6 rounded hover:from-pink-600 hover:to-cyan-600 transition-all duration-200 transform hover:scale-105">
+                            [TRANSMIT.MESSAGE]
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="space-y-8">
+                
+                <!-- Communication Channels -->
+                <div class="cyber-panel">
+                    <div class="cyber-panel-header">
+                        <h3 class="text-xl font-bold text-cyan-400">COMM.CHANNELS</h3>
+                        <div class="text-green-400 text-sm animate-pulse">ONLINE</div>
+                    </div>
+                    <div class="cyber-panel-content space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-10 h-10 bg-gradient-to-r from-pink-400 to-cyan-400 rounded flex items-center justify-center">
+                                <span class="text-black font-bold">@</span>
+                            </div>
+                            <div>
+                                <div class="text-cyan-400 font-bold">NEURAL.MAIL</div>
+                                <div class="text-cyan-300 text-sm">cyber@minimal-boot.dev</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4">
+                            <div class="w-10 h-10 bg-gradient-to-r from-green-400 to-blue-400 rounded flex items-center justify-center">
+                                <span class="text-black font-bold">⚡</span>
+                            </div>
+                            <div>
+                                <div class="text-cyan-400 font-bold">CODE.REPOSITORY</div>
+                                <a href="https://github.com/responsive-sk/minimal-boot" 
+                                   class="text-pink-400 hover:text-pink-300 text-sm transition-colors"
+                                   target="_blank">
+                                    github.com/responsive-sk/minimal-boot
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4">
+                            <div class="w-10 h-10 bg-gradient-to-r from-cyan-400 to-purple-400 rounded flex items-center justify-center">
+                                <span class="text-black font-bold">📡</span>
+                            </div>
+                            <div>
+                                <div class="text-cyan-400 font-bold">NEURAL.DOCS</div>
+                                <a href="https://docs.mezzio.dev/" 
+                                   class="text-pink-400 hover:text-pink-300 text-sm transition-colors"
+                                   target="_blank">
+                                    Quantum Documentation
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- System Status -->
+                <div class="cyber-panel">
+                    <div class="cyber-panel-header">
+                        <h3 class="text-xl font-bold text-cyan-400">SYSTEM.STATUS</h3>
+                    </div>
+                    <div class="cyber-panel-content">
+                        <div class="bg-black border border-cyan-400/30 rounded p-4 font-mono text-sm">
+                            <div class="text-green-400 mb-2">$ comm.status --check</div>
+                            <div class="text-cyan-300">
+                                [INFO] Communication channels: ACTIVE<br>
+                                [INFO] Encryption protocols: ENABLED<br>
+                                [INFO] Response time: 24-48 HOURS<br>
+                                <span class="text-green-400">[SUCCESS] All systems operational</span>
+                            </div>
+                            <div class="text-green-400 mt-4 animate-pulse">$ _</div>
+                        </div>
+                        
+                        <div class="mt-4 flex items-center space-x-2">
+                            <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                            <span class="text-green-400 text-sm">NEURAL LINK ESTABLISHED</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Access -->
+                <div class="cyber-panel">
+                    <div class="cyber-panel-header">
+                        <h3 class="text-xl font-bold text-cyan-400">QUICK.ACCESS</h3>
+                    </div>
+                    <div class="cyber-panel-content space-y-3">
+                        <div class="p-3 bg-cyan-400/10 border border-cyan-400/30 rounded">
+                            <div class="text-cyan-400 font-bold text-sm">OPEN SOURCE</div>
+                            <div class="text-cyan-300 text-xs">Framework is completely free to use</div>
+                        </div>
+                        <div class="p-3 bg-pink-400/10 border border-pink-400/30 rounded">
+                            <div class="text-pink-400 font-bold text-sm">CONTRIBUTIONS WELCOME</div>
+                            <div class="text-cyan-300 text-xs">Join the neural network development</div>
+                        </div>
+                        <div class="p-3 bg-green-400/10 border border-green-400/30 rounded">
+                            <div class="text-green-400 font-bold text-sm">24/7 MONITORING</div>
+                            <div class="text-cyan-300 text-xs">Quantum-encrypted support available</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 border-t border-cyan-400/30 bg-black/80 backdrop-blur-sm mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center">
+                <div class="text-cyan-400 font-bold mb-2">CYBER.SOLUTIONS</div>
+                <div class="text-cyan-300 text-sm">
+                    © 2025 NEURAL NETWORK FRAMEWORK | QUANTUM ENCRYPTED
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<style>
+.cyber-panel {
+    @apply bg-black border border-cyan-400/30 rounded-lg overflow-hidden;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+}
+
+.cyber-panel-header {
+    @apply bg-cyan-400/10 px-6 py-3 border-b border-cyan-400/30 flex justify-between items-center;
+}
+
+.cyber-panel-content {
+    @apply p-6;
+}
+
+.glitch-text {
+    animation: glitch 2s infinite;
+}
+
+@keyframes glitch {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+}
+
+.matrix-bg {
+    background-image: 
+        linear-gradient(90deg, transparent 98%, rgba(0, 255, 255, 0.1) 100%),
+        linear-gradient(0deg, transparent 98%, rgba(0, 255, 255, 0.1) 100%);
+    background-size: 20px 20px;
+}
+</style>

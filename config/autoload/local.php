@@ -1,13 +1,13 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Production Configuration Override
  *
  * This file contains production-specific configuration that overrides
  * development settings for optimal performance and security.
  */
+
+declare(strict_types=1);
 
 return [
     // Disable debugging in production
@@ -60,9 +60,9 @@ return [
     'session' => [
         'cookie_name' => $_ENV['SESSION_NAME'] ?? 'minimal_boot_session',
         'cookie_lifetime' => (int) (is_numeric($_ENV['SESSION_LIFETIME'] ?? null) ? $_ENV['SESSION_LIFETIME'] : 3600),
-        'cookie_secure' => filter_var($_ENV['SESSION_COOKIE_SECURE'] ?? 'true', FILTER_VALIDATE_BOOLEAN),
+        'cookie_secure' => filter_var($_ENV['SESSION_COOKIE_SECURE'] ?? 'false', FILTER_VALIDATE_BOOLEAN),
         'cookie_httponly' => filter_var($_ENV['SESSION_COOKIE_HTTPONLY'] ?? 'true', FILTER_VALIDATE_BOOLEAN),
-        'cookie_samesite' => $_ENV['SESSION_COOKIE_SAMESITE'] ?? 'Strict',
+        'cookie_samesite' => $_ENV['SESSION_COOKIE_SAMESITE'] ?? 'Lax',
         'gc_maxlifetime' => (int) (is_numeric($_ENV['SESSION_LIFETIME'] ?? null) ? $_ENV['SESSION_LIFETIME'] : 3600),
         'gc_probability' => 1,
         'gc_divisor' => 100,

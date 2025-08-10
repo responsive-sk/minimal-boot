@@ -57,7 +57,7 @@
     <!-- Bottom Bar -->
     <div class="border-t border-white/10 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
       <p class="text-white/60 text-sm">
-        © {currentYear} Minimal Boot. Made with <Heart class="inline w-4 h-4 text-red-400" /> by developers.
+        © {currentYear} Minimal Boot by responsive.sk. Made with <Heart class="inline w-4 h-4 text-red-400" /> by developers.
       </p>
       <div class="flex space-x-6 mt-4 md:mt-0">
         <a href="#" class="text-white/60 hover:text-white text-sm transition-colors duration-300">Privacy</a>

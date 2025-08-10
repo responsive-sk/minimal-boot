@@ -43,6 +43,4 @@ class IndexHandler implements RequestHandlerInterface
             $this->template->render($templateName, $templateData)
         );
     }
-
-
 }

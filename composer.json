@@ -35,7 +35,8 @@
         "mezzio/mezzio-fastroute": "^3.12.0",
         "mezzio/mezzio-helpers": "^5.18",
         "responsive-sk/slim4-paths": "^6.0",
-        "responsive-sk/slim4-session": "^2.2"
+        "responsive-sk/slim4-session": "^2.2",
+        "vlucas/phpdotenv": "^5.6"
     },
     "require-dev": {
         "laminas/laminas-development-mode": "^3.14",

@@ -1,0 +1,85 @@
+# Development Environment Configuration for Minimal Boot
+# This file is for local development - DO NOT commit to git
+
+# Application Environment
+APP_ENV=production
+DEBUG=false
+
+# Application URLs
+# Development URLs
+APP_URL=https://boot.responsive.sk
+ASSET_URL=https://boot.responsive.sk
+
+# Database Configuration
+# Using SQLite for development
+
+# Security Settings
+# Disabled secure cookies for HTTP development
+SESSION_COOKIE_SECURE=false
+SESSION_COOKIE_HTTPONLY=true
+SESSION_COOKIE_SAMESITE=Lax
+
+# Session Configuration
+SESSION_NAME=minimal_boot_dev_session
+SESSION_LIFETIME=7200
+
+# CSRF Protection
+CSRF_TOKEN_NAME=csrf_token
+CSRF_HEADER_NAME=X-CSRF-Token
+
+# Performance Settings
+# Disabled for development to see changes immediately
+OPCACHE_ENABLE=false
+CACHE_ENABLE=false
+
+# Logging
+# Verbose logging for development
+LOG_LEVEL=debug
+LOG_PATH=var/logs
+
+# Cache and Session Directories
+CACHE_PATH=var/cache
+SESSION_PATH=var/sessions
+TMP_PATH=var/tmp
+
+# Database Path (for SQLite)
+DATABASE_PATH=var/db/database.db
+
+# File Upload Settings
+UPLOAD_MAX_SIZE=50M
+UPLOAD_ALLOWED_TYPES=jpg,jpeg,png,gif,pdf,doc,docx,txt,zip
+UPLOAD_PATH=var/uploads
+
+# Email Configuration (development - use mailtrap or similar)
+MAIL_HOST=localhost
+MAIL_PORT=1025
+MAIL_USERNAME=
+MAIL_PASSWORD=
+MAIL_ENCRYPTION=
+MAIL_FROM_ADDRESS=dev@minimal-boot.local
+MAIL_FROM_NAME="Minimal Boot Development"
+
+# Rate Limiting (more relaxed for development)
+RATE_LIMIT_ENABLED=false
+RATE_LIMIT_MAX_REQUESTS=1000
+RATE_LIMIT_WINDOW=60
+
+# Security Headers (relaxed for development)
+SECURITY_HEADERS_ENABLED=true
+HSTS_MAX_AGE=0
+CONTENT_SECURITY_POLICY="default-src 'self' 'unsafe-inline' 'unsafe-eval'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'"
+
+# Maintenance Mode
+MAINTENANCE_MODE=false
+MAINTENANCE_MESSAGE="Development server is temporarily unavailable."
+
+# Feature Flags (all enabled for development)
+FEATURE_CONTACT_FORM=true
+FEATURE_USER_REGISTRATION=true
+FEATURE_THEME_SWITCHING=true
+FEATURE_ANALYTICS=false
+
+# Development specific
+XDEBUG_ENABLED=true
+ERROR_REPORTING=true
+DISPLAY_ERRORS=true

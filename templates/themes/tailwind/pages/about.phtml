@@ -1,0 +1,192 @@
+<?php
+$layout('tailwind_layouts::app', [
+    'title' => 'About Us - Minimal Boot',
+    'description' => 'Learn more about Minimal Boot framework and its modern Tailwind CSS theme',
+    'author' => 'Minimal Boot Team',
+]);
+?>
+
+<!-- Hero Section -->
+<div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-5xl font-bold mb-6">About Minimal Boot</h1>
+        <p class="text-xl max-w-3xl mx-auto">A modern PHP framework built with Domain-Driven Design, PSR standards, and Tailwind CSS</p>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- Main Content -->
+        <div class="lg:col-span-2 space-y-8">
+            
+            <!-- Mission -->
+            <div class="bg-white rounded-lg shadow-lg p-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+                    <div class="w-8 h-8 bg-blue-500 rounded-lg mr-3"></div>
+                    Our Mission
+                </h2>
+                <p class="text-gray-700 text-lg leading-relaxed">
+                    We believe in creating robust, maintainable web applications using modern PHP practices and proven architectural patterns. 
+                    Our framework combines the power of Mezzio with beautiful, utility-first Tailwind CSS design.
+                </p>
+            </div>
+
+            <!-- Technology Stack -->
+            <div class="bg-white rounded-lg shadow-lg p-8">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                    <div class="w-6 h-6 bg-green-500 rounded mr-3"></div>
+                    Technology Stack
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                            <span class="text-gray-700"><strong class="text-gray-900">Framework:</strong> Mezzio (PSR-15 compliant)</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span class="text-gray-700"><strong class="text-gray-900">Template Engine:</strong> Plates with theme support</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                            <span class="text-gray-700"><strong class="text-gray-900">Path Management:</strong> responsive-sk/slim4-paths</span>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                            <span class="text-gray-700"><strong class="text-gray-900">Frontend:</strong> Tailwind CSS</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span class="text-gray-700"><strong class="text-gray-900">Asset Pipeline:</strong> Vite with pnpm</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                            <span class="text-gray-700"><strong class="text-gray-900">Quality:</strong> PHPStan level MAX</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Architecture Principles -->
+            <div class="bg-white rounded-lg shadow-lg p-8">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                    <div class="w-6 h-6 bg-purple-500 rounded mr-3"></div>
+                    Architecture Principles
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-blue-500 pl-4">
+                            <h4 class="text-gray-900 font-semibold mb-2">Modular Design</h4>
+                            <p class="text-gray-600 text-sm">Clean separation with Core infrastructure and optional modules</p>
+                        </div>
+                        <div class="border-l-4 border-green-500 pl-4">
+                            <h4 class="text-gray-900 font-semibold mb-2">PSR Compliance</h4>
+                            <p class="text-gray-600 text-sm">Following PHP-FIG standards for maximum interoperability</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-purple-500 pl-4">
+                            <h4 class="text-gray-900 font-semibold mb-2">Type Safety</h4>
+                            <p class="text-gray-600 text-sm">Strict types and comprehensive PHPStan analysis</p>
+                        </div>
+                        <div class="border-l-4 border-red-500 pl-4">
+                            <h4 class="text-gray-900 font-semibold mb-2">Security First</h4>
+                            <p class="text-gray-600 text-sm">Path traversal protection and input validation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="space-y-6">
+            
+            <!-- Quick Stats -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h4 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                    <div class="w-5 h-5 bg-yellow-500 rounded mr-2"></div>
+                    Quick Stats
+                </h4>
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">PHP Version:</span>
+                        <span class="text-gray-900 font-semibold">8.2+</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Template Engine:</span>
+                        <span class="text-gray-900 font-semibold">Plates</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Theme Support:</span>
+                        <span class="text-gray-900 font-semibold">5 Themes</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Mobile Ready:</span>
+                        <span class="text-green-600 font-semibold">✓ Yes</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Production Ready:</span>
+                        <span class="text-green-600 font-semibold">✓ Yes</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h4 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                    <div class="w-5 h-5 bg-green-500 rounded mr-2"></div>
+                    Features
+                </h4>
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <span class="text-gray-700 text-sm">Centralized path management</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <span class="text-gray-700 text-sm">Multi-theme support</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <span class="text-gray-700 text-sm">Tailwind CSS design</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <span class="text-gray-700 text-sm">Utility-first approach</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <span class="text-gray-700 text-sm">Asset compilation pipeline</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <span class="text-gray-700 text-sm">Production optimization</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg shadow-lg p-6 text-white">
+                <h4 class="text-xl font-bold mb-3">Get Started</h4>
+                <p class="text-blue-100 text-sm mb-4">
+                    Ready to build something amazing with Minimal Boot?
+                </p>
+                <div class="space-y-2">
+                    <a href="https://github.com/responsive-sk/minimal-boot" 
+                       class="block w-full bg-white text-blue-600 text-center py-2 px-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
+                       target="_blank">
+                        View on GitHub
+                    </a>
+                    <a href="/contact" 
+                       class="block w-full bg-blue-700 text-white text-center py-2 px-4 rounded-lg font-semibold hover:bg-blue-800 transition-colors">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

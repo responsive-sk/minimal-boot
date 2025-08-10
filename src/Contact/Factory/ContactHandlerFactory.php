@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Minimal\Contact\Factory;
 
 use Minimal\Contact\Handler\ContactHandler;
+use Minimal\Shared\Service\ThemeService;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Container\ContainerInterface;
 
@@ -23,6 +24,9 @@ class ContactHandlerFactory
         $template = $container->get(TemplateRendererInterface::class);
         assert($template instanceof TemplateRendererInterface);
 
-        return new ContactHandler($template);
+        $themeService = $container->get(ThemeService::class);
+        assert($themeService instanceof ThemeService);
+
+        return new ContactHandler($template, $themeService);
     }
 }

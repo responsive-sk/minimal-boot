@@ -1,13 +1,13 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Production Configuration Override
  *
  * This file contains production-specific configuration that overrides
  * development settings for optimal performance and security.
  */
+
+declare(strict_types=1);
 
 return [
     // Disable debugging in production

@@ -44,13 +44,33 @@ class ConfigProvider
             ],
             'factories' => [
                 // Session services
-                SessionInterface::class => static function (): SessionInterface {
+                SessionInterface::class => static function (ContainerInterface $container): SessionInterface {
+                    $config = $container->get('config');
+                    $sessionConfig = $config['session'] ?? [];
+
+                    // Set session save path before creating session
+                    $sessionPath = realpath('.') . '/var/sessions';
+                    if (!is_dir($sessionPath)) {
+                        mkdir($sessionPath, 0755, true);
+                    }
+
+                    // Configure session settings for built-in server compatibility
+                    ini_set('session.save_path', $sessionPath);
+                    ini_set('session.save_handler', 'files');
+                    ini_set('session.use_cookies', '1');
+                    ini_set('session.use_only_cookies', '1');
+                    ini_set('session.cookie_path', '/');
+                    ini_set('session.cookie_domain', '');
+
                     return SessionFactory::createForDevelopment([
-                        'name' => 'minimal_boot_session',
-                        'cache_expire' => 180,
-                        'cookie_httponly' => true,
-                        'cookie_secure' => isset($_SERVER['HTTPS']),
+                        'name' => $sessionConfig['cookie_name'] ?? 'minimal_boot_session',
+                        'cache_expire' => $sessionConfig['cookie_lifetime'] ?? 3600,
+                        'cookie_httponly' => $sessionConfig['cookie_httponly'] ?? true,
+                        'cookie_secure' => false, // Always false for development
                         'cookie_samesite' => 'Lax',
+                        'gc_maxlifetime' => $sessionConfig['gc_maxlifetime'] ?? 3600,
+                        'gc_probability' => $sessionConfig['gc_probability'] ?? 1,
+                        'gc_divisor' => $sessionConfig['gc_divisor'] ?? 100,
                     ]);
                 },
                 SessionMiddleware::class => static function ($container): SessionMiddleware {

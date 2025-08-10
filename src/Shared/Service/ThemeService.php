@@ -12,7 +12,7 @@ use ResponsiveSk\Slim4Session\SessionInterface;
 class ThemeService
 {
     private const SESSION_THEME_KEY = 'selected_theme';
-    private const DEFAULT_THEME = 'tailwind';
+    private const DEFAULT_THEME = 'svelte';
 
     private const AVAILABLE_THEMES = [
         'bootstrap' => [

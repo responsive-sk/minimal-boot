@@ -1,0 +1,162 @@
+<?php
+$layout('bootstrap_layouts::app', [
+    'title' => 'About Us - Minimal Boot',
+    'description' => 'Learn more about Minimal Boot framework and its modern Bootstrap 5 theme',
+    'author' => 'Minimal Boot Team',
+]);
+?>
+
+<!-- Hero Section -->
+<div class="bg-primary text-white py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="display-4 fw-bold mb-4">About Minimal Boot</h1>
+                <p class="lead">A modern PHP framework built with Domain-Driven Design, PSR standards, and Bootstrap 5</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Mission -->
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="card-title mb-0">Our Mission</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">We believe in creating robust, maintainable web applications using modern PHP practices and proven architectural patterns. Our framework combines the power of Mezzio with beautiful, responsive Bootstrap 5 design.</p>
+                </div>
+            </div>
+
+            <!-- Technology Stack -->
+            <div class="card mb-4">
+                <div class="card-header bg-success text-white">
+                    <h3 class="card-title mb-0">Technology Stack</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li><strong>Framework:</strong> Mezzio (PSR-15 compliant)</li>
+                                <li><strong>Template Engine:</strong> Plates with theme support</li>
+                                <li><strong>Path Management:</strong> responsive-sk/slim4-paths</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li><strong>Frontend:</strong> Bootstrap 5</li>
+                                <li><strong>Asset Pipeline:</strong> Vite with pnpm</li>
+                                <li><strong>Quality:</strong> PHPStan level MAX</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Architecture Principles -->
+            <div class="card mb-4">
+                <div class="card-header bg-info text-white">
+                    <h3 class="card-title mb-0">Architecture Principles</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="border-start border-primary border-3 ps-3 mb-3">
+                                <h5 class="text-primary">Modular Design</h5>
+                                <p class="small text-muted">Clean separation with Core infrastructure and optional modules</p>
+                            </div>
+                            <div class="border-start border-success border-3 ps-3 mb-3">
+                                <h5 class="text-success">PSR Compliance</h5>
+                                <p class="small text-muted">Following PHP-FIG standards for maximum interoperability</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="border-start border-warning border-3 ps-3 mb-3">
+                                <h5 class="text-warning">Type Safety</h5>
+                                <p class="small text-muted">Strict types and comprehensive PHPStan analysis</p>
+                            </div>
+                            <div class="border-start border-danger border-3 ps-3 mb-3">
+                                <h5 class="text-danger">Security First</h5>
+                                <p class="small text-muted">Path traversal protection and input validation</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <!-- Quick Stats -->
+            <div class="card mb-4">
+                <div class="card-header bg-secondary text-white">
+                    <h5 class="card-title mb-0">Quick Stats</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>PHP Version:</span>
+                        <span class="fw-bold text-success">8.2+</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Template Engine:</span>
+                        <span class="fw-bold">Plates</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Theme Support:</span>
+                        <span class="fw-bold text-primary">5 Themes</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Mobile Ready:</span>
+                        <span class="fw-bold text-success">✓ Yes</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>Production Ready:</span>
+                        <span class="fw-bold text-success">✓ Yes</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features -->
+            <div class="card mb-4">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="card-title mb-0">Features</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i>Centralized path management</li>
+                        <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i>Multi-theme support</li>
+                        <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i>Bootstrap 5 design</li>
+                        <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i>Responsive components</li>
+                        <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i>Asset compilation pipeline</li>
+                        <li><i class="bi bi-check-circle text-success me-2"></i>Production optimization</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="card border-primary">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="card-title mb-0">Get Started</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text small">Ready to build something amazing with Minimal Boot?</p>
+                    <div class="d-grid gap-2">
+                        <a href="https://github.com/responsive-sk/minimal-boot" 
+                           class="btn btn-primary"
+                           target="_blank">
+                            <i class="bi bi-github me-2"></i>View on GitHub
+                        </a>
+                        <a href="/contact" 
+                           class="btn btn-outline-primary">
+                            <i class="bi bi-envelope me-2"></i>Contact Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
