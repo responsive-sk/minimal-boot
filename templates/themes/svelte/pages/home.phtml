@@ -13,8 +13,8 @@ $layout('svelte_layouts::default', [
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       <!-- Logo -->
-      <div class="flex items-center">
-        <a href="/" class="flex items-center space-x-3 group focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded" aria-label="Go to homepage">
+      <div class="flex items-center" style="min-width:200px;min-height:40px;">
+        <a href="/" class="flex items-center space-x-3 group focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded" aria-label="Go to homepage" style="min-height:40px;">
           <img src="/images/app/logo.svg" class="h-10 w-auto group-hover:scale-105 transition-transform duration-300" alt="Responsive Logo" width="150" height="40" style="width:150px;height:40px;"/>
           <span class="text-white font-semibold text-xl hidden sm:block">Web Solutions</span>
         </a>
@@ -74,7 +74,7 @@ $layout('svelte_layouts::default', [
 <main>
   <section class="hero-section relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
     <!-- Content -->
-    <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
+    <div class="relative z-10 max-w-6xl mx-auto px-6 text-center" style="min-height:400px;contain:layout style;">
       <!-- Main Heading - Critical for SEO -->
       <h1 class="text-5xl md:text-7xl font-bold mb-6">
         <span class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">Modern</span>

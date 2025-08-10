@@ -15,6 +15,7 @@
     <!-- Preload critical assets -->
     <link rel="preload" href="/themes/svelte/assets/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
     <link rel="preload" href="/images/app/logo.svg" as="image"/>
+    <link rel="preload" href="/themes/svelte/assets/main.js" as="script"/>
     <noscript><link rel="stylesheet" href="/themes/svelte/assets/main.css"/></noscript>
 
     <!-- Critical CSS inline for above-the-fold content -->
@@ -70,13 +71,19 @@
         @media (min-width: 768px){.md\:text-6xl{font-size:3.75rem;line-height:1}}
         @media (min-width: 768px){section h1, article h1, aside h1, nav h1{font-size:3.75rem!important}}
         /* Prevent layout shifts */
-        img{max-width:100%;height:auto}
-        .hero-section{contain:layout style paint}
-        .feature-card{contain:layout style}
+        img{max-width:100%;height:auto;display:block}
+        .hero-section{contain:layout style paint;will-change:auto}
+        .feature-card{contain:layout style;will-change:auto}
         body{font-display:swap}
         .text-center{text-align:center;contain:layout}
-        .max-w-7xl{max-width:80rem;margin:0 auto}
+        .max-w-7xl{max-width:80rem;margin:0 auto;contain:layout}
         .px-6{padding-left:1.5rem;padding-right:1.5rem}
+        /* Fix specific layout shift culprits */
+        .flex.items-center{min-height:64px;contain:layout}
+        nav{height:64px;contain:layout style}
+        .relative.z-10{contain:layout style}
+        .font-bold,.font-semibold{font-synthesis:none}
+        .flex.items-center.space-x-3{min-width:200px;min-height:40px}
     </style>
 </head>
 <body class="h-full antialiased">
