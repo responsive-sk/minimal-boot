@@ -26,6 +26,9 @@ class RoutesDelegator
         $app = $callback();
         assert($app instanceof Application);
 
+        // Debug: Log that Page routes are being registered
+        @file_put_contents('var/logs/debug.log', "PageRoutesDelegator: Registering page routes\n", FILE_APPEND);
+
         // Main routes
         $app->get('/', [IndexHandler::class], 'page::index');
         $app->get('/demo', [DemoHandler::class], 'page::demo');

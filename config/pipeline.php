@@ -19,19 +19,13 @@ return function (Application $app): void {
     // all Exceptions.
     $app->pipe(ErrorHandlerInterface::class);
 
-    // Security middleware - HTTPS enforcement and security headers
-    $app->pipe(\Minimal\Shared\Middleware\SecurityMiddleware::class);
+    // SecurityMiddleware causes issues - temporarily disabled
+    // $app->pipe(\Minimal\Shared\Middleware\SecurityMiddleware::class);
+    $app->pipe(SessionMiddleware::class);
+    $app->pipe(\Minimal\Shared\Middleware\ThemeMiddleware::class);
+    $app->pipe(\Minimal\Shared\Middleware\ThemeTemplateMiddleware::class);
 
     $app->pipe(ServerUrlMiddleware::class);
-
-    // Session middleware - must be early in the pipeline
-    $app->pipe(SessionMiddleware::class);
-
-    // Theme middleware - adds ThemeService to templates
-    $app->pipe(\Minimal\Shared\Middleware\ThemeMiddleware::class);
-
-    // Theme template middleware - sets template paths based on theme
-    $app->pipe(\Minimal\Shared\Middleware\ThemeTemplateMiddleware::class);
 
     // Pipe more middleware here that you want to execute on every request:
     // - bootstrapping

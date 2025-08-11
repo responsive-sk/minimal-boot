@@ -29,10 +29,10 @@ $aggregator = new ConfigAggregator([
     \Minimal\Core\ConfigProvider::class,// Dotkernel packages
     \Dot\ErrorHandler\ConfigProvider::class,
     \Dot\Log\ConfigProvider::class,
+    // New modular components (register BEFORE Page module to prevent route conflicts)
+    \Minimal\Contact\ConfigProvider::class,
     // Page module (includes index and demo)
     \Minimal\Page\ConfigProvider::class,
-    // New modular components
-    \Minimal\Contact\ConfigProvider::class,
     \Minimal\Session\ConfigProvider::class,
     \Minimal\User\ConfigProvider::class,
     \Minimal\Shared\ConfigProvider::class,
