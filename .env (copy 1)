@@ -15,8 +15,8 @@ ASSET_URL=https://boot.responsive.sk
 
 # Security Settings
 # Disabled secure cookies for HTTP development
-SESSION_COOKIE_SECURE=false
-SESSION_COOKIE_HTTPONLY=true
+SESSION_COOKIE_SECURE=true
+SESSION_COOKIE_HTTPONLY=false
 SESSION_COOKIE_SAMESITE=Lax
 
 # Session Configuration
@@ -29,8 +29,8 @@ CSRF_HEADER_NAME=X-CSRF-Token
 
 # Performance Settings
 # Disabled for development to see changes immediately
-OPCACHE_ENABLE=false
-CACHE_ENABLE=false
+OPCACHE_ENABLE=true
+CACHE_ENABLE=true
 
 # Logging
 # Verbose logging for development

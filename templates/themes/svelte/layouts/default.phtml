@@ -31,9 +31,19 @@
     <!-- Critical CSS inline for above-the-fold content -->
     <style>
         /* Critical CSS for initial render */
-        body{margin:0;font-family:system-ui,-apple-system,sans-serif;background:#0f172a;color:#fff;overflow-x:hidden;font-display:swap}
+        body{margin:0;font-family:system-ui,-apple-system,sans-serif;background:#0f172a;color:#fff;overflow-x:hidden;font-display:swap;font-size:16px;line-height:1.5}
         .h-full{height:100%}
         .antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+        /* Ensure legible font sizes for mobile */
+        *{font-size:inherit;line-height:inherit}
+        html{font-size:16px}
+        @media (max-width: 768px){
+            html{font-size:16px}
+            body{font-size:16px;line-height:1.6}
+            .text-sm{font-size:14px!important}
+            .text-xs{font-size:14px!important}
+            small{font-size:14px!important}
+        }
         /* Aggressive layout shift prevention */
         *{box-sizing:border-box}
         html{scroll-behavior:smooth}
