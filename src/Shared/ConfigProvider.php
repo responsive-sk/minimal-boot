@@ -45,8 +45,8 @@ class ConfigProvider
                 Middleware\ThemeMiddleware::class => Factory\ThemeMiddlewareFactory::class,
                 Middleware\ThemeTemplateMiddleware::class => Factory\ThemeTemplateMiddlewareFactory::class,
 
-                // Security middleware - temporarily disabled
-                // Middleware\SecurityMiddleware::class => Factory\SecurityMiddlewareFactory::class,
+                // Security middleware
+                Middleware\SecurityMiddleware::class => Factory\SecurityMiddlewareFactory::class,
             ],
         ];
     }

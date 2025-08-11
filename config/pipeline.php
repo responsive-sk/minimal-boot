@@ -19,7 +19,7 @@ return function (Application $app): void {
     // all Exceptions.
     $app->pipe(ErrorHandlerInterface::class);
 
-    // Test SecurityMiddleware with error handling
+    // Security middleware - HTTPS enforcement and security headers
     $app->pipe(\Minimal\Shared\Middleware\SecurityMiddleware::class);
     $app->pipe(SessionMiddleware::class);
     $app->pipe(\Minimal\Shared\Middleware\ThemeMiddleware::class);

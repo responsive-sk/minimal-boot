@@ -72,10 +72,8 @@ class ThemeService
      */
     public function getCurrentTheme(): string
     {
-        // HARD RESET: Always return bootstrap until svelte template paths are fixed
-        // Clear any existing theme from session
-        $this->session->set(self::SESSION_THEME_KEY, 'bootstrap');
-        return 'bootstrap';
+        $theme = $this->session->get(self::SESSION_THEME_KEY, self::DEFAULT_THEME);
+        return is_string($theme) ? $theme : self::DEFAULT_THEME;
     }
 
     /**
