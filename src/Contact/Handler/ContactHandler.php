@@ -30,7 +30,9 @@ class ContactHandler implements RequestHandlerInterface
      */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        // Get session from request attributes
+        @file_put_contents('var/logs/debug.log', "ContactHandler: handle() called\n", FILE_APPEND);
+
+        // Get session from request attributes (may be null without SessionMiddleware)
         /** @var SessionInterface|null $session */
         $session = $request->getAttribute('session');
 
@@ -43,6 +45,9 @@ class ContactHandler implements RequestHandlerInterface
         // Get current theme to determine template
         $currentTheme = $this->themeService->getCurrentTheme();
         $templateName = $this->getContactTemplate($currentTheme);
+
+        // Debug: Log theme and template
+        @file_put_contents('var/logs/debug.log', "ContactHandler: theme='{$currentTheme}', template='{$templateName}'\n", FILE_APPEND);
 
         $data = [
             'module' => 'Contact',

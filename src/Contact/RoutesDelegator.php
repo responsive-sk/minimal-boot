@@ -31,16 +31,12 @@ class RoutesDelegator
         /** @var Application $app */
         $app = $callback();
 
-        // Add Contact routes with session middleware
-        $app->get('/contact', [
-            SessionMiddleware::class,
-            ContactHandler::class,
-        ], 'contact');
+        // Debug: Log that routes are being registered
+        @file_put_contents('var/logs/debug.log', "ContactRoutesDelegator: Registering contact routes\n", FILE_APPEND);
 
-        $app->post('/contact', [
-            SessionMiddleware::class,
-            ContactHandler::class,
-        ], 'contact.post');
+        // Add Contact routes (temporarily without session middleware for debugging)
+        $app->get('/contact', ContactHandler::class, 'contact');
+        $app->post('/contact', ContactHandler::class, 'contact.post');
 
         // Test route
         $app->get('/test-layout', TestHandler::class, 'test.layout');
