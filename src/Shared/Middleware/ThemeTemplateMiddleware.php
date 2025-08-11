@@ -37,7 +37,6 @@ class ThemeTemplateMiddleware implements MiddlewareInterface
             try {
                 $reflection = new \ReflectionClass($this->template);
                 $pathsProperty = $reflection->getProperty('paths');
-                $pathsProperty->setAccessible(true);
 
                 $paths = $pathsProperty->getValue($this->template);
 

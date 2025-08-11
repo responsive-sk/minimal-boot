@@ -26,6 +26,9 @@ class IndexHandler implements RequestHandlerInterface
         // Get current theme to determine template
         $currentTheme = $this->themeService->getCurrentTheme();
 
+        // Debug: Log IndexHandler execution
+        @file_put_contents('var/logs/debug.log', "IndexHandler: currentTheme='{$currentTheme}' for path=" . $request->getUri()->getPath() . "\n", FILE_APPEND);
+
         // Use theme-specific template from new structure
         $templateName = $currentTheme . '_pages::home';
 

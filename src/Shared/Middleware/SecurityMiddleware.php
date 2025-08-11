@@ -23,24 +23,37 @@ class SecurityMiddleware implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        // Check if HTTPS enforcement is enabled
-        if ($this->shouldEnforceHttps($request)) {
-            // Redirect to HTTPS if not already secure
-            if (!$this->isHttps($request)) {
-                $uri = $request->getUri();
-                $httpsUri = $uri->withScheme('https')->withPort(443);
-                
-                $response = new \Laminas\Diactoros\Response();
-                return $response
-                    ->withStatus(301)
-                    ->withHeader('Location', (string) $httpsUri);
+        try {
+            // Debug: Log SecurityMiddleware execution
+            @file_put_contents('var/logs/debug.log', "SecurityMiddleware: Processing request for " . $request->getUri()->getPath() . "\n", FILE_APPEND);
+
+            // Check if HTTPS enforcement is enabled
+            if ($this->shouldEnforceHttps($request)) {
+                @file_put_contents('var/logs/debug.log', "SecurityMiddleware: HTTPS enforcement enabled\n", FILE_APPEND);
+                // Redirect to HTTPS if not already secure
+                if (!$this->isHttps($request)) {
+                    @file_put_contents('var/logs/debug.log', "SecurityMiddleware: Redirecting to HTTPS\n", FILE_APPEND);
+                    $uri = $request->getUri();
+                    $httpsUri = $uri->withScheme('https')->withPort(443);
+
+                    $response = new \Laminas\Diactoros\Response();
+                    return $response
+                        ->withStatus(301)
+                        ->withHeader('Location', (string) $httpsUri);
+                }
+            } else {
+                @file_put_contents('var/logs/debug.log', "SecurityMiddleware: HTTPS enforcement disabled for localhost\n", FILE_APPEND);
             }
+
+            $response = $handler->handle($request);
+            @file_put_contents('var/logs/debug.log', "SecurityMiddleware: Handler completed, adding security headers\n", FILE_APPEND);
+
+            // Add security headers
+            return $this->addSecurityHeaders($response, $request);
+        } catch (\Throwable $e) {
+            @file_put_contents('var/logs/debug.log', "SecurityMiddleware: ERROR - " . $e->getMessage() . "\n", FILE_APPEND);
+            throw $e;
         }
-
-        $response = $handler->handle($request);
-
-        // Add security headers
-        return $this->addSecurityHeaders($response, $request);
     }
 
     private function shouldEnforceHttps(ServerRequestInterface $request): bool

@@ -19,8 +19,8 @@ return function (Application $app): void {
     // all Exceptions.
     $app->pipe(ErrorHandlerInterface::class);
 
-    // SecurityMiddleware causes issues - temporarily disabled
-    // $app->pipe(\Minimal\Shared\Middleware\SecurityMiddleware::class);
+    // Test SecurityMiddleware with error handling
+    $app->pipe(\Minimal\Shared\Middleware\SecurityMiddleware::class);
     $app->pipe(SessionMiddleware::class);
     $app->pipe(\Minimal\Shared\Middleware\ThemeMiddleware::class);
     $app->pipe(\Minimal\Shared\Middleware\ThemeTemplateMiddleware::class);

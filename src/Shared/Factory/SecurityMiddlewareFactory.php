@@ -14,8 +14,18 @@ class SecurityMiddlewareFactory
 {
     public function __invoke(ContainerInterface $container): SecurityMiddleware
     {
-        $config = $container->get('config');
-        
-        return new SecurityMiddleware($config);
+        try {
+            @file_put_contents('var/logs/debug.log', "SecurityMiddlewareFactory: Creating SecurityMiddleware\n", FILE_APPEND);
+            $config = $container->get('config');
+            @file_put_contents('var/logs/debug.log', "SecurityMiddlewareFactory: Config loaded successfully\n", FILE_APPEND);
+
+            $middleware = new SecurityMiddleware($config);
+            @file_put_contents('var/logs/debug.log', "SecurityMiddlewareFactory: SecurityMiddleware created successfully\n", FILE_APPEND);
+
+            return $middleware;
+        } catch (\Throwable $e) {
+            @file_put_contents('var/logs/debug.log', "SecurityMiddlewareFactory: ERROR - " . $e->getMessage() . "\n", FILE_APPEND);
+            throw $e;
+        }
     }
 }
