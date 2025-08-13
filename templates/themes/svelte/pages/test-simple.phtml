@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Test Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #3b82f6, #9333ea);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin: 10px;
+            font-weight: bold;
+        }
+        .button:hover {
+            transform: scale(1.05);
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simple Test Page</h1>
+        <p>This is a simple test page to check if CSS and content display correctly.</p>
+        
+        <div>
+            <a href="/contact" class="button">Contact Button Test</a>
+            <a href="/about" class="button">About Button Test</a>
+            <a href="/" class="button">Home Button Test</a>
+        </div>
+        
+        <h2>Test Content</h2>
+        <p>If you can see this content properly, then the basic rendering works.</p>
+        <p>If buttons are fully visible and clickable, then the z-index issues are resolved.</p>
+        
+        <div style="background: #333; padding: 20px; margin: 20px 0; border-radius: 8px;">
+            <h3>Test Box</h3>
+            <p>This box should be fully visible with proper background and text.</p>
+        </div>
+    </div>
+</body>
+</html>

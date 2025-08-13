@@ -77,16 +77,13 @@
         /* Fix specific layout shift culprits */
         .flex.items-center{min-height:64px;contain:layout style paint}
         nav{height:64px;contain:layout style paint;position:fixed;width:100%;top:0;z-index:50}
-        .relative.z-10{contain:strict;transform:translateZ(0)}
+        /* Problematic properties removed - keep layout stable */
         /* Prevent font-based shifts */
         .font-bold,.font-semibold{font-synthesis:none;font-display:swap}
         /* Stabilize logo container */
-        .flex.items-center.space-x-3{min-width:200px;min-height:40px;contain:layout}
-        /* Hero content stability */
-        .text-center{contain:strict;transform:translateZ(0)}
-        .max-w-6xl{contain:strict;transform:translateZ(0)}
-        /* Force hardware acceleration */
-        .hero-section,.feature-card{transform:translateZ(0);backface-visibility:hidden}
+        .flex.items-center.space-x-3{min-width:200px;min-height:40px;}
+        /* Force hardware acceleration - safe properties only */
+        .hero-section,.feature-card{backface-visibility:hidden}
     </style>
 
     <!-- Svelte App Script - deferred and non-blocking -->

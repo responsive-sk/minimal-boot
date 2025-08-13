@@ -45,8 +45,14 @@ class RoutesDelegator
             ContactHandler::class,
         ], 'contact.post');
 
-        // Test route
+        // Test routes
         $app->get('/test-layout', TestHandler::class, 'test.layout');
+
+        // Simple test route without any complex CSS
+        $app->get('/test-simple', function() {
+            $content = file_get_contents(__DIR__ . '/../../templates/themes/svelte/pages/test-simple.phtml');
+            return new \Laminas\Diactoros\Response\HtmlResponse($content);
+        }, 'test.simple');
 
         return $app;
     }

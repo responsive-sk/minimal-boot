@@ -87,12 +87,10 @@
         /* Fix specific layout shift culprits */
         .flex.items-center{min-height:64px;contain:layout style paint}
         nav{height:64px;contain:layout style paint;position:fixed;width:100%;top:0;z-index:50}
-        .relative.z-10{contain:strict;transform:translateZ(0)}
+        /* Problematic properties removed */
         .font-bold,.font-semibold{font-synthesis:none;font-display:swap}
-        .flex.items-center.space-x-3{min-width:200px;min-height:40px;contain:layout}
-        .text-center{contain:strict;transform:translateZ(0)}
-        .max-w-7xl{contain:strict;transform:translateZ(0)}
-        .hero-section,.feature-card{transform:translateZ(0);backface-visibility:hidden}
+        .flex.items-center.space-x-3{min-width:200px;min-height:40px;}
+        .hero-section,.feature-card{backface-visibility:hidden}
     </style>
 </head>
 <body class="h-full antialiased">

@@ -72,16 +72,16 @@ $layout('svelte_layouts::default', [
 
 <!-- Hero Section with SEO-optimized content -->
 <main>
-  <section class="hero-section relative min-h-screen flex items-center justify-center bg-slate-900">
+  <section class="hero-section relative min-h-screen flex items-center justify-center bg-slate-900 pt-20">
     <!-- Content -->
     <div class="container mx-auto px-6 text-center py-20">
       <!-- Main Heading - Critical for SEO -->
-      <h1 class="text-5xl md:text-7xl font-bold mb-6">
-        <span class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">Modern</span>
-        <span class="text-white block">Web Development</span>
+      <h1 style="font-size: 4rem; font-weight: bold; margin-bottom: 2rem; color: white; z-index: 999; position: relative;">
+        <span style="background: linear-gradient(45deg, #3b82f6, #9333ea, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Modern</span>
+        <span style="color: white; display: block;">Web Development</span>
       </h1>
 
-      <p class="text-xl md:text-2xl text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed">
+      <p style="font-size: 1.5rem; color: rgba(255,255,255,0.8); margin-bottom: 2rem; max-width: 48rem; margin-left: auto; margin-right: auto; line-height: 1.6; z-index: 999; position: relative;">
         Built with <strong>Svelte</strong>, <strong>Tailwind CSS</strong>, and <strong>Mezzio PHP</strong> for lightning-fast performance and exceptional user experience.
       </p>
 
@@ -120,11 +120,11 @@ $layout('svelte_layouts::default', [
       </div>
 
       <!-- CTA Buttons -->
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/demo" class="btn-primary inline-block text-lg px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium transition-all duration-300 text-center">
+      <div style="display: flex; flex-direction: column; gap: 1rem; justify-content: center; align-items: center; z-index: 999; position: relative; margin-top: 2rem;">
+        <a href="/demo" style="display: inline-block; font-size: 1.2rem; padding: 1rem 2rem; background: linear-gradient(45deg, #2563eb, #9333ea); color: white; border-radius: 0.5rem; font-weight: 500; text-decoration: none; text-align: center; transition: all 0.3s;">
           Get Started Now
         </a>
-        <a href="/examples" class="btn-secondary inline-block text-lg px-8 py-4 backdrop-blur-md bg-white/10 border border-white/20 text-white rounded-lg font-medium transition-all duration-300 text-center">
+        <a href="/examples" style="display: inline-block; font-size: 1.2rem; padding: 1rem 2rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; border-radius: 0.5rem; font-weight: 500; text-decoration: none; text-align: center; transition: all 0.3s;">
           View Live Demo
         </a>
       </div>
