@@ -39,9 +39,9 @@ class ConfigProvider
                 ],
             ],
             'factories' => [
-                // Theme services
+                // Theme services (Svelte only)
                 Service\ThemeService::class => Factory\ThemeServiceFactory::class,
-                Handler\ThemeSwitchHandler::class => Factory\ThemeSwitchHandlerFactory::class,
+                // Handler\ThemeSwitchHandler::class => Factory\ThemeSwitchHandlerFactory::class, // Removed - no theme switching
                 Middleware\ThemeMiddleware::class => Factory\ThemeMiddlewareFactory::class,
                 Middleware\ThemeTemplateMiddleware::class => Factory\ThemeTemplateMiddlewareFactory::class,
 

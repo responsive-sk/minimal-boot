@@ -25,8 +25,7 @@ class RoutesDelegator
         $app = $callback();
         assert($app instanceof Application);
 
-        // Theme switching routes
-        $app->route('/theme/switch', Handler\ThemeSwitchHandler::class, ['GET', 'POST'], 'theme.switch');
+        // No theme switching routes needed - Svelte only
 
         return $app;
     }

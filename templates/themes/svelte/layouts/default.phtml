@@ -22,11 +22,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link rel="dns-prefetch" href="//boot.responsive.sk"/>
 
-    <!-- Preload critical assets -->
-    <link rel="preload" href="<?= $asset('themes/svelte/assets/main.css') ?>" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+    <!-- Load CSS directly for reliable styling -->
+    <link rel="stylesheet" href="<?= $asset('themes/svelte/assets/main.css') ?>"/>
     <link rel="preload" href="<?= $asset('images/app/logo.svg') ?>" as="image"/>
-    <!-- JS preload removed to avoid unused preload warning with defer -->
-    <noscript><link rel="stylesheet" href="<?= $asset('themes/svelte/assets/main.css') ?>"/></noscript>
 
     <!-- Critical CSS inline for above-the-fold content -->
     <style>

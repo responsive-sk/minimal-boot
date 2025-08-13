@@ -68,24 +68,19 @@ class ThemeService
     }
 
     /**
-     * Get current active theme.
+     * Get current active theme (always Svelte).
      */
     public function getCurrentTheme(): string
     {
-        $theme = $this->session->get(self::SESSION_THEME_KEY, self::DEFAULT_THEME);
-        return is_string($theme) ? $theme : self::DEFAULT_THEME;
+        return self::DEFAULT_THEME; // Always return Svelte
     }
 
     /**
-     * Set active theme.
+     * Set active theme (disabled - Svelte only).
      */
     public function setTheme(string $theme): void
     {
-        if (!$this->isValidTheme($theme)) {
-            throw new \InvalidArgumentException("Invalid theme: {$theme}");
-        }
-
-        $this->session->set(self::SESSION_THEME_KEY, $theme);
+        // No-op: Theme switching disabled in svelte-boot
     }
 
     /**
