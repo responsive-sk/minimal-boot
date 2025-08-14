@@ -1,5 +1,15 @@
 RewriteEngine On
 
+# HTTP/2 Server Push for critical resources
+<IfModule mod_headers.c>
+    # Push critical CSS and JS for faster loading
+    <FilesMatch "\.html?$">
+        Header add Link "</themes/svelte/assets/main.css>; rel=preload; as=style"
+        Header add Link "</themes/svelte/assets/main.js>; rel=preload; as=script"
+        Header add Link "</images/app/logo.svg>; rel=preload; as=image"
+    </FilesMatch>
+</IfModule>
+
 # Font MIME types (correct modern MIME types)
 AddType font/woff2 .woff2
 AddType font/woff .woff

@@ -18,13 +18,16 @@
     <meta name="msapplication-TileColor" content="#da532c"/>
 
     <!-- Performance optimizations -->
+    <link rel="preconnect" href="https://boot.responsive.sk" crossorigin/>
     <link rel="dns-prefetch" href="//fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link rel="dns-prefetch" href="//boot.responsive.sk"/>
 
-    <!-- Load CSS directly for reliable styling -->
-    <link rel="stylesheet" href="<?= $asset('themes/svelte/assets/main.css') ?>"/>
+    <!-- Critical CSS loading optimization -->
+    <link rel="preload" href="<?= $asset('themes/svelte/assets/main.css') ?>" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+    <noscript><link rel="stylesheet" href="<?= $asset('themes/svelte/assets/main.css') ?>"/></noscript>
     <link rel="preload" href="<?= $asset('images/app/logo.svg') ?>" as="image"/>
+    <link rel="preload" href="<?= $asset('themes/svelte/assets/main.js') ?>" as="script"/>
 
     <!-- Critical CSS inline for above-the-fold content -->
     <style>
@@ -86,8 +89,8 @@
         .hero-section,.feature-card{backface-visibility:hidden}
     </style>
 
-    <!-- Svelte App Script - deferred and non-blocking -->
-    <script type="module" src="<?= $asset('themes/svelte/assets/main.js') ?>" defer></script>
+    <!-- Svelte App Script - optimized loading -->
+    <script type="module" src="<?= $asset('themes/svelte/assets/main.js') ?>" defer crossorigin></script>
 </head>
 
 <body class="h-full antialiased">
