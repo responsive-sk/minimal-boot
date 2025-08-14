@@ -19,6 +19,12 @@ class SecurityMiddlewareFactory
             $config = $container->get('config');
             @file_put_contents('var/logs/debug.log', "SecurityMiddlewareFactory: Config loaded successfully\n", FILE_APPEND);
 
+            // Ensure config is array with proper typing
+            if (!is_array($config)) {
+                $config = [];
+            }
+            /** @var array<string, mixed> $config */
+
             $middleware = new SecurityMiddleware($config);
             @file_put_contents('var/logs/debug.log', "SecurityMiddlewareFactory: SecurityMiddleware created successfully\n", FILE_APPEND);
 

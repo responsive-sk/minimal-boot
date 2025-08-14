@@ -69,7 +69,8 @@ class SecurityMiddleware implements MiddlewareInterface
         }
 
         // Check environment setting
-        return $this->config['enforce_https'] ?? true;
+        $enforceHttps = $this->config['enforce_https'] ?? true;
+        return is_bool($enforceHttps) ? $enforceHttps : true;
     }
 
     private function isHttps(ServerRequestInterface $request): bool
@@ -95,8 +96,11 @@ class SecurityMiddleware implements MiddlewareInterface
         }
 
         // Check port
-        if (!empty($serverParams['SERVER_PORT']) && (int)$serverParams['SERVER_PORT'] === 443) {
-            return true;
+        if (!empty($serverParams['SERVER_PORT'])) {
+            $port = is_numeric($serverParams['SERVER_PORT']) ? (int)$serverParams['SERVER_PORT'] : 0;
+            if ($port === 443) {
+                return true;
+            }
         }
 
         return false;
@@ -104,8 +108,9 @@ class SecurityMiddleware implements MiddlewareInterface
 
     private function addSecurityHeaders(ResponseInterface $response, ServerRequestInterface $request): ResponseInterface
     {
-        $headers = $this->config['security']['headers'] ?? [];
-        
+        $configHeaders = $this->config['security']['headers'] ?? [];
+        $configHeaders = is_array($configHeaders) ? $configHeaders : [];
+
         // Default security headers
         $defaultHeaders = [
             'X-Content-Type-Options' => 'nosniff',
@@ -116,12 +121,14 @@ class SecurityMiddleware implements MiddlewareInterface
         ];
 
         // Merge with config
-        $headers = array_merge($defaultHeaders, $headers);
+        $headers = array_merge($defaultHeaders, $configHeaders);
 
         // Add HSTS header for HTTPS connections
         if ($this->isHttps($request)) {
             $hstsConfig = $this->config['security']['hsts'] ?? [];
+            $hstsConfig = is_array($hstsConfig) ? $hstsConfig : [];
             $maxAge = $hstsConfig['max_age'] ?? 31536000; // 1 year
+            $maxAge = is_numeric($maxAge) ? (int)$maxAge : 31536000;
             $includeSubdomains = $hstsConfig['include_subdomains'] ?? true;
             $preload = $hstsConfig['preload'] ?? false;
 
@@ -138,7 +145,15 @@ class SecurityMiddleware implements MiddlewareInterface
 
         // Apply headers to response
         foreach ($headers as $name => $value) {
-            $response = $response->withHeader($name, $value);
+            if (is_string($name) && is_string($value)) {
+                $response = $response->withHeader($name, $value);
+            } elseif (is_string($name) && is_array($value)) {
+                // Ensure array contains only strings
+                $stringValues = array_filter($value, 'is_string');
+                if (!empty($stringValues)) {
+                    $response = $response->withHeader($name, $stringValues);
+                }
+            }
         }
 
         return $response;

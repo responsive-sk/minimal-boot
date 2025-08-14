@@ -11,6 +11,7 @@ use ResponsiveSk\Slim4Session\SessionInterface;
  */
 class ThemeService
 {
+    /** @deprecated Not used in svelte-boot branch but kept for compatibility */
     private const SESSION_THEME_KEY = 'selected_theme';
     private const DEFAULT_THEME = 'svelte';
 
@@ -72,7 +73,8 @@ class ThemeService
      */
     public function getCurrentTheme(): string
     {
-        // Note: session is available but not used in svelte-boot branch
+        // Note: $this->session is available but not used in svelte-boot branch
+        // This is by design - svelte-boot uses fixed theme without switching
         return self::DEFAULT_THEME; // Always return Svelte
     }
 
