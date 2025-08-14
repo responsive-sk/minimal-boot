@@ -51,6 +51,9 @@ class RoutesDelegator
         // Simple test route without any complex CSS
         $app->get('/test-simple', function() {
             $content = file_get_contents(__DIR__ . '/../../templates/themes/svelte/pages/test-simple.phtml');
+            if ($content === false) {
+                throw new \RuntimeException('Could not read test template file');
+            }
             return new \Laminas\Diactoros\Response\HtmlResponse($content);
         }, 'test.simple');
 

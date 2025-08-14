@@ -14,8 +14,12 @@ use Psr\Http\Server\RequestHandlerInterface;
  */
 class SecurityMiddleware implements MiddlewareInterface
 {
+    /** @var array<string, mixed> */
     private array $config;
 
+    /**
+     * @param array<string, mixed> $config
+     */
     public function __construct(array $config = [])
     {
         $this->config = $config;

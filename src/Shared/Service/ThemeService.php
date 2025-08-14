@@ -72,6 +72,7 @@ class ThemeService
      */
     public function getCurrentTheme(): string
     {
+        // Note: session is available but not used in svelte-boot branch
         return self::DEFAULT_THEME; // Always return Svelte
     }
 
