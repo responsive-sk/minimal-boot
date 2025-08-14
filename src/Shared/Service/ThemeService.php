@@ -11,8 +11,7 @@ use ResponsiveSk\Slim4Session\SessionInterface;
  */
 class ThemeService
 {
-    /** @deprecated Not used in svelte-boot branch but kept for compatibility */
-    private const SESSION_THEME_KEY = 'selected_theme';
+    // Removed SESSION_THEME_KEY - not needed in svelte-boot branch
     private const DEFAULT_THEME = 'svelte';
 
     private const AVAILABLE_THEMES = [
@@ -64,8 +63,9 @@ class ThemeService
     ];
 
     public function __construct(
-        private SessionInterface $session
+        private ?SessionInterface $session = null
     ) {
+        // Session is optional in svelte-boot branch (no theme switching)
     }
 
     /**
@@ -73,9 +73,12 @@ class ThemeService
      */
     public function getCurrentTheme(): string
     {
-        // Note: $this->session is available but not used in svelte-boot branch
-        // This is by design - svelte-boot uses fixed theme without switching
-        return self::DEFAULT_THEME; // Always return Svelte
+        // In svelte-boot branch, always return Svelte theme
+        // Session is available but not used for theme switching
+        if ($this->session !== null) {
+            // Session available but theme is fixed to Svelte
+        }
+        return self::DEFAULT_THEME;
     }
 
     /**
@@ -83,7 +86,8 @@ class ThemeService
      */
     public function setTheme(string $theme): void
     {
-        // No-op: Theme switching disabled in svelte-boot
+        // No-op: Theme switching disabled in svelte-boot branch
+        // Always uses Svelte theme regardless of input
     }
 
     /**

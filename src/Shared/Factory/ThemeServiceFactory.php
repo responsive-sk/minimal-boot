@@ -17,9 +17,14 @@ class ThemeServiceFactory
 {
     public function __invoke(ContainerInterface $container): ThemeService
     {
-        $session = $container->get(SessionInterface::class);
-        assert($session instanceof SessionInterface);
-
-        return new ThemeService($session);
+        // In svelte-boot branch, session is optional (no theme switching)
+        try {
+            $session = $container->get(SessionInterface::class);
+            assert($session instanceof SessionInterface);
+            return new ThemeService($session);
+        } catch (\Throwable) {
+            // Fallback for svelte-boot: no session needed
+            return new ThemeService(null);
+        }
     }
 }
