@@ -6,34 +6,50 @@
   
   let ticking = false
 
+  // Cache nav element to avoid repeated queries
+  let navElement = null
+  let lastScrollState = null
+
   function handleScroll() {
     if (!ticking) {
       requestAnimationFrame(() => {
+        // Batch all DOM reads first
         const scrollY = window.scrollY
-        scrolled = scrollY > 50
+        const newScrolled = scrollY > 50
 
-        // Update navigation glassmorphism with smooth transitions
-        const nav = document.querySelector('nav')
-        if (nav) {
-          // Calculate opacity based on scroll position (0-100px range)
-          const opacity = Math.min(scrollY / 100, 1)
-          const borderOpacity = Math.min(scrollY / 150, 0.2)
+        // Only update if state changed to prevent unnecessary DOM writes
+        if (newScrolled !== lastScrollState) {
+          scrolled = newScrolled
+          lastScrollState = newScrolled
 
-          // Batch DOM writes to prevent forced reflow
-          if (scrolled) {
-            nav.style.cssText = `
-              background: rgba(255, 255, 255, ${opacity * 0.1});
-              backdrop-filter: blur(${opacity * 12}px);
-              border-bottom: 1px solid rgba(255, 255, 255, ${borderOpacity});
-              transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
-            `
-          } else {
-            nav.style.cssText = `
-              background: transparent;
-              backdrop-filter: none;
-              border-bottom: none;
-              transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
-            `
+          // Cache nav element on first use
+          if (!navElement) {
+            navElement = document.querySelector('nav')
+          }
+
+          if (navElement) {
+            // Calculate values once
+            const opacity = Math.min(scrollY / 100, 1)
+            const borderOpacity = Math.min(scrollY / 150, 0.2)
+
+            // Single DOM write with transform for better performance
+            if (scrolled) {
+              navElement.style.cssText = `
+                background: rgba(255, 255, 255, ${opacity * 0.1});
+                backdrop-filter: blur(${opacity * 12}px);
+                border-bottom: 1px solid rgba(255, 255, 255, ${borderOpacity});
+                transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+                will-change: background, backdrop-filter, border-bottom;
+              `
+            } else {
+              navElement.style.cssText = `
+                background: transparent;
+                backdrop-filter: none;
+                border-bottom: none;
+                transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+                will-change: auto;
+              `
+            }
           }
         }
         ticking = false
